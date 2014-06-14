@@ -66,6 +66,13 @@
 			remoteGlobalIDString = 441CDF24194BDF6200199893;
 			remoteInfo = MjOptimizer;
 		};
+		441CDF64194BEB2200199893 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 441CDF1D194BDF6200199893 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 441CDF24194BDF6200199893;
+			remoteInfo = MjOptimizer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +210,7 @@
 				441CDF39194BDF6200199893 /* PBXTargetDependency */,
 				441CDF59194BE07600199893 /* PBXTargetDependency */,
 				441CDF5B194BE07600199893 /* PBXTargetDependency */,
+				441CDF65194BEB2200199893 /* PBXTargetDependency */,
 			);
 			name = MjOptimizerTests;
 			productName = MjOptimizerTests;
@@ -338,6 +346,11 @@
 			isa = PBXTargetDependency;
 			target = 441CDF24194BDF6200199893 /* MjOptimizer */;
 			targetProxy = 441CDF5A194BE07600199893 /* PBXContainerItemProxy */;
+		};
+		441CDF65194BEB2200199893 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 441CDF24194BDF6200199893 /* MjOptimizer */;
+			targetProxy = 441CDF64194BEB2200199893 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

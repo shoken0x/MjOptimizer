@@ -68,6 +68,7 @@ class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         println("update")
     }
     
+    // for just test
     func getClassName() -> NSString {
         return "CameraManager"
     }
