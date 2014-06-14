@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVFoundation
 import CoreMedia
 
@@ -15,6 +16,7 @@ class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     var stillImageOutput: AVCaptureStillImageOutput!
     var videoDataOutput: AVCaptureVideoDataOutput!
     var session: AVCaptureSession!
+    var label: UILabel
     
     init() { }
     
@@ -66,6 +68,14 @@ class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         
         NSThread.sleepForTimeInterval(1)
         println("update")
+    }
+    
+    func updateLabel(str: NSString) {
+        label.text = str
+    }
+    
+    func setLabel(label: UILabel) {
+        self.label = label
     }
     
     // for just test
