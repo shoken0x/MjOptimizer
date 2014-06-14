@@ -14,6 +14,7 @@
 		441CDF48194BE02300199893 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF47194BE02300199893 /* CameraManager.swift */; };
 		441CDF5C194BE07C00199893 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441CDF51194BE06B00199893 /* Quick.framework */; };
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
+		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,13 @@
 			remoteGlobalIDString = 441CDF24194BDF6200199893;
 			remoteInfo = MjOptimizer;
 		};
+		441CDF6A194BEB2200199893 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 441CDF1D194BDF6200199893 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 441CDF24194BDF6200199893;
+			remoteInfo = MjOptimizer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +95,7 @@
 		441CDF47194BE02300199893 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		441CDF49194BE06B00199893 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerSpec.swift; sourceTree = "<group>"; };
+		441CDF6D194C1E8500199893 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +142,7 @@
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
+				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				441CDF28194BDF6200199893 /* Supporting Files */,
 			);
@@ -211,6 +221,7 @@
 				441CDF59194BE07600199893 /* PBXTargetDependency */,
 				441CDF5B194BE07600199893 /* PBXTargetDependency */,
 				441CDF65194BEB2200199893 /* PBXTargetDependency */,
+				441CDF6B194BEB2200199893 /* PBXTargetDependency */,
 			);
 			name = MjOptimizerTests;
 			productName = MjOptimizerTests;
@@ -298,6 +309,7 @@
 			files = (
 				441CDF30194BDF6200199893 /* Main.storyboard in Resources */,
 				441CDF32194BDF6200199893 /* Images.xcassets in Resources */,
+				441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +364,11 @@
 			target = 441CDF24194BDF6200199893 /* MjOptimizer */;
 			targetProxy = 441CDF64194BEB2200199893 /* PBXContainerItemProxy */;
 		};
+		441CDF6B194BEB2200199893 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 441CDF24194BDF6200199893 /* MjOptimizer */;
+			targetProxy = 441CDF6A194BEB2200199893 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -400,7 +417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -436,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -451,6 +468,7 @@
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BCC35063-C9C9-4BE9-872E-84C4943A7DB7";
 			};
 			name = Debug;
 		};
@@ -462,6 +480,7 @@
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "BCC35063-C9C9-4BE9-872E-84C4943A7DB7";
 			};
 			name = Release;
 		};

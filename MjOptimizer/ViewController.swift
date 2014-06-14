@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-    var debugLabel: UILabel
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +31,9 @@ class ViewController: UIViewController {
             self.setPreview(session)
         }
         self.setOverlayView()
-        cameraManager.setLabel(self.debugLabel)
-        self.setUILabel()
+        var debugLabel:UILabel = self.makeUILabel()
+        cameraManager.setLabel(debugLabel)
+        self.view.addSubview(debugLabel)
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -52,13 +52,13 @@ class ViewController: UIViewController {
         self.view.addSubview(overlayImageView)
     }
     
-    func setUILabel() {
-        self.debugLabel = UILabel(frame: CGRectMake(100, 50, 120, 30))
-        self.debugLabel.center = CGPointMake(160, 184)
-        self.debugLabel.textAlignment = NSTextAlignment.Center
-        self.debugLabel.textColor = UIColor.redColor()
-        self.debugLabel.text = "I'am a test label"
-        
-        self.view.addSubview(debugLabel)
+    func makeUILabel() -> UILabel {
+        var label = UILabel(frame: CGRectMake(100, 50, 120, 30))
+        label.center = CGPointMake(160, 184)
+        label.textAlignment = NSTextAlignment.Center
+        label.textColor = UIColor.redColor()
+        label.text = "I'am a test label"
+
+        return label
     }
 }

@@ -16,7 +16,7 @@ class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     var stillImageOutput: AVCaptureStillImageOutput!
     var videoDataOutput: AVCaptureVideoDataOutput!
     var session: AVCaptureSession!
-    var label: UILabel
+    var label: UILabel!
     
     init() { }
     
@@ -68,6 +68,9 @@ class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         
         NSThread.sleepForTimeInterval(1)
         println("update")
+        var now: NSDate = NSDate()
+        println(now.description)
+        //self.label.text = now.description
     }
     
     func updateLabel(str: NSString) {
