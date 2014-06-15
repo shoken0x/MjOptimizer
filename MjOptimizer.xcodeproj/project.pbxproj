@@ -16,6 +16,8 @@
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
 		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
+		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
+		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		441CDF6D194C1E8500199893 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
 		74F49D3AE47046E8BC98F366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
+		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 		441CDF27194BDF6200199893 /* MjOptimizer */ = {
 			isa = PBXGroup;
 			children = (
+				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				441CDF49194BE06B00199893 /* Quick.xcodeproj */,
+				C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */,
 				441CDF3B194BDF6200199893 /* Supporting Files */,
 				441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */,
 			);
@@ -379,6 +385,7 @@
 			files = (
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
 				441CDF48194BE02300199893 /* CameraManager.swift in Sources */,
+				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,
+				C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
