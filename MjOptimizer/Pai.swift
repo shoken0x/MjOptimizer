@@ -27,7 +27,7 @@ class Pai {
     var type: PaiType
     var number: Int
     var direction: PaiDirection
-
+    
     init(type: PaiType,number: Int,direction: PaiDirection){
         self.type = type
         self.number = number
@@ -71,7 +71,9 @@ class Pai {
             //TODO 例外を投げる
         }
     }
-    
+    func getType() -> PaiType{return self.type}
+    func getNumber() -> Int{return self.number}
+    func getDirection() -> PaiDirection{return self.direction}
     func getTypeStr() -> String{
         let typeStrMap = [PaiType.MANZU:"m",PaiType.SOUZU:"s",PaiType.PINZU:"p",PaiType.JIHAI:"j"]
         return typeStrMap[self.type]!
