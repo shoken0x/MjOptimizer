@@ -37,8 +37,7 @@ class Pai {
         }
         if ((strList.count % 3) != 0) {
             println("[エラー] paiListStrの長さが３の倍数ではありません")
-            return []
-            //TODO 例外を投げる
+            exit(1)
         }
         
         var paiList: Pai[] = []
@@ -84,9 +83,8 @@ class Pai {
         case "j":
             self.type = PaiType.JIHAI
         default:
-            self.type = PaiType.MANZU
             println("[エラー] 不正なpaiType¥(strList[0])")
-            //TODO 例外を投げる
+            exit(1)
         }
         self.number = strList[1].toInt()!
         switch strList[2] {
@@ -101,9 +99,8 @@ class Pai {
         case " ":
             self.direction = PaiDirection.TOP
         default:
-            self.direction = PaiDirection.TOP
             println("[エラー] 不正なpaiDirection¥(strList[2])")
-            //TODO 例外を投げる
+            exit(1)
         }
     }
     
