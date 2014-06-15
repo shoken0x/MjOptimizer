@@ -239,6 +239,7 @@
 				TargetAttributes = {
 					441CDF24194BDF6200199893 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 645QK7J5E9;
 					};
 					441CDF36194BDF6200199893 = {
 						CreatedOnToolsVersion = 6.0;
@@ -465,10 +466,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BCC35063-C9C9-4BE9-872E-84C4943A7DB7";
+				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
 			};
 			name = Debug;
 		};
@@ -477,10 +480,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BCC35063-C9C9-4BE9-872E-84C4943A7DB7";
+				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
 			};
 			name = Release;
 		};
