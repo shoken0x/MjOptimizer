@@ -17,6 +17,10 @@
 		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
+		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
+		C4F9B02F194DA90A003FFEEC /* UkeirePaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02E194DA90A003FFEEC /* UkeirePaiSpec.swift */; };
+		C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */; };
+		C4F9B033194DB177003FFEEC /* SutehaiCandidateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B032194DB177003FFEEC /* SutehaiCandidateSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +104,10 @@
 		441CDF6D194C1E8500199893 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
+		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
+		C4F9B02E194DA90A003FFEEC /* UkeirePaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePaiSpec.swift; sourceTree = "<group>"; };
+		C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiCandidate.swift; sourceTree = "<group>"; };
+		C4F9B032194DB177003FFEEC /* SutehaiCandidateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiCandidateSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,8 @@
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				441CDF28194BDF6200199893 /* Supporting Files */,
+				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
+				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
 			);
 			path = MjOptimizer;
 			sourceTree = "<group>";
@@ -167,8 +177,10 @@
 			children = (
 				441CDF49194BE06B00199893 /* Quick.xcodeproj */,
 				C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */,
+				C4F9B02E194DA90A003FFEEC /* UkeirePaiSpec.swift */,
 				441CDF3B194BDF6200199893 /* Supporting Files */,
 				441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */,
+				C4F9B032194DB177003FFEEC /* SutehaiCandidateSpec.swift */,
 			);
 			path = MjOptimizerTests;
 			sourceTree = "<group>";
@@ -334,10 +346,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
 				441CDF48194BE02300199893 /* CameraManager.swift in Sources */,
 				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
+				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4F9B033194DB177003FFEEC /* SutehaiCandidateSpec.swift in Sources */,
+				C4F9B02F194DA90A003FFEEC /* UkeirePaiSpec.swift in Sources */,
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,
 				C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */,
 			);

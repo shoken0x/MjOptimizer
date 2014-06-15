@@ -28,6 +28,12 @@ class Pai {
     var number: Int
     var direction: PaiDirection
     
+    init(type: PaiType,number: Int){
+        self.type = type
+        self.number = number
+        self.direction = PaiDirection.TOP
+    }
+    
     init(type: PaiType,number: Int,direction: PaiDirection){
         self.type = type
         self.number = number
