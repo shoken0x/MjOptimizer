@@ -1,3 +1,9 @@
 [submodule "Quick"]
 	path = Quick
 	url = https://github.com/modocache/Quick.git
+[submodule "Submodules/Quick"]
+	path = Submodules/Quick
+	url = https://github.com/modocache/Quick.git
+[submodule "Submodules/ExSwift"]
+	path = Submodules/ExSwift
+	url = git@github.com:syokenz/ExSwift.git
