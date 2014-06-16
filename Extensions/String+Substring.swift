@@ -12,6 +12,9 @@ extension String {
 //    func length () -> Int {
 //        return (countElements (self))
 //    }
+    subscript(r: Range<Int>) -> String {
+        return self.substring(from: r.startIndex, length: (r.endIndex - r.startIndex))
+    }
     
     func substring (#from: Int, length: Int) -> String {
         let intermediate = self.substringFromIndex (from)
