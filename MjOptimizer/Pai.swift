@@ -37,9 +37,6 @@ class Pai {
     //"m1t"などの文字列からオブジェクトを作る
     class func parse(str: String) -> Pai? {
         if let type = PaiType.fromRaw(str[0..1]) {
-            println(str[0..1])
-            println(str[0...1])
-            println(str[1..2])
             if let number = str[1..2].toInt() {
                 if let direction = PaiDirection.fromRaw(str[2..3]) {
                     return Pai(type: type, number: number, direction: direction)
