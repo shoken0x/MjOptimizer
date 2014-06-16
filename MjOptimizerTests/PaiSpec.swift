@@ -83,9 +83,6 @@ class PaiSpec: QuickSpec {
                 expect(paiList[1].toString()).to.equal("m1t")
                 expect(paiList[2].toString()).to.equal("p5t")
             }
-            it("2"){
-                var paiList:Pai[] = Pai.stringToPaiList("s")
-            }
         }
     }
 }
