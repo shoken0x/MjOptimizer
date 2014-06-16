@@ -15,17 +15,8 @@
 		441CDF48194BE02300199893 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF47194BE02300199893 /* CameraManager.swift */; };
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
 		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
-		44F04E85194E935500EA3E8A /* Collection+EachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E83194E935500EA3E8A /* Collection+EachWithIndex.swift */; };
-		44F04E86194E935500EA3E8A /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E84194E935500EA3E8A /* String+Substring.swift */; };
-		44F04E93194E979400EA3E8A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E89194E979400EA3E8A /* Array.swift */; };
-		44F04E94194E979400EA3E8A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E8A194E979400EA3E8A /* Dictionary.swift */; };
-		44F04E95194E979400EA3E8A /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E8C194E979400EA3E8A /* ExSwift.swift */; };
-		44F04E96194E979400EA3E8A /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E8D194E979400EA3E8A /* Float.swift */; };
-		44F04E97194E979400EA3E8A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44F04E8E194E979400EA3E8A /* Info.plist */; };
-		44F04E98194E979400EA3E8A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E8F194E979400EA3E8A /* Int.swift */; };
-		44F04E99194E979400EA3E8A /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E90194E979400EA3E8A /* NSArray.swift */; };
-		44F04E9A194E979400EA3E8A /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E91194E979400EA3E8A /* Range.swift */; };
-		44F04E9B194E979400EA3E8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F04E92194E979400EA3E8A /* String.swift */; };
+		44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */; };
+		44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B20194F361A00CE7E7A /* String+Substring.swift */; };
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
@@ -133,18 +124,8 @@
 		441CDF47194BE02300199893 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerSpec.swift; sourceTree = "<group>"; };
 		441CDF6D194C1E8500199893 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
-		44F04E83194E935500EA3E8A /* Collection+EachWithIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+EachWithIndex.swift"; path = "Extentions/Collection+EachWithIndex.swift"; sourceTree = "<group>"; };
-		44F04E84194E935500EA3E8A /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Substring.swift"; path = "Extentions/String+Substring.swift"; sourceTree = "<group>"; };
-		44F04E89194E979400EA3E8A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		44F04E8A194E979400EA3E8A /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
-		44F04E8B194E979400EA3E8A /* ExSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExSwift.h; sourceTree = "<group>"; };
-		44F04E8C194E979400EA3E8A /* ExSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExSwift.swift; sourceTree = "<group>"; };
-		44F04E8D194E979400EA3E8A /* Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Float.swift; sourceTree = "<group>"; };
-		44F04E8E194E979400EA3E8A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44F04E8F194E979400EA3E8A /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		44F04E90194E979400EA3E8A /* NSArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSArray.swift; sourceTree = "<group>"; };
-		44F04E91194E979400EA3E8A /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
-		44F04E92194E979400EA3E8A /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+EachWithIndex.swift"; sourceTree = "<group>"; };
+		44270B20194F361A00CE7E7A /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
 		44F04E9C194E97AD00EA3E8A /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Submodules/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		74F49D3AE47046E8BC98F366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -190,7 +171,7 @@
 				441CDF26194BDF6200199893 /* Products */,
 				8756E46B0B4347C982442038 /* Pods.xcconfig */,
 				846FD070BC804615A65D8E05 /* Frameworks */,
-				444D3599194DAB44005C63D3 /* Extentions */,
+				44270B1E194F361A00CE7E7A /* Extensions */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,32 +236,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		444D3599194DAB44005C63D3 /* Extentions */ = {
+		44270B1E194F361A00CE7E7A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				44F04E88194E979400EA3E8A /* ExSwift */,
-				44F04E83194E935500EA3E8A /* Collection+EachWithIndex.swift */,
-				44F04E84194E935500EA3E8A /* String+Substring.swift */,
+				44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */,
+				44270B20194F361A00CE7E7A /* String+Substring.swift */,
 			);
-			name = Extentions;
-			sourceTree = "<group>";
-		};
-		44F04E88194E979400EA3E8A /* ExSwift */ = {
-			isa = PBXGroup;
-			children = (
-				44F04E89194E979400EA3E8A /* Array.swift */,
-				44F04E8A194E979400EA3E8A /* Dictionary.swift */,
-				44F04E8B194E979400EA3E8A /* ExSwift.h */,
-				44F04E8C194E979400EA3E8A /* ExSwift.swift */,
-				44F04E8D194E979400EA3E8A /* Float.swift */,
-				44F04E8E194E979400EA3E8A /* Info.plist */,
-				44F04E8F194E979400EA3E8A /* Int.swift */,
-				44F04E90194E979400EA3E8A /* NSArray.swift */,
-				44F04E91194E979400EA3E8A /* Range.swift */,
-				44F04E92194E979400EA3E8A /* String.swift */,
-			);
-			name = ExSwift;
-			path = Submodules/ExSwift/ExSwift;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		44F04E9D194E97AD00EA3E8A /* Products */ = {
@@ -428,7 +390,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44F04E97194E979400EA3E8A /* Info.plist in Resources */,
 				441CDF30194BDF6200199893 /* Main.storyboard in Resources */,
 				441CDF32194BDF6200199893 /* Images.xcassets in Resources */,
 				441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */,
@@ -482,19 +443,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44F04E99194E979400EA3E8A /* NSArray.swift in Sources */,
-				44F04E86194E935500EA3E8A /* String+Substring.swift in Sources */,
-				44F04E94194E979400EA3E8A /* Dictionary.swift in Sources */,
-				44F04E98194E979400EA3E8A /* Int.swift in Sources */,
-				44F04E85194E935500EA3E8A /* Collection+EachWithIndex.swift in Sources */,
+				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
+				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
-				44F04E9A194E979400EA3E8A /* Range.swift in Sources */,
 				C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
-				44F04E93194E979400EA3E8A /* Array.swift in Sources */,
-				44F04E96194E979400EA3E8A /* Float.swift in Sources */,
-				44F04E9B194E979400EA3E8A /* String.swift in Sources */,
 				C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */,
 				441CDF48194BE02300199893 /* CameraManager.swift in Sources */,
 				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
@@ -503,7 +457,6 @@
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 				C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */,
 				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
-				44F04E95194E979400EA3E8A /* ExSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
