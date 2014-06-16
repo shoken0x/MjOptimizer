@@ -13,7 +13,7 @@ class PaiSpec: QuickSpec {
     override func exampleGroups() {
         describe("init") {
             beforeEach { }
-            it("1") {
+            it("takes 3 arguments and create Pai instance") {
                 var pai:Pai = Pai(type: PaiType.MANZU,number: 1,direction: PaiDirection.LEFT)
                 
                 expect(pai.type == PaiType.MANZU).to.beTrue()
@@ -21,7 +21,7 @@ class PaiSpec: QuickSpec {
                 expect(pai.direction == PaiDirection.LEFT).to.beTrue()
                 expect(pai.toString()).to.equal("m1l")
             }
-            it("2") {
+            it("can omit direction argument") {
                 var pai:Pai = Pai(type: PaiType.MANZU,number: 1)
                 
                 expect(pai.type == PaiType.MANZU).to.beTrue()
@@ -29,8 +29,10 @@ class PaiSpec: QuickSpec {
                 expect(pai.direction == PaiDirection.TOP).to.beTrue()
                 expect(pai.toString()).to.equal("m1t")
             }
-            
-            it("3") {
+        }
+        
+        describe("#parse") {
+            it("parses the string which match with MJ protocol") {
                 var pai:Pai = Pai.parse("m1l")!
                 
                 expect(pai.type == PaiType.MANZU).to.beTrue()
@@ -39,20 +41,22 @@ class PaiSpec: QuickSpec {
                 expect(pai.toString()).to.equal("m1l")
             }
             
-            it("init3") {
-                var pai:Pai = Pai.parse("m1t")!
-                expect(pai.type == PaiType.MANZU).to.beTrue()
-                expect(pai.number).to.equal(1)
-                expect(pai.direction == PaiDirection.TOP).to.beTrue()
-                expect(pai.toString()).to.equal("m1t")
+            it("returns nil when specified string does not match with MJ protocol") {
+                if let pai = Pai.parse("detarame") {
+                    // should not come to this place
+                    expect(true).to.equal(false)
+                } else {
+                    // should come to this place
+                    expect(true).to.equal(true)
+                }
             }
         }
-        describe("stringToPaiList"){
-            it("1"){
-                //var paiList:Pai[] = Pai.stringToPaiList("s2lm1tp5t")!
-                //expect(paiList[0].toString()).to.equal("s2l")
-                //expect(paiList[1].toString()).to.equal("m1t")
-                //expect(paiList[2].toString()).to.equal("p5t")
+        describe("#parseList"){
+            it("returns array of Pai"){
+                let paiList:Pai[] = Pai.parseList("s2lm1tp5t")!
+                expect(paiList[0].toString()).to.equal("s2l")
+                expect(paiList[1].toString()).to.equal("m1t")
+                expect(paiList[2].toString()).to.equal("p5t")
             }
         }
     }

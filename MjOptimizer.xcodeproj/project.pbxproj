@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3497FBC6194F5B66005C58A8 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3497FBBF194F5B51005C58A8 /* Quick.framework */; };
+		3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497FBC7194F6086005C58A8 /* String+SliceWith.swift */; };
+		3497FBCA194F629C005C58A8 /* String+SliceWithSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497FBC9194F629C005C58A8 /* String+SliceWithSpec.swift */; };
 		441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF2A194BDF6200199893 /* AppDelegate.swift */; };
 		441CDF2D194BDF6200199893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF2C194BDF6200199893 /* ViewController.swift */; };
 		441CDF30194BDF6200199893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF2E194BDF6200199893 /* Main.storyboard */; };
@@ -121,6 +123,8 @@
 
 /* Begin PBXFileReference section */
 		3497FBB7194F5B51005C58A8 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3497FBC7194F6086005C58A8 /* String+SliceWith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SliceWith.swift"; sourceTree = "<group>"; };
+		3497FBC9194F629C005C58A8 /* String+SliceWithSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SliceWithSpec.swift"; sourceTree = "<group>"; };
 		441CDF25194BDF6200199893 /* MjOptimizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MjOptimizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		441CDF29194BDF6200199893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441CDF2A194BDF6200199893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				441CDF3B194BDF6200199893 /* Supporting Files */,
 				441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */,
 				C4F9B032194DB177003FFEEC /* SutehaiCandidateSpec.swift */,
+				3497FBC9194F629C005C58A8 /* String+SliceWithSpec.swift */,
 			);
 			path = MjOptimizerTests;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 			children = (
 				44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */,
 				44270B20194F361A00CE7E7A /* String+Substring.swift */,
+				3497FBC7194F6086005C58A8 /* String+SliceWith.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
 				C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
+				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 				C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */,
 				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
@@ -476,6 +483,7 @@
 				C4F9B02F194DA90A003FFEEC /* UkeirePaiSpec.swift in Sources */,
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,
 				C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */,
+				3497FBCA194F629C005C58A8 /* String+SliceWithSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

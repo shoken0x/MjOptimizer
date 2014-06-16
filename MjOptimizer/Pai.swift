@@ -45,6 +45,18 @@ class Pai {
         }
         return nil
     }
+    
+    class func parseList(str: String) -> Array<Pai>? {
+        var result = Array<Pai>()
+        for substr in str.sliceWith(3) {
+            if let pai = Pai.parse(substr) {
+                result.append(pai)
+            } else {
+                return nil
+            }
+        }
+        return result
+    }
 
     func toString() -> String{
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
