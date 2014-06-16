@@ -21,6 +21,10 @@ class StringSliceWithSpec: QuickSpec {
             it("returns empty array when string is empty") {
                 expect("".sliceWith(3)).to.equal([])
             }
+            
+            it("returns array with single string when argument is larger than string length") {
+                expect("short".sliceWith(10)).to.equal(["short"])
+            }
         }
     }
 }

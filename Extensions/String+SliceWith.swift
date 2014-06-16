@@ -23,6 +23,9 @@ extension String {
             }
             idx++
         }
+        if countElements(str) > 0 {
+            result.append(str)
+        }
         return result
     }
 }
