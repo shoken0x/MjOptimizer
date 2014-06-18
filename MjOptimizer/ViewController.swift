@@ -12,13 +12,11 @@ import CoreMedia
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    var videoInput: AVCaptureDeviceInput!
-    var videoDataOutput: AVCaptureVideoDataOutput!
-    var session: AVCaptureSession!
-    var previewImageView: UIImageView!
+    let videoDataOutput = AVCaptureVideoDataOutput()
+    let session = AVCaptureSession()
+    let label = UILabel(frame: CGRectMake(100, 50, 220, 30))
     var captureDevice: AVCaptureDevice!
-    var label: UILabel = UILabel(frame: CGRectMake(100, 50, 220, 30))
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,14 +37,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setPreview(session: AVCaptureSession) {
-        var previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as AVCaptureVideoPreviewLayer
+        let previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as AVCaptureVideoPreviewLayer
         previewLayer.frame = view.bounds
         
         view.layer.addSublayer(previewLayer)
     }
     
     func setOverlayView() {
-        var overlayImageView: UIImageView = UIImageView(image: UIImage(named: "overlaygraphic.png"))
+        let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "overlaygraphic.png"))
         overlayImageView.frame = CGRectMake(30, 250, 260, 200)
         
         label.center = CGPointMake(160, 184)
@@ -64,12 +62,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         // init device input
         // init device input
         var error: NSErrorPointer!
-        var deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
+        let deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
         
         
         // ビデオ出力のキャプチャの画像情報のキューを設定
         var queue: dispatch_queue_t = dispatch_queue_create("com.mjoptimizer.myQueue", nil)
-        videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
        
@@ -79,7 +76,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         //videoConnection.videoMinFrameDuration = CMTimeMake(1, 4);
         
         // 入力と出力からキャプチャーセッションを作成
-        session = AVCaptureSession()
         //session.sessionPreset = AVCaptureSessionPresetMedium
         session.sessionPreset = AVCaptureSessionPresetPhoto
         session.addInput(deviceInput as AVCaptureInput)
@@ -89,7 +85,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func findCamera() -> Bool {
-        var devices: NSArray = AVCaptureDevice.devices()
+        let devices: NSArray = AVCaptureDevice.devices()
         
         // find back camera
         for device: AnyObject in devices {
@@ -114,7 +110,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         NSThread.sleepForTimeInterval(1)
         dispatch_async( dispatch_get_main_queue() ) {
-            var now: NSDate = NSDate()
+            let now: NSDate = NSDate()
             println(now)
             println("update from captureOutput()")
             self.label.text = now.description
