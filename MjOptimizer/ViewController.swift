@@ -14,8 +14,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
-    let label = UILabel(frame: CGRectMake(100, 50, 220, 30))
+    let label = UILabel(frame: CGRectMake(100, 50, 300, 30))
+    let debugButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+    
     var captureDevice: AVCaptureDevice!
+    var isFinishAnalyze = false
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
+
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -47,6 +51,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "overlaygraphic.png"))
         overlayImageView.frame = CGRectMake(30, 250, 260, 200)
         
+        debugButton.frame = CGRectMake(70, 100, 200, 100)
+        debugButton.setTitle("Display Results", forState: UIControlState.Normal)
+        debugButton.addTarget(self, action: "buttonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(debugButton)
+        
         label.center = CGPointMake(160, 184)
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.redColor()
@@ -55,7 +64,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         label.setNeedsDisplay()
         view.addSubview(label)
         view.addSubview(overlayImageView)
-        view.updateConstraints()
     }
     
     func setuptAVCapture(captureDevice: AVCaptureDevice) {
@@ -106,15 +114,32 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
+    func buttonDidPush() {
+        println("buttonDidPudh")
+        isFinishAnalyze = true
+        println("isFinishAnalyze = \(isFinishAnalyze)")
+    }
+    
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         
         NSThread.sleepForTimeInterval(1)
         dispatch_async( dispatch_get_main_queue() ) {
-            let now: NSDate = NSDate()
-            println(now)
-            println("update from captureOutput()")
-            self.label.text = now.description
-            self.label.setNeedsDisplay()
+            if self.isFinishAnalyze {
+                // Display SutehaiSelectResult
+                var controllerMock = ControllerMock()
+                var targetFrame = CGRectMake(30, 250, 260, 200)
+                var sutehaiSelectResult = controllerMock.sutehaiSelect(sampleBuffer, targetFrame: targetFrame)
+                var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
+                
+                self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
+                self.label.setNeedsDisplay()
+            } else {
+                let now: NSDate = NSDate()
+                println(now)
+                println("update from captureOutput()")
+                self.label.text = now.description
+                self.label.setNeedsDisplay()
+            }
         }
     }
 }
