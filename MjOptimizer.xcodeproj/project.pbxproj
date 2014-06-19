@@ -63,6 +63,9 @@
 		447486F01951E97800AC1310 /* MJd1.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486ED1951E97800AC1310 /* MJd1.png */; };
 		447486F11951E97800AC1310 /* MJd2.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486EE1951E97800AC1310 /* MJd2.png */; };
 		447486F21951E97800AC1310 /* MJd3.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486EF1951E97800AC1310 /* MJd3.png */; };
+		4493507119535C4C00F871C5 /* circle03.png in Resources */ = {isa = PBXBuildFile; fileRef = 4493506E19535C4C00F871C5 /* circle03.png */; };
+		4493507219535C4C00F871C5 /* circle02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4493506F19535C4C00F871C5 /* circle02.png */; };
+		4493507319535C4C00F871C5 /* circle01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4493507019535C4C00F871C5 /* circle01.png */; };
 		449792E61952BE940005AA5A /* ExSwift.h in Resources */ = {isa = PBXBuildFile; fileRef = 444F5B5B19516C00007178D8 /* ExSwift.h */; };
 		44CDE3411951AD3900974D6B /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDE3401951AD3900974D6B /* ViewUtils.swift */; };
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
@@ -328,6 +331,9 @@
 		447486ED1951E97800AC1310 /* MJd1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MJd1.png; sourceTree = "<group>"; };
 		447486EE1951E97800AC1310 /* MJd2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MJd2.png; sourceTree = "<group>"; };
 		447486EF1951E97800AC1310 /* MJd3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MJd3.png; sourceTree = "<group>"; };
+		4493506E19535C4C00F871C5 /* circle03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle03.png; sourceTree = "<group>"; };
+		4493506F19535C4C00F871C5 /* circle02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle02.png; sourceTree = "<group>"; };
+		4493507019535C4C00F871C5 /* circle01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle01.png; sourceTree = "<group>"; };
 		44CDE3401951AD3900974D6B /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		74F49D3AE47046E8BC98F366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -403,6 +409,9 @@
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441DC53019534ADB00E6023D /* redrect.png */,
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
+				4493507019535C4C00F871C5 /* circle01.png */,
+				4493506F19535C4C00F871C5 /* circle02.png */,
+				4493506E19535C4C00F871C5 /* circle03.png */,
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				447486A21951CB3F00AC1310 /* MjImages */,
 				441CDF28194BDF6200199893 /* Supporting Files */,
@@ -723,6 +732,7 @@
 				447486D71951CB3F00AC1310 /* MJt3.png in Resources */,
 				447486CE1951CB3F00AC1310 /* MJs3.png in Resources */,
 				447486F01951E97800AC1310 /* MJd1.png in Resources */,
+				4493507219535C4C00F871C5 /* circle02.png in Resources */,
 				447486E31951CB3F00AC1310 /* MJw6.png in Resources */,
 				447486CB1951CB3F00AC1310 /* MJf4.png in Resources */,
 				441DC53119534ADB00E6023D /* redrect.png in Resources */,
@@ -733,6 +743,7 @@
 				447486E41951CB3F00AC1310 /* MJw7.png in Resources */,
 				447486E61951CB3F00AC1310 /* MJw9.png in Resources */,
 				441CDF32194BDF6200199893 /* Images.xcassets in Resources */,
+				4493507119535C4C00F871C5 /* circle03.png in Resources */,
 				447486DE1951CB3F00AC1310 /* MJw1.png in Resources */,
 				447486D51951CB3F00AC1310 /* MJt1.png in Resources */,
 				447486C91951CB3F00AC1310 /* MJf2.png in Resources */,
@@ -751,6 +762,7 @@
 				447486D01951CB3F00AC1310 /* MJs5.png in Resources */,
 				447486DF1951CB3F00AC1310 /* MJw2.png in Resources */,
 				447486E11951CB3F00AC1310 /* MJw4.png in Resources */,
+				4493507319535C4C00F871C5 /* circle01.png in Resources */,
 				447486C81951CB3F00AC1310 /* MJf1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

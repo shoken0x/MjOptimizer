@@ -27,7 +27,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,7 +40,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
+        focusOn()
         //viewMjImages()
+
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -225,5 +226,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         // UIGraphicsBeginImageContextの半分の値を指定することで、牌画像を1/2に縮小する
         backImage.frame = CGRectMake(x, y, width / 2, height / 2)
         view.addSubview(backImage)
+    }
+    func focusOn() {
+        let imgArray = NSArray(array: [UIImage(named:"circle01.png"),
+                                       UIImage(named:"circle02.png"),
+                                       UIImage(named:"circle03.png")])
+        
+        let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
+        animationView.animationImages = imgArray
+        animationView.animationDuration = 0.5
+        animationView.startAnimating()
+        view.addSubview(animationView)
     }
 }
