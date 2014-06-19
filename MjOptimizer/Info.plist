@@ -29,6 +29,8 @@
 		<string>armv7</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+	</array>
 </dict>
 </plist>

@@ -46,21 +46,21 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     func setPreview(session: AVCaptureSession) {
         let previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as AVCaptureVideoPreviewLayer
+        previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeLeft
         previewLayer.frame = view.bounds
-        
         view.layer.addSublayer(previewLayer)
     }
         
     func setOverlayView() {
-        let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "overlaygraphic.png"))
-        overlayImageView.frame = CGRectMake(30, 250, 260, 200)
+        let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "redrect.png"))
+        overlayImageView.frame = CGRectMake(24, 100, 520, 100)
         
-        debugButton.frame = CGRectMake(70, 100, 200, 100)
+        debugButton.frame = CGRectMake(380, 0, 200, 100)
         debugButton.setTitle("Display Results", forState: UIControlState.Normal)
         debugButton.addTarget(self, action: "buttonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(debugButton)
         
-        label.center = CGPointMake(160, 184)
+        label.center = CGPointMake(420, 270)
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.redColor()
         label.text = "scanning ..."
@@ -87,7 +87,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         // 入力と出力からキャプチャーセッションを作成
         //session.sessionPreset = AVCaptureSessionPresetMedium
-        session.sessionPreset = AVCaptureSessionPresetPhoto
+        session.sessionPreset = AVCaptureSessionPresetHigh
+        //session.sessionPreset = AVCaptureSessionPresetPhoto
+        //session.sessionPreset = AVCaptureSessionPreset1280x720
         session.addInput(deviceInput as AVCaptureInput)
         session.addOutput(videoDataOutput)
         
@@ -160,12 +162,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         drowMjImages(15, 45, paiStrArray)
         
         totalNumLabel.center = CGPointMake(150, 70)
-        totalNumLabel.textColor = UIColor.blackColor()
+        totalNumLabel.textColor = UIColor.whiteColor()
         totalNumLabel.text = "15"
         view.addSubview(totalNumLabel)
         
         shantenNumLabel.center = CGPointMake(270, 70)
-        shantenNumLabel.textColor = UIColor.blackColor()
+        shantenNumLabel.textColor = UIColor.whiteColor()
         shantenNumLabel.text = "3"
         view.addSubview(shantenNumLabel)
         

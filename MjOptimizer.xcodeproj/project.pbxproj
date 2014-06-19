@@ -15,6 +15,7 @@
 		441CDF48194BE02300199893 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF47194BE02300199893 /* CameraManager.swift */; };
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
 		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
+		441DC53119534ADB00E6023D /* redrect.png in Resources */ = {isa = PBXBuildFile; fileRef = 441DC53019534ADB00E6023D /* redrect.png */; };
 		44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */; };
 		44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B20194F361A00CE7E7A /* String+Substring.swift */; };
 		44522C001952ABE900E47343 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5919516C00007178D8 /* Array.swift */; };
@@ -262,6 +263,7 @@
 		441CDF47194BE02300199893 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerSpec.swift; sourceTree = "<group>"; };
 		441CDF6D194C1E8500199893 /* overlaygraphic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlaygraphic.png; sourceTree = "<group>"; };
+		441DC53019534ADB00E6023D /* redrect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redrect.png; sourceTree = "<group>"; };
 		44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+EachWithIndex.swift"; sourceTree = "<group>"; };
 		44270B20194F361A00CE7E7A /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
 		444F5B5919516C00007178D8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
+				441DC53019534ADB00E6023D /* redrect.png */,
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				447486A21951CB3F00AC1310 /* MjImages */,
@@ -702,6 +705,7 @@
 				447486F01951E97800AC1310 /* MJd1.png in Resources */,
 				447486E31951CB3F00AC1310 /* MJw6.png in Resources */,
 				447486CB1951CB3F00AC1310 /* MJf4.png in Resources */,
+				441DC53119534ADB00E6023D /* redrect.png in Resources */,
 				447486E51951CB3F00AC1310 /* MJw8.png in Resources */,
 				447486DB1951CB3F00AC1310 /* MJt7.png in Resources */,
 				447486D81951CB3F00AC1310 /* MJt4.png in Resources */,
