@@ -8,9 +8,10 @@
 
 import MjOptimizer
 import Quick
+import Nimble
 
 class ViewUtilsSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         let m1t = Pai(type:PaiType.MANZU, number: 1)
         let s1t = Pai(type:PaiType.SOUZU, number: 1)
         let p1t = Pai(type:PaiType.PINZU, number: 1)

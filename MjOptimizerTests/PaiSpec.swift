@@ -8,9 +8,10 @@
 
 import MjOptimizer
 import Quick
+import Nimble
 
 class PaiSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         describe("init") {
             beforeEach { }
             it("takes 3 arguments and create Pai instance") {

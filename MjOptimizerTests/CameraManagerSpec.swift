@@ -8,9 +8,10 @@
 
 import MjOptimizer
 import Quick
+import Nimble
 
 class CameraManagerSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         describe("CameraManager") {
             var cameraManager = CameraManager()
             beforeEach { }

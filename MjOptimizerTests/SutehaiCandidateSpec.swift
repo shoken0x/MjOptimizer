@@ -6,13 +6,12 @@
 //  Copyright (c) 2014年 Shoken Fujisaki. All rights reserved.
 //
 
-import Foundation
-
 import MjOptimizer
 import Quick
+import Nimble
 
 class SutehaiCandidateSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         describe("SutehaiCandidate") {
             beforeEach { }
             it("init") {

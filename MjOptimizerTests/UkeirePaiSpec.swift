@@ -8,9 +8,10 @@
 
 import MjOptimizer
 import Quick
+import Nimble
 
 class UkeirePaiSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         describe("UkeirePai Class") {
             beforeEach { }
             it("init") {

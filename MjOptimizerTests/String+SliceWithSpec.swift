@@ -6,13 +6,12 @@
 //  Copyright (c) 2014年 Shoken Fujisaki. All rights reserved.
 //
 
-import Foundation
-
 import MjOptimizer
 import Quick
+import Nimble
 
 class StringSliceWithSpec: QuickSpec {
-    override func exampleGroups() {
+    override func spec() {
         describe("sliceWith") {
             it("slice string to array") {
                 expect("abcdefhij".sliceWith(3)).to.equal(["abc", "def", "hij"])
