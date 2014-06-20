@@ -137,19 +137,33 @@ class SutehaiSelector{
             
             for pai in tehai.restPaiList{
                 // TODO: 比較メソッドを作る
-//                if pai == targetPai{
-//                    selectedPaiList += pai
-//                }
+                if pai.equal(targetPai) {
+                    selectedPaiList += pai
+                }
             }
             
             if selectedPaiList.count == 2 {
                 // TODO: += メソッドを作る
-//                tehai.toitsuList += selectedPaiList
-//                // TODO: 配列引く配列
+//                tehai.toitsuList += Toitsu(selectedPaiList)
+//                tehai.toitsuList.extend(selectedPaiList)
+                // TODO: 配列引く配列
 //                tehai.restPaiList -= selectedPaiList
                 return analyzeKazuhaiToitsu(tehai)
             }
         }
+        
+        // test
+//        var ary: String[] = ["a","b"]
+//        ary += "c"
+//        
+//        tehai.toitsuList += Pai.parse("m1t")!
+//        tehai.toitsuList.append(Pai.parse("m1t")!)
+//        
+//        var aaa = [Pai.parse("m1t")!,Pai.parse("m1t")!]
+//        aaa += [Pai.parse("m1t")!]
+//        aaa.insert(Pai.parse("m1t")!)
+        
+        
         return tehai
     }
 }
