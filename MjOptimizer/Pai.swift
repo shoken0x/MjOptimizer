@@ -63,11 +63,6 @@ class Pai {
     func toString() -> String{
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
-
-    // TODO: 実装する
-//    func == (pai: Pai) -> Bool{
-//        self.toString() == Pai.toString
-//    }
     
     // インスタンスの次のPaiを取得する
     func getNextPai(range: Int = 1) -> String{
@@ -94,4 +89,8 @@ class Pai {
     }
     
     
+    
+    func equal(other: Pai) -> Bool{
+        return self.toString() == other.toString()
+    }
 }
