@@ -21,10 +21,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let shantenNumLabel = UILabel(frame: CGRectMake(10, 10, 30, 30))
     let debugButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let rescanButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-    let logView = UITextView(frame: CGRectMake(400, 20, 190, 100))
+    let logView = UITextView(frame: CGRectMake(460, 20, 150, 100))
     let filterView = UIView(frame: CGRectMake(0, 0, 568, 320))
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
+    let systemStats = Stats()
     
+    var scanCounter = 0
     var log = "START SCAN..."
     var captureDevice: AVCaptureDevice!
     var isFinishAnalyze = false
@@ -75,7 +77,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         rescanButton.hidden = true
         view.addSubview(rescanButton)
         
-        label.center = CGPointMake(420, 270)
+        label.center = CGPointMake(420, 300)
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.redColor()
         label.text = "scanning ..."
@@ -160,27 +162,24 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             if self.isFinishAnalyze {
                 // Display SutehaiSelectResult
-                var targetFrame = CGRectMake(30, 250, 260, 200)
+                var targetFrame = CGRectMake(0, 0, 0, 0)
                 var sutehaiSelectResult = ControllerMock().sutehaiSelect(sampleBuffer, targetFrame: targetFrame)
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                 
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
-                self.label.setNeedsDisplay()
                 
             } else {
                 let now: NSDate = NSDate()
                 println(now)
                 println("update from captureOutput()")
                 self.label.text = now.description
-                self.label.setNeedsDisplay()
                 
-                self.logView.text = self.logView.text.stringByAppendingString("\n\(now.description)")
+                self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
                 var range = self.logView.selectedRange
                 range.location = self.logView.text.length
                 self.logView.scrollEnabled = false
                 self.logView.scrollRangeToVisible(range)
                 self.logView.scrollEnabled = true
-                self.logView.setNeedsDisplay()
             }
         }
     }
@@ -194,7 +193,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                            ViewUtils.convertImageFromPai(pai2),
                            ViewUtils.convertImageFromPai(pai3)]
         
-        drowMjImages(15, 45, paiStrArray)
+        drawMjImages(15, 45, paiStrArray)
         
         totalNumLabel.center = CGPointMake(150, 70)
         totalNumLabel.textColor = UIColor.whiteColor()
@@ -212,9 +211,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         logView.scrollEnabled = false
         logView.editable = false
         logView.textAlignment = NSTextAlignment.Left
-        logView.font = UIFont(name: "Helvetica", size: 14)
-        logView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.3)
-        logView.textColor = UIColor.whiteColor()
+        logView.font = UIFont(name: "Courier", size: 13)
+        logView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
+        logView.textColor = UIColor.greenColor()
         logView.text = log
         view.addSubview(logView)
     }
@@ -225,10 +224,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                             "MJs1", "MJs2", "MJs3",
                             "MJd1", "MJd1", "MJd1",
                             "MJf1", "MJf1"]
-        drowMjImages(27, 180, paiStrArray, 0.8)
+        drawMjImages(27, 205, paiStrArray, 0.8)
     }
     
-    func drowMjImages(x: CGFloat, _ y: CGFloat, _ strArray: String[], _ rate: CGFloat = 0.5) {
+    func drawMjImages(x: CGFloat, _ y: CGFloat, _ strArray: String[], _ rate: CGFloat = 0.5) {
         var width:  CGFloat = 700
         var height: CGFloat = 200
         var imageX: CGFloat = 10

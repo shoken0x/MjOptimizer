@@ -20,6 +20,7 @@
 		441DC54E1953589F00E6023D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446D2D2B1952D30D000A6A0C /* Nimble.framework */; };
 		44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */; };
 		44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B20194F361A00CE7E7A /* String+Substring.swift */; };
+		444416521953E77B00054A73 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 444416511953E77B00054A73 /* Stats.m */; };
 		44522C001952ABE900E47343 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5919516C00007178D8 /* Array.swift */; };
 		44522C011952ABE900E47343 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5A19516C00007178D8 /* Dictionary.swift */; };
 		44522C031952ABE900E47343 /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5C19516C00007178D8 /* ExSwift.swift */; };
@@ -286,6 +287,9 @@
 		441DC537195356C300E6023D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Submodules/Quick/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+EachWithIndex.swift"; sourceTree = "<group>"; };
 		44270B20194F361A00CE7E7A /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
+		444416501953E77B00054A73 /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		444416511953E77B00054A73 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
+		4444165B1953E7D800054A73 /* Stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
 		444F5B5919516C00007178D8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		444F5B5A19516C00007178D8 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		444F5B5B19516C00007178D8 /* ExSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExSwift.h; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 		441CDF27194BDF6200199893 /* MjOptimizer */ = {
 			isa = PBXGroup;
 			children = (
+				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
 				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
@@ -405,7 +410,6 @@
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
-				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441DC53019534ADB00E6023D /* redrect.png */,
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
@@ -418,6 +422,9 @@
 				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
 				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
 				44CDE3401951AD3900974D6B /* ViewUtils.swift */,
+				444416501953E77B00054A73 /* MjOptimizer-Bridging-Header.h */,
+				4444165B1953E7D800054A73 /* Stats.h */,
+				444416511953E77B00054A73 /* Stats.m */,
 			);
 			path = MjOptimizer;
 			sourceTree = "<group>";
@@ -816,6 +823,7 @@
 			files = (
 				44522C001952ABE900E47343 /* Array.swift in Sources */,
 				44522C011952ABE900E47343 /* Dictionary.swift in Sources */,
+				444416521953E77B00054A73 /* Stats.m in Sources */,
 				44522C031952ABE900E47343 /* ExSwift.swift in Sources */,
 				44522C041952ABE900E47343 /* Float.swift in Sources */,
 				44522C051952ABE900E47343 /* Int.swift in Sources */,
@@ -1043,12 +1051,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
+				SWIFT_OBJC_BRIDGING_HEADER = "MjOptimizer/MjOptimizer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1058,12 +1069,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
+				SWIFT_OBJC_BRIDGING_HEADER = "MjOptimizer/MjOptimizer-Bridging-Header.h";
 			};
 			name = Release;
 		};
