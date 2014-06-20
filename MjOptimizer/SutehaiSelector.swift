@@ -26,7 +26,8 @@ class SutehaiSelector{
         // resultを作るための空オブジェクト
         var ukeirePaiList = [UkeirePai(pai: Pai.parse("m1t")!, remainNum: 0)]
         var sc = [SutehaiCandidate(pai: Pai.parse("m1t")!, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: 0)]
-        var result = SutehaiSelectResult(sutehaiCandidateList: sc, tehaiShantenNum: 0)
+        //TODO 正しいものを埋めてください
+        var result = SutehaiSelectResult(sutehaiCandidateList: sc, tehaiShantenNum: 0,tehai : [],isFinishAnalyze : false,successNum : 0)
         
         return result
     }

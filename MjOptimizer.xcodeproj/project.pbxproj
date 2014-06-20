@@ -16,19 +16,8 @@
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
 		441CDF6E194C1E8500199893 /* overlaygraphic.png in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF6D194C1E8500199893 /* overlaygraphic.png */; };
 		441DC53119534ADB00E6023D /* redrect.png in Resources */ = {isa = PBXBuildFile; fileRef = 441DC53019534ADB00E6023D /* redrect.png */; };
-		441DC546195356FE00E6023D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
-		441DC54E1953589F00E6023D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446D2D2B1952D30D000A6A0C /* Nimble.framework */; };
 		44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */; };
 		44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44270B20194F361A00CE7E7A /* String+Substring.swift */; };
-		444416521953E77B00054A73 /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = 444416511953E77B00054A73 /* Stats.m */; };
-		44522C001952ABE900E47343 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5919516C00007178D8 /* Array.swift */; };
-		44522C011952ABE900E47343 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5A19516C00007178D8 /* Dictionary.swift */; };
-		44522C031952ABE900E47343 /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5C19516C00007178D8 /* ExSwift.swift */; };
-		44522C041952ABE900E47343 /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5D19516C00007178D8 /* Float.swift */; };
-		44522C051952ABE900E47343 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5F19516C00007178D8 /* Int.swift */; };
-		44522C061952ABE900E47343 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6019516C00007178D8 /* NSArray.swift */; };
-		44522C071952ABE900E47343 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6119516C00007178D8 /* Range.swift */; };
-		44522C081952ABE900E47343 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6219516C00007178D8 /* String.swift */; };
 		447486C81951CB3F00AC1310 /* MJf1.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486A61951CB3F00AC1310 /* MJf1.png */; };
 		447486C91951CB3F00AC1310 /* MJf2.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486A71951CB3F00AC1310 /* MJf2.png */; };
 		447486CA1951CB3F00AC1310 /* MJf3.png in Resources */ = {isa = PBXBuildFile; fileRef = 447486A81951CB3F00AC1310 /* MJf3.png */; };
@@ -68,17 +57,27 @@
 		4493507219535C4C00F871C5 /* circle02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4493506F19535C4C00F871C5 /* circle02.png */; };
 		4493507319535C4C00F871C5 /* circle01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4493507019535C4C00F871C5 /* circle01.png */; };
 		449792E61952BE940005AA5A /* ExSwift.h in Resources */ = {isa = PBXBuildFile; fileRef = 444F5B5B19516C00007178D8 /* ExSwift.h */; };
-		44CDE3411951AD3900974D6B /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDE3401951AD3900974D6B /* ViewUtils.swift */; };
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
 		A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */; };
 		A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC481951F2D70075A0BB /* Tehai.swift */; };
-		A6DEAC5B195294A20075A0BB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F5B4C19516A46007178D8 /* Quick.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		A6DEAC5B195294A20075A0BB /* (null) in Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Required, ); }; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
 		C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */; };
 		C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */; };
 		C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */; };
 		C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */; };
+		C4CC34011954A52D0030EE0A /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FE1954A52D0030EE0A /* Stats.m */; };
+		C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */; };
+		C4CC34031954A7150030EE0A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5919516C00007178D8 /* Array.swift */; };
+		C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5A19516C00007178D8 /* Dictionary.swift */; };
+		C4CC34051954A7150030EE0A /* ExSwift.h in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5B19516C00007178D8 /* ExSwift.h */; };
+		C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5C19516C00007178D8 /* ExSwift.swift */; };
+		C4CC34071954A7150030EE0A /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5D19516C00007178D8 /* Float.swift */; };
+		C4CC34081954A7150030EE0A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5F19516C00007178D8 /* Int.swift */; };
+		C4CC34091954A7150030EE0A /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6019516C00007178D8 /* NSArray.swift */; };
+		C4CC340A1954A7150030EE0A /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6119516C00007178D8 /* Range.swift */; };
+		C4CC340B1954A7150030EE0A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6219516C00007178D8 /* String.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -290,9 +289,6 @@
 		441DC537195356C300E6023D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Submodules/Quick/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+EachWithIndex.swift"; sourceTree = "<group>"; };
 		44270B20194F361A00CE7E7A /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
-		444416501953E77B00054A73 /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
-		444416511953E77B00054A73 /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
-		4444165B1953E7D800054A73 /* Stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
 		444F5B5919516C00007178D8 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		444F5B5A19516C00007178D8 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		444F5B5B19516C00007178D8 /* ExSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExSwift.h; sourceTree = "<group>"; };
@@ -341,7 +337,6 @@
 		4493506E19535C4C00F871C5 /* circle03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle03.png; sourceTree = "<group>"; };
 		4493506F19535C4C00F871C5 /* circle02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle02.png; sourceTree = "<group>"; };
 		4493507019535C4C00F871C5 /* circle01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle01.png; sourceTree = "<group>"; };
-		44CDE3401951AD3900974D6B /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		74F49D3AE47046E8BC98F366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelector.swift; sourceTree = "<group>"; };
@@ -352,6 +347,10 @@
 		C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerMock.swift; sourceTree = "<group>"; };
+		C4CC33FB1954A52D0030EE0A /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4CC33FD1954A52D0030EE0A /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
+		C4CC33FE1954A52D0030EE0A /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
+		C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -373,7 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6DEAC5B195294A20075A0BB /* Quick.framework in Frameworks */,
+				A6DEAC5B195294A20075A0BB /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +403,10 @@
 		441CDF27194BDF6200199893 /* MjOptimizer */ = {
 			isa = PBXGroup;
 			children = (
+				C4CC33FB1954A52D0030EE0A /* MjOptimizer-Bridging-Header.h */,
+				C4CC33FD1954A52D0030EE0A /* Stats.h */,
+				C4CC33FE1954A52D0030EE0A /* Stats.m */,
+				C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
 				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
@@ -823,18 +826,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CC34031954A7150030EE0A /* Array.swift in Sources */,
+				C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */,
+				C4CC34051954A7150030EE0A /* ExSwift.h in Sources */,
+				C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */,
+				C4CC34071954A7150030EE0A /* Float.swift in Sources */,
+				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
+				C4CC34091954A7150030EE0A /* NSArray.swift in Sources */,
+				C4CC340A1954A7150030EE0A /* Range.swift in Sources */,
+				C4CC340B1954A7150030EE0A /* String.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
 				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
 				C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */,
+				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
-				44CDE3411951AD3900974D6B /* ViewUtils.swift in Sources */,
 				C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */,
 				441CDF48194BE02300199893 /* CameraManager.swift in Sources */,
 				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
 				C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */,
+				C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
 				A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */,
