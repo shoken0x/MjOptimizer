@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-protocol TMAnalyzeResultProtocol{
+protocol AnalyzeResultProtocol{
     //TODO おぎが実装する
-    
+
     //牌のリスト。0番目は手牌の一番左
     func getPaiList() -> Pai[]
     //牌の位置(paiPositionIndex)を指定すると、その牌がある場所を長方形で返す

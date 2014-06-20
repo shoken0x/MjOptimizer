@@ -63,7 +63,7 @@
 		A6DEAC5B195294A20075A0BB /* (null) in Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Required, ); }; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
-		C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */; };
+		C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */; };
 		C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */; };
 		C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */; };
 		C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */; };
@@ -78,6 +78,9 @@
 		C4CC34091954A7150030EE0A /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6019516C00007178D8 /* NSArray.swift */; };
 		C4CC340A1954A7150030EE0A /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6119516C00007178D8 /* Range.swift */; };
 		C4CC340B1954A7150030EE0A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B6219516C00007178D8 /* String.swift */; };
+		C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC340C1954A85A0030EE0A /* Controller.swift */; };
+		C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */; };
+		C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -343,14 +346,17 @@
 		A6DEAC481951F2D70075A0BB /* Tehai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tehai.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
-		C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzeResultProtocol.swift; sourceTree = "<group>"; };
+		C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultProtocol.swift; sourceTree = "<group>"; };
 		C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerMock.swift; sourceTree = "<group>"; };
-		C4CC33FB1954A52D0030EE0A /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4CC33FD1954A52D0030EE0A /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
 		C4CC33FE1954A52D0030EE0A /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
 		C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		C4CC340C1954A85A0030EE0A /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
+		C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerMock.swift; sourceTree = "<group>"; };
+		C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultMock.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -403,7 +409,8 @@
 		441CDF27194BDF6200199893 /* MjOptimizer */ = {
 			isa = PBXGroup;
 			children = (
-				C4CC33FB1954A52D0030EE0A /* MjOptimizer-Bridging-Header.h */,
+				C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */,
+				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				C4CC33FD1954A52D0030EE0A /* Stats.h */,
 				C4CC33FE1954A52D0030EE0A /* Stats.m */,
 				C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */,
@@ -414,8 +421,10 @@
 				A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */,
 				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */,
-				C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */,
+				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
+				C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */,
 				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
+				C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */,
 				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				A6DEAC481951F2D70075A0BB /* Tehai.swift */,
@@ -840,15 +849,18 @@
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
 				C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */,
+				C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */,
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
-				C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */,
+				C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */,
+				C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */,
 				441CDF48194BE02300199893 /* CameraManager.swift in Sources */,
 				C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */,
 				C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */,
 				C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
+				C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
 				A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
