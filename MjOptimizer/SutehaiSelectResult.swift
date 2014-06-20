@@ -12,10 +12,10 @@ class SutehaiSelectResult {
     var sutehaiCandidateList : SutehaiCandidate[] //シャンテ数
     var tehaiShantenNum : Int //シャンテン数
     var tehai : Pai[] //手牌
-    var isFinishAnalyze : boolean //解析に成功したか
+    var isFinishAnalyze : Bool //解析に成功したか
     var successNum : Int //解析に成功した枚数
     
-    init(sutehaiCandidateList : SutehaiCandidate[],tehaiShantenNum : Int,tehai : Pai[],isFinishAnalyze : boolean,successNum : Int){
+    init(sutehaiCandidateList : SutehaiCandidate[],tehaiShantenNum : Int,tehai : Pai[],isFinishAnalyze : Bool,successNum : Int){
         self.sutehaiCandidateList = sutehaiCandidateList
         self.tehaiShantenNum = tehaiShantenNum
         self.tehai = tehai

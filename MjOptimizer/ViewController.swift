@@ -15,7 +15,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
     let label = UILabel(frame: CGRectMake(100, 60, 300, 30))
-    let headerLabel = UILabel(frame: CGRectMake(10, 10, 300, 30))
+    let headerLabel = UILabel(frame: CGRectMake(0, 0, 300, 30))
     let footerLabel = UILabel(frame: CGRectMake(10, 10, 300, 30))
     let totalNumLabel =   UILabel(frame: CGRectMake(10, 10, 30, 30))
     let shantenNumLabel = UILabel(frame: CGRectMake(10, 10, 30, 30))
@@ -24,7 +24,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let logView = UITextView(frame: CGRectMake(460, 20, 150, 100))
     let filterView = UIView(frame: CGRectMake(0, 0, 568, 320))
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
+    let targetFrame = CGRectMake(24, 130, 520, 100)
     let systemStats = Stats()
+    let controllerMock = ControllerMock()
     
     var scanCounter = 0
     var log = "START SCAN..."
@@ -42,6 +44,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     override func viewDidAppear(animated: Bool) {
+        setHeaderLabel()
         debugPrintln("bounds.size.height = \(view.bounds.size.height)")
         debugPrintln("bounds.size.width = \(view.bounds.size.width)")
         if findCamera() {
@@ -52,7 +55,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         setOverlayView()
         focusOn()
         setLogView()
-
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -64,7 +66,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
     func setOverlayView() {
         let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "redrect.png"))
-        overlayImageView.frame = CGRectMake(24, 130, 520, 100)
+        overlayImageView.frame = targetFrame
         
         debugButton.frame = CGRectMake(240, 30, 200, 100)
         debugButton.setTitle("DisplayResults", forState: UIControlState.Normal)
@@ -137,7 +139,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         filterView.removeFromSuperview()
         setHeaderLabel()
         setFooterLabel()
-        setBody()
         viewMjImages()
         debugButton.hidden = true
         rescanButton.hidden = false
@@ -159,14 +160,15 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         NSThread.sleepForTimeInterval(0.2)
         dispatch_async( dispatch_get_main_queue() ) {
-            
-            if self.isFinishAnalyze {
+
+            var sutehaiSelectResult = self.controllerMock.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
+            if sutehaiSelectResult.isFinishAnalyze {
                 // Display SutehaiSelectResult
-                var targetFrame = CGRectMake(0, 0, 0, 0)
-                var sutehaiSelectResult = ControllerMock().sutehaiSelect(sampleBuffer, targetFrame: targetFrame)
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                 
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
+                self.setBody(sutehaiCandidateList)
+                
                 
             } else {
                 let now: NSDate = NSDate()
@@ -184,7 +186,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
-    func setBody() {
+    func setBody(sutehaiCandidateList: SutehaiCandidate[]) {
+//        for sutehaiCandidate: SutehaiCandidate in sutehaiCandidateList {
+//            for ukeirePai: UkeirePai in sutehaiCandidate.getUkeirePaiList {
+//                
+//            }
+//        }
+        
+        
         let pai1 = Pai(type: PaiType.MANZU, number: 3)
         let pai2 = Pai(type: PaiType.MANZU, number: 6)
         let pai3 = Pai(type: PaiType.MANZU, number: 9)
@@ -268,7 +277,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     func setHeaderLabel() {
         headerLabel.font = UIFont(name: "HiraKakuProN-W6", size: 15)
-        headerLabel.center = CGPointMake(150, 50)
         headerLabel.textAlignment = NSTextAlignment.Center
         headerLabel.textColor = UIColor.redColor()
         headerLabel.text = "受入牌種       総枚数   シャンテン数"

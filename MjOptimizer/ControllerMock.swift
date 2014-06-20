@@ -44,7 +44,11 @@ class ControllerMock:ControllerProtocol{
             shantenNum:5,
             positionIndex:10
         )
-
-        return SutehaiSelectResult(sutehaiCandidateList : [sc1,sc2,sc3],tehaiShantenNum : 5,isFinishAnalyze : true, successNum : 14)
+        var tehai: Pai[] = [Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
+                            Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
+                            Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
+                            Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
+                            Pai.parse("j1t")!, Pai.parse("j1t")!]
+        return SutehaiSelectResult(sutehaiCandidateList : [sc1,sc2,sc3],tehaiShantenNum : 5, tehai: tehai, isFinishAnalyze : true, successNum : 14)
     }
 }

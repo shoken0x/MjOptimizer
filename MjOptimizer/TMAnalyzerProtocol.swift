@@ -16,5 +16,5 @@ protocol TMAnalyzerProtocol{
     //@image 手牌の画像
     //@targetFrame カメラで映し出す枠。この中に手牌が映っている
     //@lastTMAnalyzerResult 前回の解析結果。省略すると。
-    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastTMAnalyzerResult : TMAnalyzerResult) -> TMAnalyzeResultProtocol
+    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastTMAnalyzerResult : TMAnalyzeResultProtocol) -> TMAnalyzeResultProtocol
 }
