@@ -70,6 +70,9 @@
 		449792E61952BE940005AA5A /* ExSwift.h in Resources */ = {isa = PBXBuildFile; fileRef = 444F5B5B19516C00007178D8 /* ExSwift.h */; };
 		44CDE3411951AD3900974D6B /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDE3401951AD3900974D6B /* ViewUtils.swift */; };
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
+		A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */; };
+		A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC481951F2D70075A0BB /* Tehai.swift */; };
+		A6DEAC5B195294A20075A0BB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F5B4C19516A46007178D8 /* Quick.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
 		C43B6F9E194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */; };
@@ -341,6 +344,8 @@
 		44CDE3401951AD3900974D6B /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		74F49D3AE47046E8BC98F366 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelector.swift; sourceTree = "<group>"; };
+		A6DEAC481951F2D70075A0BB /* Tehai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tehai.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
 		C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzeResultProtocol.swift; sourceTree = "<group>"; };
@@ -368,8 +373,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				441DC54E1953589F00E6023D /* Nimble.framework in Frameworks */,
 				441DC546195356FE00E6023D /* Quick.framework in Frameworks */,
+=======
+				A6DEAC5B195294A20075A0BB /* Quick.framework in Frameworks */,
+>>>>>>> igarashi
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,12 +411,16 @@
 			children = (
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
-				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
+				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
+				A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */,
+				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */,
 				C43B6F99194DF23D00FBFDD6 /* TMAnalyzeResultProtocol.swift */,
 				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
+				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
+				A6DEAC481951F2D70075A0BB /* Tehai.swift */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
@@ -419,12 +432,15 @@
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				447486A21951CB3F00AC1310 /* MjImages */,
 				441CDF28194BDF6200199893 /* Supporting Files */,
+<<<<<<< HEAD
 				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
 				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
 				44CDE3401951AD3900974D6B /* ViewUtils.swift */,
 				444416501953E77B00054A73 /* MjOptimizer-Bridging-Header.h */,
 				4444165B1953E7D800054A73 /* Stats.h */,
 				444416511953E77B00054A73 /* Stats.m */,
+=======
+>>>>>>> igarashi
 			);
 			path = MjOptimizer;
 			sourceTree = "<group>";
@@ -821,6 +837,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				44522C001952ABE900E47343 /* Array.swift in Sources */,
 				44522C011952ABE900E47343 /* Dictionary.swift in Sources */,
 				444416521953E77B00054A73 /* Stats.m in Sources */,
@@ -830,6 +847,9 @@
 				44522C061952ABE900E47343 /* NSArray.swift in Sources */,
 				44522C071952ABE900E47343 /* Range.swift in Sources */,
 				44522C081952ABE900E47343 /* String.swift in Sources */,
+=======
+				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
+>>>>>>> igarashi
 				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
@@ -843,6 +863,7 @@
 				C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
+				A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 				C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */,
 				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
@@ -1005,6 +1026,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1040,6 +1062,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
