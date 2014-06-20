@@ -91,11 +91,11 @@ class Tehai {
     }
 }
 
+enum MentsuType: String {
+    case KOTSU = "k"
+    case SHUNTSU = "s"
+}
 class Mentsu {
-    enum MentsuType: String {
-        case KOTSU = "k"
-        case SHUNTSU = "s"
-    }
     var paiList: Pai[]
     var type: MentsuType
     
@@ -105,11 +105,11 @@ class Mentsu {
     }
 }
 
+enum TatsuType: String {
+    case KOTSU = "k"
+    case SHUNTSU = "s"
+}
 class Tatsu {
-    enum TatsuType: String {
-        case KOTSU = "k"
-        case SHUNTSU = "s"
-    }
     var paiList: Pai[]
     var type: TatsuType
     

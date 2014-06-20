@@ -64,27 +64,31 @@ class Pai {
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
     
+    func name() -> String{
+        return self.type.toRaw() + String(self.number)
+    }
+    
     // インスタンスの次のPaiを取得する
-    func getNextPai(range: Int = 1) -> String{
+    func getNextPai(range: Int = 1) -> Pai?{
         // TODO: 正規表現の書き方を調べる
         if (self.type == .MANZU || self.type == .PINZU || self.type == .SOUZU) &&
             self.number < 10 - range {
-            return self.type.toRaw() + String(self.number + range)
+            return Pai.parse(self.type.toRaw() + String(self.number + range) + PaiDirection.TOP.toRaw())
         }
         else{
-            return ""
+            return nil
         }
     }
     
     // インスタンスの前のPaiを取得する
-    func getPrevPai(range: Int = 1) -> String{
+    func getPrevPai(range: Int = 1) -> Pai?{
         // TODO: 正規表現の書き方を調べる
         if (self.type == .MANZU || self.type == .PINZU || self.type == .SOUZU) &&
             self.number > range {
-                return self.type.toRaw() + String(self.number - range)
+                return Pai.parse(self.type.toRaw() + String(self.number - range) + PaiDirection.TOP.toRaw())
         }
         else{
-            return ""
+            return nil
         }
     }
     

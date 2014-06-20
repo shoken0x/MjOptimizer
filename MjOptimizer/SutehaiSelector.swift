@@ -121,9 +121,52 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     }
     // ペンチャンを解析する
     func analyzeKazuhaiPechan(tehai:Tehai) -> Tehai{
+//        tehai.rest_pai_list.each do |target_pai|
+//        next if target_pai.nil?
+//        next unless target_pai.number.to_i == 1 || target_pai.number.to_i == 8
+//        next1 = tehai.rest_pai_list.find{|pai| pai.pai_type == target_pai.next_pai_type(1)}
+//        if next1
+//        tehai.tatsu_list << Tatsu.new([target_pai, next1], "p")
+//        tehai.rest_pai_list -= [target_pai, next1]
+//        return parse_penchan(tehai)
+//        end
+//        end
+        for targetPai in tehai.restPaiList{
+            if targetPai == nil{
+                continue
+            }
+            if targetPai.number != 1 && targetPai.number != 8{
+                continue
+            }
+            
+            var nextPai: Pai
+            for pai in tehai.restPaiList{
+                if pai.name() == targetPai.getNextPai(range: 1) {
+                    nextPai = pai
+                }
+            }
+            
+            if nextPai == nil {
+                tehai.tatsuList = Tatsu([targetPai, nextPai], )
+                // TODO: 配列引く配列
+                //                tehai.restPaiList -= selectedPaiList
+                analyzeKazuhaiPechan(tehai)
+            }
+            
+            
+//            selectedPaiList = tehai.restPaiList.filter {$0.equal(targetPai.getNextPai(1))}
+            
+            if selectedPaiList.count == 2 {
+                // TODO: += メソッドを作る
+                tehai.toitsuList += Toitsu(paiList: selectedPaiList)
+                // TODO: 配列引く配列
+                //                tehai.restPaiList -= selectedPaiList
+                tehai.restPaiList.remove(Pai.parse("m1t")!)
+                //                tehai.restPaiList.removeAtIndex(0)
+                return analyzeKazuhaiToitsu(tehai)
+            }
+        }
         return tehai
-
-        
     }
     
     // 対子を解析する
@@ -136,25 +179,23 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             var selectedPaiList: Pai[] = []
             
             for pai in tehai.restPaiList{
-                // TODO: 比較メソッドを作る
                 if pai.equal(targetPai) {
                     selectedPaiList += pai
                 }
             }
+            
+//            selectedPaiList = tehai.restPaiList.filter {$0.equal(targetPai)}
             
             if selectedPaiList.count == 2 {
                 // TODO: += メソッドを作る
                 tehai.toitsuList += Toitsu(paiList: selectedPaiList)
                 // TODO: 配列引く配列
 //                tehai.restPaiList -= selectedPaiList
-//                tehai.restPaiList = tehai.restPaiList - Pai.parse("m1t")!
+                tehai.restPaiList.remove(Pai.parse("m1t")!)
+//                tehai.restPaiList.removeAtIndex(0)
                 return analyzeKazuhaiToitsu(tehai)
             }
         }
-        
-        var ary = [1,2,3]
-        ary += [1]
-        
         
         return tehai
     }
