@@ -21,11 +21,25 @@ class Controller:ControllerProtocol{
         self.lastAnalyzeResult = nil
     }
     func sutehaiSelect(image : CMSampleBuffer, targetFrame : CGRect) -> SutehaiSelectResult{
-        let analyzeResult = self.tmAnalyzer.analyze(
+        //画像解析
+        let analyzeResult : AnalyzeResultProtocol = self.tmAnalyzer.analyze(
             image,
             targetFrame : targetFrame,
             lastAnalyzerResult : self.lastAnalyzeResult!
         )
-        return sutehaiSelector.select(analyzeResult.getPaiList());
+        if !analyzeResult.isSuccess(){
+            //解析失敗
+            return SutehaiSelectResult(
+                sutehaiCandidateList : nil,
+                tehaiShantenNum : nil,
+                tehai : analyzeResult.getPaiList(),
+                isFinishAnalyze : false,
+                successNum : analyzeResult.getAnalyzeSuccessNum()
+            )
+        }else{
+            //解析成功
+            //何きる計算
+            return sutehaiSelector.select(analyzeResult.getPaiList());
+        }
     }
 }

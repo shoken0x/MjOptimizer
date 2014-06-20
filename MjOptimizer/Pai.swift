@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum PaiType: String {
     case MANZU = "m"
     case SOUZU = "s"
@@ -23,8 +22,8 @@ enum PaiDirection: String {
     case RIGHT = "r"
 }
 
-class Pai {
-    
+class Pai: Equatable {
+    var name = "ff"
     let type: PaiType
     let number: Int //数牌の場合は1~9, 字牌の場合は1~7(東南西北白発中)を使用する
     let direction: PaiDirection
@@ -92,9 +91,15 @@ class Pai {
         }
     }
     
-    
-    
     func equal(other: Pai) -> Bool{
         return self.toString() == other.toString()
     }
+}
+
+func == (lhs: Pai, rhs: Pai) -> Bool {
+    return lhs.type == rhs.type && lhs.number == rhs.number
+}
+
+func === (lhs: Pai, rhs: Pai) -> Bool {
+    return lhs.type == rhs.type && lhs.number == rhs.number && lhs.direction == rhs.direction
 }

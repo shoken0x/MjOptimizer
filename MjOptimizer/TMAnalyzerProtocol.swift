@@ -14,6 +14,6 @@ protocol TMAnalyzerProtocol{
     //TODO おぎが実装する
     //@image 手牌の画像
     //@targetFrame カメラで映し出す枠。この中に手牌が映っている
-    //@lastAnalyzerResult 前回の解析結果。省略すると。
-    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol) -> AnalyzeResultProtocol
+    //@lastAnalyzerResult 前回の解析結果。初回はnil
+    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol
 }
