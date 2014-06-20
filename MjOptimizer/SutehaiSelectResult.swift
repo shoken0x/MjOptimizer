@@ -11,6 +11,7 @@ import Foundation
 class SutehaiSelectResult {
     var sutehaiCandidateList : SutehaiCandidate[]
     var tehaiShantenNum : Int
+    
     init(sutehaiCandidateList : SutehaiCandidate[],tehaiShantenNum : Int){
         self.sutehaiCandidateList = sutehaiCandidateList
         self.tehaiShantenNum = tehaiShantenNum
