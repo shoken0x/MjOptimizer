@@ -409,26 +409,21 @@
 			isa = PBXGroup;
 			children = (
 				C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */,
-				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				C4CC33FD1954A52D0030EE0A /* Stats.h */,
 				C4CC33FE1954A52D0030EE0A /* Stats.m */,
-				C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */,
+				C4CC34241954BBE60030EE0A /* protocols */,
+				C4CC34231954BBC60030EE0A /* mocks */,
+				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
-				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
-				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
-				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
+				C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */,
+				441CDF47194BE02300199893 /* CameraManager.swift */,
+				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */,
-				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */,
-				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
-				C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */,
-				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
-				C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */,
+				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
+				A6DEAC481951F2D70075A0BB /* Tehai.swift */,
 				C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
-				A6DEAC481951F2D70075A0BB /* Tehai.swift */,
-				441CDF47194BE02300199893 /* CameraManager.swift */,
-				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441DC53019534ADB00E6023D /* redrect.png */,
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
@@ -571,6 +566,27 @@
 				74F49D3AE47046E8BC98F366 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4CC34231954BBC60030EE0A /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */,
+				C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */,
+				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
+			);
+			name = mocks;
+			sourceTree = "<group>";
+		};
+		C4CC34241954BBE60030EE0A /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
+				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
+				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
+				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
+			);
+			name = protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
