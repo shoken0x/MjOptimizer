@@ -10,6 +10,7 @@
 		3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497FBC7194F6086005C58A8 /* String+SliceWith.swift */; };
 		441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF2A194BDF6200199893 /* AppDelegate.swift */; };
 		441CDF2D194BDF6200199893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF2C194BDF6200199893 /* ViewController.swift */; };
+		441CDF30194BDF6200199893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF2E194BDF6200199893 /* Main.storyboard */; };
 		441CDF32194BDF6200199893 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 441CDF31194BDF6200199893 /* Images.xcassets */; };
 		441CDF48194BE02300199893 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF47194BE02300199893 /* CameraManager.swift */; };
 		441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441CDF5D194BE09E00199893 /* CameraManagerSpec.swift */; };
@@ -275,6 +276,7 @@
 		441CDF29194BDF6200199893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441CDF2A194BDF6200199893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		441CDF2C194BDF6200199893 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		441CDF2F194BDF6200199893 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		441CDF31194BDF6200199893 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		441CDF37194BDF6200199893 /* MjOptimizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MjOptimizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		441CDF3C194BDF6200199893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
+				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441DC53019534ADB00E6023D /* redrect.png */,
 				441CDF6D194C1E8500199893 /* overlaygraphic.png */,
 				4493507019535C4C00F871C5 /* circle01.png */,
@@ -731,6 +734,7 @@
 				447486DC1951CB3F00AC1310 /* MJt8.png in Resources */,
 				447486CA1951CB3F00AC1310 /* MJf3.png in Resources */,
 				447486D21951CB3F00AC1310 /* MJs7.png in Resources */,
+				441CDF30194BDF6200199893 /* Main.storyboard in Resources */,
 				447486D91951CB3F00AC1310 /* MJt5.png in Resources */,
 				447486D71951CB3F00AC1310 /* MJt3.png in Resources */,
 				447486CE1951CB3F00AC1310 /* MJs3.png in Resources */,
@@ -951,6 +955,17 @@
 			targetProxy = 44F04EAD194E97C300EA3E8A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		441CDF2E194BDF6200199893 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				441CDF2F194BDF6200199893 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		441CDF3F194BDF6200199893 /* Debug */ = {
