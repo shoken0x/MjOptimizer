@@ -3,3 +3,5 @@
 //
 
 #import "Stats.h"
+#import "TemplateMatcher.h"
+#import "MatcherResult.h"
