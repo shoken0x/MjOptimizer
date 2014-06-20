@@ -10,7 +10,6 @@ import Foundation
 
 protocol SutehaiSelectorProtocol{
     // TODO 五十嵐さんが実装する
-    
     func select(paiList: Pai[]) -> SutehaiSelectResult
 
     // 牌リストから指定したタイプの牌だけを選択する
