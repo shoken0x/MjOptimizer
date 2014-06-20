@@ -38,4 +38,11 @@ class SutehaiCandidate {
         }
         return sum
     }
+    func getUkeirePaiToPaiList() -> Pai[] {
+        var paiList: Pai[] = []
+        for ukeirePai : UkeirePai in self.ukeirePaiList {
+            paiList.append(ukeirePai.pai)
+        }
+        return paiList
+    }
 }
