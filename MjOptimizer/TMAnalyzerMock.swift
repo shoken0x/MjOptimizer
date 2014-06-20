@@ -13,7 +13,7 @@ import CoreMedia
 class TMAnalyzerMock : TMAnalyzerProtocol{
     init(){}
     
-    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol) -> AnalyzeResultProtocol{
+    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol{
         return AnalyzeResultMock()
     }
 }

@@ -19,4 +19,8 @@ class AnalyzeResultMock:AnalyzeResultProtocol{
     func getPaiPositionRect(paiPositionIndex: Int) -> CGRect {
         return CGRect()
     }
+    //解析に成功した牌の数
+    func getAnalyzeSuccessNum() -> Int {
+        return 14
+    }
 }

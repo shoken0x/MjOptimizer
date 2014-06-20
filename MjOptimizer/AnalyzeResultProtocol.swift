@@ -16,4 +16,6 @@ protocol AnalyzeResultProtocol{
     func getPaiList() -> Pai[]
     //牌の位置(paiPositionIndex)を指定すると、その牌がある場所を長方形で返す
     func getPaiPositionRect(paiPositionIndex: Int) -> CGRect
+    //解析に成功した牌の数
+    func getAnalyzeSuccessNum() -> Int
 }
