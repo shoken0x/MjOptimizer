@@ -10,7 +10,15 @@ import Foundation
 import UIKit
 
 class ViewUtils {
-    class func convertImageFromPai(pai: Pai) -> String {
+    class func convertStringListFromPaiList(paiList: Pai[]) -> String[] {
+        var strArray: String[] = []
+        for pai: Pai in paiList {
+            strArray.append(convertStringFromPai(pai))
+        }
+        return strArray
+    }
+    
+    class func convertStringFromPai(pai: Pai) -> String {
         switch pai.type {
         case PaiType.MANZU:
             switch pai.number {

@@ -15,10 +15,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
     let label = UILabel(frame: CGRectMake(100, 60, 300, 30))
-    let headerLabel = UILabel(frame: CGRectMake(0, 0, 300, 30))
+    let headerLabel = UILabel(frame: CGRectMake(0, 0, 500, 30))
     let footerLabel = UILabel(frame: CGRectMake(10, 10, 300, 30))
-    let totalNumLabel =   UILabel(frame: CGRectMake(10, 10, 30, 30))
-    let shantenNumLabel = UILabel(frame: CGRectMake(10, 10, 30, 30))
     let debugButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let rescanButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let logView = UITextView(frame: CGRectMake(460, 20, 150, 100))
@@ -44,7 +42,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     override func viewDidAppear(animated: Bool) {
-        setHeaderLabel()
         debugPrintln("bounds.size.height = \(view.bounds.size.height)")
         debugPrintln("bounds.size.width = \(view.bounds.size.width)")
         if findCamera() {
@@ -68,12 +65,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "redrect.png"))
         overlayImageView.frame = targetFrame
         
-        debugButton.frame = CGRectMake(240, 30, 200, 100)
+        debugButton.frame = CGRectMake(290, 30, 200, 100)
         debugButton.setTitle("DisplayResults", forState: UIControlState.Normal)
         debugButton.addTarget(self, action: "debugButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(debugButton)
         
-        rescanButton.frame = CGRectMake(240, 50, 200, 100)
+        rescanButton.frame = CGRectMake(290, 50, 200, 100)
         rescanButton.setTitle("RESCAN", forState: UIControlState.Normal)
         rescanButton.addTarget(self, action: "rescanButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         rescanButton.hidden = true
@@ -162,14 +159,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         dispatch_async( dispatch_get_main_queue() ) {
 
             var sutehaiSelectResult = self.controllerMock.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
-            if sutehaiSelectResult.isFinishAnalyze {
+            //if sutehaiSelectResult.isFinishAnalyze {
+            if self.isFinishAnalyze {
                 // Display SutehaiSelectResult
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
                 self.setBody(sutehaiCandidateList)
-                
-                
             } else {
                 let now: NSDate = NSDate()
                 println(now)
@@ -187,33 +182,27 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setBody(sutehaiCandidateList: SutehaiCandidate[]) {
-//        for sutehaiCandidate: SutehaiCandidate in sutehaiCandidateList {
-//            for ukeirePai: UkeirePai in sutehaiCandidate.getUkeirePaiList {
-//                
-//            }
-//        }
-        
-        
-        let pai1 = Pai(type: PaiType.MANZU, number: 3)
-        let pai2 = Pai(type: PaiType.MANZU, number: 6)
-        let pai3 = Pai(type: PaiType.MANZU, number: 9)
-        
-        let paiStrArray = [ViewUtils.convertImageFromPai(pai1),
-                           ViewUtils.convertImageFromPai(pai2),
-                           ViewUtils.convertImageFromPai(pai3)]
-        
-        drawMjImages(15, 45, paiStrArray)
-        
-        totalNumLabel.center = CGPointMake(150, 70)
-        totalNumLabel.textColor = UIColor.whiteColor()
-        totalNumLabel.text = "15"
-        view.addSubview(totalNumLabel)
-        
-        shantenNumLabel.center = CGPointMake(270, 70)
-        shantenNumLabel.textColor = UIColor.whiteColor()
-        shantenNumLabel.text = "3"
-        view.addSubview(shantenNumLabel)
-        
+        var x: CGFloat = 5
+        var y: CGFloat = 15
+        var limit = 3
+        var i = 0
+        for sutehaiCandidate: SutehaiCandidate in sutehaiCandidateList {
+            drawMjImages(x, y, [ViewUtils.convertStringFromPai(sutehaiCandidate.pai)])
+            drawMjImages(x + 50, y,
+                ViewUtils.convertStringListFromPaiList(sutehaiCandidate.getUkeirePaiToPaiList()))
+            let totalNumLabel =   UILabel(frame: CGRectMake(x + 205, y + 15, 20, 20))
+            totalNumLabel.textColor = UIColor.whiteColor()
+            totalNumLabel.text = String(sutehaiCandidate.getUkeireTotalNum())
+            view.addSubview(totalNumLabel)
+            
+            let shantenNumLabel = UILabel(frame: CGRectMake(x + 305, y + 15, 20, 20))
+            shantenNumLabel.textColor = UIColor.whiteColor()
+            shantenNumLabel.text = String(sutehaiCandidate.getShantenNum())
+            view.addSubview(shantenNumLabel)
+            y += 30
+            i += 1
+            if i > limit { break }
+        }
     }
     
     func setLogView() {
@@ -277,9 +266,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     func setHeaderLabel() {
         headerLabel.font = UIFont(name: "HiraKakuProN-W6", size: 15)
-        headerLabel.textAlignment = NSTextAlignment.Center
         headerLabel.textColor = UIColor.redColor()
-        headerLabel.text = "受入牌種       総枚数   シャンテン数"
+        headerLabel.text = "  捨牌      受入牌種                総枚数         シャンテン数"
         
         view.addSubview(headerLabel)
     }
