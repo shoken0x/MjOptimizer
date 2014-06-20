@@ -60,5 +60,12 @@ class PaiSpec: QuickSpec {
                 expect(paiList[2].toString()).to.equal("p5t")
             }
         }
+        describe("#toEqual"){
+            it("return bool"){
+                let pai = Pai.parse("s2l")!
+                expect(pai.equal(Pai.parse("s2l")!)).to.beTrue()
+                expect(pai.equal(Pai.parse("s3l")!)).to.beFalse()
+            }
+        }
     }
 }

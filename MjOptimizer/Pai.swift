@@ -61,4 +61,8 @@ class Pai {
     func toString() -> String{
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
+    
+    func equal(other: Pai) -> Bool{
+        return self.toString() == other.toString()
+    }
 }
