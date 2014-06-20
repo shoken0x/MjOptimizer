@@ -136,7 +136,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         filterView.removeFromSuperview()
         setHeaderLabel()
         setFooterLabel()
-        viewMjImages()
         debugButton.hidden = true
         rescanButton.hidden = false
     }
@@ -164,6 +163,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 // Display SutehaiSelectResult
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
+                self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
                 self.setBody(sutehaiCandidateList)
             } else {
                 let now: NSDate = NSDate()
