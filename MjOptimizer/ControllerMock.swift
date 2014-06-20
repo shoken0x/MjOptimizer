@@ -45,6 +45,6 @@ class ControllerMock:ControllerProtocol{
             positionIndex:10
         )
 
-        return SutehaiSelectResult(sutehaiCandidateList : [sc1,sc2,sc3],tehaiShantenNum : 5)
+        return SutehaiSelectResult(sutehaiCandidateList : [sc1,sc2,sc3],tehaiShantenNum : 5,isFinishAnalyze : true, successNum : 14)
     }
 }
