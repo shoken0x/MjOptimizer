@@ -67,5 +67,16 @@ class PaiSpec: QuickSpec {
                 expect(pai.equal(Pai.parse("s3l")!)).to.beFalse()
             }
         }
+        describe("Equatable"){
+            it("return Bool"){
+                let pai1 = Pai.parse("s1l")!
+                let pai2 = Pai.parse("s1t")!
+                let pai3 = Pai.parse("s2l")!
+                expect(pai1 == pai2).to.beTrue()
+                expect(pai1 == pai3).to.beFalse()
+                expect(pai1 === pai1).to.beTrue()
+                expect(pai1 === pai2).to.beFalse()
+            }
+        }
     }
 }
