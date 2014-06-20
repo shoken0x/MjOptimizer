@@ -71,7 +71,6 @@
 		C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FF1954A52D0030EE0A /* ViewUtils.swift */; };
 		C4CC34031954A7150030EE0A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5919516C00007178D8 /* Array.swift */; };
 		C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5A19516C00007178D8 /* Dictionary.swift */; };
-		C4CC34051954A7150030EE0A /* ExSwift.h in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5B19516C00007178D8 /* ExSwift.h */; };
 		C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5C19516C00007178D8 /* ExSwift.swift */; };
 		C4CC34071954A7150030EE0A /* Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5D19516C00007178D8 /* Float.swift */; };
 		C4CC34081954A7150030EE0A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F5B5F19516C00007178D8 /* Int.swift */; };
@@ -837,7 +836,6 @@
 			files = (
 				C4CC34031954A7150030EE0A /* Array.swift in Sources */,
 				C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */,
-				C4CC34051954A7150030EE0A /* ExSwift.h in Sources */,
 				C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */,
 				C4CC34071954A7150030EE0A /* Float.swift in Sources */,
 				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
