@@ -29,7 +29,7 @@ class Controller:ControllerProtocol{
         )
         if !analyzeResult.isSuccess(){
             //解析失敗
-            return SutehaiSelectResult.self.init(
+            return SutehaiSelectResult(
                 sutehaiCandidateList : nil,
                 tehaiShantenNum : nil,
                 tehai : analyzeResult.getPaiList(),
