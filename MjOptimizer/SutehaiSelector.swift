@@ -8,8 +8,8 @@
 
 import Foundation
 
-//class SutehaiSelector: SutehaiSelectorProtocol{
-class SutehaiSelector{
+class SutehaiSelector: SutehaiSelectorProtocol{
+//class SutehaiSelector{
     
     init () {
     }
@@ -147,7 +147,7 @@ class SutehaiSelector{
                 tehai.toitsuList += Toitsu(paiList: selectedPaiList)
                 // TODO: 配列引く配列
 //                tehai.restPaiList -= selectedPaiList
-                tehai.restPaiList = tehai.restPaiList - Pai.parse("m1t")!
+//                tehai.restPaiList = tehai.restPaiList - Pai.parse("m1t")!
                 return analyzeKazuhaiToitsu(tehai)
             }
         }
