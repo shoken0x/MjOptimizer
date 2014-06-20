@@ -18,4 +18,6 @@ protocol AnalyzeResultProtocol{
     func getPaiPositionRect(paiPositionIndex: Int) -> CGRect
     //解析に成功した牌の数
     func getAnalyzeSuccessNum() -> Int
+    //解析に成功したかどうか
+    func isSuccess() -> Bool
 }

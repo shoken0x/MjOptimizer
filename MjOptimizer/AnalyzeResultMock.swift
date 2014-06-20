@@ -23,4 +23,8 @@ class AnalyzeResultMock:AnalyzeResultProtocol{
     func getAnalyzeSuccessNum() -> Int {
         return 14
     }
+    //解析に成功したかどうか
+    func isSuccess() -> Bool {
+        return true
+    }
 }
