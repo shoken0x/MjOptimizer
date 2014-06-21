@@ -24,7 +24,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let filterView = UIView(frame: CGRectMake(0, 0, 568, 320))
     let resultView = UIView(frame: CGRectMake(0, 0, 568, 130))
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
-    let targetFrame = CGRectMake(24, 130, 520, 100)
+    let targetFrame = CGRectMake(24, 130, 520, 50)
     let systemStats = Stats()
     let controller = Controller()
     
@@ -54,12 +54,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         setOverlayView()
         
         //debug
-        isScan = true
-        startButton.hidden = true
-        label.text = "scanning ..."
-        setFilterView()
-        focusOn()
-        setLogView()
+//        isScan = true
+//        startButton.hidden = true
+//        label.text = "scanning ..."
+//        setFilterView()
+//        focusOn()
+//        setLogView()
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -70,7 +70,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
         
     func setOverlayView() {
-        let overlayImageView: UIImageView = UIImageView(image: UIImage(named: "redrect.png"))
+        let imagePath = NSBundle.mainBundle().pathForResource("redrect", ofType: "png")
+        let overlayImageView: UIImageView = UIImageView(image: UIImage(contentsOfFile: imagePath))
         overlayImageView.frame = targetFrame
         
         debugButton.frame = CGRectMake(290, 30, 200, 100)
@@ -197,34 +198,42 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let now: NSDate = NSDate()
         println(now)
         println("update from captureOutput()")
+        var sutehaiSelectResult: SutehaiSelectResult!
         
+//        dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+//            if self.isScan {
+//                sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
+//                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+//            }
+//        }
         dispatch_async( dispatch_get_main_queue() ) {
             if self.isScan {
-            var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
-            self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
-            if self.isFinishAnalyze {
-                // Display SutehaiSelectResult
-                var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                self.label.text = "Finish scan."
-                self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
-                self.setBody(sutehaiCandidateList)
-                self.animationView.removeFromSuperview()
-                self.filterView.removeFromSuperview()
-                self.setHeaderLabel()
-                //self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
+                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
+                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+                if self.isFinishAnalyze {
+                    // Display SutehaiSelectResult
+                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
+                    self.label.text = "Finish scan."
+                    self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
+                    self.setBody(sutehaiCandidateList)
+                    self.animationView.removeFromSuperview()
+                    self.filterView.removeFromSuperview()
+                    self.setHeaderLabel()
+                    //self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
                 
-                self.session.stopRunning()
-                self.startButton.hidden = true
-                self.rescanButton.hidden = false
-            } else {
-                self.label.text = now.description
-                self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
-                var range = self.logView.selectedRange
-                range.location = self.logView.text.length
-                self.logView.scrollEnabled = false
-                self.logView.scrollRangeToVisible(range)
-                self.logView.scrollEnabled = true
-            }
+                    self.session.stopRunning()
+                    self.startButton.hidden = true
+                    self.rescanButton.hidden = false
+                } else {
+                    println("update view")
+                    self.label.text = now.description
+                    self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
+                    var range = self.logView.selectedRange
+                    range.location = self.logView.text.length
+                    self.logView.scrollEnabled = false
+                    self.logView.scrollRangeToVisible(range)
+                    self.logView.scrollEnabled = true
+                }
             }
         }
     }
