@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreMedia/CoreMedia.h>
 
 @interface TemplateMatcher : NSObject
 +(UIImage *)DetectEdgeWithImage:(UIImage *)image;
 -(NSMutableArray *)matchTarget:(UIImage *)target withTemplate:(NSString *)key;
++(UIImage *)UIImageFromCMSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 @end

@@ -1,7 +1,8 @@
 import Foundation
 import UIKit
+import CoreMedia
 
-class TMAnalyzer {
+class TMAnalyzer: TMAnalyzerProtocol {
     var matcher: TemplateMatcher
     var paiTypes: Pai[]
     
@@ -26,6 +27,13 @@ class TMAnalyzer {
         }
     }
     
+    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol {
+        
+        let uiimage = TemplateMatcher.UIImageFromCMSampleBuffer(image)
+        let results = self.analyze(uiimage)
+        return AnalyzeResult(resultList: results)
+    }
+        
     func analyze(target: UIImage) -> TMResult[] {
         var results: TMResult[] = []
         for pai in self.paiTypes {
@@ -76,5 +84,35 @@ class TMAnalyzer {
             }
         }
         return nearestPai
+    }
+}
+
+class AnalyzeResult: AnalyzeResultProtocol {
+    let resultList: TMResult[]
+    let paiList: Pai[]
+    
+    init(resultList: TMResult[]) {
+        self.resultList = resultList
+        self.paiList = resultList.map{ $0.pai }
+    }
+    
+    //牌のリスト。0番目は手牌の一番左
+    func getPaiList() -> Pai[] {
+        return paiList
+    }
+    
+    //牌の位置(paiPositionIndex)を指定すると、その牌がある場所を長方形で返す
+    func getPaiPositionRect(paiPositionIndex: Int) -> CGRect {
+        return resultList[paiPositionIndex].place
+    }
+    
+    //解析に成功した牌の数
+    func getAnalyzeSuccessNum() -> Int {
+        return resultList.count
+    }
+
+    //解析に成功したかどうか
+    func isSuccess() -> Bool {
+        return self.getAnalyzeSuccessNum() >= 13
     }
 }
