@@ -180,7 +180,7 @@
     lastUserTime = userTime;
     lastRss = rss;
     NSString *result =[NSString stringWithFormat:@"MEM:%qi[kB]\n  %u[kB]\n CPU:%qi[ms]\n", rssPerSec / 1000, rss / 1000, userTimePerSec];
-    NSLog(@"%@", result);
+    //NSLog(@"%@", result);
     
     return result;
     //    self.text = [NSString stringWithFormat:@" MEM:%qi[kB]\n  %u[kB]\n CPU:%qi[ms]\n Views:%d",
