@@ -172,13 +172,16 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         NSThread.sleepForTimeInterval(0.5)
         dispatch_async( dispatch_get_main_queue() ) {
             var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
-            //if sutehaiSelectResult.isFinishAnalyze {
-            if self.isFinishAnalyze {
+            if sutehaiSelectResult.isFinishAnalyze {
+            //if self.isFinishAnalyze {
                 // Display SutehaiSelectResult
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
                 self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
                 self.setBody(sutehaiCandidateList)
+                self.setHeaderLabel()
+                self.setFooterLabel()
+                
             } else {
                 let now: NSDate = NSDate()
                 println(now)

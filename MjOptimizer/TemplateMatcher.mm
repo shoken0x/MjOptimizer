@@ -154,7 +154,13 @@ static cv::Mat loadMatFromFile(NSString *fileBaseName, NSString *type) {
     CGColorSpaceRelease(colorSpace);
     CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
     
-    return ret;
+    //Trim image
+    CGRect trimArea = CGRectMake(4, 150, 640, 120);
+    CGImageRef srcImageRef = [ret CGImage];
+    CGImageRef trimmedImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea);
+    UIImage *trimmedImage = [UIImage imageWithCGImage:trimmedImageRef];
+    
+    return trimmedImage;
 }
 
 - (id)init {

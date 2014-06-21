@@ -32,6 +32,8 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             var sutehai = sortedChunkList[index].getPaiList()[0]
             var ukeirePaiList: UkeirePai[] = []
             for var cIndex = 0; sortedChunkList.count > cIndex; cIndex++ {
+                debugPrintln("cIndex = \(cIndex)")
+                debugPrintln("index = \(index)")
                 if index == cIndex {
                     continue
                 }
