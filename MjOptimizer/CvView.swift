@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class CvView: UIView {
     
@@ -21,7 +22,17 @@ class CvView: UIView {
     func addRect(rect: CGRect) {
         rectList.append(rect)
     }
-
+    
+    func imageFromView() -> UIImage {
+        UIGraphicsBeginImageContext(self.frame.size)
+        let context = UIGraphicsGetCurrentContext()
+        self.layer.renderInContext(context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
+    
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect)
@@ -33,5 +44,4 @@ class CvView: UIView {
         }
         CGContextStrokePath(context)
     }
-
 }

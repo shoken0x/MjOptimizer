@@ -35,6 +35,17 @@ class TMAnalyzer: TMAnalyzerProtocol {
         let results = self.analyze(uiimage)
         debugPrintln("analyze finished")
         debugPrintln(results)
+        var i = 0
+        var cvView = CvView(frame: CGRectMake(0, 0, uiimage.size.width, uiimage.size.height), background: uiimage)
+        for result: TMResult in results {
+            debugPrintln("result.pai = \(result.pai.toString())")
+            debugPrintln("result.place = \(result.place)")
+            i += 1
+            cvView.addRect(result.place)
+        }
+        debugPrintln("total analyze = \(i)")
+        var debugView = cvView.imageFromView()
+        
         return AnalyzeResult(resultList: results)
     }
         
@@ -48,12 +59,12 @@ class TMAnalyzer: TMAnalyzerProtocol {
                 }
             }
         }
-        return select(results)
+        return sortWithPlace(filter(select(results)))
     }
     
     func select(pais: TMResult[]) -> TMResult[] {
         var selected = TMResult[]()
-        var sorted_pai: TMResult[] = sort(pais) { p1, p2 in return p1.value < p2.value }
+        var sorted_pai: TMResult[] = sort(pais) { p1, p2 in return p1.value > p2.value }
         for pai: TMResult in sorted_pai {
             if let nearestPai = self.nearest(pai, paiList: selected) {
                 if CGRectIntersectsRect(nearestPai.place, pai.place) {
@@ -75,6 +86,19 @@ class TMAnalyzer: TMAnalyzerProtocol {
             }
         }
         return selected
+    }
+
+    func filter(pais: TMResult[]) -> TMResult[] {
+        if pais.count >= 14 {
+            let filtered_pais: TMResult[] = sort(pais){ p1, p2 in return p1.value > p2.value }[0..14]
+            return filtered_pais
+        }
+        return pais
+    }
+    
+    func sortWithPlace(pais: TMResult[]) -> TMResult[] {
+        let sorted_pais: TMResult[] = sort(pais){ p1, p2 in return p1.place.origin.x < p2.place.origin.x }
+        return sorted_pais
     }
     
     func nearest(pai: TMResult, paiList: TMResult[]) -> TMResult? {
