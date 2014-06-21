@@ -16,7 +16,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let session = AVCaptureSession()
     let label = UILabel(frame: CGRectMake(100, 60, 300, 30))
     let headerLabel = UILabel(frame: CGRectMake(0, 0, 500, 30))
-    let footerLabel = UILabel(frame: CGRectMake(10, 10, 300, 30))
+    let footerLabel = UILabel(frame: CGRectMake(200, 200, 300, 30))
     let debugButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let rescanButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let logView = UITextView(frame: CGRectMake(460, 20, 150, 100))
@@ -146,7 +146,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         animationView.removeFromSuperview()
         filterView.removeFromSuperview()
         setHeaderLabel()
-        setFooterLabel()
+        setFooterLabel(99)
         debugButton.hidden = true
         rescanButton.hidden = false
     }
@@ -181,13 +181,13 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             if self.isFinishAnalyze {
                 // Display SutehaiSelectResult
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
+                self.label.text = "Finish scan."
                 self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
                 self.setBody(sutehaiCandidateList)
                 self.animationView.removeFromSuperview()
                 self.filterView.removeFromSuperview()
                 self.setHeaderLabel()
-                self.setFooterLabel()
+                self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
                 
                 self.session.stopRunning()
                 self.debugButton.hidden = true
@@ -295,10 +295,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         view.addSubview(headerLabel)
     }
     
-    func setFooterLabel() {
-        var shantenNum = 3
+    func setFooterLabel(shantenNum: Int) {
         footerLabel.font = UIFont(name: "HiraKakuProN-W6", size: 15)
-        footerLabel.center = CGPointMake(200, 520)
         footerLabel.textAlignment = NSTextAlignment.Center
         footerLabel.textColor = UIColor.redColor()
         footerLabel.text = "現在のシャンテン数は \(shantenNum)"
