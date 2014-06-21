@@ -24,7 +24,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
     let targetFrame = CGRectMake(24, 130, 520, 100)
     let systemStats = Stats()
-    let controllerMock = Controller()
+    let controller = Controller()
     
     var scanCounter = 0
     var log = "START SCAN..."
@@ -169,10 +169,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-        NSThread.sleepForTimeInterval(10)
+        NSThread.sleepForTimeInterval(0.5)
         dispatch_async( dispatch_get_main_queue() ) {
-
-            var sutehaiSelectResult = self.controllerMock.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
+            var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
             //if sutehaiSelectResult.isFinishAnalyze {
             if self.isFinishAnalyze {
                 // Display SutehaiSelectResult

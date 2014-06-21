@@ -29,6 +29,7 @@ class Controller:ControllerProtocol{
         )
         if !analyzeResult.isSuccess(){
             //解析失敗
+            debugPrint("NG loop")
             return SutehaiSelectResult(
                 sutehaiCandidateList : nil,
                 tehaiShantenNum : nil,
@@ -39,6 +40,7 @@ class Controller:ControllerProtocol{
         }else{
             //解析成功
             //何きる計算
+            debugPrint("call  sutehaiSelector.select")
             return sutehaiSelector.select(analyzeResult.getPaiList());
         }
     }

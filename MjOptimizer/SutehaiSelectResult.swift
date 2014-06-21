@@ -16,8 +16,8 @@ class SutehaiSelectResult {
     var successNum : Int //解析に成功した枚数
     
     init(sutehaiCandidateList : SutehaiCandidate[]?,tehaiShantenNum : Int?,tehai : Pai[],isFinishAnalyze : Bool,successNum : Int){
-        self.sutehaiCandidateList = sutehaiCandidateList!
-        self.tehaiShantenNum = tehaiShantenNum!
+        self.sutehaiCandidateList = sutehaiCandidateList
+        self.tehaiShantenNum = tehaiShantenNum
         self.tehai = tehai
         self.isFinishAnalyze = isFinishAnalyze
         self.successNum = successNum

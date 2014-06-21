@@ -35,6 +35,17 @@ class TMAnalyzer: TMAnalyzerProtocol {
         let results = self.analyze(uiimage)
         debugPrintln("analyze finished")
         debugPrintln(results)
+        var i = 0
+        var cvView = CvView(frame: CGRectMake(0, 0, uiimage.size.width, uiimage.size.height), background: uiimage)
+        for result: TMResult in results {
+            debugPrintln("result.pai = \(result.pai.toString())")
+            debugPrintln("result.place = \(result.place)")
+            i += 1
+            cvView.addRect(result.place)
+        }
+        debugPrintln("total analyze = \(i)")
+        var debugView = cvView.imageFromView()
+        
         return AnalyzeResult(resultList: results)
     }
         
