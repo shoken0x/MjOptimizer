@@ -121,7 +121,16 @@ class Mentsu: ChunkProtocol {
         return self.type
     }
     func getPriority() -> Int {
-        return 0
+        var priority = 0
+        switch self.type{
+        case ChunkType.KOTSU:
+            priority = 39
+        case ChunkType.SHUNTSU:
+            priority = 35
+        default:
+            priority = 0
+        }
+        return priority
     }
 }
 
@@ -148,7 +157,17 @@ class Single:ChunkProtocol{
         return self.type
     }
     func getPriority() -> Int {
-        return 0
+        var priority = 0
+        if self.pai.type == PaiType.JIHAI{
+            priority = 10
+        }
+        else if (self.pai.number == 1 || self.pai.number == 9){
+            priority = 15
+        }
+        else{
+            priority = 19
+        }
+        return priority
     }
 }
 
@@ -195,7 +214,18 @@ class Tatsu:ChunkProtocol{
         return self.type
     }
     func getPriority() -> Int {
-        return 0
+        var priority = 0
+        switch self.type{
+        case ChunkType.RYANMENCHAN:
+            priority = 29
+        case ChunkType.KANCHAN:
+            priority = 25
+        case ChunkType.PENCHAN:
+            priority = 24
+        default:
+            priority = 0
+        }
+        return priority
     }
 }
 
@@ -212,7 +242,7 @@ class Toitsu:ChunkProtocol{
         return self.type
     }
     func getPriority() -> Int {
-        return 0
+        return 24
     }
 }
 
