@@ -226,7 +226,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 for var i = 0; i < selectedPaiList.count; i++ {
                     tehai.restPaiList.remove(selectedPaiList[i])
                 }
-                return analyzeKazuhaiToitsu(tehai)
+                return analyzeKazuhaiMentsu(tehai)
             }
         }
         return tehai
@@ -256,7 +256,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai1!)
                 tehai.restPaiList.remove(nextPai2!)
-                analyzeKazuhaiPechan(tehai)
+                return analyzeKazuhaiSyuntsu(tehai)
             }
         }
         return tehai
@@ -284,7 +284,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.RYANMENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
-                analyzeKazuhaiPechan(tehai)
+                return analyzeKazuhaiRyanmenchan(tehai)
             }
         }
         return tehai
@@ -312,7 +312,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.KANCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
-                analyzeKazuhaiPechan(tehai)
+                return analyzeKazuhaiKanchan(tehai)
             }
         }
         return tehai
@@ -340,7 +340,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.PENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
-                analyzeKazuhaiPechan(tehai)
+                return analyzeKazuhaiPechan(tehai)
             }
         }
         return tehai
