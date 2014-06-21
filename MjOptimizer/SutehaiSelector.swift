@@ -94,8 +94,8 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         // Step.3 数牌を解析する
         // 面子優先と順子優先を試して良い方を採用する
         // TODO: 本当は1試行ごとに優先順位を変えないと正確ではない
-        var tehai1 = analyzeKazuhai(tehai, priority: 1)  // 面子優先
-        var tehai2 = analyzeKazuhai(tehai, priority: 2)  // 順子優先
+        var tehai1 = analyzeKazuhai(tehai.copy(), priority: 1)  // 面子優先
+        var tehai2 = analyzeKazuhai(tehai.copy(), priority: 2)  // 順子優先
         
         return tehai1.getShantenNum() > tehai2.getShantenNum() ? tehai2 : tehai1
     }

@@ -26,11 +26,23 @@ class Tehai {
     var agariType: AgariType = AgariType.AGARI_TYPE_NORMAL
     var analyzedFlag: Bool = false
     
-    init(paiList: Pai[]) {
+    init(paiList: Pai[] = []) {
         self.basePaiList = paiList
     }
     
-    // TODO: 実装
+    func copy() -> Tehai {
+        var tehai: Tehai = Tehai()
+        tehai.basePaiList = self.basePaiList.copy()
+        tehai.restPaiList = self.restPaiList.copy()
+        tehai.mentsuList = self.mentsuList.copy()
+        tehai.tatsuList = self.tatsuList.copy()
+        tehai.toitsuList = self.toitsuList.copy()
+        tehai.singleList = self.singleList.copy()
+        tehai.agariType = self.agariType
+        tehai.analyzedFlag = self.analyzedFlag
+        return tehai
+    }
+    
     func isAgari() -> Bool {
         if self.getShantenNum() == -1 {
             return true
