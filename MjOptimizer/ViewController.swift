@@ -18,9 +18,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let headerLabel = UILabel(frame: CGRectMake(0, 0, 500, 30))
     let footerLabel = UILabel(frame: CGRectMake(200, 200, 300, 30))
     let debugButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+    let startButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let rescanButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let logView = UITextView(frame: CGRectMake(460, 20, 150, 100))
     let filterView = UIView(frame: CGRectMake(0, 0, 568, 320))
+    let resultView = UIView(frame: CGRectMake(0, 0, 568, 130))
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
     let targetFrame = CGRectMake(24, 130, 520, 100)
     let systemStats = Stats()
@@ -30,6 +32,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var log = "START SCAN..."
     var captureDevice: AVCaptureDevice!
     var isFinishAnalyze = false
+    var isScan = false
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +51,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setuptAVCapture(captureDevice)
             setPreview(session)
         }
-        setFilterView()
         setOverlayView()
-        focusOn()
-        setLogView()
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -68,9 +68,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         debugButton.frame = CGRectMake(290, 30, 200, 100)
         debugButton.setTitle("DisplayResults", forState: UIControlState.Normal)
         debugButton.addTarget(self, action: "debugButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(debugButton)
+        //view.addSubview(debugButton)
         
-        rescanButton.frame = CGRectMake(290, 50, 200, 100)
+        startButton.frame = CGRectMake(290, 30, 200, 100)
+        startButton.setTitle("START SCAN...", forState: UIControlState.Normal)
+        startButton.addTarget(self, action: "startButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(startButton)
+        
+        rescanButton.frame = CGRectMake(385, 165, 200, 100)
         rescanButton.setTitle("RESCAN", forState: UIControlState.Normal)
         rescanButton.addTarget(self, action: "rescanButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         rescanButton.hidden = true
@@ -79,7 +84,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         label.center = CGPointMake(420, 300)
         label.textAlignment = NSTextAlignment.Center
         label.textColor = UIColor.redColor()
-        label.text = "scanning ..."
+        label.text = "I'm waiting for..."
         
         view.addSubview(label)
         view.addSubview(overlayImageView)
@@ -151,7 +156,17 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         rescanButton.hidden = false
     }
     
+    func startButtonDidPush() {
+        isScan = true
+        startButton.hidden = true
+        label.text = "scanning ..."
+        setFilterView()
+        focusOn()
+        setLogView()
+    }
+    
     func rescanButtonDidPush() {
+        debugPrintln("RESCAN START")
         rescanButton.hidden = true
         debugButton.hidden = false
         isFinishAnalyze = false
@@ -176,6 +191,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         println("update from captureOutput()")
         
         dispatch_async( dispatch_get_main_queue() ) {
+            if self.isScan {
             var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
             self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
             if self.isFinishAnalyze {
@@ -190,7 +206,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
                 
                 self.session.stopRunning()
-                self.debugButton.hidden = true
+                self.startButton.hidden = true
                 self.rescanButton.hidden = false
             } else {
                 self.label.text = now.description
@@ -200,6 +216,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 self.logView.scrollEnabled = false
                 self.logView.scrollRangeToVisible(range)
                 self.logView.scrollEnabled = true
+            }
             }
         }
     }
@@ -226,6 +243,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             i += 1
             if i > limit { break }
         }
+        setResultView()
     }
     
     func setLogView() {
@@ -285,6 +303,11 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func setFilterView() {
         filterView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.1)
         view.addSubview(filterView)
+    }
+    
+    func setResultView() {
+        resultView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        view.addSubview(resultView)
     }
     
     func setHeaderLabel() {
