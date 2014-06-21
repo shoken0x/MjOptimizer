@@ -269,7 +269,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             if targetPai == nil{
                 continue
             }
-            if targetPai.number == 1 && targetPai.number >= 8 {
+            if targetPai.number == 1 || targetPai.number >= 8 {
                 continue
             }
             
@@ -325,7 +325,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             if targetPai == nil{
                 continue
             }
-            if targetPai.number != 1 && targetPai.number != 8{
+            if targetPai.number != 1 || targetPai.number != 8 {
                 continue
             }
             
