@@ -15,26 +15,7 @@ class SutehaiCandidate {
     var shantenNum: Int //この牌を捨てると何シャンテンになるか
     var positionIndex: Int //この捨て牌が手配の中で左から何番目か。0スタート
     var positionRect: CGRect? //画像の中での位置
-    //TODO作成中
-    init(tehai : Tehai){
-        
-        if tehai.singleList.isEmpty{
-            
-        }else{
-            //孤立牌あり
-            //とりあえず一番最初の牌をきるこうほにする
-//            self.pai = tehai.singleList[0]
-            //self.ukeirePaiList = [tehai]
-            
-        }
-        
-        self.pai = Pai.parse("m1t")!
-        self.ukeirePaiList = [UkeirePai(pai: Pai.parse("m1t")!,remainNum: 1)]
-        self.shantenNum = 1
-        self.positionIndex = 1
-        self.positionRect = CGRect()
-        
-    }
+
     init(pai:Pai,ukeirePaiList:UkeirePai[],shantenNum:Int,positionIndex:Int){
         self.pai = pai
         self.ukeirePaiList = ukeirePaiList

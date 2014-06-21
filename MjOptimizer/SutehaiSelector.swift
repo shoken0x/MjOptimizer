@@ -23,20 +23,40 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         // とりあえず通常形の上がりパターン解析のみ実装
         tehai = analyzeAsNormal(tehai)
         
+        
         // SutehaiSelectResultを作るための処理
-        var chunkList: ChunkProtocol[] = tehai.getChunkList()
-        // No.1 SingleListがあれば、Singleを1つ捨て牌として、その他のChunkのMissingPaiListを取得
-//        for chunk in chunkList {
-//            if chunk.type == 
-//            chunk.getMissingPaiList()
-//        }
+        var sortedChunkList: ChunkProtocol[] = sort(tehai.getChunkList()){
+            p1,p2 in return p1.getPriority() < p2.getPriority()
+        }
+        var sutehaiCandidateList: SutehaiCandidate[] = []
+        for index in 0..2{
+            var sutehai = sortedChunkList[index].getPaiList()[0]
+            var ukeirePaiList: UkeirePai[] = []
+            for var cIndex = 0; sortedChunkList.count > cIndex; cIndex++ {
+                if index == cIndex {
+                    continue
+                }
+                for missingPai in sortedChunkList[cIndex].getMissingPaiList(){
+                    ukeirePaiList.append(UkeirePai(pai: missingPai, remainNum: 4))  // remainNumは後で
+                }
+            }
+            // ukeirePaiListの重複削除
+            ukeirePaiList = ukeirePaiList.unique()
+            
+            // positionの取得
+            var positionIndex: Int
+            for positionIndex = 0; paiList.count > positionIndex; positionIndex++ {
+                if sutehai == paiList[positionIndex] {
+                    break
+                }
+            }
+            
+            // TODO: シャンテン数は捨てたあと？それとも有効牌を引いたあと？
+            //       いったん0で仮置き
+            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: positionIndex)
+        }
         
-        var ukeirePaiList = [UkeirePai(pai: Pai.parse("m1t")!, remainNum: 0)]
-        var sc = [SutehaiCandidate(pai: Pai.parse("m1t")!, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: 0)]
-//        TODO 正しいものを埋めてください
-        var result = SutehaiSelectResult(sutehaiCandidateList: sc, tehaiShantenNum: 0,tehai : [],isFinishAnalyze : false,successNum : 0)
-        
-        return result
+        return SutehaiSelectResult(sutehaiCandidateList: sutehaiCandidateList, tehaiShantenNum: tehai.getShantenNum(), tehai: paiList, isFinishAnalyze: true, successNum: 14)
     }
     
     
