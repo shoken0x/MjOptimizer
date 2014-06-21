@@ -20,7 +20,7 @@ class TMAnalyzer: TMAnalyzerProtocol {
             "s1t", "s2t", "s3t", "s4t", "s5t", "s6t", "s7t", "s8t", "s9t",
             "j1t", "j2t", "j3t", "j4t", "j5t", "j6t", "j7t"
         ]
-        //let keys = ["p6t"]
+//        let keys = ["j1t", "s6t"]
         
         for key in keys {
             paiTypes.append(Pai.parse(key)!)
@@ -29,8 +29,12 @@ class TMAnalyzer: TMAnalyzerProtocol {
     
     func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol {
         
-        let uiimage = TemplateMatcher.UIImageFromCMSampleBuffer(image)
+        debugPrintln("analyze called")
+        let uiimage: UIImage = TemplateMatcher.UIImageFromCMSampleBuffer(image)
+        debugPrintln(uiimage)
         let results = self.analyze(uiimage)
+        debugPrintln("analyze finished")
+        debugPrintln(results)
         return AnalyzeResult(resultList: results)
     }
         

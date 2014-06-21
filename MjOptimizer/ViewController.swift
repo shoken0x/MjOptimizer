@@ -24,7 +24,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
     let targetFrame = CGRectMake(24, 130, 520, 100)
     let systemStats = Stats()
-    let controllerMock = ControllerMock()
+    let controllerMock = Controller()
     
     var scanCounter = 0
     var log = "START SCAN..."
@@ -91,19 +91,30 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
         
         var queue: dispatch_queue_t = dispatch_queue_create("com.mjoptimizer.myQueue", nil)
+        let settings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
+        videoDataOutput.videoSettings = settings
+        
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
+        
        
 
         //var videoConnection: AVCaptureConnection = videoDataOutput.connectionWithMediaType(AVMediaTypeVideo)
         //videoConnection.videoMinFrameDuration = CMTimeMake(1, 4);
         
         //session.sessionPreset = AVCaptureSessionPresetMedium
-        session.sessionPreset = AVCaptureSessionPresetHigh
+        //session.sessionPreset = AVCaptureSessionPresetHigh
         //session.sessionPreset = AVCaptureSessionPresetPhoto
         //session.sessionPreset = AVCaptureSessionPreset1280x720
+        session.sessionPreset = AVCaptureSessionPreset640x480
         session.addInput(deviceInput as AVCaptureInput)
         session.addOutput(videoDataOutput)
+        
+        session.beginConfiguration()
+        var videoConnection: AVCaptureConnection = videoDataOutput.connectionWithMediaType(AVMediaTypeVideo)
+        videoConnection.videoOrientation = AVCaptureVideoOrientation.LandscapeLeft
+        //videoConnection.videoMinFrameDuration = CMTimeMake(1, 1);
+        session.commitConfiguration()
         
         session.startRunning()
     }
@@ -153,8 +164,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         debugButton.hidden = false
     }
     
+    func imageSaved() {
+        debugPrintln("image saved!")
+    }
+    
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-        NSThread.sleepForTimeInterval(0.2)
+        NSThread.sleepForTimeInterval(10)
         dispatch_async( dispatch_get_main_queue() ) {
 
             var sutehaiSelectResult = self.controllerMock.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
