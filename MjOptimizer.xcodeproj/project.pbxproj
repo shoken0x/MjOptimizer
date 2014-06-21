@@ -157,6 +157,8 @@
 		C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC340C1954A85A0030EE0A /* Controller.swift */; };
 		C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */; };
 		C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */; };
+		C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3433195518E10030EE0A /* TehaiProtocol.swift */; };
+		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -512,6 +514,8 @@
 		C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerMock.swift; sourceTree = "<group>"; };
 		C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultMock.swift; sourceTree = "<group>"; };
+		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
+		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -828,6 +832,8 @@
 				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
 				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
 				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
+				C4CC3433195518E10030EE0A /* TehaiProtocol.swift */,
+				C4CC343D19551E310030EE0A /* ChunkProtocol.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -1185,6 +1191,7 @@
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
 				34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */,
 				342182021954C89900E3436B /* CvView.swift in Sources */,
+				C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
 				C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */,
@@ -1195,6 +1202,7 @@
 				C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
 				C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */,
+				C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
 				A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,

@@ -24,13 +24,39 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         tehai = analyzeAsNormal(tehai)
         
         
-        // resultを作るための空オブジェクト
-        var ukeirePaiList = [UkeirePai(pai: Pai.parse("m1t")!, remainNum: 0)]
-        var sc = [SutehaiCandidate(pai: Pai.parse("m1t")!, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: 0)]
-        //TODO 正しいものを埋めてください
-        var result = SutehaiSelectResult(sutehaiCandidateList: sc, tehaiShantenNum: 0,tehai : [],isFinishAnalyze : false,successNum : 0)
+        // SutehaiSelectResultを作るための処理
+        var sortedChunkList: ChunkProtocol[] = sort(tehai.getChunkList()){
+            p1,p2 in return p1.getPriority() < p2.getPriority()
+        }
+        var sutehaiCandidateList: SutehaiCandidate[] = []
+        for index in 0..2{
+            var sutehai = sortedChunkList[index].getPaiList()[0]
+            var ukeirePaiList: UkeirePai[] = []
+            for var cIndex = 0; sortedChunkList.count > cIndex; cIndex++ {
+                if index == cIndex {
+                    continue
+                }
+                for missingPai in sortedChunkList[cIndex].getMissingPaiList(){
+                    ukeirePaiList.append(UkeirePai(pai: missingPai, remainNum: 4))  // remainNumは後で
+                }
+            }
+            // ukeirePaiListの重複削除
+            ukeirePaiList = ukeirePaiList.unique()
+            
+            // positionの取得
+            var positionIndex: Int
+            for positionIndex = 0; paiList.count > positionIndex; positionIndex++ {
+                if sutehai == paiList[positionIndex] {
+                    break
+                }
+            }
+            
+            // TODO: シャンテン数は捨てたあと？それとも有効牌を引いたあと？
+            //       いったん0で仮置き
+            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: positionIndex)
+        }
         
-        return result
+        return SutehaiSelectResult(sutehaiCandidateList: sutehaiCandidateList, tehaiShantenNum: tehai.getShantenNum(), tehai: paiList, isFinishAnalyze: true, successNum: 14)
     }
     
     
@@ -104,7 +130,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 }
                 
                 if aroundPai.count == 1 {
-                    tehai.singleList += targetPai
+                    tehai.singleList += Single(pai: targetPai)
                     tehai.restPaiList.remove(targetPai)
                 }
             }
@@ -127,14 +153,14 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         case 4:
             // TODO: 槓子対応
             //       とりあえず、面子+孤立牌として処理する
-            tehai.singleList += selectedPaiList[3]
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+            tehai.singleList += Single(pai: selectedPaiList[3])
+            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 3:
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 2:
             tehai.toitsuList += Toitsu(paiList: selectedPaiList[0...1])
         case 1:
-            tehai.singleList += selectedPaiList[0]
+            tehai.singleList += Single(pai: selectedPaiList[0])
         default:
             // TODO: ERROR
             return tehai
@@ -195,9 +221,9 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 if selectedPaiList.count == 4 {
                     // TODO: 槓子対応
                     //       とりあえず、面子+孤立牌として処理する
-                    tehai.singleList += selectedPaiList[3]
+                    tehai.singleList += Single(pai: selectedPaiList[3])
                 }
-                tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+                tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
                 for var i = 0; i < selectedPaiList.count; i++ {
                     tehai.restPaiList.remove(selectedPaiList[i])
                 }
@@ -227,7 +253,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai1 != nil && nextPai2 != nil {
-                tehai.mentsuList += Mentsu(paiList: [targetPai, nextPai1!, nextPai2!], type: MentsuType.SHUNTSU)
+                tehai.mentsuList += Mentsu(paiList: [targetPai, nextPai1!, nextPai2!], type: ChunkType.SHUNTSU)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai1!)
                 tehai.restPaiList.remove(nextPai2!)
@@ -256,7 +282,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.RYANMENCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.RYANMENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)
@@ -284,7 +310,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.KANCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.KANCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)
@@ -312,7 +338,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.PENCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.PENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)

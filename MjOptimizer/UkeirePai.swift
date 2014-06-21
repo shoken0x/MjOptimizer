@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UkeirePai{
+class UkeirePai: Equatable {
     
     var pai: Pai
     var remainNum: Int
@@ -20,4 +20,8 @@ class UkeirePai{
     func getPai() -> Pai{return self.pai}
     func getRemainNum() -> Int{return self.remainNum}
 
+}
+
+func == (lhs: UkeirePai, rhs: UkeirePai) -> Bool {
+    return lhs.pai == rhs.pai
 }

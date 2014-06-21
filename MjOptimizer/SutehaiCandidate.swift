@@ -15,6 +15,7 @@ class SutehaiCandidate {
     var shantenNum: Int //この牌を捨てると何シャンテンになるか
     var positionIndex: Int //この捨て牌が手配の中で左から何番目か。0スタート
     var positionRect: CGRect? //画像の中での位置
+
     init(pai:Pai,ukeirePaiList:UkeirePai[],shantenNum:Int,positionIndex:Int){
         self.pai = pai
         self.ukeirePaiList = ukeirePaiList
