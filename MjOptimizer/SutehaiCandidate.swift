@@ -23,7 +23,7 @@ class SutehaiCandidate {
         }else{
             //孤立牌あり
             //とりあえず一番最初の牌をきるこうほにする
-            self.pai = tehai.singleList[0]
+//            self.pai = tehai.singleList[0]
             //self.ukeirePaiList = [tehai]
             
         }

@@ -23,11 +23,17 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         // とりあえず通常形の上がりパターン解析のみ実装
         tehai = analyzeAsNormal(tehai)
         
+        // SutehaiSelectResultを作るための処理
+        var chunkList: ChunkProtocol[] = tehai.getChunkList()
+        // No.1 SingleListがあれば、Singleを1つ捨て牌として、その他のChunkのMissingPaiListを取得
+//        for chunk in chunkList {
+//            if chunk.type == 
+//            chunk.getMissingPaiList()
+//        }
         
-        // resultを作るための空オブジェクト
         var ukeirePaiList = [UkeirePai(pai: Pai.parse("m1t")!, remainNum: 0)]
         var sc = [SutehaiCandidate(pai: Pai.parse("m1t")!, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: 0)]
-        //TODO 正しいものを埋めてください
+//        TODO 正しいものを埋めてください
         var result = SutehaiSelectResult(sutehaiCandidateList: sc, tehaiShantenNum: 0,tehai : [],isFinishAnalyze : false,successNum : 0)
         
         return result
@@ -104,7 +110,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 }
                 
                 if aroundPai.count == 1 {
-                    tehai.singleList += targetPai
+                    tehai.singleList += Single(pai: targetPai)
                     tehai.restPaiList.remove(targetPai)
                 }
             }
@@ -127,14 +133,14 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         case 4:
             // TODO: 槓子対応
             //       とりあえず、面子+孤立牌として処理する
-            tehai.singleList += selectedPaiList[3]
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+            tehai.singleList += Single(pai: selectedPaiList[3])
+            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 3:
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 2:
             tehai.toitsuList += Toitsu(paiList: selectedPaiList[0...1])
         case 1:
-            tehai.singleList += selectedPaiList[0]
+            tehai.singleList += Single(pai: selectedPaiList[0])
         default:
             // TODO: ERROR
             return tehai
@@ -195,9 +201,9 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                 if selectedPaiList.count == 4 {
                     // TODO: 槓子対応
                     //       とりあえず、面子+孤立牌として処理する
-                    tehai.singleList += selectedPaiList[3]
+                    tehai.singleList += Single(pai: selectedPaiList[3])
                 }
-                tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: MentsuType.KOTSU)
+                tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
                 for var i = 0; i < selectedPaiList.count; i++ {
                     tehai.restPaiList.remove(selectedPaiList[i])
                 }
@@ -227,7 +233,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai1 != nil && nextPai2 != nil {
-                tehai.mentsuList += Mentsu(paiList: [targetPai, nextPai1!, nextPai2!], type: MentsuType.SHUNTSU)
+                tehai.mentsuList += Mentsu(paiList: [targetPai, nextPai1!, nextPai2!], type: ChunkType.SHUNTSU)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai1!)
                 tehai.restPaiList.remove(nextPai2!)
@@ -256,7 +262,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.RYANMENCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.RYANMENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)
@@ -284,7 +290,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.KANCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.KANCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)
@@ -312,7 +318,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai != nil {
-                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: TatsuType.PENCHAN)
+                tehai.tatsuList += Tatsu(paiList: [targetPai, nextPai!], type: ChunkType.PENCHAN)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai!)
                 analyzeKazuhaiPechan(tehai)

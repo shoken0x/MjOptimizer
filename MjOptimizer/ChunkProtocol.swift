@@ -13,4 +13,6 @@ protocol ChunkProtocol{
     //ターツやといつであれば、メンツになる牌を返す
     //メンツであれば、空の配列を返す
     func getMissingPaiList() -> Pai[]
+    func getChunkType() -> ChunkType
+    func getPriority() -> Int
 }
