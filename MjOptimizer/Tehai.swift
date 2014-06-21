@@ -142,6 +142,9 @@ class Mentsu: ChunkProtocol {
         }
         return priority
     }
+    func getPaiList() -> Pai[] {
+        return self.paiList
+    }
 }
 
 class Single:ChunkProtocol{
@@ -178,6 +181,9 @@ class Single:ChunkProtocol{
             priority = 19
         }
         return priority
+    }
+    func getPaiList() -> Pai[] {
+        return [self.pai]
     }
 }
 
@@ -237,6 +243,9 @@ class Tatsu:ChunkProtocol{
         }
         return priority
     }
+    func getPaiList() -> Pai[] {
+        return self.paiList
+    }
 }
 
 class Toitsu:ChunkProtocol{
@@ -253,6 +262,9 @@ class Toitsu:ChunkProtocol{
     }
     func getPriority() -> Int {
         return 24
+    }
+    func getPaiList() -> Pai[] {
+        return self.paiList
     }
 }
 
