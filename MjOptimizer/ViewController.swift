@@ -52,6 +52,14 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
+        
+        //debug
+        isScan = true
+        startButton.hidden = true
+        label.text = "scanning ..."
+        setFilterView()
+        focusOn()
+        setLogView()
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -203,7 +211,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 self.animationView.removeFromSuperview()
                 self.filterView.removeFromSuperview()
                 self.setHeaderLabel()
-                self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
+                //self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
                 
                 self.session.stopRunning()
                 self.startButton.hidden = true
@@ -222,6 +230,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setBody(sutehaiCandidateList: SutehaiCandidate[]) {
+        setResultView()
         var x: CGFloat = 5
         var y: CGFloat = 15
         var limit = 3
@@ -230,20 +239,19 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             drawMjImages(x, y, [ViewUtils.convertStringFromPai(sutehaiCandidate.pai)])
             drawMjImages(x + 50, y,
                 ViewUtils.convertStringListFromPaiList(sutehaiCandidate.getUkeirePaiToPaiList()))
-            let totalNumLabel =   UILabel(frame: CGRectMake(x + 205, y + 15, 20, 20))
-            totalNumLabel.textColor = UIColor.whiteColor()
+            let totalNumLabel =   UILabel(frame: CGRectMake(x + 215, y + 15, 20, 20))
+            totalNumLabel.textColor = UIColor.greenColor()
             totalNumLabel.text = String(sutehaiCandidate.getUkeireTotalNum())
             view.addSubview(totalNumLabel)
             
             let shantenNumLabel = UILabel(frame: CGRectMake(x + 305, y + 15, 20, 20))
-            shantenNumLabel.textColor = UIColor.whiteColor()
+            shantenNumLabel.textColor = UIColor.greenColor()
             shantenNumLabel.text = String(sutehaiCandidate.getShantenNum())
             view.addSubview(shantenNumLabel)
             y += 30
             i += 1
             if i > limit { break }
         }
-        setResultView()
     }
     
     func setLogView() {
@@ -306,7 +314,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func setResultView() {
-        resultView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        resultView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
         view.addSubview(resultView)
     }
     
