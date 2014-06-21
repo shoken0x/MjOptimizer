@@ -23,12 +23,6 @@ class Tehai {
     var tatsuList: Tatsu[] = []
     var toitsuList: Toitsu[] = []
     var singleList: Pai[] = []
-//    var basePaiList = []
-//    var restPaiList = []
-//    var mentsuList = []
-//    var tatsuList = []
-//    var toitsuList = []
-//    var singleList = []
     var agariType: AgariType = AgariType.AGARI_TYPE_NORMAL
     var analyzedFlag: Bool = false
     
@@ -36,6 +30,7 @@ class Tehai {
         
     }
     
+    // TODO: 実装
     func isAgari() -> Int {
         if true {
             return 1

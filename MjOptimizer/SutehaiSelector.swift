@@ -90,30 +90,23 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     // 通常のあがり形解析に使用する
     // 単独牌を解析する
     func analyzeSingle(tehai:Tehai) -> Tehai{
-//        
-//        # 数牌で単独牌を抽出
-//        [Type::Manzu, Type::Pinzu, Type::Souzu].each do |pai_type|
-//        # 重複しない かつ 2つ以内の牌がない
-//        manzu_list = get_selected_by_type(tehai.rest_pai_list, pai_type)
-//        manzu_list.each do |target_pai|
-//        selected_list = manzu_list.select do |pai|
-//        pai == target_pai ||
-//        pai.pai_type == target_pai.next_pai_type(1) ||
-//        pai.pai_type == target_pai.next_pai_type(2) ||
-//        pai.pai_type == target_pai.prev_pai_type(1) ||
-//        pai.pai_type == target_pai.prev_pai_type(2)
-//        end
-//        if selected_list.count == 1
-//        tehai.single_list << target_pai
-//        tehai.rest_pai_list -= [target_pai]
-//        end
-//        end
-//        end
         
+        // 牌種ごとに、1枚ずつ取り出し距離:2までの範囲に自分以外に牌がなければ単独牌とする
         for type in [PaiType.MANZU, PaiType.SOUZU, PaiType.PINZU]{
             var selectedPaiList = getSelectByType(tehai.restPaiList, type: type)
-            for pai in selectedPaiList {
+            for targetPai in selectedPaiList {
+                var aroundPai: Pai[] = selectedPaiList.filter {
+                    targetPai == $0 ||
+                    targetPai == $0.getNextPai(range: 1) ||
+                    targetPai == $0.getNextPai(range: 2) ||
+                    targetPai == $0.getPrevPai(range: 1) ||
+                    targetPai == $0.getPrevPai(range: 2)
+                }
                 
+                if aroundPai.count == 1 {
+                    tehai.singleList += targetPai
+                    tehai.restPaiList.remove(targetPai)
+                }
             }
         }
         
