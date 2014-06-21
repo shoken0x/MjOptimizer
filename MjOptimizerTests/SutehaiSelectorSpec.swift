@@ -30,7 +30,7 @@ class SutehaiSelectorSpec: QuickSpec {
                     let paiList:Pai[] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj7tj7tj1tj2tj3t")!
                     let ss = SutehaiSelector()
                     let ssr : SutehaiSelectResult = ss.select(paiList)
-                    expect(ssr.getTehaiShantenNum()).to.equal(1)
+                    expect(ssr.getTehaiShantenNum()).to.equal(2)
 
                     let scList : SutehaiCandidate[] = ssr.getSutehaiCandidateList()
                     expect(scList.count).to.equal(3)
