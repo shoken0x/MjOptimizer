@@ -52,7 +52,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             
             // TODO: シャンテン数は捨てたあと？それとも有効牌を引いたあと？
             //       いったん0で仮置き
-            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: 0, positionIndex: positionIndex)
+            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: tehai.getShantenNum(), positionIndex: positionIndex)
         }
         
         return SutehaiSelectResult(sutehaiCandidateList: sutehaiCandidateList, tehaiShantenNum: tehai.getShantenNum(), tehai: paiList, isFinishAnalyze: true, successNum: 14)
