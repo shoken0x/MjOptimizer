@@ -15,4 +15,6 @@ protocol ChunkProtocol{
     func getMissingPaiList() -> Pai[]
     func getChunkType() -> ChunkType
     func getPriority() -> Int
+    //そのチャンクを構成する牌
+    func getPaiList() -> Pai[]
 }
