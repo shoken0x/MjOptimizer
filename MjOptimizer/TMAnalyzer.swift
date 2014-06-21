@@ -41,12 +41,12 @@ class TMAnalyzer {
     
     func select(pais: TMResult[]) -> TMResult[] {
         var selected = TMResult[]()
-        var sorted_pai = sort(pais) { p1, p2 in return p1.value < p2.value }
-        for pai in sorted_pai {
+        var sorted_pai: TMResult[] = sort(pais) { p1, p2 in return p1.value < p2.value }
+        for pai: TMResult in sorted_pai {
             if let nearestPai = self.nearest(pai, paiList: selected) {
                 if CGRectIntersectsRect(nearestPai.place, pai.place) {
-                    let intersection = CGRectIntersection(nearestPai.place, pai.place)
-                    let ratio: Double = (intersection.width * intersection.height) / (pai.place.width * pai.place.height)
+                    let intersection: CGRect = CGRectIntersection(nearestPai.place, pai.place)
+                    let ratio: CGFloat = (intersection.width * intersection.height) / (pai.place.width * pai.place.height)
                     if ratio > 0.15 {
                         if pai.value > nearestPai.value {
                             selected = selected.filter { $0 !== nearestPai }
