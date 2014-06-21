@@ -28,7 +28,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             p1,p2 in return p1.getPriority() < p2.getPriority()
         }
         var sutehaiCandidateList: SutehaiCandidate[] = []
-        for index in 0..2{
+        for index in 0...2{
             var sutehai = sortedChunkList[index].getPaiList()[0]
             var ukeirePaiList: UkeirePai[] = []
             for var cIndex = 0; sortedChunkList.count > cIndex; cIndex++ {
