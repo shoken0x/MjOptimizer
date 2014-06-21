@@ -16,7 +16,7 @@ class Controller:ControllerProtocol{
     var lastAnalyzeResult : AnalyzeResultProtocol?
     init (){
         // TMAnalyzerProtocol()
-        self.tmAnalyzer = TMAnalyzerMock()
+        self.tmAnalyzer = TMAnalyzer()
         self.sutehaiSelector = SutehaiSelector()
         self.lastAnalyzeResult = nil
     }
