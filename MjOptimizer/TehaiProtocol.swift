@@ -10,12 +10,8 @@ import Foundation
 
 protocol TehaiProtocol{
     // TODO: 実装
-    func isAgari() -> Int
+    func isAgari() -> Bool
     func getShantenNum() -> Int
-    func getShantenNumAsNormal() -> Int
-    func getShantenNumAsChitoitsu() -> Int
-    func getShantenNumAsKokushimuso() -> Int
-    func getTatsuList() -> Tatsu[]
-    func getToitsuList() -> Toitsu[]
-    func getSingleList() -> Pai[]
+    //チャンクとは、３枚のメンツ、２枚のターツ、コーツ、１枚のいずれかからなる
+    func getChunkList() -> ChunkProtocol[]
 }

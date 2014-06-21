@@ -91,13 +91,16 @@ enum MentsuType: String {
     case KOTSU = "k"
     case SHUNTSU = "s"
 }
-class Mentsu {
+class Mentsu:ChunkProtocol {
     var paiList: Pai[]
     var type: MentsuType
     
     init (paiList: Pai[], type: MentsuType) {
         self.paiList = paiList
         self.type = type
+    }
+    func getMissingPaiList() -> Pai[]{
+        return []
     }
 }
 
@@ -107,12 +110,12 @@ enum TatsuType: String {
     case RYANMENCHAN = "r"
 }
 
-class Single:UkeireableProtocol{
-    func getUkeirePaiList() -> Pai[]{
+class Single:ChunkProtocol{
+    func getMissingPaiList() -> Pai[]{
         return []//TODO
     }
 }
-class Tatsu:UkeireableProtocol{
+class Tatsu:ChunkProtocol{
     var paiList: Pai[]
     var type: TatsuType
     
@@ -120,17 +123,17 @@ class Tatsu:UkeireableProtocol{
         self.paiList = paiList
         self.type = type
     }
-    func getUkeirePaiList() -> Pai[]{
+    func getMissingPaiList() -> Pai[]{
         return [] //TODO
     }
 }
 
-class Toitsu:UkeireableProtocol{
+class Toitsu:ChunkProtocol{
     var paiList: Pai[]
     init (paiList: Pai[]) {
         self.paiList = paiList
     }
-    func getUkeirePaiList() -> Pai[]{
+    func getMissingPaiList() -> Pai[]{
         return [self.paiList[0]]
     }
 }
