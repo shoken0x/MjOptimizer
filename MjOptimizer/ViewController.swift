@@ -152,6 +152,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func rescanButtonDidPush() {
+        rescanButton.hidden = true
+        debugButton.hidden = false
         isFinishAnalyze = false
         for subview: UIView! in view.subviews {
             subview.removeFromSuperview()
@@ -160,8 +162,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         setOverlayView()
         focusOn()
         setLogView()
-        rescanButton.hidden = true
-        debugButton.hidden = false
+        session.startRunning()
     }
     
     func imageSaved() {
@@ -170,24 +171,29 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         NSThread.sleepForTimeInterval(0.5)
+        let now: NSDate = NSDate()
+        println(now)
+        println("update from captureOutput()")
+        
         dispatch_async( dispatch_get_main_queue() ) {
             var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
-            if sutehaiSelectResult.isFinishAnalyze {
-            //if self.isFinishAnalyze {
+            self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+            if self.isFinishAnalyze {
                 // Display SutehaiSelectResult
                 var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                 self.label.text = "\(sutehaiCandidateList[0].pai.type.toRaw()) の \(sutehaiCandidateList[0].pai.number) を切ると向聴数は \(String(sutehaiSelectResult.getTehaiShantenNum()))になります"
                 self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
                 self.setBody(sutehaiCandidateList)
+                self.animationView.removeFromSuperview()
+                self.filterView.removeFromSuperview()
                 self.setHeaderLabel()
                 self.setFooterLabel()
                 
+                self.session.stopRunning()
+                self.debugButton.hidden = true
+                self.rescanButton.hidden = false
             } else {
-                let now: NSDate = NSDate()
-                println(now)
-                println("update from captureOutput()")
                 self.label.text = now.description
-                
                 self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
                 var range = self.logView.selectedRange
                 range.location = self.logView.text.length
