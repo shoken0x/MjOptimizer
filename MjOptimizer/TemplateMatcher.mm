@@ -49,27 +49,30 @@ NSMutableDictionary *templates;
 
     NSMutableArray *results = [NSMutableArray array];
     cv::Mat resultMat;
-    double maxVal;
+    double maxVal = 1.0;
+    double prevVal = 1.0;
     do {
         cv::matchTemplate(targetMat, tplMat, resultMat, CV_TM_CCOEFF_NORMED);
         
+        prevVal = maxVal;
         cv::Point maxPt;
         cv::minMaxLoc(resultMat, NULL, &maxVal, NULL, &maxPt);
-        
-        cv::Rect roiRect(maxPt.x, maxPt.y, tplMat.cols, tplMat.rows);
-        
-        MatcherResult *res = [[MatcherResult alloc]init];
-        res.x = maxPt.x;
-        res.y = maxPt.y;
-        res.width = tplMat.cols;
-        res.height = tplMat.rows;
-        res.value = maxVal;
-        [results addObject: res];
-        
-        cv::rectangle(targetMat, cv::Point(res.x, res.y),
-                      cv::Point(res.x + res.width, res.y + res.height),
-                      cv::Scalar(255,255,255));
-    } while (maxVal > 0.6);
+
+        if (maxVal > 0.6) {
+            MatcherResult *res = [[MatcherResult alloc]init];
+            res.x = maxPt.x;
+            res.y = maxPt.y;
+            res.width = tplMat.cols;
+            res.height = tplMat.rows;
+            res.value = maxVal;
+            [results addObject: res];
+            
+            cv::rectangle(targetMat, cv::Point(res.x, res.y),
+                          cv::Point(res.x + res.width, res.y + res.height),
+                          cv::Scalar(255,255,255));
+            
+        }
+    } while (maxVal > 0.6 && prevVal - maxVal > 0);
     
     return results;
 }

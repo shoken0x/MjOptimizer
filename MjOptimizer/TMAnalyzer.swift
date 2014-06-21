@@ -12,12 +12,14 @@ class TMAnalyzer {
     }
     
     func setupPaiTypes() {
+        
         let keys = [
             "m1t", "m2t", "m3t", "m4t", "m5t", "m6t", "m7t", "m8t", "m9t",
             "p1t", "p2t", "p3t", "p4t", "p5t", "p6t", "p7t", "p8t", "p9t",
             "s1t", "s2t", "s3t", "s4t", "s5t", "s6t", "s7t", "s8t", "s9t",
             "j1t", "j2t", "j3t", "j4t", "j5t", "j6t", "j7t"
         ]
+        //let keys = ["p6t"]
         
         for key in keys {
             paiTypes.append(Pai.parse(key)!)
@@ -34,6 +36,45 @@ class TMAnalyzer {
                 }
             }
         }
-        return results
+        return select(results)
+    }
+    
+    func select(pais: TMResult[]) -> TMResult[] {
+        var selected = TMResult[]()
+        var sorted_pai = sort(pais) { p1, p2 in return p1.value < p2.value }
+        for pai in sorted_pai {
+            if let nearestPai = self.nearest(pai, paiList: selected) {
+                if CGRectIntersectsRect(nearestPai.place, pai.place) {
+                    let intersection = CGRectIntersection(nearestPai.place, pai.place)
+                    let ratio: Double = (intersection.width * intersection.height) / (pai.place.width * pai.place.height)
+                    if ratio > 0.15 {
+                        if pai.value > nearestPai.value {
+                            selected = selected.filter { $0 !== nearestPai }
+                            selected.append(pai)
+                        }
+                    } else {
+                        selected.append(pai)
+                    }
+                } else {
+                    selected.append(pai)
+                }
+            } else {
+                selected.append(pai)
+            }
+        }
+        return selected
+    }
+    
+    func nearest(pai: TMResult, paiList: TMResult[]) -> TMResult? {
+        var minDistance = Double.infinity
+        var nearestPai: TMResult? = nil
+        for p in paiList {
+            let distance = pai.distance(p)
+            if minDistance > distance {
+                minDistance = distance
+                nearestPai = p
+            }
+        }
+        return nearestPai
     }
 }

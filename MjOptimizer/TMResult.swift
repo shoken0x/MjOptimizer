@@ -18,4 +18,11 @@ class TMResult {
         self.value = value
         self.pai = pai
     }
+    
+    func distance(other: TMResult) -> Double {
+        return sqrt(
+            pow(self.place.origin.x - other.place.origin.x, 2) +
+            pow(self.place.origin.y - other.place.origin.y, 2)
+        )
+    }
 }
