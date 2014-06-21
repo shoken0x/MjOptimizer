@@ -146,7 +146,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             return tehai
         }
         // Step.1 最初の1枚と同じ牌が何枚あるか
-        var selectedPaiList = tehai.restPaiList.filter {$0.type == PaiType.JIHAI}
+        var selectedPaiList = jihaiList.filter {$0.toString() == jihaiList[0].toString()}
         
         switch(selectedPaiList.count){
         case 4:
