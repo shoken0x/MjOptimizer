@@ -86,13 +86,23 @@ class Tehai {
     }
     
     func getChunkList() -> ChunkProtocol[]{
-        var chunklist: ChunkProtocol[] = []
-//        chunklist = self.mentsuList
-//        chunkList = self.tatsuList
-//        chunkList = self.toitsuList
-//        chunkList = self.singleList
-        //self.tatsuList + self.toitsuList + self.singleList
-        return chunklist
+        var chunkList: ChunkProtocol[] = []
+//        chunkList = self.mentsuList // OK
+//        chunkList = self.mentsuList + self.tatsuList + self.toitsuList + self.singleList // NG
+        
+        for chunk in self.mentsuList{
+            chunkList += chunk
+        }
+        for chunk in self.tatsuList{
+            chunkList += chunk
+        }
+        for chunk in self.toitsuList{
+            chunkList += chunk
+        }
+        for chunk in self.singleList{
+            chunkList += chunk
+        }
+        return chunkList
     }
 }
 
