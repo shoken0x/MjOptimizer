@@ -84,6 +84,7 @@ class Tehai {
     func getShantenNumAsKokushimuso() -> Int{
         return 0
     }
+    
 }
 
 enum MentsuType: String {
@@ -105,7 +106,13 @@ enum TatsuType: String {
     case KANCHAN = "k"
     case RYANMENCHAN = "r"
 }
-class Tatsu {
+
+class Single:UkeireableProtocol{
+    func getUkeirePaiList() -> Pai[]{
+        return []//TODO
+    }
+}
+class Tatsu:UkeireableProtocol{
     var paiList: Pai[]
     var type: TatsuType
     
@@ -113,12 +120,18 @@ class Tatsu {
         self.paiList = paiList
         self.type = type
     }
+    func getUkeirePaiList() -> Pai[]{
+        return [] //TODO
+    }
 }
 
-class Toitsu {
+class Toitsu:UkeireableProtocol{
     var paiList: Pai[]
     init (paiList: Pai[]) {
         self.paiList = paiList
+    }
+    func getUkeirePaiList() -> Pai[]{
+        return [self.paiList[0]]
     }
 }
 
