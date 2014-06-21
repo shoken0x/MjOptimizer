@@ -63,9 +63,9 @@ class Pai: Equatable {
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
     
-    func name() -> String{
-        return self.type.toRaw() + String(self.number)
-    }
+//    func name() -> String{
+//        return self.type.toRaw() + String(self.number)
+//    }
     
     // インスタンスの次のPaiを取得する
     func getNextPai(range: Int = 1) -> Pai?{

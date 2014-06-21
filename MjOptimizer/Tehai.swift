@@ -106,8 +106,9 @@ class Mentsu {
 }
 
 enum TatsuType: String {
-    case KOTSU = "k"
-    case SHUNTSU = "s"
+    case PENCHAN = "p"
+    case KANCHAN = "k"
+    case RYANMENCHAN = "r"
 }
 class Tatsu {
     var paiList: Pai[]
