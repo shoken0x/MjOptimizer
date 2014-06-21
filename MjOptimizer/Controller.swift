@@ -25,7 +25,7 @@ class Controller:ControllerProtocol{
         let analyzeResult : AnalyzeResultProtocol = self.tmAnalyzer.analyze(
             image,
             targetFrame : targetFrame,
-            lastAnalyzerResult : self.lastAnalyzeResult!
+            lastAnalyzerResult : nil
         )
         if !analyzeResult.isSuccess(){
             //解析失敗

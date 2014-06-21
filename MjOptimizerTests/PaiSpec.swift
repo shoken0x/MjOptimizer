@@ -78,5 +78,10 @@ class PaiSpec: QuickSpec {
                 expect(pai1 === pai2).to.beFalse()
             }
         }
+        describe("hoge"){
+            it("hogehoge"){
+                expect(1).to.equal(2)
+            }
+        }
     }
 }
