@@ -52,10 +52,10 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             
             // TODO: シャンテン数は捨てたあと？それとも有効牌を引いたあと？
             //       いったん0で仮置き
-            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: tehai.getShantenNum() -1, positionIndex: positionIndex)
+            sutehaiCandidateList += SutehaiCandidate(pai: sutehai, ukeirePaiList: ukeirePaiList, shantenNum: tehai.getShantenNum(), positionIndex: positionIndex)
         }
         
-        return SutehaiSelectResult(sutehaiCandidateList: sutehaiCandidateList, tehaiShantenNum: tehai.getShantenNum(), tehai: paiList, isFinishAnalyze: true, successNum: 14)
+        return SutehaiSelectResult(sutehaiCandidateList: sutehaiCandidateList, tehaiShantenNum: tehai.getShantenNum() + 1, tehai: paiList, isFinishAnalyze: true, successNum: 14)
     }
     
     
@@ -190,10 +190,15 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         tehai = analyzeKazuhaiPechan(tehai)
         tehai = analyzeKazuhaiToitsu(tehai)
         
-        // 残牌数が0になっていれば正常終了
-        if tehai.restPaiList.count == 0 {
-            tehai.analyzedFlag = true
+        for pai in tehai.restPaiList{
+            tehai.singleList += Single(pai: pai)
         }
+        
+        // 残牌数が0になっていれば正常終了
+//        if tehai.restPaiList.count == 0 {
+//            tehai.analyzedFlag = true
+//        }
+        tehai.analyzedFlag = true
         
         return tehai
     }
