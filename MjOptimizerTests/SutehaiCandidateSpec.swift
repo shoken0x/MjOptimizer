@@ -28,13 +28,6 @@ class SutehaiCandidateSpec: QuickSpec {
                     expect(sc.getUkeireTotalNum()).to.equal(9)
                 }
             }
-            describe("#init 2"){
-                it("create from Tehai") {
-                    var sc:SutehaiCandidate = SutehaiCandidate(
-                        tehai:Tehai()
-                    )
-                }
-            }
         }
     }
 }
