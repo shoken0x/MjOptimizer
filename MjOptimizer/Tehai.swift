@@ -26,8 +26,8 @@ class Tehai {
     var agariType: AgariType = AgariType.AGARI_TYPE_NORMAL
     var analyzedFlag: Bool = false
     
-    init() {
-        
+    init(paiList: Pai[]) {
+        self.basePaiList = paiList
     }
     
     // TODO: 実装

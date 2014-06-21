@@ -16,8 +16,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     
     func select(paiList: Pai[]) -> SutehaiSelectResult{
         
-        var tehai = Tehai()
-        tehai.basePaiList = paiList
+        var tehai = Tehai(paiList: paiList)
         
         // メインロジックをここに書く
         // とりあえず通常形の上がりパターン解析のみ実装
