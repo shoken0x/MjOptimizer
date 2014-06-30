@@ -19,7 +19,7 @@ class Tehai {
     
     var basePaiList: Pai[] = []
     var restPaiList: Pai[] = []
-    var mentsuList: Mentsu[] = []
+    var chunkList: Chunk[] = []
     var tatsuList: Tatsu[] = []
     var toitsuList: Toitsu[] = []
     var singleList: Single[] = []
@@ -34,7 +34,7 @@ class Tehai {
         var tehai: Tehai = Tehai()
         tehai.basePaiList = self.basePaiList.copy()
         tehai.restPaiList = self.restPaiList.copy()
-        tehai.mentsuList = self.mentsuList.copy()
+        tehai.chunkList = self.chunkList.copy()
         tehai.tatsuList = self.tatsuList.copy()
         tehai.toitsuList = self.toitsuList.copy()
         tehai.singleList = self.singleList.copy()
@@ -67,25 +67,25 @@ class Tehai {
     }
     
     func getShantenNumAsNormal() -> Int{
-        var mentsuNum = self.mentsuList.count
-        var mentsuKouhoNum = self.tatsuList.count
+        var chunkNum = self.chunkList.count
+        var chunkKouhoNum = self.tatsuList.count
         var janto = 0
         
         // 対子が複数あれば1つを雀頭にする
         if self.toitsuList.count > 1 {
             janto = 1
-            mentsuKouhoNum = mentsuKouhoNum + self.toitsuList.count - 1
+            chunkKouhoNum = chunkKouhoNum + self.toitsuList.count - 1
         }
         else {
-            mentsuKouhoNum = mentsuKouhoNum + self.toitsuList.count
+            chunkKouhoNum = chunkKouhoNum + self.toitsuList.count
         }
         // 面子と面子候補の合計はMAX4なので、5以上はノーカウントにする。
-        if mentsuNum + mentsuKouhoNum > 4 {
-            mentsuKouhoNum = 4 - mentsuNum
+        if chunkNum + chunkKouhoNum > 4 {
+            chunkKouhoNum = 4 - chunkNum
         }
         
         // 公式: 8 - ((面子数*2) + 面子候補数 + 雀頭数)
-        return 8 - ((mentsuNum * 2) + mentsuKouhoNum + janto )
+        return 8 - ((chunkNum * 2) + chunkKouhoNum + janto )
     }
     
     func getShantenNumAsChitoitsu() -> Int{
@@ -99,10 +99,10 @@ class Tehai {
     
     func getChunkList() -> ChunkProtocol[]{
         var chunkList: ChunkProtocol[] = []
-//        chunkList = self.mentsuList // OK
-//        chunkList = self.mentsuList + self.tatsuList + self.toitsuList + self.singleList // NG
+//        chunkList = self.chunkList // OK
+//        chunkList = self.chunkList + self.tatsuList + self.toitsuList + self.singleList // NG
         
-        for chunk in self.mentsuList{
+        for chunk in self.chunkList{
             chunkList += chunk
         }
         for chunk in self.tatsuList{
@@ -128,7 +128,7 @@ enum ChunkType: String {
     case SINGLE = "single"
 }
 
-class Mentsu: ChunkProtocol {
+class Chunk: ChunkProtocol {
     var paiList: Pai[]
     var type: ChunkType
     

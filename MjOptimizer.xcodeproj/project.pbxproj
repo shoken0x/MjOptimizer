@@ -137,6 +137,10 @@
 		6EC37B5065474AF0A92D485B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F49D3AE47046E8BC98F366 /* libPods.a */; };
 		A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */; };
 		A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC481951F2D70075A0BB /* Tehai.swift */; };
+		C42D756B1961804900183C24 /* FuroResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756A1961804900183C24 /* FuroResolver.swift */; };
+		C42D756E1961806200183C24 /* FuroResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756D1961806200183C24 /* FuroResolverSpec.swift */; };
+		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
+		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
 		C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */; };
@@ -503,6 +507,10 @@
 		8756E46B0B4347C982442038 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelector.swift; sourceTree = "<group>"; };
 		A6DEAC481951F2D70075A0BB /* Tehai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tehai.swift; sourceTree = "<group>"; };
+		C42D756A1961804900183C24 /* FuroResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuroResolver.swift; sourceTree = "<group>"; };
+		C42D756D1961806200183C24 /* FuroResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuroResolverSpec.swift; sourceTree = "<group>"; };
+		C42D756F196180C600183C24 /* Mentsu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentsu.swift; sourceTree = "<group>"; };
+		C42D7571196180D100183C24 /* MentsuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuSpec.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
 		C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultProtocol.swift; sourceTree = "<group>"; };
@@ -649,6 +657,7 @@
 		441CDF27194BDF6200199893 /* MjOptimizer */ = {
 			isa = PBXGroup;
 			children = (
+				C42D75611961802B00183C24 /* parse */,
 				34636E6C1954CFBB004F41F6 /* TMResult.swift */,
 				34636E6A1954CD6D004F41F6 /* TMAnalyzer.swift */,
 				34636E681954CB34004F41F6 /* TMARes.swift */,
@@ -699,6 +708,7 @@
 		441CDF3A194BDF6200199893 /* MjOptimizerTests */ = {
 			isa = PBXGroup;
 			children = (
+				C42D756C1961805300183C24 /* parse */,
 				441DC537195356C300E6023D /* Quick.xcodeproj */,
 				446D2D211952D30D000A6A0C /* Nimble.xcodeproj */,
 				C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */,
@@ -818,6 +828,24 @@
 				74F49D3AE47046E8BC98F366 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C42D75611961802B00183C24 /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				C42D756A1961804900183C24 /* FuroResolver.swift */,
+				C42D756F196180C600183C24 /* Mentsu.swift */,
+			);
+			name = parse;
+			sourceTree = "<group>";
+		};
+		C42D756C1961805300183C24 /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				C42D756D1961806200183C24 /* FuroResolverSpec.swift */,
+				C42D7571196180D100183C24 /* MentsuSpec.swift */,
+			);
+			name = parse;
 			sourceTree = "<group>";
 		};
 		C4CC34231954BBC60030EE0A /* mocks */ = {
@@ -1178,6 +1206,7 @@
 				C4CC34031954A7150030EE0A /* Array.swift in Sources */,
 				C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */,
 				C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */,
+				C42D7570196180C600183C24 /* Mentsu.swift in Sources */,
 				C4CC34071954A7150030EE0A /* Float.swift in Sources */,
 				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
 				C4CC34091954A7150030EE0A /* NSArray.swift in Sources */,
@@ -1185,6 +1214,7 @@
 				34636E691954CB34004F41F6 /* TMARes.swift in Sources */,
 				C4CC340B1954A7150030EE0A /* String.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
+				C42D756B1961804900183C24 /* FuroResolver.swift in Sources */,
 				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
@@ -1221,6 +1251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4F9B033194DB177003FFEEC /* SutehaiCandidateSpec.swift in Sources */,
+				C42D756E1961806200183C24 /* FuroResolverSpec.swift in Sources */,
+				C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */,
 				C4F9B02F194DA90A003FFEEC /* UkeirePaiSpec.swift in Sources */,
 				447486EC1951E74200AC1310 /* ViewUtilsSpec.swift in Sources */,
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,

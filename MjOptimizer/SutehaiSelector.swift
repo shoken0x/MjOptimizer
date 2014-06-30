@@ -153,9 +153,9 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             // TODO: 槓子対応
             //       とりあえず、面子+孤立牌として処理する
             tehai.singleList += Single(pai: selectedPaiList[3])
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
+            tehai.chunkList += Chunk(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 3:
-            tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
+            tehai.chunkList += Chunk(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
         case 2:
             tehai.toitsuList += Toitsu(paiList: selectedPaiList[0...1])
         case 1:
@@ -177,12 +177,12 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     // 数牌を解析する
     func analyzeKazuhai(var tehai: Tehai, priority: Int) -> Tehai{
         if priority == 1 {
-            tehai = analyzeKazuhaiMentsu(tehai)
+            tehai = analyzeKazuhaichunk(tehai)
             tehai = analyzeKazuhaiSyuntsu(tehai)
         }
         else {
             tehai = analyzeKazuhaiSyuntsu(tehai)
-            tehai = analyzeKazuhaiMentsu(tehai)
+            tehai = analyzeKazuhaichunk(tehai)
         }
         
         tehai = analyzeKazuhaiRyanmenchan(tehai)
@@ -205,7 +205,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     }
     
     // 刻子を解析する
-    func analyzeKazuhaiMentsu(tehai:Tehai) -> Tehai{
+    func analyzeKazuhaichunk(tehai:Tehai) -> Tehai{
         
         for targetPai in tehai.restPaiList{
             if targetPai == nil{
@@ -228,11 +228,11 @@ class SutehaiSelector: SutehaiSelectorProtocol{
                     //       とりあえず、面子+孤立牌として処理する
                     tehai.singleList += Single(pai: selectedPaiList[3])
                 }
-                tehai.mentsuList += Mentsu(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
+                tehai.chunkList += Chunk(paiList: selectedPaiList[0...2], type: ChunkType.KOTSU)
                 for var i = 0; i < selectedPaiList.count; i++ {
                     tehai.restPaiList.remove(selectedPaiList[i])
                 }
-                return analyzeKazuhaiMentsu(tehai)
+                return analyzeKazuhaichunk(tehai)
             }
         }
         return tehai
@@ -258,7 +258,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             }
             
             if nextPai1 != nil && nextPai2 != nil {
-                tehai.mentsuList += Mentsu(paiList: [targetPai, nextPai1!, nextPai2!], type: ChunkType.SHUNTSU)
+                tehai.chunkList += Chunk(paiList: [targetPai, nextPai1!, nextPai2!], type: ChunkType.SHUNTSU)
                 tehai.restPaiList.remove(targetPai)
                 tehai.restPaiList.remove(nextPai1!)
                 tehai.restPaiList.remove(nextPai2!)
