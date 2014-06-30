@@ -13,6 +13,7 @@ enum PaiType: String {
     case SOUZU = "s"
     case PINZU = "p"
     case JIHAI = "j"
+    case REVERSE = "r" //裏
 }
 
 enum PaiDirection: String {
@@ -63,43 +64,70 @@ class Pai: Equatable {
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
     
-//    func name() -> String{
-//        return self.type.toRaw() + String(self.number)
-//    }
-    
-    // インスタンスの次のPaiを取得する
-    func getNextPai(range: Int = 1) -> Pai?{
-        // TODO: 正規表現の書き方を調べる
-        if (self.type == .MANZU || self.type == .PINZU || self.type == .SOUZU) &&
-            self.number < 10 - range {
-            return Pai.parse(self.type.toRaw() + String(self.number + range) + PaiDirection.TOP.toRaw())
-        }
-        else{
+    func isNaki() -> Bool{
+        return self.direction == PaiDirection.LEFT ||
+            self.direction == PaiDirection.RIGHT
+    }
+
+    func next(range: Int = 1) -> Pai?{
+        if self.isShupai() && self.number < 10 - range {
+                return Pai(type: self.type,number: self.number + range)
+        }else{
             return nil
         }
     }
     
-    // インスタンスの前のPaiを取得する
-    func getPrevPai(range: Int = 1) -> Pai?{
-        // TODO: 正規表現の書き方を調べる
-        if (self.type == .MANZU || self.type == .PINZU || self.type == .SOUZU) &&
-            self.number > range {
-                return Pai.parse(self.type.toRaw() + String(self.number - range) + PaiDirection.TOP.toRaw())
-        }
-        else{
+    func prev(range: Int = 1) -> Pai?{
+        if self.isShupai() && self.number > range {
+            return Pai(type: self.type,number: self.number - range)
+        }else{
             return nil
         }
     }
+    func getNextPai(range: Int = 1) -> Pai?{ return next(range: range) }
+
+    func getPrevPai(range: Int = 1) -> Pai?{ return prev(range: range) }
+
+
+    func isNext(pai:Pai) -> Bool{return pai == self.next()}
+ 
+    func isPrev(pai:Pai) -> Bool{return pai == self.prev()}
     
-    func equal(other: Pai) -> Bool{
-        return self.toString() == other.toString()
+    func equal(other: Pai) -> Bool{ return self.toString() == other.toString() }
+    func isJihai() -> Bool{ return self.type == .JIHAI}
+    func isShupai() -> Bool{ return self.type == .MANZU || self.type == .PINZU || self.type == .SOUZU}
+    func isYaochu() -> Bool{
+        return self.isJihai() ||
+            (self.isShupai() && (self.number == 1 || self.number == 9))
     }
+    func isTon()->Bool{return self.type == .JIHAI && self.number == 1}
+    func isNan()->Bool{return self.type == .JIHAI && self.number == 2}
+    func isSha()->Bool{return self.type == .JIHAI && self.number == 3}
+    func isPei()->Bool{return self.type == .JIHAI && self.number == 4}
+    func isHaku()->Bool{return self.type == .JIHAI && self.number == 5}
+    func isHatsu()->Bool{return self.type == .JIHAI && self.number == 6}
+    func isChun()->Bool{return self.type == .JIHAI && self.number == 7}
+    
+    func clone() -> Pai{ return Pai(type: self.type,number: self.number,direction: self.direction) }
 }
 
+//牌の種類が同じであれば数字の大小で比較する.牌の種類が違うとfalse
+func < (lhs: Pai, rhs: Pai) -> Bool {
+    return lhs.type != rhs.type ? false : lhs.number < rhs.number
+}
+func > (lhs: Pai, rhs: Pai) -> Bool {
+    return lhs.type != rhs.type ? false : lhs.number > rhs.number
+}
+
+//牌の種類比較
 func == (lhs: Pai, rhs: Pai) -> Bool {
     return lhs.type == rhs.type && lhs.number == rhs.number
 }
+func != (lhs: Pai, rhs: Pai) -> Bool {
+    return lhs.type != rhs.type && lhs.number == rhs.number
+}
 
+//牌の種類と向き比較
 func === (lhs: Pai, rhs: Pai) -> Bool {
     return lhs.type == rhs.type && lhs.number == rhs.number && lhs.direction == rhs.direction
 }
