@@ -18,54 +18,63 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("シュンツ:m1m2m3")
                 expect(m.isFuro()).to.beFalse()
+                expect(m.size()).to.equal(3)
             }
             it("makes シュンツ2"){
                 var pl:Pai[] = Pai.parseList("m2tm1tm3t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("シュンツ:m1m2m3")
                 expect(m.isFuro()).to.beFalse()
+                expect(m.size()).to.equal(3)
             }
             it("makes チー"){
                 var pl:Pai[] = Pai.parseList("m1tm2lm3t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("チー:m1m2m3")
                 expect(m.isFuro()).to.beTrue()
+                expect(m.size()).to.equal(3)
             }
             it("makes トイツ"){
                 var pl:Pai[] = Pai.parseList("m1tm1t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("トイツ:m1")
                 expect(m.isFuro()).to.beFalse()
+                expect(m.size()).to.equal(2)
             }
             it("makes アンコウ"){
                 var pl:Pai[] = Pai.parseList("m1tm1tm1t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("アンコウ:m1")
                 expect(m.isFuro()).to.beFalse()
+                expect(m.size()).to.equal(3)
             }
             it("makes ポン"){
                 var pl:Pai[] = Pai.parseList("m1tm1tm1l")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("ポン:m1")
                 expect(m.isFuro()).to.beTrue()
+                expect(m.size()).to.equal(3)
             }
             it("makes アンカン"){
                 var pl:Pai[] = Pai.parseList("m1tm1tm1tm1t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("アンカン:m1")
                 expect(m.isFuro()).to.beFalse()
+                expect(m.size()).to.equal(4)
             }
             it("makes ミンカン"){
                 var pl:Pai[] = Pai.parseList("m1tm1tm1tm1l")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to.equal("ミンカン:m1")
                 expect(m.isFuro()).to.beTrue()
+                expect(m.size()).to.equal(4)
             }
             it("makes 特殊面子"){
                 var pl:Pai[] = Pai.parseList("m1tm9ts1ts9tp1tp9tj1tj2tj3tj4tj5tj6tj7tj7t")!
                 var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.isFuro()).to.beFalse()
-            }
+                expect(m.size()).to.equal(14)
+           }
             it("return nil if invalid mentsu"){
                 var pl:Pai[] = Pai.parseList("m1tm2tm5t")!
                 expect(MentsuFactory.createMentsu(pl) == nil).to.beTrue()

@@ -4,6 +4,70 @@ import Nimble
 
 class FuroResolverSpec: QuickSpec {
     override func spec() {
+        describe("getFuro"){
+            it("returns mentsu list 1"){
+                let pl : Pai[] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("ポン:j2")
+            }
+            
+            it("returns mentsu list 2"){
+                let pl : Pai[] = Pai.parseList("m1tm1tp9tp9rp9tp9tp7lp7tp7tp7tp8tp8tp8tp8rm1lm2tm3t")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("チー:m1m2m3")
+                expect(mentsuList[1].toString()).to.equal("ミンカン:p8")
+                expect(mentsuList[2].toString()).to.equal("ミンカン:p7")
+                expect(mentsuList[3].toString()).to.equal("ミンカン:p9")
+            }
+            it("returns mentsu list 3"){
+                let pl : Pai[] = Pai.parseList("m1tm2tm3tp2tp2tp6lp7tp8tp8tp8lp8tp9tp9tp9r")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("ポン:p9")
+                expect(mentsuList[1].toString()).to.equal("ポン:p8")
+                expect(mentsuList[2].toString()).to.equal("チー:p6p7p8")
+            }
+            it("returns mentsu list 4"){
+                let pl : Pai[] = Pai.parseList("m1tm1ts7ts8ts9ts9rs9ts9tm1lm2tm3tm4lm5tm6t")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("チー:m4m5m6")
+                expect(mentsuList[1].toString()).to.equal("チー:m1m2m3")
+                expect(mentsuList[2].toString()).to.equal("ポン:s9")
+            }
+            it("returns mentsu list 5"){
+                let pl : Pai[] = Pai.parseList("m1tm1tr0ts1ts1tr0ts7ls8ts9ts9rs9ts9tm4lm5tm6t")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("チー:m4m5m6")
+                expect(mentsuList[1].toString()).to.equal("ポン:s9")
+                expect(mentsuList[2].toString()).to.equal("チー:s7s8s9")
+                expect(mentsuList[3].toString()).to.equal("アンカン:s1")
+            }
+            it("returns mentsu list 6"){
+                let pl : Pai[] = Pai.parseList("s7ts8ts9ts9ts9tm4lm5tm6tr0ts2ts2tr0tm1lm1tm1t")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("ポン:m1")
+                expect(mentsuList[1].toString()).to.equal("アンカン:s2")
+                expect(mentsuList[2].toString()).to.equal("チー:m4m5m6")
+            }
+            it("returns mentsu list 7"){
+                let pl : Pai[] = Pai.parseList("s7ts8ts9ts9ts9tm4lm5tm6tm1lm1tm1ts2tr0tr0ts2t")!
+                let mentsuList :Mentsu[] = FuroResolver.getFuro(pl)!
+                expect(mentsuList[0].toString()).to.equal("アンカン:s2")
+                expect(mentsuList[1].toString()).to.equal("ポン:m1")
+                expect(mentsuList[2].toString()).to.equal("チー:m4m5m6")
+            }
+            it("returns nil 1"){
+                let pl : Pai[] = Pai.parseList("m1tm1ts8ts9ts9rs9ts9tm1lm2tm3tp8lp8tp8tp8t")!
+                expect(FuroResolver.getFuro(pl)).to.beNil()
+            }
+            it("returns nil 2"){
+                let pl : Pai[] = Pai.parseList("m1tm1tr0ts1tr0ts7ts8ts9ts9rs9ts9tm1lm2tm3t")!
+                expect(FuroResolver.getFuro(pl)).to.beNil()
+            }
+            it("returns nil 3"){
+                let pl : Pai[] = Pai.parseList("m1tm1ts7ts7ts7ts8ts8ts8ts9ts9ts9rp4tp5tp6t")!
+                expect(FuroResolver.getFuro(pl)).to.beNil()
+            }
+        }
         describe("getOneFuro"){
             it("gets pon"){
                 let pl : Pai[] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
@@ -232,49 +296,3 @@ class FuroResolverSpec: QuickSpec {
         }
     }
 }
-//
-//# get_furo正常系1
-//  # step1-1-1, step1-1-7-4-2
-//  def test_normal_get_furo_1
-//  # get_furo正常系2
-//  # step1-1-2, step1-1-7-1, step1-2
-//  def test_normal_get_furo_2
-//    pai_items = "m1tm2tm3tp2tp2tp6lp7tp8tp8tp8lp8tp9tp9tp9r"
-//  # get_furo正常系3
-//  # step1-1-4, step1-1-7-3, step2-1(, step1-2)
-//  def test_normal_get_furo_3
-//    pai_items = "m1tm1tp9tp9rp9tp9tp7lp7tp7tp7tp8tp8tp8tp8rm1lm2tm3t"
-//  # get_furo正常系4
-//  # step1-1-6(, step1-2)
-//  def test_normal_get_furo_4
-//    pai_items = "m1tm1ts7ts8ts9ts9rs9ts9tm1lm2tm3tm4lm5tm6t"
-//
-//  # get_furo正常系5
-//  # step1-1-7-4-3(, step1-2)
-//  def test_normal_get_furo_5
-//    pai_items = "m1tm1tr0ts1ts1tr0ts7ts8ts9ts9rs9ts9tm4lm5tm6t"
-//  # get_furo正常系6
-//  # step3-1(, step1-1-2, step1-2)
-//  def test_normal_get_furo_6
-//    pai_items = "s7ts8ts9ts9ts9tm4lm5tm6tr0ts2ts2tr0tm1lm1tm1t"
-//    
-//  # get_furo正常系7
-//  # step3-2(, step1-1-2, step1-2)
-//  def test_normal_get_furo_7
-//    pai_items = "s7ts8ts9ts9ts9tm4lm5tm6tm1lm1tm1ts2tr0tr0ts2t"
-//  # get_furo異常系1
-//  # step1-1-5
-//  def test_error_get_furo_1
-//    pai_items = "m1tm1ts8ts9ts9rs9ts9tm1lm2tm3tp8lp8tp8tp8t"
-//  # get_furo異常系2
-//  # step1-1-7-4-4
-//  def test_error_get_furo_2
-//    pai_items = "m1tm1tr0ts1tr0ts7ts8ts9ts9rs9ts9tm1lm2tm3t"
-//  # get_furo異常系3
-//  # step1-3
-//  def test_error_get_furo_3
-//    pai_items = "m1tm1ts7ts7ts7ts8ts8ts8ts9ts9ts9tp4tp5rp6t"
-//  # get_furo異常系4
-//  # step2-2
-//  def test_error_get_furo_4
-//    pai_items = "m1tm1ts7ts7ts7ts8ts8ts8ts9ts9ts9rp4tp5tp6t"

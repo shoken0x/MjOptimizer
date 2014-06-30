@@ -17,9 +17,29 @@ enum GetOneFuroResult{
 }
 
 class FuroResolver {
-    
+    class func getFuro(paiList:Pai[]) -> Mentsu[]?{
+        var mentsuList : Mentsu[] = []
+        var tmpPaiList = paiList.copy()
+        while true{
+            let getOneFuroResult :GetOneFuroResult = getOneFuro(tmpPaiList)
+            switch getOneFuroResult{
+            case let .SUCCESS(mentsu):
+                mentsuList.append(mentsu)
+                Log.info("副露面子取得：" + mentsu.toString())
+                tmpPaiList = tmpPaiList[0..(tmpPaiList.count - mentsu.size())]//paiListを短くする
+                continue
+            case let .ERROR(str):
+                Log.error("副露面子取得失敗：" + str)
+                return nil
+            case let .FINISH(str):
+                Log.info("副露面子取得完了：" + str)
+                return mentsuList
+            }
+        }
+    }
     //paiListの右から検索し、一番最初の副露の面子を一つ返す
     class func getOneFuro(paiList:Pai[]) -> GetOneFuroResult {
+        Log.info("副露面子解析開始：" + paiList.map{(pai:Pai) -> String in return pai.toString()}.implode(" ")!)
         var pl:Pai[] = paiList.reverse()
 
         if pl.count == 2 && pl[0] == pl[1]{

@@ -165,6 +165,7 @@
 		C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */; };
 		C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3433195518E10030EE0A /* TehaiProtocol.swift */; };
 		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
+		C4DC44421961A2C1009AEA97 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC44411961A2C1009AEA97 /* Log.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -527,6 +528,7 @@
 		C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultMock.swift; sourceTree = "<group>"; };
 		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
 		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
+		C4DC44411961A2C1009AEA97 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 				441CDF31194BDF6200199893 /* Images.xcassets */,
 				447486A21951CB3F00AC1310 /* MjImages */,
 				441CDF28194BDF6200199893 /* Supporting Files */,
+				C4DC44411961A2C1009AEA97 /* Log.swift */,
 			);
 			path = MjOptimizer;
 			sourceTree = "<group>";
@@ -1225,6 +1228,7 @@
 				C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */,
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
 				34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */,
+				C4DC44421961A2C1009AEA97 /* Log.swift in Sources */,
 				342182021954C89900E3436B /* CvView.swift in Sources */,
 				C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
