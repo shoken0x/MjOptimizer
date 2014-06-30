@@ -124,7 +124,7 @@ func == (lhs: Pai, rhs: Pai) -> Bool {
     return lhs.type == rhs.type && lhs.number == rhs.number
 }
 func != (lhs: Pai, rhs: Pai) -> Bool {
-    return lhs.type != rhs.type && lhs.number == rhs.number
+    return !(lhs == rhs)
 }
 
 //牌の種類と向き比較
