@@ -54,12 +54,25 @@ class MentsuFactory{
     }
 }
 
+enum MentsuType: Int{
+    case Toitsu  = 1
+    case Chi     = 2
+    case Shuntsu = 3
+    case Pon     = 4
+    case Ankou   = 5
+    case Minkan  = 6
+    case Ankan   = 7
+    case Special = 8
+    case Abstruct = -1
+}
+
 protocol Mentsu{
     func identical() ->Pai
     func toString() -> String
     func fuNum() -> Int
     func isFuro()->Bool
     func size() -> Int
+    func type() -> MentsuType
 }
 
 //同じ牌で構成される面子の親クラス
@@ -72,36 +85,47 @@ class SamePaiMentsu: Mentsu{
     func fuNum()->Int{return 0}
     func isFuro()->Bool{return false}
     func size()->Int{return 0}
+    func type()->MentsuType{return MentsuType.Abstruct}
 }
+//トイツ
 class ToitsuMentsu: SamePaiMentsu{
     override func toString() -> String{ return "トイツ:" + super.toString() }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return false}
     override func size()->Int{return 2}
+    override func type()->MentsuType{return MentsuType.Toitsu}
 }
+//アンコウ
 class AnkouMentsu: SamePaiMentsu{
     override func toString() -> String{ return "アンコウ:" + super.toString() }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return false}
     override func size()->Int{return 3}
+    override func type()->MentsuType{return MentsuType.Ankou}
 }
+//ポン
 class PonMentsu: SamePaiMentsu{
     override func toString() -> String{ return "ポン:" + super.toString() }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return true}
     override func size()->Int{return 3}
+    override func type()->MentsuType{return MentsuType.Pon}
 }
+//アンカン
 class AnkanMentsu: SamePaiMentsu{
     override func toString() -> String{ return "アンカン:" + super.toString() }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return false}
     override func size()->Int{return 4}
+    override func type()->MentsuType{return MentsuType.Ankan}
 }
+//ミンカン
 class MinkanMentsu: SamePaiMentsu{
     override func toString() -> String{ return "ミンカン:" + super.toString() }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return true}
     override func size()->Int{return 4}
+    override func type()->MentsuType{return MentsuType.Minkan}
 }
 
 //異なる牌で構成される面子の親クラス
@@ -119,25 +143,56 @@ class DifferentPaiMentsu: Mentsu{
     func fuNum()->Int{return 0}//TODO}
     func isFuro()->Bool{return true}
     func size()->Int{return paiList.count}
+    func type()->MentsuType{return MentsuType.Abstruct}
 }
+//シュンツ
 class ShuntsuMentsu: DifferentPaiMentsu{
     override func toString() -> String{
         return "シュンツ:" + super.toString()
     }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return false}
+    override func type()->MentsuType{return MentsuType.Shuntsu}
 }
+//チー
 class ChiMentsu: DifferentPaiMentsu{
     override func toString() -> String{
         return "チー:" + super.toString()
     }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return true}
+    override func type()->MentsuType{return MentsuType.Chi}
 }
+//国士かシーサンプータ
 class SpecialMentsu: DifferentPaiMentsu{
     override func toString() -> String{
         return "特殊系:" + super.toString()
     }
     override func fuNum()->Int{return 0}//TODO}
     override func isFuro()->Bool{return false}
+    override func type()->MentsuType{return MentsuType.Special}
+}
+
+
+
+
+class MentsuList{
+    var list : Mentsu[]
+    init(list : Mentsu[]){
+        self.list = list
+    }
+    func append(mentsu : Mentsu){self.list.append(mentsu)}
+    func get(i:Int)->Mentsu{return self.list[i]}
+    func toString() -> String{
+        return "面子リスト:" + join(",",self.list.map({ m in m.toString() }))
+    }
+    func sortting(){
+        sort(self.list){
+            if $0.identical() == $1.identical(){
+                return $0.type().toRaw() < $1.type().toRaw()
+            }else{
+                return $0.identical() < $1.identical()
+            }
+        }
+    }
 }
