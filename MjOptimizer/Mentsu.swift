@@ -249,13 +249,7 @@ class MentsuList:Equatable{
         return "面子リスト:" + join(",",self.list.map({ m in m.toString() }))
     }
     func sortting(){
-        sort(self.list){
-            if $0.identical() == $1.identical(){
-                return $0.type().toRaw() < $1.type().toRaw()
-            }else{
-                return $0.identical() < $1.identical()
-            }
-        }
+        sort(self.list){return $0 < $1}
     }
 }
 

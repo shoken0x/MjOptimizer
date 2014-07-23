@@ -87,6 +87,7 @@ class PaiNumList {
         }
         return tmp
     }
+    //牌の枚数
     func count() -> Int{
         var count = 0
         for paiNum in self.list{
@@ -94,14 +95,28 @@ class PaiNumList {
         }
         return count
     }
+    //index番目の要素を返す
     func get(index:Int)->PaiNum{
         return self.list[index]
     }
+    //引数paiの枚数を返す
     func getNum(pai:Pai) -> Int{
         for paiNum in self.list{
             if paiNum.pai == pai {return paiNum.num}
         }
         return 0
+    }
+    //引数paiの枚数を一枚減らす
+    func decNum(pai:Pai){
+        for paiNum in self.list{
+            if paiNum.pai == pai {paiNum.num -= 1}
+        }
+    }
+    //引数paiの枚数を一枚増やす
+    func incNum(pai:Pai){
+        for paiNum in self.list{
+            if paiNum.pai == pai {paiNum.num += 1}
+        }
     }
     //paiの個数が0以上か？
     func include(pai:Pai) -> Bool{
@@ -131,29 +146,18 @@ class PaiNumList {
     }
     //paiから始まるシュンツを削除したPaiNumListを返す
     func removeShuntsuFrom(pai:Pai) -> PaiNumList?{
-        var tmp : PaiNumList = self.copy()
-        var i = 0;
-        for i = 0; i < tmp.count(); i++ {
-            if tmp.list[i].pai == pai{
-                break
-            }
-        }
-        if tmp.get(i).num >= 1 {
-            tmp.get(i).num -= 1
-        }else {
+        if(pai.type == PaiType.JIHAI || pai.number > 7){
             return nil
         }
-        if tmp.get(i + 1).num >= 1 && tmp.get(i).pai.type == tmp.get(i + 1).pai.type {
-            tmp.get(i + 1).num -= 1
+        if self.getNum(pai) >= 1 && self.getNum(pai.next()!) >= 1 && self.getNum(pai.next(range:2)!) >= 1 {
+            var tmp : PaiNumList = self.copy()
+            tmp.decNum(pai)
+            tmp.decNum(pai.next()!)
+            tmp.decNum(pai.next(range:2)!)
+            return tmp
         }else{
             return nil
         }
-        if tmp.get(i + 2).num >= 1 && tmp.get(i + 1).pai.type == tmp.get(i + 2).pai.type {
-            tmp.get(i + 2).num -= 1
-        }else{
-            return nil
-        }
-        return tmp
     }
     func toString()->String{
         var str = ""

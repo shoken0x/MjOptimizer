@@ -51,6 +51,11 @@ class PaiNumListSpec: QuickSpec {
         }
         describe("removeShuntsuFrom"){
             it("works"){
+                var pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m7tm8tm9t")!)
+                var pnl2 : PaiNumList = pnl.removeShuntsuFrom(Pai.parse("m7t")!)!
+                expect(pnl2.count()).to.equal(0)
+            }
+            it("works2"){
                 var pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm2tm3t")!)
                 var pnl2 : PaiNumList = pnl.removeShuntsuFrom(Pai.parse("m1t")!)!
                 expect(pnl2.getNum(Pai.parse("m1t")!)).to.equal(1)

@@ -53,10 +53,11 @@ class MenzenResolver {
                 }
             }
         }
+        //print debug
         for agari in agariList{
             Log.debug(agari.toString())
         }
-        return agariList
+        return agariList.unique()
     }
     
 
@@ -64,7 +65,7 @@ class MenzenResolver {
     //引数の牌のリストを解析し、可能性のある面子リストに分解
     //可能性のある面子リストが存在しない場合は空配列を返す
     class func makeMentsuList(paiNumList:PaiNumList,nest:Int = 0) -> MakeMentsuResult{
-        Log.debug("[" + String(nest) + "]" + "□□□□ makeMentsuList" + String(nest) + " 引数：" + paiNumList.toString())
+        Log.debug("[" + String(nest) + "]" + "makeMentsuList start " + String(nest) + " 引数：" + paiNumList.toString())
         var result : MentsuList[] = []
         if(paiNumList.count() == 0){
             Log.debug("[" + String(nest) + "]" + "残り枚数が0であるため、return")
@@ -74,15 +75,9 @@ class MenzenResolver {
             Log.error("[" + String(nest) + "]" + "残り枚数が3の倍数ではないため、入力不正")
             return MakeMentsuResult.ERROR("[" + String(nest) + "]" + "残り枚数が3の倍数ではないため、入力不正")
         }
-        // var includeFuncList = [paiNumList.includeAnkouOf, paiNumList.includeShuntsuFrom]
-        // var removeFuncList = [paiNumList.includeAnkouOf,  paiNumList.includeShuntsuFrom]
         for paiNum in paiNumList.list{
             Log.debug("[" + String(nest) + "]" + "この牌について判定：" + paiNum.pai.toString())
             //アンコウを発見
-            Log.debug("[" + String(nest) + "]" + "アンコウ判定直前のresult")
-            for mentsuList in result {
-                Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
-            }
             if paiNumList.includeAnkouOf(paiNum.pai) {
                 Log.debug("[" + String(nest) + "]" + "アンコウを発見")
                 var remainPaiNumList = paiNumList.removeAnkouOf(paiNum.pai)!
@@ -113,10 +108,6 @@ class MenzenResolver {
                     return MakeMentsuResult.ERROR(msg)
                 }
             }
-            Log.debug("[" + String(nest) + "]" + "シュンツ判定直前のresult")
-            for mentsuList in result {
-                Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
-            }
             if paiNumList.includeShuntsuFrom(paiNum.pai) {
                 //シュンツを発見
                 Log.debug("[" + String(nest) + "]" + "シュンツを発見")
@@ -133,24 +124,22 @@ class MenzenResolver {
                     for mentsuList in mentsuListList{
                         Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
                     }
-                    //再帰計算の結果、残りの牌から面子リストのリストがかえってきた場合、そのリストに対して除去した面子を追記したリストを結果に追記
+                    //残りの牌から面子リストのリストがかえってきた場合、そのリストに対して除去した面子を追記したリストを結果に追記
                     for mentsuList in mentsuListList{
                         //除去した面子を、再帰計算結果に追加
                         mentsuList.append(mentsu)
                         result.append(mentsuList)
                     }
                 case let .FINISH:
-                    //再帰計算の結果、残りの牌からは面子が見つからなかった場合、除去した面子だけを格納した面子リストを結果に追記
+                    //残りの牌が０枚であった場合、除去した面子だけを格納した面子リストを結果に追記
                     result.append(MentsuList(list: [mentsu]))
                 case let .CONFLICT:
+                    //残り牌では面子が構成できない場合は、同じエラーを返す
                     return MakeMentsuResult.CONFLICT
                 case let .ERROR(msg):
+                    //残り牌が不正だった場合、同じエラーを返す
                     return MakeMentsuResult.ERROR(msg)
                 }
-            }
-            Log.debug("[" + String(nest) + "]" + "シュンツ判定直後のresult")
-            for mentsuList in result {
-                Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
             }
             if paiNumList.includeAnkouOf(paiNum.pai) || paiNumList.includeShuntsuFrom(paiNum.pai){
                 //シュンツかトイツを見つけていた場合は即リターン
@@ -158,8 +147,12 @@ class MenzenResolver {
                 for mentsuList in result {
                     mentsuList.sortting()
                 }
-                //TODO 本当は重複を削除すべき
-                return MakeMentsuResult.SUCCESS(result)
+                //debug print
+                Log.debug("[" + String(nest) + "]" + "return result")
+                for mentsuList in result {
+                    Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
+                }
+                return MakeMentsuResult.SUCCESS(result.unique())
             }
         }
         //ここまで処理が来るということはシュンツもアンコウも見つからなかったため、この入力では面子は成立しない

@@ -10,7 +10,7 @@ import Foundation
 
 class Log{
     class func debug(str:String){
-    //    println("[MJ][DEBUG]" + str)
+        println("[MJ][DEBUG]" + str)
     }
     class func info(str:String){ println("[MJ][INFO]" + str)}
     class func warn(str:String){ println("[MJ][WARN]" + str)}
