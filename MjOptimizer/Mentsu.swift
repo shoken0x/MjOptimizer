@@ -66,7 +66,7 @@ enum MentsuType: Int{
     case Abstruct = -1
 }
 
-protocol Mentsu:Equatable{
+protocol Mentsu:Equatable,Comparable{
     func identical() ->Pai
     func toString() -> String
     func fuNum() -> Int
@@ -80,9 +80,23 @@ func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
 func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
     return !(lhs == rhs)
 }
+func < (lhs: Mentsu, rhs: Mentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() < rhs.type().toRaw()
+    }else{
+        return lhs.identical() < rhs.identical()
+    }
+}
+func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() > rhs.type().toRaw()
+    }else{
+        return lhs.identical() > rhs.identical()
+    }
+}
 
 //同じ牌で構成される面子の親クラス
-class SamePaiMentsu: Mentsu,Equatable{
+class SamePaiMentsu: Mentsu,Equatable,Comparable{
     var pai : Pai
     init(pai:Pai){self.pai = pai}
     init(paiList:Pai[]){self.pai = paiList[0]}
@@ -99,6 +113,21 @@ func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
 func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return !(lhs == rhs)
 }
+func < (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() < rhs.type().toRaw()
+    }else{
+        return lhs.identical() < rhs.identical()
+    }
+}
+func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() > rhs.type().toRaw()
+    }else{
+        return lhs.identical() > rhs.identical()
+    }
+}
+
 //トイツ
 class ToitsuMentsu: SamePaiMentsu{
     override func toString() -> String{ return "トイツ:" + super.toString() }
@@ -141,7 +170,7 @@ class MinkanMentsu: SamePaiMentsu{
 }
 
 //異なる牌で構成される面子の親クラス
-class DifferentPaiMentsu: Mentsu,Equatable{
+class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     var paiList : Pai[]
     init(paiList:Pai[]){self.paiList = sort(paiList,<)}
     func identical() -> Pai{return self.paiList[0]}
@@ -162,6 +191,20 @@ func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
 }
 func != (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return !(lhs == rhs)
+}
+func < (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() < rhs.type().toRaw()
+    }else{
+        return lhs.identical() < rhs.identical()
+    }
+}
+func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+    if lhs.identical() == rhs.identical(){
+        return lhs.type().toRaw() > rhs.type().toRaw()
+    }else{
+        return lhs.identical() > rhs.identical()
+    }
 }
 
 //シュンツ
@@ -195,7 +238,7 @@ class SpecialMentsu: DifferentPaiMentsu{
 
 
 
-class MentsuList{
+class MentsuList:Equatable{
     var list : Mentsu[]
     init(list : Mentsu[]){
         self.list = list
@@ -214,7 +257,8 @@ class MentsuList{
             }
         }
     }
-    func equal(other:MentsuList)->Bool{
-        return self.toString() == other.toString()
-    }
+}
+
+func == (lhs: MentsuList, rhs: MentsuList) -> Bool {
+    return lhs.toString() == rhs.toString()
 }

@@ -39,6 +39,18 @@ class MentsuSpec: QuickSpec {
                 expect(m1 == m2).to.beFalse()
             }
         }
+        describe("<"){
+            it("returns true when compare different toitsu mentsu"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m2t")!)
+                expect(m1 < m2).to.beTrue()
+            }
+            it("returns true when compare different type mentsu"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                expect(m1 < m2).to.beTrue()
+            }
+        }
         describe("MentsuFactory.createMentsu"){
             it("makes シュンツ"){
                 var pl:Pai[] = Pai.parseList("m1tm2tm3t")!
