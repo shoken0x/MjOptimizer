@@ -66,7 +66,7 @@ enum MentsuType: Int{
     case Abstruct = -1
 }
 
-protocol Mentsu{
+protocol Mentsu:Equatable{
     func identical() ->Pai
     func toString() -> String
     func fuNum() -> Int
@@ -74,9 +74,15 @@ protocol Mentsu{
     func size() -> Int
     func type() -> MentsuType
 }
+func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
+}
+func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
+    return !(lhs == rhs)
+}
 
 //同じ牌で構成される面子の親クラス
-class SamePaiMentsu: Mentsu{
+class SamePaiMentsu: Mentsu,Equatable{
     var pai : Pai
     init(pai:Pai){self.pai = pai}
     init(paiList:Pai[]){self.pai = paiList[0]}
@@ -86,6 +92,12 @@ class SamePaiMentsu: Mentsu{
     func isFuro()->Bool{return false}
     func size()->Int{return 0}
     func type()->MentsuType{return MentsuType.Abstruct}
+}
+func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
+}
+func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+    return !(lhs == rhs)
 }
 //トイツ
 class ToitsuMentsu: SamePaiMentsu{
@@ -129,7 +141,7 @@ class MinkanMentsu: SamePaiMentsu{
 }
 
 //異なる牌で構成される面子の親クラス
-class DifferentPaiMentsu: Mentsu{
+class DifferentPaiMentsu: Mentsu,Equatable{
     var paiList : Pai[]
     init(paiList:Pai[]){self.paiList = sort(paiList,<)}
     func identical() -> Pai{return self.paiList[0]}
@@ -145,6 +157,13 @@ class DifferentPaiMentsu: Mentsu{
     func size()->Int{return paiList.count}
     func type()->MentsuType{return MentsuType.Abstruct}
 }
+func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
+}
+func != (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+    return !(lhs == rhs)
+}
+
 //シュンツ
 class ShuntsuMentsu: DifferentPaiMentsu{
     override func toString() -> String{
@@ -194,5 +213,8 @@ class MentsuList{
                 return $0.identical() < $1.identical()
             }
         }
+    }
+    func equal(other:MentsuList)->Bool{
+        return self.toString() == other.toString()
     }
 }

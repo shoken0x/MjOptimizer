@@ -12,6 +12,33 @@ import Nimble
 
 class MentsuSpec: QuickSpec {
     override func spec() {
+        describe("=="){
+            it("returns true when compare same toitsu mentsu"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                expect(m1 == m2).to.beTrue()
+            }
+            it("returns true when compare same shuntsu mentsu"){
+                var m1:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                expect(m1 == m2).to.beTrue()
+            }
+            it("returns true when compare different toitsu mentsu"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m2t")!)
+                expect(m1 == m2).to.beFalse()
+            }
+            it("returns false when compare different shuntsu mentsu"){
+                var m1:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
+                expect(m1 == m2).to.beFalse()
+            }
+            it("returns false when compare different type mentsu"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
+                expect(m1 == m2).to.beFalse()
+            }
+        }
         describe("MentsuFactory.createMentsu"){
             it("makes シュンツ"){
                 var pl:Pai[] = Pai.parseList("m1tm2tm3t")!
