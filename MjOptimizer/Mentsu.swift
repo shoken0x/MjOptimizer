@@ -236,24 +236,3 @@ class SpecialMentsu: DifferentPaiMentsu{
 }
 
 
-
-
-class MentsuList:Equatable{
-    var list : Mentsu[]
-    init(list : Mentsu[]){ self.list = list }
-    func append(mentsu : Mentsu){self.list.append(mentsu)}
-    func toString() -> String{
-        return "面子リスト:" + join(",",self.list.map({ m in m.toString() }))
-    }
-    subscript(index:Int)->Mentsu{
-        get{ return self.list[index] }
-        set(mentsu){ self.list[index] = mentsu }
-    }
-    func sortting(){
-        sort(self.list){return $0 < $1}
-    }
-}
-
-func == (lhs: MentsuList, rhs: MentsuList) -> Bool {
-    return lhs.toString() == rhs.toString()
-}

@@ -140,8 +140,6 @@
 		C40B15C8197EB84500880D4C /* Agari.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B15C7197EB84500880D4C /* Agari.swift */; };
 		C421E895197430EA001C2F34 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C421E89A197430EF001C2F34 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446D2D2B1952D30D000A6A0C /* Nimble.framework */; };
-		C42D756B1961804900183C24 /* FuroResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756A1961804900183C24 /* FuroResolver.swift */; };
-		C42D756E1961806200183C24 /* FuroResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756D1961806200183C24 /* FuroResolverSpec.swift */; };
 		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
 		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
@@ -153,6 +151,7 @@
 		C4621A6D1955519300F43A2F /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446D2D2B1952D30D000A6A0C /* Nimble.framework */; };
 		C4621A6E1955519700F43A2F /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */; };
+		C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */; };
 		C4CA4FEF197135FA0089E2B2 /* PaiNumList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */; };
 		C4CA4FF91971361E0089E2B2 /* PaiNumListSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */; };
 		C4CC34011954A52D0030EE0A /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FE1954A52D0030EE0A /* Stats.m */; };
@@ -171,9 +170,9 @@
 		C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3433195518E10030EE0A /* TehaiProtocol.swift */; };
 		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
 		C4DC44421961A2C1009AEA97 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC44411961A2C1009AEA97 /* Log.swift */; };
-		C4DC444C19622B55009AEA97 /* MenzenResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC444B19622B55009AEA97 /* MenzenResolver.swift */; };
-		C4DC444E196304DD009AEA97 /* MenzenResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC444D196304DD009AEA97 /* MenzenResolverSpec.swift */; };
 		C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC4451196319E7009AEA97 /* Array+Slice.swift */; };
+		C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */; };
+		C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE67619810F1700CB5681 /* MentsuList.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -517,8 +516,6 @@
 		A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelector.swift; sourceTree = "<group>"; };
 		A6DEAC481951F2D70075A0BB /* Tehai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tehai.swift; sourceTree = "<group>"; };
 		C40B15C7197EB84500880D4C /* Agari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agari.swift; sourceTree = "<group>"; };
-		C42D756A1961804900183C24 /* FuroResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuroResolver.swift; sourceTree = "<group>"; };
-		C42D756D1961806200183C24 /* FuroResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuroResolverSpec.swift; sourceTree = "<group>"; };
 		C42D756F196180C600183C24 /* Mentsu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentsu.swift; sourceTree = "<group>"; };
 		C42D7571196180D100183C24 /* MentsuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuSpec.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
@@ -528,6 +525,7 @@
 		C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerMock.swift; sourceTree = "<group>"; };
 		C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorSpec.swift; sourceTree = "<group>"; };
+		C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolverSpec.swift; sourceTree = "<group>"; };
 		C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiNumList.swift; sourceTree = "<group>"; };
 		C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiNumListSpec.swift; sourceTree = "<group>"; };
 		C4CC33FD1954A52D0030EE0A /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
@@ -540,9 +538,9 @@
 		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
 		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
 		C4DC44411961A2C1009AEA97 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		C4DC444B19622B55009AEA97 /* MenzenResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenzenResolver.swift; sourceTree = "<group>"; };
-		C4DC444D196304DD009AEA97 /* MenzenResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenzenResolverSpec.swift; sourceTree = "<group>"; };
 		C4DC4451196319E7009AEA97 /* Array+Slice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Slice.swift"; sourceTree = "<group>"; };
+		C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolver.swift; sourceTree = "<group>"; };
+		C4DEE67619810F1700CB5681 /* MentsuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuList.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -885,11 +883,11 @@
 		C42D75611961802B00183C24 /* parse */ = {
 			isa = PBXGroup;
 			children = (
-				C42D756A1961804900183C24 /* FuroResolver.swift */,
+				C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */,
 				C42D756F196180C600183C24 /* Mentsu.swift */,
-				C4DC444B19622B55009AEA97 /* MenzenResolver.swift */,
 				C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */,
 				C40B15C7197EB84500880D4C /* Agari.swift */,
+				C4DEE67619810F1700CB5681 /* MentsuList.swift */,
 			);
 			name = parse;
 			sourceTree = "<group>";
@@ -897,9 +895,8 @@
 		C42D756C1961805300183C24 /* parse */ = {
 			isa = PBXGroup;
 			children = (
-				C42D756D1961806200183C24 /* FuroResolverSpec.swift */,
+				C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */,
 				C42D7571196180D100183C24 /* MentsuSpec.swift */,
-				C4DC444D196304DD009AEA97 /* MenzenResolverSpec.swift */,
 				C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */,
 			);
 			name = parse;
@@ -1264,16 +1261,15 @@
 				C4CC34041954A7150030EE0A /* Dictionary.swift in Sources */,
 				C4CC34061954A7150030EE0A /* ExSwift.swift in Sources */,
 				C42D7570196180C600183C24 /* Mentsu.swift in Sources */,
+				C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */,
 				C4CC34071954A7150030EE0A /* Float.swift in Sources */,
 				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
-				C4DC444C19622B55009AEA97 /* MenzenResolver.swift in Sources */,
 				C4CC34091954A7150030EE0A /* NSArray.swift in Sources */,
 				C4CC340A1954A7150030EE0A /* Range.swift in Sources */,
 				34636E691954CB34004F41F6 /* TMARes.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,
 				C4CC340B1954A7150030EE0A /* String.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
-				C42D756B1961804900183C24 /* FuroResolver.swift in Sources */,
 				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
@@ -1305,6 +1301,7 @@
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 				C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */,
 				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
+				C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1313,14 +1310,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4F9B033194DB177003FFEEC /* SutehaiCandidateSpec.swift in Sources */,
-				C42D756E1961806200183C24 /* FuroResolverSpec.swift in Sources */,
 				C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */,
 				C4F9B02F194DA90A003FFEEC /* UkeirePaiSpec.swift in Sources */,
 				447486EC1951E74200AC1310 /* ViewUtilsSpec.swift in Sources */,
+				C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */,
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,
 				C4CA4FF91971361E0089E2B2 /* PaiNumListSpec.swift in Sources */,
 				C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */,
-				C4DC444E196304DD009AEA97 /* MenzenResolverSpec.swift in Sources */,
 				C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
