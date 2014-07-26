@@ -8,14 +8,14 @@
 
 import Foundation
 
-class SutehaiSelectResult {
-    var sutehaiCandidateList : SutehaiCandidate[]? //候補のリスト
+public class SutehaiSelectResult {
+    var sutehaiCandidateList : [SutehaiCandidate]? //候補のリスト
     var tehaiShantenNum : Int? //シャンテン数
-    var tehai : Pai[] //手牌
+    var tehai : [Pai] //手牌
     var isFinishAnalyze : Bool //解析に成功したか
     var successNum : Int //解析に成功した枚数
     
-    init(sutehaiCandidateList : SutehaiCandidate[]?,tehaiShantenNum : Int?,tehai : Pai[],isFinishAnalyze : Bool,successNum : Int){
+    init(sutehaiCandidateList : [SutehaiCandidate]?,tehaiShantenNum : Int?,tehai : [Pai],isFinishAnalyze : Bool,successNum : Int){
         self.sutehaiCandidateList = sutehaiCandidateList
         self.tehaiShantenNum = tehaiShantenNum
         self.tehai = tehai
@@ -23,9 +23,9 @@ class SutehaiSelectResult {
         self.successNum = successNum
         
     }
-    func getSutehaiCandidateList() -> SutehaiCandidate[]{return self.sutehaiCandidateList!}
-    func getTehaiShantenNum() -> Int{return self.tehaiShantenNum!}
-    func getTehai() -> Pai[]{return self.tehai}
-    func getSuccessNum() -> Int{return self.successNum}
+    public func getSutehaiCandidateList() -> [SutehaiCandidate]{return self.sutehaiCandidateList!}
+    public func getTehaiShantenNum() -> Int{return self.tehaiShantenNum!}
+    public func getTehai() -> [Pai]{return self.tehai}
+    public func getSuccessNum() -> Int{return self.successNum}
     
 }

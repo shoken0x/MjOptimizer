@@ -25,7 +25,7 @@ class SutehaiCandidateSpec: QuickSpec {
                         shantenNum:3,
                         positionIndex:2
                     )
-                    expect(sc.getUkeireTotalNum()).to.equal(9)
+                    expect(sc.getUkeireTotalNum()).to(equal(9))
                 }
             }
         }

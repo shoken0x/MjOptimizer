@@ -11,10 +11,10 @@ import QuartzCore
 
 class CvView: UIView {
     
-    var rectList: CGRect[]
+    var rectList: [CGRect]
 
     init(frame: CGRect, background: UIImage) {
-        rectList = CGRect[]()
+        rectList = [CGRect]()
         super.init(frame: frame)
         self.backgroundColor = UIColor(patternImage:background)
     }

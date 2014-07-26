@@ -8,17 +8,17 @@
 
 import Foundation
 
-class PaiNum{
+public class PaiNum{
     var pai : Pai
     var num : Int
     init(pai:Pai,num:Int){self.pai = pai;self.num = num}
     func inc(){num++}
-    func toString()->String{return pai.type.toRaw() + String(pai.number) + "=" + String(num)}
+    public func toString()->String{return pai.type.toRaw() + String(pai.number) + "=" + String(num)}
     func copy()->PaiNum{return PaiNum(pai: self.pai,num: self.num)}
 }
 
-class PaiNumList {
-    var list : PaiNum[] = [
+public class PaiNumList {
+    public var list : [PaiNum] = [
         PaiNum(pai: Pai(type: PaiType.MANZU, number: 1), num:0),
         PaiNum(pai: Pai(type: PaiType.MANZU, number: 2), num:0),
         PaiNum(pai: Pai(type: PaiType.MANZU, number: 3), num:0),
@@ -54,10 +54,10 @@ class PaiNumList {
         PaiNum(pai: Pai(type: PaiType.JIHAI, number: 6), num:0),
         PaiNum(pai: Pai(type: PaiType.JIHAI, number: 7), num:0)
     ]
-    init(list:PaiNum[]){
+    public init(list:[PaiNum]){
         self.list = list
     }
-    init(paiList:Pai[]){
+    public init(paiList:[Pai]){
         for pai in paiList {
             for paiNum in self.list{
                 if pai == paiNum.pai {
@@ -67,14 +67,14 @@ class PaiNumList {
         }
     }
     func copy() -> PaiNumList{
-        var tmp : PaiNum[] = []
+        var tmp : [PaiNum] = []
         for paiNum in self.list{
             tmp.append(paiNum.copy())
         }
         return PaiNumList(list: tmp)
     }
     //自身をコピーして、牌の数をnumだけ減らして、返す
-    func remove(pai : Pai,num : Int) -> PaiNumList?{
+    public func remove(pai : Pai,num : Int) -> PaiNumList?{
         var tmp : PaiNumList = self.copy()
         for paiNum in tmp.list{
             if pai == paiNum.pai {
@@ -88,7 +88,7 @@ class PaiNumList {
         return tmp
     }
     //牌の枚数
-    func count() -> Int{
+    public func count() -> Int{
         var count = 0
         for paiNum in self.list{
             count += paiNum.num
@@ -96,42 +96,42 @@ class PaiNumList {
         return count
     }
     //index番目の要素を返す
-    func get(index:Int)->PaiNum{
+    public func get(index:Int)->PaiNum{
         return self.list[index]
     }
     //引数paiの枚数を返す
-    func getNum(pai:Pai) -> Int{
+    public func getNum(pai:Pai) -> Int{
         for paiNum in self.list{
             if paiNum.pai == pai {return paiNum.num}
         }
         return 0
     }
     //引数paiの枚数を一枚減らす
-    func decNum(pai:Pai){
+    public func decNum(pai:Pai){
         for paiNum in self.list{
             if paiNum.pai == pai {paiNum.num -= 1}
         }
     }
     //引数paiの枚数を一枚増やす
-    func incNum(pai:Pai){
+    public func incNum(pai:Pai){
         for paiNum in self.list{
             if paiNum.pai == pai {paiNum.num += 1}
         }
     }
     //paiの個数が0以上か？
-    func include(pai:Pai) -> Bool{
+    public func include(pai:Pai) -> Bool{
         return self.getNum(pai) > 0
     }
     //paiから始まるシュンツはあるか？
-    func includeShuntsuFrom(pai:Pai) -> Bool{
+    public func includeShuntsuFrom(pai:Pai) -> Bool{
         return self.include(pai) && pai.next() != nil && self.include(pai.next()!) && pai.next(range: 2) != nil && self.include(pai.next(range: 2)!)
     }
     //paiからなるアンコウはあるか？
-    func includeAnkouOf(pai:Pai) -> Bool{
+    public func includeAnkouOf(pai:Pai) -> Bool{
         return self.getNum(pai) >= 3
     }
     //paiからなるアンコウを削除したPaiNumListを返す
-    func removeAnkouOf(pai:Pai) -> PaiNumList?{
+    public func removeAnkouOf(pai:Pai) -> PaiNumList?{
         var tmp : PaiNumList = self.copy()
         for paiNum in tmp.list{
             if pai == paiNum.pai {
@@ -145,7 +145,7 @@ class PaiNumList {
         return tmp
     }
     //paiから始まるシュンツを削除したPaiNumListを返す
-    func removeShuntsuFrom(pai:Pai) -> PaiNumList?{
+    public func removeShuntsuFrom(pai:Pai) -> PaiNumList?{
         if(pai.type == PaiType.JIHAI || pai.number > 7){
             return nil
         }
@@ -159,7 +159,7 @@ class PaiNumList {
             return nil
         }
     }
-    func toString()->String{
+    public func toString()->String{
         var str = ""
         for pn in list{
             if pn.num != 0 {

@@ -179,7 +179,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         rescanButton.hidden = true
         debugButton.hidden = false
         isFinishAnalyze = false
-        for subview: UIView! in view.subviews {
+        for subview in view.subviews as [UIView] {
             subview.removeFromSuperview()
         }
         setFilterView()
@@ -238,7 +238,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
-    func setBody(sutehaiCandidateList: SutehaiCandidate[]) {
+    func setBody(sutehaiCandidateList: [SutehaiCandidate]) {
         setResultView()
         var x: CGFloat = 5
         var y: CGFloat = 15
@@ -283,7 +283,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         drawMjImages(27, 205, paiStrArray, 0.8)
     }
     
-    func drawMjImages(x: CGFloat, _ y: CGFloat, _ strArray: String[], _ rate: CGFloat = 0.5) {
+    func drawMjImages(x: CGFloat, _ y: CGFloat, _ strArray: [String], _ rate: CGFloat = 0.5) {
         var width:  CGFloat = 700
         var height: CGFloat = 200
         var imageX: CGFloat = 10

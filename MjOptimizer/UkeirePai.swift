@@ -8,20 +8,20 @@
 
 import Foundation
 
-class UkeirePai: Equatable {
+public class UkeirePai: Equatable {
     
     var pai: Pai
     var remainNum: Int
     
-    init(pai: Pai,remainNum: Int){
+    public init(pai: Pai,remainNum: Int){
         self.pai = pai
         self.remainNum = remainNum
     }
-    func getPai() -> Pai{return self.pai}
-    func getRemainNum() -> Int{return self.remainNum}
+    public func getPai() -> Pai{return self.pai}
+    public func getRemainNum() -> Int{return self.remainNum}
 
 }
 
-func == (lhs: UkeirePai, rhs: UkeirePai) -> Bool {
+public func == (lhs: UkeirePai, rhs: UkeirePai) -> Bool {
     return lhs.pai == rhs.pai
 }

@@ -13,5 +13,5 @@ protocol TehaiProtocol{
     func isAgari() -> Bool
     func getShantenNum() -> Int
     //チャンクとは、３枚のメンツ、２枚のターツ、コーツ、１枚のいずれかからなる
-    func getChunkList() -> ChunkProtocol[]
+    func getChunkList() -> [ChunkProtocol]
 }

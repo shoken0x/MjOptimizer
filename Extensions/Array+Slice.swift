@@ -40,7 +40,7 @@ extension Array {
         
         let count = (s < e ? e-s : s-e)+1
         let inc = s < e ? 1 : -1
-        var ret = self.copy()
+        var ret = self
         
         var idx = s
         for var i=0;i<count;i++  {

@@ -15,35 +15,35 @@ enum AgariType: String {
     case AGARI_TYPE_KOKUSHIMUSO = "k"
 }
 
-class Tehai {
+public class Tehai {
     
-    var basePaiList: Pai[] = []
-    var restPaiList: Pai[] = []
-    var chunkList: Chunk[] = []
-    var tatsuList: Tatsu[] = []
-    var toitsuList: Toitsu[] = []
-    var singleList: Single[] = []
+    var basePaiList: [Pai] = []
+    var restPaiList: [Pai] = []
+    var chunkList: [Chunk] = []
+    var tatsuList: [Tatsu] = []
+    var toitsuList: [Toitsu] = []
+    var singleList: [Single] = []
     var agariType: AgariType = AgariType.AGARI_TYPE_NORMAL
     var analyzedFlag: Bool = false
     
-    init(paiList: Pai[] = []) {
+    public init(paiList: [Pai] = []) {
         self.basePaiList = paiList
     }
     
     func copy() -> Tehai {
         var tehai: Tehai = Tehai()
-        tehai.basePaiList = self.basePaiList.copy()
-        tehai.restPaiList = self.restPaiList.copy()
-        tehai.chunkList = self.chunkList.copy()
-        tehai.tatsuList = self.tatsuList.copy()
-        tehai.toitsuList = self.toitsuList.copy()
-        tehai.singleList = self.singleList.copy()
+        tehai.basePaiList = self.basePaiList
+        tehai.restPaiList = self.restPaiList
+        tehai.chunkList = self.chunkList
+        tehai.tatsuList = self.tatsuList
+        tehai.toitsuList = self.toitsuList
+        tehai.singleList = self.singleList
         tehai.agariType = self.agariType
         tehai.analyzedFlag = self.analyzedFlag
         return tehai
     }
     
-    func isAgari() -> Bool {
+    public func isAgari() -> Bool {
         if self.getShantenNum() == -1 {
             return true
         }
@@ -52,7 +52,7 @@ class Tehai {
         }
     }
     
-    func getShantenNum() -> Int {
+    public func getShantenNum() -> Int {
         var shantenNum = 0
         
         switch (self.agariType) {
@@ -97,8 +97,8 @@ class Tehai {
         return 0
     }
     
-    func getChunkList() -> ChunkProtocol[]{
-        var chunkList: ChunkProtocol[] = []
+    func getChunkList() -> [ChunkProtocol]{
+        var chunkList: [ChunkProtocol] = []
 //        chunkList = self.chunkList // OK
 //        chunkList = self.chunkList + self.tatsuList + self.toitsuList + self.singleList // NG
         
@@ -129,14 +129,14 @@ enum ChunkType: String {
 }
 
 class Chunk: ChunkProtocol {
-    var paiList: Pai[]
+    var paiList: [Pai]
     var type: ChunkType
     
-    init (paiList: Pai[], type: ChunkType) {
+    init (paiList: [Pai], type: ChunkType) {
         self.paiList = paiList
         self.type = type
     }
-    func getMissingPaiList() -> Pai[]{
+    func getMissingPaiList() -> [Pai]{
         return []
     }
     func getChunkType() -> ChunkType {
@@ -154,7 +154,7 @@ class Chunk: ChunkProtocol {
         }
         return priority
     }
-    func getPaiList() -> Pai[] {
+    func getPaiList() -> [Pai] {
         return self.paiList
     }
 }
@@ -166,10 +166,10 @@ class Single:ChunkProtocol{
     init (pai: Pai){
         self.pai = pai
     }
-    func getMissingPaiList() -> Pai[]{
+    func getMissingPaiList() -> [Pai]{
         var prevPai = pai.getPrevPai(range: 1)
         var nextPai = pai.getNextPai(range: 1)
-        var missingPaiList: Pai[] = [pai]
+        var missingPaiList: [Pai] = [pai]
         if prevPai {
             missingPaiList += prevPai!
         }
@@ -194,21 +194,21 @@ class Single:ChunkProtocol{
         }
         return priority
     }
-    func getPaiList() -> Pai[] {
+    func getPaiList() -> [Pai] {
         return [self.pai]
     }
 }
 
 class Tatsu:ChunkProtocol{
-    var paiList: Pai[]
+    var paiList: [Pai]
     var type: ChunkType
     
-    init (paiList: Pai[], type: ChunkType) {
+    init (paiList: [Pai], type: ChunkType) {
         self.paiList = paiList
         self.type = type
     }
-    func getMissingPaiList() -> Pai[]{
-        var missingPaiList: Pai[] = []
+    func getMissingPaiList() -> [Pai]{
+        var missingPaiList: [Pai] = []
         switch(self.type){
         case ChunkType.PENCHAN:
             if paiList[0].number == 1 {
@@ -255,18 +255,18 @@ class Tatsu:ChunkProtocol{
         }
         return priority
     }
-    func getPaiList() -> Pai[] {
+    func getPaiList() -> [Pai] {
         return self.paiList
     }
 }
 
 class Toitsu:ChunkProtocol{
-    var paiList: Pai[]
+    var paiList: [Pai]
     var type: ChunkType = ChunkType.TOITSU
-    init (paiList: Pai[]) {
+    init (paiList: [Pai]) {
         self.paiList = paiList
     }
-    func getMissingPaiList() -> Pai[]{
+    func getMissingPaiList() -> [Pai]{
         return [self.paiList[0]]
     }
     func getChunkType() -> ChunkType {
@@ -275,7 +275,7 @@ class Toitsu:ChunkProtocol{
     func getPriority() -> Int {
         return 24
     }
-    func getPaiList() -> Pai[] {
+    func getPaiList() -> [Pai] {
         return self.paiList
     }
 }

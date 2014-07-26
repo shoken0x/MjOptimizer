@@ -11,9 +11,13 @@ import UIKit
 import AVFoundation
 import CoreMedia
 
-class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+public class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+    public init() {
+        return super.init()
+    }
+    
     // for just test
-    func getClassName() -> NSString {
+    public func getClassName() -> NSString {
         return "CameraManager"
     }
 }

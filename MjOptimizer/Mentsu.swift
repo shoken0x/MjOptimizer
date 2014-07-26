@@ -8,10 +8,11 @@
 
 import Foundation
 
-class MentsuFactory{
+public class MentsuFactory{
     //paiListをパースして適切なMentsuを生成する
-    class func createMentsu(paiList:Pai[]) -> Mentsu?{
-        let pl : Pai[] = sort(paiList,<)
+    public class func createMentsu(let paiList:[Pai]) -> MentsuBase?{
+        var pl = paiList
+        sort(&pl,<)
         var furoNum : Int = 0
         for pai in pl{
             if pai.isNaki() { furoNum += 1 }
@@ -44,8 +45,9 @@ class MentsuFactory{
             return nil
         }
     }
-    class func isChi(paiList: Pai[]) -> Bool{
-        let pl : Pai[] = sort(paiList,<)
+    public class func isChi(let paiList: [Pai]) -> Bool{
+        var pl = paiList
+        sort(&pl,<)
         var furoNum : Int = 0
         for pai in pl{
             if pai.isNaki() { furoNum += 1 }
@@ -54,7 +56,7 @@ class MentsuFactory{
     }
 }
 
-enum MentsuType: Int{
+public enum MentsuType: Int{
     case Toitsu  = 1
     case Chi     = 2
     case Shuntsu = 3
@@ -66,7 +68,7 @@ enum MentsuType: Int{
     case Abstruct = -1
 }
 
-protocol Mentsu:Equatable,Comparable{
+protocol Mentsu {
     func identical() ->Pai
     func toString() -> String
     func fuNum() -> Int
@@ -74,20 +76,30 @@ protocol Mentsu:Equatable,Comparable{
     func size() -> Int
     func type() -> MentsuType
 }
-func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
+
+public class MentsuBase: Mentsu, Equatable, Comparable {
+    public func identical() -> Pai { return Pai.parse("m1t")! }
+    public func toString() -> String { return "MentsuBase" }
+    public func fuNum() -> Int { return -200 }
+    public func isFuro() -> Bool { return false }
+    public func size() -> Int { return 0 }
+    public func type() -> MentsuType { return MentsuType.Abstruct }
+}
+
+public func == (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
 }
-func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
+func != (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
     return !(lhs == rhs)
 }
-func < (lhs: Mentsu, rhs: Mentsu) -> Bool {
+public func < (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() < rhs.type().toRaw()
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
-func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
+public func > (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() > rhs.type().toRaw()
     }else{
@@ -96,31 +108,31 @@ func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
 }
 
 //同じ牌で構成される面子の親クラス
-class SamePaiMentsu: Mentsu,Equatable,Comparable{
+public class SamePaiMentsu: MentsuBase,Equatable,Comparable{
     var pai : Pai
-    init(pai:Pai){self.pai = pai}
-    init(paiList:Pai[]){self.pai = paiList[0]}
-    func identical() ->Pai{ return self.pai }
-    func toString() -> String{ return pai.type.toRaw() + String(pai.number) }
-    func fuNum()->Int{return 0}
-    func isFuro()->Bool{return false}
-    func size()->Int{return 0}
-    func type()->MentsuType{return MentsuType.Abstruct}
+    public init(pai:Pai){self.pai = pai}
+    public init(paiList:[Pai]){self.pai = paiList[0]}
+    override public func identical() ->Pai{ return self.pai }
+    override public func toString() -> String{ return pai.type.toRaw() + String(pai.number) }
+    override public func fuNum()->Int{return 0}
+    override public func isFuro()->Bool{return false}
+    override public func size()->Int{return 0}
+    override public func type()->MentsuType{return MentsuType.Abstruct}
 }
-func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
 }
 func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return !(lhs == rhs)
 }
-func < (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func < (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() < rhs.type().toRaw()
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
-func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() > rhs.type().toRaw()
     }else{
@@ -129,77 +141,81 @@ func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
 }
 
 //トイツ
-class ToitsuMentsu: SamePaiMentsu{
-    override func toString() -> String{ return "トイツ:" + super.toString() }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return false}
-    override func size()->Int{return 2}
-    override func type()->MentsuType{return MentsuType.Toitsu}
+public class ToitsuMentsu: SamePaiMentsu{
+    public init(pai: Pai) { return super.init(pai: pai) }
+    override public func toString() -> String{ return "トイツ:" + super.toString() }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func size()->Int{return 2}
+    override public func type()->MentsuType{return MentsuType.Toitsu}
 }
 //アンコウ
-class AnkouMentsu: SamePaiMentsu{
-    override func toString() -> String{ return "アンコウ:" + super.toString() }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return false}
-    override func size()->Int{return 3}
-    override func type()->MentsuType{return MentsuType.Ankou}
+public class AnkouMentsu: SamePaiMentsu{
+    override public func toString() -> String{ return "アンコウ:" + super.toString() }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func size()->Int{return 3}
+    override public func type()->MentsuType{return MentsuType.Ankou}
 }
 //ポン
-class PonMentsu: SamePaiMentsu{
-    override func toString() -> String{ return "ポン:" + super.toString() }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return true}
-    override func size()->Int{return 3}
-    override func type()->MentsuType{return MentsuType.Pon}
+public class PonMentsu: SamePaiMentsu{
+    override public func toString() -> String{ return "ポン:" + super.toString() }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return true}
+    override public func size()->Int{return 3}
+    override public func type()->MentsuType{return MentsuType.Pon}
 }
 //アンカン
-class AnkanMentsu: SamePaiMentsu{
-    override func toString() -> String{ return "アンカン:" + super.toString() }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return false}
-    override func size()->Int{return 4}
-    override func type()->MentsuType{return MentsuType.Ankan}
+public class AnkanMentsu: SamePaiMentsu{
+    override public func toString() -> String{ return "アンカン:" + super.toString() }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func size()->Int{return 4}
+    override public func type()->MentsuType{return MentsuType.Ankan}
 }
 //ミンカン
-class MinkanMentsu: SamePaiMentsu{
-    override func toString() -> String{ return "ミンカン:" + super.toString() }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return true}
-    override func size()->Int{return 4}
-    override func type()->MentsuType{return MentsuType.Minkan}
+public class MinkanMentsu: SamePaiMentsu{
+    override public func toString() -> String{ return "ミンカン:" + super.toString() }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return true}
+    override public func size()->Int{return 4}
+    override public func type()->MentsuType{return MentsuType.Minkan}
 }
 
 //異なる牌で構成される面子の親クラス
-class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
-    var paiList : Pai[]
-    init(paiList:Pai[]){self.paiList = sort(paiList,<)}
-    func identical() -> Pai{return self.paiList[0]}
-    func toString() -> String{
+public class DifferentPaiMentsu: MentsuBase,Equatable,Comparable{
+    var paiList : [Pai]
+    public init(paiList:[Pai]) {
+        self.paiList = paiList
+        sort(&self.paiList,<)
+    }
+    override public func identical() -> Pai{return self.paiList[0]}
+    override public func toString() -> String{
         var str: String = ""
         for pai in paiList{
             str += pai.type.toRaw() + String(pai.number)
         }
         return str
     }
-    func fuNum()->Int{return 0}//TODO}
-    func isFuro()->Bool{return true}
-    func size()->Int{return paiList.count}
-    func type()->MentsuType{return MentsuType.Abstruct}
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return true}
+    override public func size()->Int{return paiList.count}
+    override public func type()->MentsuType{return MentsuType.Abstruct}
 }
-func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
 }
 func != (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return !(lhs == rhs)
 }
-func < (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+public func < (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() < rhs.type().toRaw()
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
-func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
+public func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() > rhs.type().toRaw()
     }else{
@@ -208,31 +224,32 @@ func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
 }
 
 //シュンツ
-class ShuntsuMentsu: DifferentPaiMentsu{
-    override func toString() -> String{
+public class ShuntsuMentsu: DifferentPaiMentsu{
+    public init(paiList: [Pai]) { return super.init(paiList: paiList) }
+    override public func toString() -> String{
         return "シュンツ:" + super.toString()
     }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return false}
-    override func type()->MentsuType{return MentsuType.Shuntsu}
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func type()->MentsuType{return MentsuType.Shuntsu}
 }
 //チー
-class ChiMentsu: DifferentPaiMentsu{
-    override func toString() -> String{
+public class ChiMentsu: DifferentPaiMentsu{
+    override public func toString() -> String{
         return "チー:" + super.toString()
     }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return true}
-    override func type()->MentsuType{return MentsuType.Chi}
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return true}
+    override public func type()->MentsuType{return MentsuType.Chi}
 }
 //国士かシーサンプータ
-class SpecialMentsu: DifferentPaiMentsu{
-    override func toString() -> String{
+public class SpecialMentsu: DifferentPaiMentsu{
+    override public func toString() -> String{
         return "特殊系:" + super.toString()
     }
-    override func fuNum()->Int{return 0}//TODO}
-    override func isFuro()->Bool{return false}
-    override func type()->MentsuType{return MentsuType.Special}
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func type()->MentsuType{return MentsuType.Special}
 }
 
 
