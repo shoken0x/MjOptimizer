@@ -44,7 +44,7 @@ class ControllerMock:ControllerProtocol{
             shantenNum:5,
             positionIndex:10
         )
-        var tehai: Pai[] = [Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
+        var tehai: [Pai] = [Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
                             Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
                             Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,
                             Pai.parse("j1t")!, Pai.parse("j1t")!, Pai.parse("j1t")!,

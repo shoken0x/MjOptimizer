@@ -18,7 +18,7 @@ class CameraManagerSpec: QuickSpec {
             
             describe("get class name") {
                 it("returns class name") {
-                    expect(cameraManager.getClassName()).to.equal("CameraManager")
+                    expect(cameraManager.getClassName()).to(equal("CameraManager"))
                 }
             }
         }

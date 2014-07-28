@@ -8,13 +8,13 @@
 
 import Foundation
 
-class SutehaiSelector: SutehaiSelectorProtocol{
+public class SutehaiSelector: SutehaiSelectorProtocol{
 //class SutehaiSelector{
     
-    init () {
+    public init () {
     }
     
-    func select(paiList: Pai[]) -> SutehaiSelectResult{
+    public func select(paiList: [Pai]) -> SutehaiSelectResult{
         
         var tehai = Tehai(paiList: paiList)
         
@@ -24,13 +24,14 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         
         
         // SutehaiSelectResultを作るための処理
-        var sortedChunkList: ChunkProtocol[] = sort(tehai.getChunkList()){
+        var sortedChunkList = tehai.getChunkList()
+        sort(&sortedChunkList){
             p1,p2 in return p1.getPriority() < p2.getPriority()
         }
-        var sutehaiCandidateList: SutehaiCandidate[] = []
+        var sutehaiCandidateList: [SutehaiCandidate] = []
         for index in 0...2{
             var sutehai = sortedChunkList[index].getPaiList()[0]
-            var ukeirePaiList: UkeirePai[] = []
+            var ukeirePaiList: [UkeirePai] = []
             for var cIndex = 0; sortedChunkList.count > cIndex; cIndex++ {
                 if index == cIndex {
                     continue
@@ -60,9 +61,9 @@ class SutehaiSelector: SutehaiSelectorProtocol{
     
     
     // 牌リストから指定したタイプの牌だけを選択する
-    func getSelectByType(paiList: Pai[], type: PaiType) -> Pai[]{
+    public func getSelectByType(paiList: [Pai], type: PaiType) -> [Pai]{
         
-        var selectedPaiList: Pai[] = []
+        var selectedPaiList: [Pai] = []
         
         for pai in paiList {
             if pai.type == type {
@@ -120,7 +121,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
         for type in [PaiType.MANZU, PaiType.SOUZU, PaiType.PINZU]{
             var selectedPaiList = getSelectByType(tehai.restPaiList, type: type)
             for targetPai in selectedPaiList {
-                var aroundPai: Pai[] = selectedPaiList.filter {
+                var aroundPai: [Pai] = selectedPaiList.filter {
                     targetPai == $0 ||
                     targetPai == $0.getNextPai(range: 1) ||
                     targetPai == $0.getNextPai(range: 2) ||
@@ -211,7 +212,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             if targetPai == nil{
                 continue
             }
-            var selectedPaiList: Pai[] = []
+            var selectedPaiList: [Pai] = []
             
             for pai in tehai.restPaiList{
                 if pai.equal(targetPai) {
@@ -359,7 +360,7 @@ class SutehaiSelector: SutehaiSelectorProtocol{
             if targetPai == nil{
                 continue
             }
-            var selectedPaiList: Pai[] = []
+            var selectedPaiList: [Pai] = []
             
             for pai in tehai.restPaiList{
                 if pai.equal(targetPai) {

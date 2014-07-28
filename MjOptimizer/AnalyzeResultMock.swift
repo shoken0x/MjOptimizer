@@ -12,7 +12,7 @@ import UIKit
 class AnalyzeResultMock:AnalyzeResultProtocol{
     init(){}
     //牌のリスト。0番目は手牌の一番左
-    func getPaiList() -> Pai[]{
+    func getPaiList() -> [Pai]{
         return [ Pai.parse("m1t")! ]
     }
     //牌の位置(paiPositionIndex)を指定すると、その牌がある場所を長方形で返す

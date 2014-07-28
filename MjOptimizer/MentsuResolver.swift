@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum MentsuResolveResult{
-    case SUCCESS(Agari[]) //一つ以上のアガリリストを取得
+public enum MentsuResolveResult{
+    case SUCCESS([Agari]) //一つ以上のアガリリストを取得
     case ERROR(String) //入力不正
 }
 
-class MentsuResolver{
+public class MentsuResolver{
     //面前手牌の解析
-    class func resolve(paiList: Pai[]) -> MentsuResolveResult{
+    public class func resolve(paiList: [Pai]) -> MentsuResolveResult{
         if paiList.count < 14 || paiList.count > 18{
             return MentsuResolveResult.ERROR("牌の枚数が１４枚〜１８枚ではありません")
         }
@@ -45,9 +45,9 @@ class MentsuResolver{
     }
     
     //牌リストから副露面子のリストを取得する
-    class func furoResolve(paiList:Pai[]) -> FuroResolveResult{
+    public class func furoResolve(paiList:[Pai]) -> FuroResolveResult{
         var mentsuList : MentsuList = MentsuList()
-        var tmpPaiList = paiList.copy()
+        var tmpPaiList = paiList
         while true{
             let getOneFuroResult :GetOneFuroResult = getOneFuro(tmpPaiList)
             switch getOneFuroResult{
@@ -66,9 +66,9 @@ class MentsuResolver{
         }
     }
     //paiListの右から検索し、一番最初の副露の面子を一つ返す
-    class func getOneFuro(paiList:Pai[]) -> GetOneFuroResult {
+    public class func getOneFuro(paiList:[Pai]) -> GetOneFuroResult {
         Log.debug("副露面子解析開始：" + paiList.map{(pai:Pai) -> String in return pai.toString()}.implode(" ")!)
-        var pl:Pai[] = paiList.reverse()
+        var pl:[Pai] = paiList.reverse()
         
         if pl.count == 2 && pl[0] == pl[1]{
             return GetOneFuroResult.FINISH("牌の数が2枚なので終了(頭を残すのみ)")
@@ -196,17 +196,18 @@ class MentsuResolver{
     }//funcの終わり
     
     //面前手牌の解析
-    class func menzenResolve(paiList: Pai[]) -> MenzenResolveResult{
+    public class func menzenResolve(paiList: [Pai]) -> MenzenResolveResult{
         if paiList.count < 2{
             Log.error("入力の牌のリストが0〜1枚");
             return MenzenResolveResult.ERROR("入力の牌のリストが0〜1枚")
         }
         let tsumoPai : Pai = paiList.last()!
-        let paiNumMaster : PaiNum[] = []
+        let paiNumMaster : [PaiNum] = []
         //頭候補計算
         //辞書順に並び替え
-        var sortedList  = sort(paiList,{(p1:Pai,p2:Pai) -> Bool in return p1.toString() < p2.toString()})
-        var agariList: Agari[] = []
+        var sortedList = paiList
+        sort(&sortedList,{(p1:Pai,p2:Pai) -> Bool in return p1.toString() < p2.toString()})
+        var agariList: [Agari] = []
         //雀頭候補を検索
         for var i = 0; i < sortedList.count - 1; ++i {
             if sortedList[i] == sortedList[i+1]{ //雀頭候補発見
@@ -248,9 +249,9 @@ class MentsuResolver{
     
     //引数の牌のリストを解析し、可能性のある面子リストに分解
     //可能性のある面子リストが存在しない場合は空配列を返す
-    class func makeMentsuList(paiNumList:PaiNumList,nest:Int = 0) -> MakeMentsuResult{
+    public class func makeMentsuList(paiNumList:PaiNumList,nest:Int = 0) -> MakeMentsuResult{
         Log.debug("[" + String(nest) + "]" + "makeMentsuList start " + String(nest) + " 引数：" + paiNumList.toString())
-        var result : MentsuList[] = []
+        var result : [MentsuList] = []
         if(paiNumList.count() == 0){
             Log.debug("[" + String(nest) + "]" + "残り枚数が0であるため、return")
             return MakeMentsuResult.FINISH
@@ -345,26 +346,26 @@ class MentsuResolver{
 }
 
 
-enum GetOneFuroResult{
-    case SUCCESS(Mentsu) //一つの副露面子を取得
+public enum GetOneFuroResult{
+    case SUCCESS(MentsuBase) //一つの副露面子を取得
     case ERROR(String) //入力不正
     case FINISH(String) //これ以上副露面子はない
 }
 
-enum FuroResolveResult {
+public enum FuroResolveResult {
     case SUCCESS(MentsuList)
     case ERROR(String)
 }
 
 
-enum MakeMentsuResult{
-    case SUCCESS(MentsuList[]) //一つ以上の面子リストを取得
+public enum MakeMentsuResult{
+    case SUCCESS([MentsuList]) //一つ以上の面子リストを取得
     case ERROR(String) //入力不正
     case CONFLICT  //入力不正ではないが、面子が不成立
     case FINISH   //これ以上面子はない
 }
 
-enum MenzenResolveResult {
-    case SUCCESS(Agari[])
+public enum MenzenResolveResult {
+    case SUCCESS([Agari])
     case ERROR(String)
 }

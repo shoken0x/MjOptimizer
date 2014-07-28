@@ -4,11 +4,11 @@ import CoreMedia
 
 class TMAnalyzer: TMAnalyzerProtocol {
     var matcher: TemplateMatcher
-    var paiTypes: Pai[]
+    var paiTypes: [Pai]
     
     init() {
         self.matcher = TemplateMatcher()
-        self.paiTypes = Pai[]()
+        self.paiTypes = [Pai]()
         self.setupPaiTypes()
     }
     
@@ -49,8 +49,8 @@ class TMAnalyzer: TMAnalyzerProtocol {
         return AnalyzeResult(resultList: results)
     }
         
-    func analyze(target: UIImage) -> TMResult[] {
-        var results: TMResult[] = []
+    func analyze(target: UIImage) -> [TMResult] {
+        var results: [TMResult] = []
         for pai in self.paiTypes {
             let matches: Array<AnyObject> = self.matcher.matchTarget(target, withTemplate: pai.toString())
             for match: AnyObject in matches {
@@ -62,9 +62,10 @@ class TMAnalyzer: TMAnalyzerProtocol {
         return sortWithPlace(filter(select(results)))
     }
     
-    func select(pais: TMResult[]) -> TMResult[] {
-        var selected = TMResult[]()
-        var sorted_pai: TMResult[] = sort(pais) { p1, p2 in return p1.value > p2.value }
+    func select(pais: [TMResult]) -> [TMResult] {
+        var selected = [TMResult]()
+        var sorted_pai = pais
+        sort(&sorted_pai) { p1, p2 in return p1.value > p2.value }
         for pai: TMResult in sorted_pai {
             if let nearestPai = self.nearest(pai, paiList: selected) {
                 if CGRectIntersectsRect(nearestPai.place, pai.place) {
@@ -88,20 +89,22 @@ class TMAnalyzer: TMAnalyzerProtocol {
         return selected
     }
 
-    func filter(pais: TMResult[]) -> TMResult[] {
+    func filter(pais: [TMResult]) -> [TMResult] {
         if pais.count >= 14 {
-            let filtered_pais: TMResult[] = sort(pais){ p1, p2 in return p1.value > p2.value }[0..14]
-            return filtered_pais
+            var filtered_pais = pais
+            sort(&filtered_pais){ p1, p2 in return p1.value > p2.value }
+            return filtered_pais[0..14]
         }
         return pais
     }
     
-    func sortWithPlace(pais: TMResult[]) -> TMResult[] {
-        let sorted_pais: TMResult[] = sort(pais){ p1, p2 in return p1.place.origin.x < p2.place.origin.x }
+    func sortWithPlace(pais: [TMResult]) -> [TMResult] {
+        var sorted_pais = pais
+        sort(&sorted_pais){ p1, p2 in return p1.place.origin.x < p2.place.origin.x }
         return sorted_pais
     }
     
-    func nearest(pai: TMResult, paiList: TMResult[]) -> TMResult? {
+    func nearest(pai: TMResult, paiList: [TMResult]) -> TMResult? {
         var minDistance = Double.infinity
         var nearestPai: TMResult? = nil
         for p in paiList {
@@ -116,16 +119,16 @@ class TMAnalyzer: TMAnalyzerProtocol {
 }
 
 class AnalyzeResult: AnalyzeResultProtocol {
-    let resultList: TMResult[]
-    let paiList: Pai[]
+    let resultList: [TMResult]
+    let paiList: [Pai]
     
-    init(resultList: TMResult[]) {
+    init(resultList: [TMResult]) {
         self.resultList = resultList
         self.paiList = resultList.map{ $0.pai }
     }
     
     //牌のリスト。0番目は手牌の一番左
-    func getPaiList() -> Pai[] {
+    func getPaiList() -> [Pai] {
         return paiList
     }
     

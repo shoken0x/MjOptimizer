@@ -16,18 +16,43 @@ extension String {
 //        return self.substring(from: r.startIndex, length: (r.endIndex - r.startIndex))
 //    }
     
-    func substring (from: Int, _ length: Int) -> String {
-        let intermediate = self.substringFromIndex (from)
-        return intermediate.substringToIndex(length)
+    func substring (var from: Int, _ length: Int) -> String {
+        var fromIndex = self.startIndex
+        while(from > 0) {
+            fromIndex = fromIndex.successor()
+            from = from - 1
+        }
+        let intermediate = self.substringFromIndex (fromIndex)
+        
+        var toIndex = intermediate.startIndex
+        var l = length
+        while(l > 0) {
+            toIndex = toIndex.successor()
+            l = l - 1
+        }
+        return intermediate.substringToIndex(toIndex)
     }
     
     func substringAt (index: Int) -> String {
         return self.substring(index, 1)
     }
     
-    func remove (from: Int, _ length: Int) -> String {
-        let left    =   self.substringToIndex(from)
-        let right   =   self.substringFromIndex(from + length)
+    func remove (var from: Int, _ length: Int) -> String {
+        var fromIndex = self.startIndex
+        while(from > 0) {
+            fromIndex = fromIndex.successor()
+            from = from - 1
+        }
+        let left    =   self.substringToIndex(fromIndex)
+        
+        var toIndex = fromIndex
+        var l = length
+        while(l > 0) {
+            toIndex = toIndex.successor()
+            l = l - 1
+        }
+
+        let right   =   self.substringFromIndex(toIndex)
         return (left + right)
     }
     
