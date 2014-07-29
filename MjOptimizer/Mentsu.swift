@@ -57,6 +57,13 @@ public class Mentsu: Equatable, Comparable {
             return nil
         }
     }
+    public class func parseStr(paiStr:String) -> Mentsu?{
+        let paiList = Pai.parseList(paiStr)
+        if (paiList){
+            return Mentsu.parse(paiList!)!
+        }
+        return nil
+    }
     public func identical() -> Pai { return Pai.parse("m1t")! }
     public func toString() -> String { return "Mentsu" }
     public func fuNum() -> Int { return -200 }
