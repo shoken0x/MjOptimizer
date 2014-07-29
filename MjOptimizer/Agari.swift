@@ -19,6 +19,16 @@ public class Agari:Equatable{
         self.menzenMentsuList = menzenMentsuList
         self.furoMentsuList = []
     }
+    public init(tsumoPai:Pai,atama :ToitsuMentsu,menzenMentsuList:[Mentsu],furoMentsuList:[Mentsu]) {
+        self.tsumoPai = tsumoPai
+        self.atama = atama
+        self.menzenMentsuList = menzenMentsuList
+        self.furoMentsuList = furoMentsuList
+        self.mentsuList = menzenMentsuList
+        for m in furoMentsuList{
+            self.mentsuList.append(m)
+        }
+    }
     public func toString() -> String{
         return "ツモ:" + tsumoPai.toString() + ";雀頭:" + atama.toString() + ";面子リスト:" + join(",",mentsuList.map({ m in m.toString()}))
     }

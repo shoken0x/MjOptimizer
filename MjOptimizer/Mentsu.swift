@@ -8,9 +8,21 @@
 
 import Foundation
 
-public class MentsuFactory{
+public enum MentsuType: Int{
+    case Toitsu  = 1
+    case Chi     = 2
+    case Shuntsu = 3
+    case Pon     = 4
+    case Ankou   = 5
+    case Minkan  = 6
+    case Ankan   = 7
+    case Special = 8
+    case Abstruct = -1
+}
+
+public class Mentsu: Equatable, Comparable {
     //paiListをパースして適切なMentsuを生成する
-    public class func createMentsu(let paiList:[Pai]) -> Mentsu?{
+    public class func parse(let paiList:[Pai]) -> Mentsu?{
         var pl = paiList
         sort(&pl,<)
         var furoNum : Int = 0
@@ -45,36 +57,14 @@ public class MentsuFactory{
             return nil
         }
     }
-    public class func isChi(let paiList: [Pai]) -> Bool{
-        var pl = paiList
-        sort(&pl,<)
-        var furoNum : Int = 0
-        for pai in pl{
-            if pai.isNaki() { furoNum += 1 }
-        }
-        return furoNum == 1 && pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])
-    }
-}
-
-public enum MentsuType: Int{
-    case Toitsu  = 1
-    case Chi     = 2
-    case Shuntsu = 3
-    case Pon     = 4
-    case Ankou   = 5
-    case Minkan  = 6
-    case Ankan   = 7
-    case Special = 8
-    case Abstruct = -1
-}
-
-public class Mentsu: Equatable, Comparable {
     public func identical() -> Pai { return Pai.parse("m1t")! }
     public func toString() -> String { return "Mentsu" }
     public func fuNum() -> Int { return -200 }
     public func isFuro() -> Bool { return false }
     public func size() -> Int { return 0 }
     public func type() -> MentsuType { return MentsuType.Abstruct }
+    public func isChuchan() -> Bool { return false}
+    public func isYaochu() -> Bool { return false}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -109,6 +99,12 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func isFuro()->Bool{return false}
     override public func size()->Int{return 0}
     override public func type()->MentsuType{return MentsuType.Abstruct}
+    override public func isChuchan() -> Bool {
+        return pai.type != .JIHAI && 1 < pai.number && pai.number < 9
+    }
+    override public func isYaochu() -> Bool {
+        return !(self.isChuchan())
+    }
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
@@ -192,6 +188,15 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func isFuro()->Bool{return true}
     override public func size()->Int{return paiList.count}
     override public func type()->MentsuType{return MentsuType.Abstruct}
+    override public func isChuchan() -> Bool {
+        for pai in paiList{
+            if(1 == pai.number) || (pai.number == 9){
+                return false
+            }
+        }
+        return true
+    }
+    override public func isYaochu() -> Bool {return false}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
@@ -232,6 +237,16 @@ public class ChiMentsu: DifferentPaiMentsu{
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return true}
     override public func type()->MentsuType{return MentsuType.Chi}
+    //引数でチーが成立するか
+    public class func isMadeFrom(let paiList: [Pai]) -> Bool{
+        var pl = paiList
+        sort(&pl,<)
+        var furoNum : Int = 0
+        for pai in pl{
+            if pai.isNaki() { furoNum += 1 }
+        }
+        return furoNum == 1 && pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])
+    }
 }
 //国士かシーサンプータ
 public class SpecialMentsu: DifferentPaiMentsu{

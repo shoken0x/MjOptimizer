@@ -120,7 +120,7 @@ public class MentsuResolver{
                 }
                 else{
                     // step1-1-7. Pai配列の残り枚数が9枚以上で、かつ4枚目が1〜3枚目と同じ牌である場合、ポン、明槓のいずれかの可能性がある
-                    if MentsuFactory.isChi(pl[3..6]) {
+                    if ChiMentsu.isMadeFrom(pl[3..6]) {
                         // step1-1-7-1.
                         // 1〜4枚目の牌が全て同じ牌であり、4〜6枚目の牌の組み合わせがチーとなる（鳴き牌は6枚目）場合、
                         // 4〜6枚目の牌の組がチー面子となるのは確実であるため、1〜3枚目の牌の組はポン面子となる。
@@ -158,7 +158,7 @@ public class MentsuResolver{
                     }//1-1-7-4終わり
                 }//1-1-7終わり
             }//1-1終わり
-            else if MentsuFactory.isChi(pl[0..3]) {
+            else if ChiMentsu.isMadeFrom(pl[0..3]) {
                 // step1-2. Pai配列の1〜3枚目の組み合わせがチーとなる
                 return GetOneFuroResult.SUCCESS(ChiMentsu(paiList: pl[0..3]))
             }//1-2終わり

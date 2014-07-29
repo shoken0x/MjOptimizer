@@ -53,11 +53,11 @@ class YakuTanyao : Yaku{
     public func hanNum() -> Int{return 1}
     public func nakiHanNum() -> Int{return 1}
     public func enable(agari:Agari) -> Bool {
-//        for mentsu in agari.mentsuList{
-//            if !(mentsu.isChuchan()) {
-//                return false
-//            }
-//        }
+        for mentsu in agari.mentsuList{
+            if !(mentsu.isChuchan()) {
+                return false
+            }
+        }
         return true
     }
 }

@@ -14,7 +14,16 @@ class YakuJudgerSpec: QuickSpec {
     override func spec() {
         describe("judge"){
             it("return tanyao"){
-                
+//                let agari:Agari = Agari(
+//                    tsumoPai:Pai,
+//                    atama :ToitsuMentsu,
+//                    menzenMentsuList:[
+//                        ShuntsuMentsu(Pai.parseList("m2tm3tm4t")!),
+//                        ShuntsuMentsu(Pai.parseList("m2tm3tm4t")!),
+//                        ShuntsuMentsu(Pai.parseList("m2tm3tm4t")!),
+//                    ],
+//                    furoMentsuList:[Mentsu]) {
+//                    
             }
         }
     }
