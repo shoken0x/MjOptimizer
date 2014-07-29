@@ -8,12 +8,13 @@
 
 import Foundation
 
-class YakuJudger{
+public class YakuJudger{
     let yakuMaster:[Yaku] = [YakuTanyao()]
-    func judge(agari:Agari)->[Yaku]{
+    public init(){}
+    public func judge(agari:Agari)->[Yaku]{
         var resultList:[Yaku] = []
         for yaku in self.yakuMaster{
-            if yaku.enable(agari){
+            if yaku.isConcluded(agari){
                 resultList.append(yaku)
             }
         }

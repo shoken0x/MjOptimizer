@@ -8,12 +8,20 @@
 
 import Foundation
 
-protocol Yaku{
+protocol YakuProtocol{
     func name() -> String
     func kanji() -> String
     func hanNum() -> Int
     func nakiHanNum() -> Int
-    func enable(agari:Agari) -> Bool
+    func isConcluded(agari:Agari) -> Bool
+}
+public class Yaku:YakuProtocol{
+    public init(){}
+    public func name() -> String{return ""}
+    public func kanji() -> String{return ""}
+    public func hanNum() -> Int{return -200}
+    public func nakiHanNum() -> Int{return -200}
+    public func isConcluded(agari:Agari) -> Bool{return false}
 }
 
 ////  ### リーチ
@@ -47,12 +55,13 @@ protocol Yaku{
 //return true
 //end
 //
-class YakuTanyao : Yaku{
-    public func name() -> String{return "タンヤオ"}
-    public func kanji() -> String{return "断么九"}
-    public func hanNum() -> Int{return 1}
-    public func nakiHanNum() -> Int{return 1}
-    public func enable(agari:Agari) -> Bool {
+public class YakuTanyao : Yaku{
+    public init(){}
+    override public func name() -> String{return "tanyao"}
+    override public func kanji() -> String{return "断么九"}
+    override public func hanNum() -> Int{return 1}
+    override public func nakiHanNum() -> Int{return 1}
+    override public func isConcluded(agari:Agari) -> Bool {
         for mentsu in agari.mentsuList{
             if !(mentsu.isChuchan()) {
                 return false
