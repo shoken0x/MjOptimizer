@@ -89,11 +89,11 @@ public class MentsuResolver{
         }
         
         //メインルーチン
-        if pl[0].isNaki() || pl[1].isNaki() || pl[2].isNaki() {
+        if pl[0].isFuro || pl[1].isFuro || pl[2].isFuro {
             // step1. Pai配列の1〜3枚目に鳴き牌が存在する場合、チー、ポン、明槓のいずれかの可能性がある
             if pl[0] == pl[1] && pl[1] == pl[2] {
                 // step1-1. Pai配列の1〜3枚目が全て同じ牌である場合、ポン、明槓のいずれかの可能性がある
-                if pl[3].isNaki() {
+                if pl[3].isFuro {
                     // step1-1-1.Pai配列の4枚目が鳴き牌である場合、ポンとなる
                     return GetOneFuroResult.SUCCESS(PonMentsu(pai: pl[0]))
                 }
@@ -132,7 +132,7 @@ public class MentsuResolver{
                         // 1〜4枚目の牌は組となることが確実であるため、明槓面子となる。
                         // 不要処理（step1-1-7-3で包含され、かつ結果が同じため不要）
                         
-                    else if pl[4].isNaki() || pl[5].isNaki() || pl[6].isNaki() || pl[7].isNaki() {
+                    else if pl[4].isFuro || pl[5].isFuro || pl[6].isFuro || pl[7].isFuro {
                         // step1-1-7-3.
                         // 1〜4枚目の牌が全て同じであり、5〜8枚目の牌のいずれかが鳴き牌だった場合、
                         // この時点で4枚目を含むチー面子は存在せず、かつ同一牌が4枚までしか存在しないことから、
@@ -167,7 +167,7 @@ public class MentsuResolver{
                 return GetOneFuroResult.ERROR("1〜3牌目の中に鳴きの牌があるが、チーでもポンでもない場合である。これは牌を誤検知している")
             }//1-3終わり
         }//step1終わり
-        else if pl[3].isNaki(){
+        else if pl[3].isFuro{
             // step2. Pai配列の1〜3枚目に鳴き牌が存在せず、かつ4枚目が鳴き牌の場合、明槓の可能性がある
             if pl[0] == pl[1] && pl[1] == pl[2] && pl[2] == pl[3] {
                 // step2-1. Pai配列の1〜4枚目の全てが同じ牌である場合、明槓となる

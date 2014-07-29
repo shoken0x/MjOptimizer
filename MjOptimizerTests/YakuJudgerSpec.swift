@@ -25,8 +25,8 @@ class YakuJudgerSpec: QuickSpec {
                 menzenMentsuList.append(Mentsu.parseStr("m2tm2t")!)
                 furoMentsuList.append(Mentsu.parseStr("s2ts2ts2l")!)
                 let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
-                
-                let yakuList:[Yaku] = yakuJudger.judge(agari)
+                let kyoku = Kyoku()
+                let yakuList:[Yaku] = yakuJudger.judge(agari,kyoku: kyoku)
                 expect(yakuList.count).to(equal(1))
                 expect(yakuList[0].kanji()).to(equal("断么九"))
             }

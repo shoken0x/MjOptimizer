@@ -177,6 +177,7 @@
 		C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC4451196319E7009AEA97 /* Array+Slice.swift */; };
 		C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */; };
 		C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE67619810F1700CB5681 /* MentsuList.swift */; };
+		C4E90DAA1989283A00948322 /* Kyoku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E90DA91989283A00948322 /* Kyoku.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
 		C4F9B02B194DA71B003FFEEC /* PaiSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */; };
 		C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */; };
@@ -578,6 +579,7 @@
 		C4DC4451196319E7009AEA97 /* Array+Slice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Slice.swift"; sourceTree = "<group>"; };
 		C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolver.swift; sourceTree = "<group>"; };
 		C4DEE67619810F1700CB5681 /* MentsuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuList.swift; sourceTree = "<group>"; };
+		C4E90DA91989283A00948322 /* Kyoku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kyoku.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
 		C4F9B02A194DA71B003FFEEC /* PaiSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiSpec.swift; sourceTree = "<group>"; };
 		C4F9B02C194DA7EB003FFEEC /* UkeirePai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UkeirePai.swift; sourceTree = "<group>"; };
@@ -921,6 +923,7 @@
 		C42D75611961802B00183C24 /* parse */ = {
 			isa = PBXGroup;
 			children = (
+				C4E90DA91989283A00948322 /* Kyoku.swift */,
 				C40B15C7197EB84500880D4C /* Agari.swift */,
 				C4AC26551986A2D8007533C6 /* Yaku.swift */,
 				C42D756F196180C600183C24 /* Mentsu.swift */,
@@ -1328,6 +1331,7 @@
 				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
 				C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */,
 				C4CC34091954A7150030EE0A /* NSArray.swift in Sources */,
+				C4E90DAA1989283A00948322 /* Kyoku.swift in Sources */,
 				C4CC340A1954A7150030EE0A /* Range.swift in Sources */,
 				34636E691954CB34004F41F6 /* TMARes.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,

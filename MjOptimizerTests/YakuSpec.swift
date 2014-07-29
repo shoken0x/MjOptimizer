@@ -26,7 +26,8 @@ class YakuSpec: QuickSpec {
                 ]
                 let tsumoPai = Pai.parse("m2t")!
                 let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
-                expect(YakuTanyao().isConcluded(agari)).to(beTruthy())
+                let kyoku = Kyoku()
+                expect(YakuTanyao().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
             it("return false"){
                 let atama = ToitsuMentsu(pai: Pai.parse("j1t")!)
@@ -41,7 +42,8 @@ class YakuSpec: QuickSpec {
                 ]
                 let tsumoPai = Pai.parse("m2t")!
                 let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
-                expect(YakuTanyao().isConcluded(agari)).to(beFalsy())
+                let kyoku = Kyoku()
+                expect(YakuTanyao().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
         }
     }

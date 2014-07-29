@@ -363,7 +363,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             
             it("アンカン表裏裏表"){
-                let pl : [Pai] = Pai.parseList( "j1tj1tj3tj3tj3tp6lp7tp8tp9tr1tr1tp9t")!
+                let pl : [Pai] = Pai.parseList( "j1tj1tj3tj3tj3tp6lp7tp8tp9tr0tr0tp9t")!
                 let getOneFuroResult : GetOneFuroResult = MentsuResolver.getOneFuro(pl)
                 switch getOneFuroResult{
                 case let .SUCCESS(mentsu):
@@ -374,7 +374,7 @@ class MentsuResolverSpec: QuickSpec {
                 }
             }
             it("アンカン裏表表裏"){
-                let pl : [Pai] = Pai.parseList( "j1tj1tj3tj3tj3tp6lp7tp8tr1tp9tp9tr1t")!
+                let pl : [Pai] = Pai.parseList( "j1tj1tj3tj3tj3tp6lp7tp8tr0tp9tp9tr0t")!
                 let getOneFuroResult : GetOneFuroResult = MentsuResolver.getOneFuro(pl)
                 switch getOneFuroResult{
                 case let .SUCCESS(mentsu):

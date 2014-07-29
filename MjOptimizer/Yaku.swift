@@ -13,7 +13,7 @@ protocol YakuProtocol{
     func kanji() -> String
     func hanNum() -> Int
     func nakiHanNum() -> Int
-    func isConcluded(agari:Agari) -> Bool
+    func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool
 }
 public class Yaku:YakuProtocol{
     public init(){}
@@ -21,7 +21,7 @@ public class Yaku:YakuProtocol{
     public func kanji() -> String{return ""}
     public func hanNum() -> Int{return -200}
     public func nakiHanNum() -> Int{return -200}
-    public func isConcluded(agari:Agari) -> Bool{return false}
+    public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool{return false}
 }
 
 ////  ### リーチ
@@ -30,38 +30,36 @@ public class Yaku:YakuProtocol{
 //end
 //
 //### 平和
-//def pinfu?(tehai, kyoku)
-//#鳴きなし判定
-//return false if tehai.naki?
-//
-//#全てが順子であること
-//return false unless tehai.mentsu_list.all? {|mentsu| mentsu.shuntsu? }
-//
-//#頭が役牌ではないこと
-//return false if tehai.atama.yakupai?(kyoku)
-//
-//#待ちが両面であること
-//return false unless tehai.ryanmen_agari?
-//
-//return true
-//end
-//
+public class YakuPinfu : Yaku{
+    public init(){}
+    override public func name() -> String{return "pinfu"}
+    override public func kanji() -> String{return "平和"}
+    override public func hanNum() -> Int{return 1}
+    override public func nakiHanNum() -> Int{return 0}
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
+        //鳴き無し　かつ　すべてシュンツ
+        for mentsu in agari.mentsuList{
+            if mentsu.type() != MentsuType.SHUNTSU || mentsu.isFuro(){
+                return false
+            }
+        }
+        //頭が役牌ではないこと
+        if agari.atama.pai.isHaku() || agari.atama.pai.isHatsu() || agari.atama.pai.isChun() || agari.atama.pai == kyoku.jikaze.toPai() || agari.atama.pai == kyoku.bakaze.toPai(){
+            return false
+        }
+        //待ちが両面であること
+        return true
+    }
+}
 
-//### 断么九
-//def tanyao?(tehai, kyoku)
-//return false if tehai.atama.yaochu?
-//return false if tehai.mentsu_list.any?{|mentsu| mentsu.yaochu? }
-//
-//return true
-//end
-//
+//断么九
 public class YakuTanyao : Yaku{
     public init(){}
     override public func name() -> String{return "tanyao"}
     override public func kanji() -> String{return "断么九"}
     override public func hanNum() -> Int{return 1}
     override public func nakiHanNum() -> Int{return 1}
-    override public func isConcluded(agari:Agari) -> Bool {
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
         for mentsu in agari.mentsuList{
             if !(mentsu.isChuchan()) {
                 return false

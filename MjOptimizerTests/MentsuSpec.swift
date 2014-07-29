@@ -130,7 +130,7 @@ class MentsuSpec: QuickSpec {
                 expect(ChiMentsu.isMadeFrom(Pai.parseList("m1lm2lm3l")!)).to(beFalsy())
                 expect(ChiMentsu.isMadeFrom(Pai.parseList("m1ts2tm3l")!)).to(beFalsy())
                 expect(ChiMentsu.isMadeFrom(Pai.parseList("j1tj2tj3l")!)).to(beFalsy())
-                expect(ChiMentsu.isMadeFrom(Pai.parseList("r1tr2tr3l")!)).to(beFalsy())
+                expect(ChiMentsu.isMadeFrom(Pai.parseList("r0tr0tr0t")!)).to(beFalsy())
                 expect(ChiMentsu.isMadeFrom(Pai.parseList("s1ts2tm3l")!)).to(beFalsy())
             }
         }
