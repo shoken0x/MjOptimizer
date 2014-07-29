@@ -32,7 +32,7 @@ public class MentsuResolver{
             case let .SUCCESS(agariList):
                 for agari in agariList{
                     //面前の面子リストだけ入っているアガリに対して、ふうろを追加する
-                    agari.addFuroMentsuList(furoMentsuList)
+                    agari.addFuroMentsuList(furoMentsuList.array)
                 }
                 return MentsuResolveResult.SUCCESS(agariList)
             case let .ERROR(msg):
@@ -222,7 +222,7 @@ public class MentsuResolver{
                         var agari :Agari = Agari(
                             tsumoPai: tsumoPai,
                             atama: atama,
-                            menzenMentsuList: mentsuList
+                            menzenMentsuList: mentsuList.array
                         )
                         agariList.append(agari)
                     }
@@ -347,7 +347,7 @@ public class MentsuResolver{
 
 
 public enum GetOneFuroResult{
-    case SUCCESS(MentsuBase) //一つの副露面子を取得
+    case SUCCESS(Mentsu) //一つの副露面子を取得
     case ERROR(String) //入力不正
     case FINISH(String) //これ以上副露面子はない
 }

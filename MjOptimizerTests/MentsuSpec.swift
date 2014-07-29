@@ -14,103 +14,103 @@ class MentsuSpec: QuickSpec {
     override func spec() {
         describe("=="){
             it("returns true when compare same toitsu mentsu"){
-                var m1:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
-                var m2:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
                 expect(m1 == m2).to(beTruthy())
             }
             it("returns true when compare same shuntsu mentsu"){
-                var m1:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
-                var m2:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m1:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
                 expect(m1 == m2).to(beTruthy())
             }
             it("returns true when compare different toitsu mentsu"){
-                var m1:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
-                var m2:MentsuBase = ToitsuMentsu(pai: Pai.parse("m2t")!)
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m2t")!)
                 expect(m1 == m2).to(beFalsy())
             }
             it("returns false when compare different shuntsu mentsu"){
-                var m1:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
-                var m2:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
+                var m1:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
                 expect(m1 == m2).to(beFalsy())
             }
             it("returns false when compare different type mentsu"){
-                var m1:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
-                var m2:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m2tm3tm4t")!)
                 expect(m1 == m2).to(beFalsy())
             }
         }
         describe("<"){
             it("returns true when compare different toitsu mentsu"){
-                var m1:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
-                var m2:MentsuBase = ToitsuMentsu(pai: Pai.parse("m2t")!)
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ToitsuMentsu(pai: Pai.parse("m2t")!)
                 expect(m1 < m2).to(beTruthy())
             }
             it("returns true when compare different type mentsu"){
-                var m1:MentsuBase = ToitsuMentsu(pai: Pai.parse("m1t")!)
-                var m2:MentsuBase = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
                 expect(m1 < m2).to(beTruthy())
             }
         }
         describe("MentsuFactory.createMentsu"){
             it("makes シュンツ"){
                 var pl:[Pai] = Pai.parseList("m1tm2tm3t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("シュンツ:m1m2m3"))
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes シュンツ2"){
                 var pl:[Pai] = Pai.parseList("m2tm1tm3t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("シュンツ:m1m2m3"))
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes チー"){
                 var pl:[Pai] = Pai.parseList("m1tm2lm3t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("チー:m1m2m3"))
                 expect(m.isFuro()).to(beTruthy())
                 expect(m.size()).to(equal(3))
             }
             it("makes トイツ"){
                 var pl:[Pai] = Pai.parseList("m1tm1t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("トイツ:m1"))
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(2))
             }
             it("makes アンコウ"){
                 var pl:[Pai] = Pai.parseList("m1tm1tm1t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("アンコウ:m1"))
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes ポン"){
                 var pl:[Pai] = Pai.parseList("m1tm1tm1l")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("ポン:m1"))
                 expect(m.isFuro()).to(beTruthy())
                 expect(m.size()).to(equal(3))
             }
             it("makes アンカン"){
                 var pl:[Pai] = Pai.parseList("m1tm1tm1tm1t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("アンカン:m1"))
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(4))
             }
             it("makes ミンカン"){
                 var pl:[Pai] = Pai.parseList("m1tm1tm1tm1l")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.toString()).to(equal("ミンカン:m1"))
                 expect(m.isFuro()).to(beTruthy())
                 expect(m.size()).to(equal(4))
             }
             it("makes 特殊面子"){
                 var pl:[Pai] = Pai.parseList("m1tm9ts1ts9tp1tp9tj1tj2tj3tj4tj5tj6tj7tj7t")!
-                var m:MentsuBase = MentsuFactory.createMentsu(pl)!
+                var m:Mentsu = MentsuFactory.createMentsu(pl)!
                 expect(m.isFuro()).to(beFalsy())
                 expect(m.size()).to(equal(14))
            }

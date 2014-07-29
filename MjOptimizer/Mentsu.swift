@@ -10,7 +10,7 @@ import Foundation
 
 public class MentsuFactory{
     //paiListをパースして適切なMentsuを生成する
-    public class func createMentsu(let paiList:[Pai]) -> MentsuBase?{
+    public class func createMentsu(let paiList:[Pai]) -> Mentsu?{
         var pl = paiList
         sort(&pl,<)
         var furoNum : Int = 0
@@ -68,38 +68,29 @@ public enum MentsuType: Int{
     case Abstruct = -1
 }
 
-protocol Mentsu {
-    func identical() ->Pai
-    func toString() -> String
-    func fuNum() -> Int
-    func isFuro()->Bool
-    func size() -> Int
-    func type() -> MentsuType
-}
-
-public class MentsuBase: Mentsu, Equatable, Comparable {
+public class Mentsu: Equatable, Comparable {
     public func identical() -> Pai { return Pai.parse("m1t")! }
-    public func toString() -> String { return "MentsuBase" }
+    public func toString() -> String { return "Mentsu" }
     public func fuNum() -> Int { return -200 }
     public func isFuro() -> Bool { return false }
     public func size() -> Int { return 0 }
     public func type() -> MentsuType { return MentsuType.Abstruct }
 }
 
-public func == (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
+public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
 }
-func != (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
+func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
     return !(lhs == rhs)
 }
-public func < (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
+public func < (lhs: Mentsu, rhs: Mentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() < rhs.type().toRaw()
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
-public func > (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
+public func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() > rhs.type().toRaw()
     }else{
@@ -108,7 +99,7 @@ public func > (lhs: MentsuBase, rhs: MentsuBase) -> Bool {
 }
 
 //同じ牌で構成される面子の親クラス
-public class SamePaiMentsu: MentsuBase,Equatable,Comparable{
+public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     var pai : Pai
     public init(pai:Pai){self.pai = pai}
     public init(paiList:[Pai]){self.pai = paiList[0]}
@@ -183,7 +174,7 @@ public class MinkanMentsu: SamePaiMentsu{
 }
 
 //異なる牌で構成される面子の親クラス
-public class DifferentPaiMentsu: MentsuBase,Equatable,Comparable{
+public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     var paiList : [Pai]
     public init(paiList:[Pai]) {
         self.paiList = paiList

@@ -7,31 +7,31 @@
 //
 
 public class MentsuList:Equatable{
-    var list : [MentsuBase]
-    public init(){self.list = []}
-    public init(list : [MentsuBase]){ self.list = list }
-    public func append(mentsu : MentsuBase){self.list.append(mentsu)}
+    var array : [Mentsu]
+    public init(){self.array = []}
+    public init(list : [Mentsu]){ self.array = list }
+    public func append(mentsu : Mentsu){self.array.append(mentsu)}
     public func toString() -> String{
-        return "面子リスト:" + join(",",self.list.map({ m in m.toString() }))
+        return "面子リスト:" + join(",",self.array.map({ m in m.toString() }))
     }
-    public subscript(index:Int)->MentsuBase{
-        get{ return self.list[index] }
-        set(mentsu){ self.list[index] = mentsu }
+    public subscript(index:Int)->Mentsu{
+        get{ return self.array[index] }
+        set(mentsu){ self.array[index] = mentsu }
     }
     public func sortting(){
-        sort(&self.list){return $0 < $1}
+        sort(&self.array){return $0 < $1}
     }
     //含まれる牌の総数を返す
     public func paiCount() -> Int{
         var sum = 0
-        for mentsu in self.list{
+        for mentsu in self.array{
             sum += mentsu.size()
         }
         return sum
     }
     public func union(mentsuList:MentsuList){
-        for mentsu in mentsuList.list{
-            self.list.append(mentsu)
+        for mentsu in mentsuList.array{
+            self.array.append(mentsu)
         }
     }
 }
