@@ -23,8 +23,8 @@ public class Agari:Equatable{
         return "ツモ:" + tsumoPai.toString() + ";雀頭:" + atama.toString() + ";面子リスト:" + mentsuList.toString()
     }
     public func addFuroMentsuList(furoMentsuList:MentsuList){
-        self.furoMentsuList.union(mentsuList)
-        self.mentsuList.union(mentsuList)
+        self.furoMentsuList.union(furoMentsuList)
+        self.mentsuList.union(furoMentsuList)
     }
 }
 public func == (lhs: Agari, rhs: Agari) -> Bool {

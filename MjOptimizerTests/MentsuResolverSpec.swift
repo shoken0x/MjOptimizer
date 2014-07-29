@@ -13,6 +13,25 @@ import Nimble
 
 class MentsuResolverSpec: QuickSpec {
     override func spec() {
+        describe("resolve"){
+            it("returns mentsu list 1"){
+                let pl : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
+                let mrr : MentsuResolveResult = MentsuResolver.resolve(pl)
+                switch mrr{
+                case let .SUCCESS(agariList):
+                    expect(agariList.count).to(equal(1))
+                    expect(agariList[0].atama.toString()).to(equal("トイツ:j1"))
+                    expect(agariList[0].furoMentsuList[0].toString()).to(equal("ポン:j2"))
+                    expect(agariList[0].menzenMentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[0].menzenMentsuList[1].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[0].menzenMentsuList[2].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[0].menzenMentsuList[3].toString()).to(equal("トイツ:j1"))
+                default:
+                    //この分岐にきたらテスト失敗
+                    expect(false).to(beTruthy())
+                }
+            }
+        }
         describe("furoResolve"){
             it("returns mentsu list 1"){
                 let pl : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
