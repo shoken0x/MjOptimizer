@@ -15,6 +15,7 @@ protocol YakuProtocol{
     func nakiHanNum() -> Int
     func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool
 }
+//親クラス
 public class Yaku:YakuProtocol{
     public init(){}
     public func name() -> String{return ""}
@@ -24,12 +25,9 @@ public class Yaku:YakuProtocol{
     public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool{return false}
 }
 
-////  ### リーチ
-//def reach?(tehai, kyoku)
-//kyoku.reach?
-//end
-//
-//### 平和
+//リーチ
+
+//平和
 public class YakuPinfu : Yaku{
     public init(){}
     override public func name() -> String{return "pinfu"}
@@ -37,18 +35,12 @@ public class YakuPinfu : Yaku{
     override public func hanNum() -> Int{return 1}
     override public func nakiHanNum() -> Int{return 0}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        //鳴き無し　かつ　すべてシュンツ
-        for mentsu in agari.mentsuList{
-            if mentsu.type() != MentsuType.SHUNTSU || mentsu.isFuro(){
-                return false
-            }
-        }
-        //頭が役牌ではないこと
-        if agari.atama.pai.isHaku() || agari.atama.pai.isHatsu() || agari.atama.pai.isChun() || agari.atama.pai == kyoku.jikaze.toPai() || agari.atama.pai == kyoku.bakaze.toPai(){
-            return false
-        }
-        //待ちが両面であること
-        return true
+        return  agari.mentsuList.filter{$0 is ShuntsuMentsu}.count == 4 && //4シュンツ
+                agari.mentsuList.filter{$0 is ToitsuMentsu}.count == 1 && //1トイツ
+                !(agari.atama.pai.isSangen)  && //雀頭が三元牌ではない
+                agari.atama.pai != kyoku.jikaze.toPai() && //雀頭が自風ではない
+                agari.atama.pai != kyoku.bakaze.toPai() && //雀頭が場風ではない
+                agari.isRyanmenMachi() //待ちが両面であること
     }
 }
 
@@ -60,12 +52,7 @@ public class YakuTanyao : Yaku{
     override public func hanNum() -> Int{return 1}
     override public func nakiHanNum() -> Int{return 1}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        for mentsu in agari.mentsuList{
-            if !(mentsu.isChuchan()) {
-                return false
-            }
-        }
-        return true
+        return agari.mentsuList.all({$0.isChuchan()})
     }
 }
 

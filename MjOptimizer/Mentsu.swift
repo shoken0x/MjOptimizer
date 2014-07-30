@@ -19,8 +19,19 @@ public enum MentsuType: Int{
     case SPECIAL = 8
     case ABSTRUCT = -1
 }
+protocol MentsuProtocol{
+    func identical() -> Pai
+    func toString() -> String
+    func fuNum() -> Int
+    func isFuro() -> Bool
+    func size() -> Int
+    func type() -> MentsuType
+    func include(pai:Pai) -> Bool
+    func isChuchan() -> Bool
+    func isYaochu() -> Bool
 
-public class Mentsu: Equatable, Comparable {
+}
+public class Mentsu: MentsuProtocol, Equatable, Comparable {
     //paiListをパースして適切なMentsuを生成する
     public class func parse(let paiList:[Pai]) -> Mentsu?{
         var pl = paiList
@@ -71,6 +82,7 @@ public class Mentsu: Equatable, Comparable {
     public func isFuro() -> Bool { return false }
     public func size() -> Int { return 0 }
     public func type() -> MentsuType { return MentsuType.ABSTRUCT }
+    public func include(pai:Pai) ->Bool {return false}
     public func isChuchan() -> Bool { return false}
     public func isYaochu() -> Bool { return false}
 }
@@ -107,6 +119,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func isFuro()->Bool{return false}
     override public func size()->Int{return 0}
     override public func type()->MentsuType{return MentsuType.ABSTRUCT}
+    override public func include(pai:Pai)->Bool {return self.pai == pai}
     override public func isChuchan() -> Bool { return pai.isChuchan}
     override public func isYaochu() -> Bool { return pai.isYaochu}
 }
@@ -182,17 +195,14 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     }
     override public func identical() -> Pai{return self.paiList[0]}
     override public func toString() -> String{
-        var str: String = ""
-        for pai in paiList{
-            str += pai.type.toRaw() + String(pai.number)
-        }
-        return str
+        return join("",paiList.map({ $0.type.toRaw() + String($0.number)}))
     }
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return true}
     override public func size()->Int{return paiList.count}
     override public func type()->MentsuType{return MentsuType.ABSTRUCT}
-    override public func isChuchan() -> Bool {return paiList.all({pai in pai.isChuchan})}
+    override public func include(pai:Pai)->Bool {return paiList.any({$0 == pai})}
+    override public func isChuchan() -> Bool {return paiList.all({$0.isChuchan})}
     override public func isYaochu() -> Bool {return false}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {

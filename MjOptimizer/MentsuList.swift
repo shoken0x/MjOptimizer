@@ -12,7 +12,7 @@ public class MentsuList:Equatable{
     public init(list : [Mentsu]){ self.array = list }
     public func append(mentsu : Mentsu){self.array.append(mentsu)}
     public func toString() -> String{
-        return "面子リスト:" + join(",",self.array.map({ m in m.toString() }))
+        return "面子リスト:" + join(",",self.array.map({$0.toString() }))
     }
     public subscript(index:Int)->Mentsu{
         get{ return self.array[index] }

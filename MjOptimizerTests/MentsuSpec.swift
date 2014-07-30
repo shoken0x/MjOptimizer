@@ -119,6 +119,16 @@ class MentsuSpec: QuickSpec {
                 expect(Mentsu.parse(pl) == nil).to(beTruthy())
             }
         }
+        describe("include"){
+            it("works"){
+                var m1:Mentsu = ToitsuMentsu(pai: Pai.parse("m1t")!)
+                var m2:Mentsu = ShuntsuMentsu(paiList: Pai.parseList("m1tm2tm3t")!)
+                expect(m1.include(PaiMaster.m1)).to(beTruthy())
+                expect(m1.include(PaiMaster.m2)).to(beFalsy())
+                expect(m2.include(PaiMaster.m2)).to(beTruthy())
+                expect(m2.include(PaiMaster.m5)).to(beFalsy())
+            }
+        }
         describe("ChiMentsu.isMadeFrom"){
             it("workds"){
                 expect(ChiMentsu.isMadeFrom(Pai.parseList("m1tm2tm3l")!)).to(beTruthy())
