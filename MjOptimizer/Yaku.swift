@@ -56,7 +56,22 @@ public class YakuTanyao : Yaku{
     }
 }
 
-//### 一盃口
+//一盃口
+public class YakuIipeikou : Yaku{
+    public init(){}
+    override public func name() -> String{return "iipeikou"}
+    override public func kanji() -> String{return "一盃口"}
+    override public func hanNum() -> Int{return 1}
+    override public func nakiHanNum() -> Int{return 0}
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
+        for mentsuConbi : [Mentsu] in agari.mentsuList.conbination(){
+            if mentsuConbi[0] == mentsuConbi[1] {
+                return true
+            }
+        }
+        return false
+    }
+}
 //def iipeikou?(tehai, kyoku)
 //#鳴きなし判定
 //return false if tehai.naki?

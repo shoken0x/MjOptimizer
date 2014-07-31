@@ -54,6 +54,9 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
                 break
             }
         }
+        for pai in pl{
+            println("■" + pai.toString())
+        }
         if(pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])){
             return isFuro ? ChiMentsu(paiList:pl) : ShuntsuMentsu(paiList:pl)
         }else if(pl.count == 2 && pl[0] == pl[1] && !isFuro){
@@ -76,7 +79,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
         }
         return nil
     }
-    public func identical() -> Pai { return PaiMaster.ton }
+    public func identical() -> Pai { return PaiMaster.pais["j1t"]! }
     public func toString() -> String { return "Mentsu親クラス" }
     public func fuNum() -> Int { return -200 }
     public func isFuro() -> Bool { return false }

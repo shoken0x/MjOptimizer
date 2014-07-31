@@ -215,7 +215,7 @@ public class SutehaiSelector: SutehaiSelectorProtocol{
             var selectedPaiList: [Pai] = []
             
             for pai in tehai.restPaiList{
-                if pai.equal(targetPai) {
+                if pai == targetPai {
                     selectedPaiList += pai
                 }
             }
@@ -363,7 +363,7 @@ public class SutehaiSelector: SutehaiSelectorProtocol{
             var selectedPaiList: [Pai] = []
             
             for pai in tehai.restPaiList{
-                if pai.equal(targetPai) {
+                if pai == targetPai {
                     selectedPaiList += pai
                 }
             }

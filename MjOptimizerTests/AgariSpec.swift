@@ -14,7 +14,7 @@ class AgariSpec: QuickSpec {
     override func spec() {
         describe("isRyanmenMachi"){
             it("return true"){
-                let atama = ToitsuMentsu(pai: PaiMaster.m2)
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m2t"]!)
                 let menzenMentsuList:[Mentsu] = [
                     Mentsu.parseStr("m2tm3tm4t")!,
                     Mentsu.parseStr("s5ts3ts4t")!,
@@ -24,12 +24,12 @@ class AgariSpec: QuickSpec {
                 let furoMentsuList:[Mentsu] = [
                     Mentsu.parseStr("s2ts2ts2l")!
                 ]
-                let tsumoPai = PaiMaster.m2
+                let tsumoPai = PaiMaster.pais["m2t"]!
                 let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
                 expect(agari.isRyanmenMachi()).to(beTruthy())
             }
             it("return false"){
-                let atama = ToitsuMentsu(pai: PaiMaster.m2)
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m2t"]!)
                 let menzenMentsuList:[Mentsu] = [
                     Mentsu.parseStr("m2tm3tm4t")!,
                     Mentsu.parseStr("m3tm3tm3t")!,
@@ -39,7 +39,7 @@ class AgariSpec: QuickSpec {
                 let furoMentsuList:[Mentsu] = [
                     Mentsu.parseStr("s2ts2ts2l")!
                 ]
-                let tsumoPai = PaiMaster.m3
+                let tsumoPai = PaiMaster.pais["m3t"]!
                 let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
                 expect(agari.isRyanmenMachi()).to(beFalsy())
             }

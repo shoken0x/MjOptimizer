@@ -69,7 +69,7 @@ public class Pai: Equatable, Comparable {
     
     public func next(range: Int = 1) -> Pai?{
         if self.isShupai && self.number < 10 - range {
-                return Pai(type: self.type,number: self.number + range)
+            return PaiMaster.pais[self.type.toRaw() + String(self.number + range) + PaiDirection.TOP.toRaw()]!
         }else{
             return nil
         }
@@ -77,31 +77,18 @@ public class Pai: Equatable, Comparable {
     
     public func prev(range: Int = 1) -> Pai?{
         if self.isShupai && self.number > range {
-            return Pai(type: self.type,number: self.number - range)
+            return PaiMaster.pais[self.type.toRaw() + String(self.number - range) + PaiDirection.TOP.toRaw()]!
         }else{
             return nil
         }
     }
     public func getNextPai(range: Int = 1) -> Pai?{ return next(range: range) }
-
     public func getPrevPai(range: Int = 1) -> Pai?{ return prev(range: range) }
-
-
     public func isNext(pai:Pai) -> Bool{return pai == self.next()}
- 
     public func isPrev(pai:Pai) -> Bool{return pai == self.prev()}
-    
-    public func equal(other: Pai) -> Bool{ return self.toString() == other.toString() }
-    public func isJihai() -> Bool{ return self.type == .JIHAI}
-    public func isTon()->Bool{return self.type == .JIHAI && self.number == 1}
-    public func isNan()->Bool{return self.type == .JIHAI && self.number == 2}
-    public func isSha()->Bool{return self.type == .JIHAI && self.number == 3}
-    public func isPei()->Bool{return self.type == .JIHAI && self.number == 4}
-    public func isHaku()->Bool{return self.type == .JIHAI && self.number == 5}
-    public func isHatsu()->Bool{return self.type == .JIHAI && self.number == 6}
-    public func isChun()->Bool{return self.type == .JIHAI && self.number == 7}
-    
     public func clone() -> Pai{ return Pai(type: self.type,number: self.number,direction: self.direction) }
+
+
 }
 
 //牌の種類が同じであれば数字の大小で比較する.牌の種類が違うとfalse
@@ -270,52 +257,4 @@ public struct PaiMaster{
 
         "r0t" : Pai(type: PaiType.REVERSE,number:0,direction:PaiDirection.TOP),
     ]
-    public static let j1:Pai = PaiMaster.pais["j1t"]!
-    public static let j2:Pai = PaiMaster.pais["j2t"]!
-    public static let j3:Pai = PaiMaster.pais["j3t"]!
-    public static let j4:Pai = PaiMaster.pais["j4t"]!
-    public static let j5:Pai = PaiMaster.pais["j5t"]!
-    public static let j6:Pai = PaiMaster.pais["j6t"]!
-    public static let j7:Pai = PaiMaster.pais["j7t"]!
-    
-    public static let m1:Pai = PaiMaster.pais["m1t"]!
-    public static let m2:Pai = PaiMaster.pais["m2t"]!
-    public static let m3:Pai = PaiMaster.pais["m3t"]!
-    public static let m4:Pai = PaiMaster.pais["m4t"]!
-    public static let m5:Pai = PaiMaster.pais["m5t"]!
-    public static let m6:Pai = PaiMaster.pais["m6t"]!
-    public static let m7:Pai = PaiMaster.pais["m7t"]!
-    public static let m8:Pai = PaiMaster.pais["m8t"]!
-    public static let m9:Pai = PaiMaster.pais["m9t"]!
-    
-    public static let s1:Pai = PaiMaster.pais["s1t"]!
-    public static let s2:Pai = PaiMaster.pais["s2t"]!
-    public static let s3:Pai = PaiMaster.pais["s3t"]!
-    public static let s4:Pai = PaiMaster.pais["s4t"]!
-    public static let s5:Pai = PaiMaster.pais["s5t"]!
-    public static let s6:Pai = PaiMaster.pais["s6t"]!
-    public static let s7:Pai = PaiMaster.pais["s7t"]!
-    public static let s8:Pai = PaiMaster.pais["s8t"]!
-    public static let s9:Pai = PaiMaster.pais["s9t"]!
-    
-    public static let p1:Pai = PaiMaster.pais["p1t"]!
-    public static let p2:Pai = PaiMaster.pais["p2t"]!
-    public static let p3:Pai = PaiMaster.pais["p3t"]!
-    public static let p4:Pai = PaiMaster.pais["p4t"]!
-    public static let p5:Pai = PaiMaster.pais["p5t"]!
-    public static let p6:Pai = PaiMaster.pais["p6t"]!
-    public static let p7:Pai = PaiMaster.pais["p7t"]!
-    public static let p8:Pai = PaiMaster.pais["p8t"]!
-    public static let p9:Pai = PaiMaster.pais["p9t"]!
-    
-    public static let r0:Pai = PaiMaster.pais["r0t"]!
-    
-    public static let ton:Pai   = PaiMaster.j1
-    public static let nan:Pai   = PaiMaster.j2
-    public static let sha:Pai   = PaiMaster.j3
-    public static let pei:Pai   = PaiMaster.j4
-    public static let haku:Pai  = PaiMaster.j5
-    public static let hatsu:Pai = PaiMaster.j6
-    public static let chun:Pai  = PaiMaster.j7
-    public static let ura:Pai  = PaiMaster.r0
 }

@@ -149,6 +149,7 @@
 		C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */; };
 		C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */; };
 		C44F27B41987EECB0058B3C3 /* YakuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F27B31987EECB0058B3C3 /* YakuSpec.swift */; };
+		C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46217D21989FB65002982B2 /* Array+Conbination.swift */; };
 		C4621A6E1955519700F43A2F /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */; };
 		C4798DA11986B2FD00EE0B6F /* YakuJudgerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4798DA01986B2FD00EE0B6F /* YakuJudgerSpec.swift */; };
@@ -481,7 +482,6 @@
 		34636E6A1954CD6D004F41F6 /* TMAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzer.swift; sourceTree = "<group>"; };
 		34636E6C1954CFBB004F41F6 /* TMResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMResult.swift; sourceTree = "<group>"; };
 		3497FBC7194F6086005C58A8 /* String+SliceWith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SliceWith.swift"; sourceTree = "<group>"; };
-		3497FBC9194F629C005C58A8 /* String+SliceWithSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+SliceWithSpec.swift"; path = "../MjOptimizerTests/String+SliceWithSpec.swift"; sourceTree = "<group>"; };
 		441CDF25194BDF6200199893 /* MjOptimizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MjOptimizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		441CDF29194BDF6200199893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		441CDF2A194BDF6200199893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -560,6 +560,7 @@
 		C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerMock.swift; sourceTree = "<group>"; };
 		C44F27B31987EECB0058B3C3 /* YakuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuSpec.swift; sourceTree = "<group>"; };
+		C46217D21989FB65002982B2 /* Array+Conbination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Conbination.swift"; sourceTree = "<group>"; };
 		C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorSpec.swift; sourceTree = "<group>"; };
 		C4798DA01986B2FD00EE0B6F /* YakuJudgerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuJudgerSpec.swift; sourceTree = "<group>"; };
 		C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolverSpec.swift; sourceTree = "<group>"; };
@@ -790,9 +791,9 @@
 				444F5B5819516C00007178D8 /* ExSwift */,
 				44270B1F194F361A00CE7E7A /* Collection+EachWithIndex.swift */,
 				44270B20194F361A00CE7E7A /* String+Substring.swift */,
-				3497FBC9194F629C005C58A8 /* String+SliceWithSpec.swift */,
 				3497FBC7194F6086005C58A8 /* String+SliceWith.swift */,
 				C4DC4451196319E7009AEA97 /* Array+Slice.swift */,
+				C46217D21989FB65002982B2 /* Array+Conbination.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1365,6 +1366,7 @@
 				C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */,
 				C4CC34021954A52D0030EE0A /* ViewUtils.swift in Sources */,
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
+				C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */,
 				C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */,
 				C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,

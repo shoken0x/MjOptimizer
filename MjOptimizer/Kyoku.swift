@@ -15,10 +15,10 @@ public enum Kaze : String{
     case PEI = "pei"
     public func toPai() -> Pai{
         switch self{
-        case .TON: return PaiMaster.ton
-        case .NAN: return PaiMaster.nan
-        case .SHA: return PaiMaster.sha
-        case .PEI: return PaiMaster.pei
+        case .TON: return PaiMaster.pais["j1t"]!
+        case .NAN: return PaiMaster.pais["j2t"]!
+        case .SHA: return PaiMaster.pais["j3t"]!
+        case .PEI: return PaiMaster.pais["j4t"]!
         }
     }
 }
