@@ -52,6 +52,7 @@ public class Agari:Equatable{
         }
         return false
     }
+    public func includeFuro()-> Bool{return furoMentsuList.count > 0}
     public func toString() -> String{
         return "ツモ:" + tsumoPai.toString() + ";雀頭:" + atama.toString() + ";面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
     }

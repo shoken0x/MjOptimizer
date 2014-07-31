@@ -29,7 +29,7 @@ protocol MentsuProtocol{
     func include(pai:Pai) -> Bool
     func isChuchan() -> Bool
     func isYaochu() -> Bool
-
+    func isJihai() -> Bool
 }
 public class Mentsu: MentsuProtocol, Equatable, Comparable {
     //paiListをパースして適切なMentsuを生成する
@@ -88,6 +88,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func include(pai:Pai) ->Bool {return false}
     public func isChuchan() -> Bool { return false}
     public func isYaochu() -> Bool { return false}
+    public func isJihai() -> Bool {return false}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -125,6 +126,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func include(pai:Pai)->Bool {return self.pai == pai}
     override public func isChuchan() -> Bool { return pai.isChuchan}
     override public func isYaochu() -> Bool { return pai.isYaochu}
+    override public func isJihai() -> Bool {return pai.type == PaiType.JIHAI}
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
@@ -206,7 +208,8 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func type()->MentsuType{return MentsuType.ABSTRUCT}
     override public func include(pai:Pai)->Bool {return paiList.any({$0 == pai})}
     override public func isChuchan() -> Bool {return paiList.all({$0.isChuchan})}
-    override public func isYaochu() -> Bool {return false}
+    override public func isYaochu() -> Bool {return paiList[0].number == 1 || paiList[2].number == 9}//123か789
+    override public func isJihai() -> Bool {return false}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
