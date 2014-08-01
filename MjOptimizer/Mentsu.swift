@@ -33,9 +33,12 @@ protocol MentsuProtocol{
     func isChuchan() -> Bool
     func isYaochu() -> Bool
     func isJihai() -> Bool
+    func isSangen() -> Bool
     func paiType() -> PaiType
     func consistOfSamePai() -> Bool
     func consistOfDifferentPai() -> Bool
+    func isRyanmenmachi() -> Bool
+    func includeAgariPai() -> Bool
 }
 //親クラス
 public class Mentsu: MentsuProtocol, Equatable, Comparable {
@@ -43,10 +46,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public class func parse(let paiList:[Pai]) -> Mentsu?{
         var pl = paiList
         sort(&pl,<)
-        var furoNum : Int = 0
-        for pai in pl{
-            if pai.isFuro { furoNum += 1 }
-        }
+        var furoNum:Int = pl.filter{$0.isYoko}.count
         var isFuro : Bool
         if furoNum == 0 {
             isFuro = false
@@ -54,12 +54,6 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
             isFuro = true
         }else{
             return nil
-        }
-        for pai in pl{
-            if pai.isFuro {
-                isFuro = true
-                break
-            }
         }
         if(pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])){
             return isFuro ? ChiMentsu(paiList:pl) : ShuntsuMentsu(paiList:pl)
@@ -101,9 +95,12 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func isChuchan() -> Bool { return false}
     public func isYaochu() -> Bool { return false}
     public func isJihai() -> Bool {return false}
+    public func isSangen() -> Bool {return false}
     public func paiType() -> PaiType {return PaiType.MANZU}
     public func consistOfSamePai() -> Bool{return false}
     public func consistOfDifferentPai() -> Bool{return false}
+    public func isRyanmenmachi() -> Bool{return false}
+    public func includeAgariPai() -> Bool{return agariPai != nil}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -148,9 +145,11 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func isChuchan() -> Bool { return pai.isChuchan}
     override public func isYaochu() -> Bool { return pai.isYaochu}
     override public func isJihai() -> Bool {return pai.type == PaiType.JIHAI}
+    override public func isSangen() -> Bool {return pai.isSangen }
     override public func paiType() -> PaiType {return pai.type}
     override public func consistOfSamePai() -> Bool{return true}
     override public func consistOfDifferentPai() -> Bool{return false}
+    override public func isRyanmenmachi() -> Bool{return false}
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
@@ -216,7 +215,7 @@ public class AnkanMentsu: SamePaiMentsu{
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return false}
     override public func size()->Int{return 4}
-    override public func type()->MentsuType{return MentsuType.ANKOU}
+    override public func type()->MentsuType{return MentsuType.ANKAN}
 }
 //ミンカン
 public class MinkanMentsu: SamePaiMentsu{
@@ -251,11 +250,13 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func type()->MentsuType{return MentsuType.ABSTRUCT}
     override public func include(pai:Pai)->Bool {return paiList.any({$0 == pai})}
     override public func isChuchan() -> Bool {return paiList.all({$0.isChuchan})}
-    override public func isYaochu() -> Bool {return paiList[0].number == 1 || paiList[2].number == 9}//123か789
+    override public func isYaochu() -> Bool {return false}
     override public func isJihai() -> Bool {return false}
+    override public func isSangen() -> Bool {return false }
     override public func paiType() -> PaiType {return paiList[0].type}
     override public func consistOfSamePai() -> Bool{return false}
     override public func consistOfDifferentPai() -> Bool{return true}
+    override public func isRyanmenmachi() -> Bool{return false}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
@@ -290,6 +291,7 @@ public class ShuntsuMentsu: DifferentPaiMentsu{
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
     override public func type()->MentsuType{return MentsuType.SHUNTSU}
+    override public func isRyanmenmachi() -> Bool{return agariPai == paiList[0] || agariPai == paiList[2]}
 }
 //チー
 public class ChiMentsu: DifferentPaiMentsu{
@@ -302,6 +304,7 @@ public class ChiMentsu: DifferentPaiMentsu{
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return true}
     override public func type()->MentsuType{return MentsuType.CHI}
+    override public func isRyanmenmachi() -> Bool{return false}
     //引数でチーが成立するか
     public class func isMadeFrom(let paiList: [Pai]) -> Bool{
         var pl = paiList
@@ -324,6 +327,7 @@ public class SpecialMentsu: DifferentPaiMentsu{
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
     override public func type()->MentsuType{return MentsuType.SPECIAL}
+    override public func isRyanmenmachi() -> Bool{return false}
 }
 
 

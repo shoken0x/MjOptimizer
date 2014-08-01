@@ -12,32 +12,6 @@ import Nimble
 
 class AgariSpec: QuickSpec {
     override func spec() {
-        describe("isRyanmenMachi"){
-            it("return true"){
-                let mentsuList:[Mentsu] = [
-                    Mentsu.parseStr("m2tm2t")!,
-                    Mentsu.parseStr("m2tm3tm4t")!,
-                    Mentsu.parseStr("s5ts3ts4t")!,
-                    Mentsu.parseStr("p2tp3tp4t")!,
-                    Mentsu.parseStr("s2ts2ts2l")!
-                ]
-                let agariPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
-                expect(agari.isRyanmenMachi()).to(beTruthy())
-            }
-            it("return false"){
-                let mentsuList:[Mentsu] = [
-                    Mentsu.parseStr("m2tm2t")!,
-                    Mentsu.parseStr("m2tm3tm4t")!,
-                    Mentsu.parseStr("m3tm3tm3t")!,
-                    Mentsu.parseStr("p2tp3tp4t")!,
-                    Mentsu.parseStr("s2ts2ts2l")!
-                ]
-                let agariPai = PaiMaster.pais["m3t"]!
-                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
-                expect(agari.isRyanmenMachi()).to(beFalsy())
-            }
-        }
         describe("replaceMenzenOneMentsu"){
             it("return true"){
                 let agariPai = PaiMaster.pais["m2t"]!
@@ -51,7 +25,7 @@ class AgariSpec: QuickSpec {
                     Mentsu.parseStr("m1tm2tm3t")!,
                     Mentsu.parseStr("s2ts2ts2l")!
                 ]
-                let oldAgari = Agari(agariPai: agariPai,mentsuList: mentsuList)
+                let oldAgari = Agari(mentsuList: mentsuList)
                 let newAgari = oldAgari.replaceMenzenOneMentsu(oldMentsu,newMentsu:newMentsu)
                 expect(oldAgari.mentsuList[0].toString()).to(equal("トイツ:m9"))
                 expect(oldAgari.mentsuList[1].toString()).to(equal("アンコウ:p1"))

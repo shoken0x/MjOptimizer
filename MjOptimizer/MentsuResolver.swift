@@ -220,7 +220,6 @@ public class MentsuResolver{
                     for mentsuList in mentsuListList{
                         mentsuList.append(atama)
                         var agari :Agari = Agari(
-                            agariPai: agariPai,
                             mentsuList: mentsuList.array
                         )
                         agariList.append(agari)
@@ -247,10 +246,10 @@ public class MentsuResolver{
         var newAgariList:[Agari] = []
         for agari in agariList{
             for mentsu in agari.notNakiMentsuList(){
-                if mentsu.include(agari.agariPai){
+                if mentsu.include(agariPai){
                     //ツモ牌を含む面子を見つけたため、その面子を「ツモ牌を含む面子」に交換して、newAgariListに追加
                     var newMentsu = mentsu.copy()
-                    newMentsu.agariPai = agari.agariPai
+                    newMentsu.agariPai = agariPai
                     newAgariList.append(agari.replaceMenzenOneMentsu(mentsu,newMentsu:newMentsu))
                 }
             }

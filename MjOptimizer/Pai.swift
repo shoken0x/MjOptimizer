@@ -30,6 +30,7 @@ public class Pai: Equatable, Comparable {
     public let isYaochu: Bool
     public let isChuchan: Bool
     public let isFuro: Bool
+    public let isYoko: Bool
     public let isShupai : Bool
     public let isSangen : Bool
     init(type: PaiType, number: Int, direction: PaiDirection = .TOP ){
@@ -39,6 +40,7 @@ public class Pai: Equatable, Comparable {
         self.isYaochu = (type == PaiType.JIHAI || number == 1 || number == 9)
         self.isChuchan = !(isYaochu) && type != PaiType.REVERSE
         self.isFuro = (direction == PaiDirection.LEFT || direction == PaiDirection.RIGHT)
+        self.isYoko = (direction == PaiDirection.LEFT || direction == PaiDirection.RIGHT)
         self.isShupai = (type == PaiType.MANZU || type == PaiType.SOUZU || type == PaiType.PINZU)
         self.isSangen = ((type == PaiType.JIHAI) && (number == 5 || number == 6 || number == 7))
     }
