@@ -30,7 +30,11 @@ protocol MentsuProtocol{
     func isChuchan() -> Bool
     func isYaochu() -> Bool
     func isJihai() -> Bool
+    func paiType() -> PaiType
+    func consistOfSamePai() -> Bool
+    func consistOfDifferentPai() -> Bool
 }
+//親クラス
 public class Mentsu: MentsuProtocol, Equatable, Comparable {
     //paiListをパースして適切なMentsuを生成する
     public class func parse(let paiList:[Pai]) -> Mentsu?{
@@ -54,9 +58,6 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
                 break
             }
         }
-        for pai in pl{
-            println("■" + pai.toString())
-        }
         if(pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])){
             return isFuro ? ChiMentsu(paiList:pl) : ShuntsuMentsu(paiList:pl)
         }else if(pl.count == 2 && pl[0] == pl[1] && !isFuro){
@@ -79,6 +80,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
         }
         return nil
     }
+    //親クラスであるため、以下の関数が直接呼ばれることはない。値は全部ダミー
     public func identical() -> Pai { return PaiMaster.pais["j1t"]! }
     public func toString() -> String { return "Mentsu親クラス" }
     public func fuNum() -> Int { return -200 }
@@ -89,6 +91,9 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func isChuchan() -> Bool { return false}
     public func isYaochu() -> Bool { return false}
     public func isJihai() -> Bool {return false}
+    public func paiType() -> PaiType {return PaiType.MANZU}
+    public func consistOfSamePai() -> Bool{return false}
+    public func consistOfDifferentPai() -> Bool{return false}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -113,7 +118,7 @@ public func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
 }
 
 //同じ牌で構成される面子の親クラス
-public class SamePaiMentsu: Mentsu,Equatable,Comparable{
+public class consistOfSamePaiMentsu: Mentsu,Equatable,Comparable{
     var pai : Pai
     public init(pai:Pai){self.pai = pai}
     public init(paiList:[Pai]){self.pai = paiList[0]}
@@ -127,21 +132,24 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func isChuchan() -> Bool { return pai.isChuchan}
     override public func isYaochu() -> Bool { return pai.isYaochu}
     override public func isJihai() -> Bool {return pai.type == PaiType.JIHAI}
+    override public func paiType() -> PaiType {return pai.type}
+    override public func consistOfSamePai() -> Bool{return true}
+    override public func consistOfDifferentPai() -> Bool{return false}
 }
-public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func == (lhs: consistOfSamePaiMentsu, rhs: consistOfSamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()
 }
-func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+func != (lhs: consistOfSamePaiMentsu, rhs: consistOfSamePaiMentsu) -> Bool {
     return !(lhs == rhs)
 }
-public func < (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func < (lhs: consistOfSamePaiMentsu, rhs: consistOfSamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() < rhs.type().toRaw()
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
-public func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
+public func > (lhs: consistOfSamePaiMentsu, rhs: consistOfSamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
         return lhs.type().toRaw() > rhs.type().toRaw()
     }else{
@@ -150,7 +158,7 @@ public func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
 }
 
 //トイツ
-public class ToitsuMentsu: SamePaiMentsu{
+public class ToitsuMentsu: consistOfSamePaiMentsu{
     public init(pai: Pai) { return super.init(pai: pai) }
     override public func toString() -> String{ return "トイツ:" + super.toString() }
     override public func fuNum()->Int{return 0}//TODO}
@@ -159,7 +167,7 @@ public class ToitsuMentsu: SamePaiMentsu{
     override public func type()->MentsuType{return MentsuType.TOITSU}
 }
 //アンコウ
-public class AnkouMentsu: SamePaiMentsu{
+public class AnkouMentsu: consistOfSamePaiMentsu{
     override public func toString() -> String{ return "アンコウ:" + super.toString() }
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return false}
@@ -167,7 +175,7 @@ public class AnkouMentsu: SamePaiMentsu{
     override public func type()->MentsuType{return MentsuType.ANKOU}
 }
 //ポン
-public class PonMentsu: SamePaiMentsu{
+public class PonMentsu: consistOfSamePaiMentsu{
     override public func toString() -> String{ return "ポン:" + super.toString() }
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return true}
@@ -175,7 +183,7 @@ public class PonMentsu: SamePaiMentsu{
     override public func type()->MentsuType{return MentsuType.PON}
 }
 //アンカン
-public class AnkanMentsu: SamePaiMentsu{
+public class AnkanMentsu: consistOfSamePaiMentsu{
     override public func toString() -> String{ return "アンカン:" + super.toString() }
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return false}
@@ -183,7 +191,7 @@ public class AnkanMentsu: SamePaiMentsu{
     override public func type()->MentsuType{return MentsuType.ANKOU}
 }
 //ミンカン
-public class MinkanMentsu: SamePaiMentsu{
+public class MinkanMentsu: consistOfSamePaiMentsu{
     override public func toString() -> String{ return "ミンカン:" + super.toString() }
     override public func fuNum()->Int{return 0}//TODO}
     override public func isFuro()->Bool{return true}
@@ -210,6 +218,9 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func isChuchan() -> Bool {return paiList.all({$0.isChuchan})}
     override public func isYaochu() -> Bool {return paiList[0].number == 1 || paiList[2].number == 9}//123か789
     override public func isJihai() -> Bool {return false}
+    override public func paiType() -> PaiType {return paiList[0].type}
+    override public func consistOfSamePai() -> Bool{return false}
+    override public func consistOfDifferentPai() -> Bool{return true}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical()

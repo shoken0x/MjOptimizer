@@ -212,6 +212,74 @@ class YakuSpec: QuickSpec {
                 expect(YakuChanta().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
         }
+        describe("YakuIkkitsukan"){
+            it("return true"){
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m1t"]!)
+                let menzenMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m1tm2tm3t")!,
+                    Mentsu.parseStr("m4tm5tm6t")!,
+                    Mentsu.parseStr("p1tp1tp1t")!,
+                    atama
+                ]
+                let furoMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m7tm8tm9l")!,
+                ]
+                let tsumoPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
+                let kyoku = Kyoku()
+                expect(YakuIkkitsukan().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
+            }
+            it("return false"){
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m1t"]!)
+                let menzenMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m1tm2tm3t")!,
+                    Mentsu.parseStr("s8ts7ts9t")!,
+                    Mentsu.parseStr("p1tp1tp1t")!,
+                    atama
+                ]
+                let furoMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1ts1l")!,
+                ]
+                let tsumoPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
+                let kyoku = Kyoku()
+                expect(YakuIkkitsukan().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
+            }
+        }
+        describe("YakuSansyoku"){
+            it("return true"){
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m1t"]!)
+                let menzenMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m1tm2tm3t")!,
+                    Mentsu.parseStr("s1ts2ts3t")!,
+                    Mentsu.parseStr("p1tp1tp1t")!,
+                    atama
+                ]
+                let furoMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("p1tp2tp3t")!,
+                ]
+                let tsumoPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
+                let kyoku = Kyoku()
+                expect(YakuSansyoku().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
+            }
+            it("return false because agari is 2 syoku"){
+                let atama = ToitsuMentsu(pai: PaiMaster.pais["m1t"]!)
+                let menzenMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m1tm2tm3t")!,
+                    Mentsu.parseStr("s1ts2ts3t")!,
+                    Mentsu.parseStr("p1tp1tp1t")!,
+                    atama
+                ]
+                let furoMentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1ts1l")!,
+                ]
+                let tsumoPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(tsumoPai: tsumoPai, atama: atama, menzenMentsuList: menzenMentsuList,furoMentsuList:furoMentsuList)
+                let kyoku = Kyoku()
+                expect(YakuSansyoku().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
+            }
+        }
     }
 }
 

@@ -18,4 +18,15 @@ extension Array {
         }
         return ret
     }
+    func tripleConbination() -> Array<Array> {
+        var ret = Array<Array>()
+        for var i=0;i<count;i++ {
+            for var j=i+1;j<count;j++ {
+                for var k=j+1;k<count;k++ {
+                ret.append([self[i],self[j],self[k]])
+                }
+            }
+        }
+        return ret
+    }
 }
