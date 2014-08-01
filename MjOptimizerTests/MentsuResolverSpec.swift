@@ -457,10 +457,10 @@ class MentsuResolverSpec: QuickSpec {
         }
         
         
-        describe("makeMentsuList"){
+        describe("makeMenzenMentsuList"){
             it("return 1 ankou"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(1))
@@ -472,7 +472,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             it("return 1 shuntsu"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm2tm3t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(1))
@@ -484,7 +484,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             it("return 2 ankou"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1tm2tm2tm2t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(1))
@@ -496,7 +496,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             it("return 1 shuntsu 1 ankou"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1tm1tm2tm3t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(1))
@@ -508,7 +508,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             it("return 2 mentsu list"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1tm2tm2tm2tm3tm3tm3t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(2))
@@ -521,7 +521,7 @@ class MentsuResolverSpec: QuickSpec {
             }
             it("return 2 mentsu list"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1tm1t2tm2tm2tm2tm3tm3tm3tm3t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     expect(mentsuListList.count).to(equal(2))
@@ -532,9 +532,9 @@ class MentsuResolverSpec: QuickSpec {
                     expect(false).to(beTruthy())
                 }
             }
-            it("return MakeMentsuResult.CONFLICT"){
+            it("return makeMenzenMentsuResult.CONFLICT"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tm9tj1tj1t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .CONFLICT:
                     expect(true).to(beTruthy())
@@ -543,9 +543,9 @@ class MentsuResolverSpec: QuickSpec {
                     expect(false).to(beTruthy())
                 }
             }
-            it("return MakeMentsuResult.FINISH"){
+            it("return makeMenzenMentsuResult.FINISH"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .FINISH:
                     expect(true).to(beTruthy())
@@ -554,9 +554,9 @@ class MentsuResolverSpec: QuickSpec {
                     expect(false).to(beTruthy())
                 }
             }
-            it("return MakeMentsuResult.ERROR"){
+            it("return makeMenzenMentsuResult.ERROR"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm2t")!)
-                var mmr : MakeMentsuResult = MentsuResolver.makeMentsuList(pnl)
+                var mmr : makeMenzenMentsuResult = MentsuResolver.makeMenzenMentsuList(pnl)
                 switch mmr{
                 case let .ERROR(msg):
                     expect(true).to(beTruthy())

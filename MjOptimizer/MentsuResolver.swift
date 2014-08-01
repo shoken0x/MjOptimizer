@@ -213,7 +213,7 @@ public class MentsuResolver{
             if sortedList[i] == sortedList[i+1]{ //雀頭候補発見
                 var atama = ToitsuMentsu(pai: sortedList[i])
                 //雀頭以外でPaiNumList作成して、面子解析
-                var mmr : MakeMentsuResult = makeMentsuList(PaiNumList(paiList : sortedList.cut(i,i+1)))
+                var mmr : makeMenzenMentsuResult = makeMenzenMentsuList(PaiNumList(paiList : sortedList.cut(i,i+1)))
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     //面子解析で得た結果のリストに対して、雀頭を足してagariオブジェクトを作っていく
@@ -249,16 +249,16 @@ public class MentsuResolver{
     
     //引数の牌のリストを解析し、可能性のある面子リストに分解
     //可能性のある面子リストが存在しない場合は空配列を返す
-    public class func makeMentsuList(paiNumList:PaiNumList,nest:Int = 0) -> MakeMentsuResult{
-        Log.debug("[" + String(nest) + "]" + "makeMentsuList start " + String(nest) + " 引数：" + paiNumList.toString())
+    public class func makeMenzenMentsuList(paiNumList:PaiNumList,nest:Int = 0) -> makeMenzenMentsuResult{
+        Log.debug("[" + String(nest) + "]" + "makeMenzenMentsuList start " + String(nest) + " 引数：" + paiNumList.toString())
         var result : [MentsuList] = []
         if(paiNumList.count() == 0){
             Log.debug("[" + String(nest) + "]" + "残り枚数が0であるため、return")
-            return MakeMentsuResult.FINISH
+            return makeMenzenMentsuResult.FINISH
         }
         if(paiNumList.count() % 3 != 0){
             Log.error("[" + String(nest) + "]" + "残り枚数が3の倍数ではないため、入力不正")
-            return MakeMentsuResult.ERROR("[" + String(nest) + "]" + "残り枚数が3の倍数ではないため、入力不正")
+            return makeMenzenMentsuResult.ERROR("[" + String(nest) + "]" + "残り枚数が3の倍数ではないため、入力不正")
         }
         for paiNum in paiNumList.list{
             Log.debug("[" + String(nest) + "]" + "この牌について判定：" + paiNum.pai.toString())
@@ -270,7 +270,7 @@ public class MentsuResolver{
                 Log.debug("[" + String(nest) + "]" + "除去した面子" + mentsu.toString())
                 Log.debug("[" + String(nest) + "]" + "面子を除去した後の牌リスト" + remainPaiNumList.toString())
                 //残りの牌を再帰計算
-                var mmr : MakeMentsuResult = makeMentsuList(remainPaiNumList,nest:nest + 1)
+                var mmr : makeMenzenMentsuResult = makeMenzenMentsuList(remainPaiNumList,nest:nest + 1)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     Log.debug("[" + String(nest) + "]" + "再帰計算で取得したMentsuListList: count=" + String(mentsuListList.count))
@@ -288,9 +288,9 @@ public class MentsuResolver{
                     //再帰計算の結果、残りの牌からは面子が見つからなかった場合、除去した面子だけを格納した面子リストを結果に追記
                     result.append(MentsuList(list: [mentsu]))
                 case let .CONFLICT:
-                    return MakeMentsuResult.CONFLICT
+                    return makeMenzenMentsuResult.CONFLICT
                 case let .ERROR(msg):
-                    return MakeMentsuResult.ERROR(msg)
+                    return makeMenzenMentsuResult.ERROR(msg)
                 }
             }
             if paiNumList.includeShuntsuFrom(paiNum.pai) {
@@ -301,7 +301,7 @@ public class MentsuResolver{
                 Log.debug("[" + String(nest) + "]" + "除去した面子" + mentsu.toString())
                 Log.debug("[" + String(nest) + "]" + "面子を除去した後の牌リスト" + remainPaiNumList.toString())
                 //残りの牌を再帰計算
-                var mmr : MakeMentsuResult = makeMentsuList(remainPaiNumList,nest:nest + 1)
+                var mmr : makeMenzenMentsuResult = makeMenzenMentsuList(remainPaiNumList,nest:nest + 1)
                 switch mmr{
                 case let .SUCCESS(mentsuListList):
                     Log.debug("[" + String(nest) + "]" + "再帰計算で取得したMentsuListList: count=" + String(mentsuListList.count))
@@ -320,10 +320,10 @@ public class MentsuResolver{
                     result.append(MentsuList(list: [mentsu]))
                 case let .CONFLICT:
                     //残り牌では面子が構成できない場合は、同じエラーを返す
-                    return MakeMentsuResult.CONFLICT
+                    return makeMenzenMentsuResult.CONFLICT
                 case let .ERROR(msg):
                     //残り牌が不正だった場合、同じエラーを返す
-                    return MakeMentsuResult.ERROR(msg)
+                    return makeMenzenMentsuResult.ERROR(msg)
                 }
             }
             if paiNumList.includeAnkouOf(paiNum.pai) || paiNumList.includeShuntsuFrom(paiNum.pai){
@@ -337,11 +337,11 @@ public class MentsuResolver{
                 for mentsuList in result {
                     Log.debug("[" + String(nest) + "]" + " - " + mentsuList.toString())
                 }
-                return MakeMentsuResult.SUCCESS(result.unique())
+                return makeMenzenMentsuResult.SUCCESS(result.unique())
             }
         }
         //ここまで処理が来るということはシュンツもアンコウも見つからなかったため、この入力では面子は成立しない
-        return MakeMentsuResult.CONFLICT
+        return makeMenzenMentsuResult.CONFLICT
     }
 }
 
@@ -358,7 +358,7 @@ public enum FuroResolveResult {
 }
 
 
-public enum MakeMentsuResult{
+public enum makeMenzenMentsuResult{
     case SUCCESS([MentsuList]) //一つ以上の面子リストを取得
     case ERROR(String) //入力不正
     case CONFLICT  //入力不正ではないが、面子が不成立
