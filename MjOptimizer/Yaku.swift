@@ -224,7 +224,12 @@ public class YakuSanankou : Yaku{
     override public func hanNum() -> Int{return 2}
     override public func nakiHanNum() -> Int{return 2}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        return true //agari.mentsuList.filter{$0.type() == MentsuType.ANKOU}
+        if kyoku.isTsumo{
+            return agari.mentsuList.filter{$0.type() == MentsuType.ANKOU}.count == 3
+        }else{
+            //ロンの場合はアガリ牌を含む面子は除外
+            return agari.mentsuList.filter{($0.type() == MentsuType.ANKOU && $0.agariPai == nil)}.count == 3
+        }
     }
 }
 

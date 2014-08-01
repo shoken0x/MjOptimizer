@@ -201,7 +201,7 @@ public class MentsuResolver{
             Log.error("入力の牌のリストが0〜1枚");
             return MenzenResolveResult.ERROR("入力の牌のリストが0〜1枚")
         }
-        let tsumoPai : Pai = paiList.last()!
+        let agariPai : Pai = paiList.last()!
         let paiNumMaster : [PaiNum] = []
         //頭候補計算
         //辞書順に並び替え
@@ -220,7 +220,7 @@ public class MentsuResolver{
                     for mentsuList in mentsuListList{
                         mentsuList.append(atama)
                         var agari :Agari = Agari(
-                            tsumoPai: tsumoPai,
+                            agariPai: agariPai,
                             mentsuList: mentsuList.array
                         )
                         agariList.append(agari)
@@ -247,10 +247,10 @@ public class MentsuResolver{
         var newAgariList:[Agari] = []
         for agari in agariList{
             for mentsu in agari.notNakiMentsuList(){
-                if mentsu.include(agari.tsumoPai){
+                if mentsu.include(agari.agariPai){
                     //ツモ牌を含む面子を見つけたため、その面子を「ツモ牌を含む面子」に交換して、newAgariListに追加
                     var newMentsu = mentsu.copy()
-                    newMentsu.tsumoPai = agari.tsumoPai
+                    newMentsu.agariPai = agari.agariPai
                     newAgariList.append(agari.replaceMenzenOneMentsu(mentsu,newMentsu:newMentsu))
                 }
             }

@@ -21,8 +21,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("s2ts2ts2l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuTanyao().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -34,8 +34,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("s2ts2ts2l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuTanyao().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -49,8 +49,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p7tp8tp9t")!,
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuPinfu().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -62,8 +62,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p9tp9tp9t")!,
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuPinfu().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -75,8 +75,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p7tp8tp9t")!,
                 ]
-                let tsumoPai = PaiMaster.pais["p3t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["p3t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuPinfu().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -88,8 +88,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p7tp8tp9t")!,
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuPinfu().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -103,8 +103,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p3tp2tp4t")!
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuIipeikou().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -116,8 +116,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p5tp3tp4t")!
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuIipeikou().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -129,8 +129,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p2tp3tp4t")!,
                     Mentsu.parseStr("p2tp3tp4l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m2t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m2t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuIipeikou().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -144,8 +144,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("j1tj1tj1l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuChanta().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -157,8 +157,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("s1ts1ts1l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuChanta().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -170,8 +170,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("j1tj1tj1l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m9t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m9t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuChanta().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -185,8 +185,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("m7tm8tm9l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuIkkitsukan().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -198,8 +198,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("s1ts1ts1l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuIkkitsukan().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -213,8 +213,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("p1tp2tp3t")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuSansyoku().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -226,8 +226,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp1tp1t")!,
                     Mentsu.parseStr("s1ts1ts1l")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuSansyoku().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }
@@ -241,8 +241,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp2tp3t")!,
                     Mentsu.parseStr("p2tp2tp2t")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuSansyokudouko().isConcluded(agari,kyoku: kyoku)).to(beTruthy())
             }
@@ -254,8 +254,8 @@ class YakuSpec: QuickSpec {
                     Mentsu.parseStr("p1tp2tp3t")!,
                     Mentsu.parseStr("p2tp2tp2t")!
                 ]
-                let tsumoPai = PaiMaster.pais["m1t"]!
-                let agari = Agari(tsumoPai: tsumoPai, mentsuList: mentsuList)
+                let agariPai = PaiMaster.pais["m1t"]!
+                let agari = Agari(agariPai: agariPai, mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YakuSansyokudouko().isConcluded(agari,kyoku: kyoku)).to(beFalsy())
             }

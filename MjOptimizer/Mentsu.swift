@@ -84,8 +84,8 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
         return nil
     }
     
-    //この面子がツモ牌を含む場合はこの変数にツモ牌が入る
-    public var tsumoPai:Pai? = nil
+    //この面子がアガリ牌を含む場合はこの変数にアガリ牌が入る
+    public var agariPai:Pai? = nil
 
     //親クラスであるため、以下の関数が直接呼ばれることはない。値は全部ダミー
     public func copy() -> Mentsu {return self}
@@ -107,7 +107,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
-    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.tsumoPai == rhs.tsumoPai
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
 }
 func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
     return !(lhs == rhs)
@@ -135,7 +135,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func copy() -> Mentsu {return SamePaiMentsu(pai:pai)}
     override public func identical() ->Pai{ return self.pai }
     override public func toString() -> String{
-        let str = super.tsumoPai ? "(ツモ" + tsumoPai!.toShortStr() + ")" : ""
+        let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return pai.toShortStr() + str
     }
     override public func fuNum()->Int{return 0}
@@ -153,7 +153,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func consistOfDifferentPai() -> Bool{return false}
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
-    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.tsumoPai == rhs.tsumoPai
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
 }
 func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return !(lhs == rhs)
@@ -240,7 +240,7 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func copy() -> Mentsu {return DifferentPaiMentsu(paiList:paiList)}
     override public func identical() -> Pai{return self.paiList[0]}
     override public func toString() -> String{
-        let str = super.tsumoPai ? "(ツモ" + tsumoPai!.toShortStr() + ")" : ""
+        let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return join("",paiList.map({ $0.toShortStr()})) + str
     }
     override public func fuNum()->Int{return 0}//TODO}
@@ -258,7 +258,7 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func consistOfDifferentPai() -> Bool{return true}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
-    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.tsumoPai == rhs.tsumoPai
+    return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
 }
 func != (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return !(lhs == rhs)
