@@ -57,6 +57,7 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("シュンツ:m1m2m3"))
                 expect(m.isFuro()).to(beFalsy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes シュンツ2"){
@@ -64,6 +65,7 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("シュンツ:m1m2m3"))
                 expect(m.isFuro()).to(beFalsy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes チー"){
@@ -71,6 +73,7 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("チー:m1m2m3"))
                 expect(m.isFuro()).to(beTruthy())
+                expect(m.isNaki()).to(beTruthy())
                 expect(m.size()).to(equal(3))
             }
             it("makes トイツ"){
@@ -78,6 +81,7 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("トイツ:m1"))
                 expect(m.isFuro()).to(beFalsy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(2))
             }
             it("makes アンコウ"){
@@ -85,6 +89,7 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("アンコウ:m1"))
                 expect(m.isFuro()).to(beFalsy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(3))
             }
             it("makes ポン"){
@@ -92,13 +97,15 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("ポン:m1"))
                 expect(m.isFuro()).to(beTruthy())
+                expect(m.isNaki()).to(beTruthy())
                 expect(m.size()).to(equal(3))
             }
             it("makes アンカン"){
                 var pl:[Pai] = Pai.parseList("m1tm1tm1tm1t")!
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("アンカン:m1"))
-                expect(m.isFuro()).to(beFalsy())
+                expect(m.isFuro()).to(beTruthy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(4))
             }
             it("makes ミンカン"){
@@ -106,12 +113,14 @@ class MentsuSpec: QuickSpec {
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.toString()).to(equal("ミンカン:m1"))
                 expect(m.isFuro()).to(beTruthy())
+                expect(m.isNaki()).to(beTruthy())
                 expect(m.size()).to(equal(4))
             }
             it("makes 特殊面子"){
                 var pl:[Pai] = Pai.parseList("m1tm9ts1ts9tp1tp9tj1tj2tj3tj4tj5tj6tj7tj7t")!
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.isFuro()).to(beFalsy())
+                expect(m.isNaki()).to(beFalsy())
                 expect(m.size()).to(equal(14))
            }
             it("return nil if invalid mentsu"){

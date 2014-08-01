@@ -39,11 +39,13 @@ public class YakuPinfu : Yaku{
     override public func hanNum() -> Int{return 1}
     override public func nakiHanNum() -> Int{return 0}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        return  agari.mentsuList.filter{$0.type() == MentsuType.SHUNTSU}.count == 4 && //4シュンツ
-                agari.mentsuList.filter{$0.type() == MentsuType.TOITSU}.count == 1 && //1トイツ
-                !(agari.atama.pai.isSangen)  && //雀頭が三元牌ではない
-                agari.atama.pai != kyoku.jikaze.toPai() && //雀頭が自風ではない
-                agari.atama.pai != kyoku.bakaze.toPai() && //雀頭が場風ではない
+        var shuntsuList:[Mentsu] = agari.mentsuList.filter{$0.type() == MentsuType.SHUNTSU}
+        var toitsuList:[Mentsu] = agari.mentsuList.filter{$0.type() == MentsuType.TOITSU}
+        return  shuntsuList.count == 4 && //4シュンツ
+                toitsuList.count == 1 && //1トイツ
+                !(toitsuList[0].identical().isSangen) && //雀頭が三元牌ではない
+                toitsuList[0].identical() != kyoku.jikaze.toPai() && //雀頭が自風ではない
+                toitsuList[0].identical() != kyoku.bakaze.toPai() && //雀頭が場風ではない
                 agari.isRyanmenMachi() //待ちが両面であること
     }
 }
@@ -68,7 +70,7 @@ public class YakuIipeikou : Yaku{
     override public func hanNum() -> Int{return 1}
     override public func nakiHanNum() -> Int{return 0}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        if agari.includeFuro(){return false}
+        if agari.includeNaki(){return false}
         for mentsuConbi : [Mentsu] in agari.mentsuList.conbination(){
             if mentsuConbi[0] == mentsuConbi[1] {return true}
         }
@@ -163,7 +165,7 @@ public class YakuSansyoku : Yaku{
     override public func hanNum() -> Int{return 2}
     override public func nakiHanNum() -> Int{return 1}
     override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
-        //シュンツ・チー面子を３個組にしたリストを取得
+        //シュンツorチー面子を３個組にしたリストを取得
         let tmp = (agari.mentsuList.filter{$0.consistOfDifferentPai()}).tripleConbination()
         for mentsuConbi : [Mentsu] in tmp{
             if( mentsuConbi[0].identical().type != mentsuConbi[1].identical().type &&
@@ -179,32 +181,52 @@ public class YakuSansyoku : Yaku{
 }
 
 //三色同刻
-// def sanshokudouko?(tehai, kyoku)
-//   tehai.koutsu_list.each do | mentsu |
-//     tehai.koutsu_list.each do | mentsu2 |
-//       next unless mentsu.identical.type != mentsu2.identical.type
-//       next unless  mentsu.identical.number == mentsu2.identical.number
-//       tehai.koutsu_list.each do | mentsu3 |
-//         next unless mentsu.identical.type != mentsu3.identical.type && mentsu2.identical.type != mentsu3.identical.type
-//         return true if mentsu.identical.number == mentsu3.identical.number
-//       end
-//     end
-//   end
-//   return false
-// end
+public class YakuSansyokudouko : Yaku{
+    public init(){}
+    override public func name() -> String{return "sansyokudouko"}
+    override public func kanji() -> String{return "三色同刻"}
+    override public func hanNum() -> Int{return 2}
+    override public func nakiHanNum() -> Int{return 2}
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
+        //アンコウorミンコウorアンカンorミンカン面子を３個組にしたリストを取得
+        let tmp = (agari.mentsuList.filter{($0.consistOfSamePai() && $0.type() != MentsuType.TOITSU)}).tripleConbination()
+        for mentsuConbi : [Mentsu] in tmp{
+            if( mentsuConbi[0].identical().type != mentsuConbi[1].identical().type &&
+                mentsuConbi[1].identical().type != mentsuConbi[2].identical().type &&
+                mentsuConbi[0].identical().type != mentsuConbi[2].identical().type &&
+                mentsuConbi[0].identical().number == mentsuConbi[1].identical().number &&
+                mentsuConbi[1].identical().number == mentsuConbi[2].identical().number ){
+                    return true
+            }
+        }
+        return false
+    }
+}
+
 
 //対々和
-// def toitoihou?(tehai, kyoku)
-//   // 特殊系ではない かつ 全ての面子が刻子ならOK
-//   return false if tehai.tokusyu?
-//   tehai.mentsu_list.all?{|mentsu| mentsu.koutsu? }
-// end
+public class YakuToitoihou : Yaku{
+    public init(){}
+    override public func name() -> String{return "toitoihou"}
+    override public func kanji() -> String{return "対々和"}
+    override public func hanNum() -> Int{return 2}
+    override public func nakiHanNum() -> Int{return 2}
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
+        return agari.mentsuList.all{$0.consistOfSamePai()}
+    }
+}
 
 //三暗刻
-// def sanankou?(tehai, kyoku)
-//   return false if tehai.tokusyu?
-//   tehai.koutsu_list.count{|mentsu| mentsu.ankou? } >= 3
-// end
+public class YakuSanankou : Yaku{
+    public init(){}
+    override public func name() -> String{return "sanankou"}
+    override public func kanji() -> String{return "三暗刻"}
+    override public func hanNum() -> Int{return 2}
+    override public func nakiHanNum() -> Int{return 2}
+    override public func isConcluded(agari:Agari,kyoku:Kyoku) -> Bool {
+        return true //agari.mentsuList.filter{$0.type() == MentsuType.ANKOU}
+    }
+}
 
 //三槓子
 // def sankantsu?(tehai, kyoku)

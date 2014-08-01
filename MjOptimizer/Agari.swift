@@ -8,38 +8,26 @@
 
 public class Agari:Equatable{
     public var tsumoPai: Pai
-    public var atama: ToitsuMentsu
     public var mentsuList: [Mentsu]
-    public var furoMentsuList: [Mentsu]
-    public var menzenMentsuList: [Mentsu]
-    //通常のコンストラクタ
-    public init(tsumoPai:Pai,atama :ToitsuMentsu,menzenMentsuList:[Mentsu],furoMentsuList:[Mentsu]) {
+    public init(tsumoPai:Pai,mentsuList:[Mentsu]) {
         self.tsumoPai = tsumoPai
-        self.atama = atama
-        self.menzenMentsuList = menzenMentsuList
-        self.furoMentsuList = furoMentsuList
-        self.mentsuList = menzenMentsuList
-        for m in furoMentsuList{
-            self.mentsuList.append(m)
-        }
+        self.mentsuList = mentsuList
     }
-    //先に面前牌を登録し、後から副露牌を足す場合のコンストラクタ
-    public init(tsumoPai:Pai,atama :ToitsuMentsu,menzenMentsuList:[Mentsu]) {
-        self.tsumoPai = tsumoPai
-        self.mentsuList = menzenMentsuList
-        self.atama = atama
-        self.menzenMentsuList = menzenMentsuList
-        self.furoMentsuList = []
-    }
-    public func addFuroMentsuList(furoMentsuList:[Mentsu]){
-        for mentsu in furoMentsuList{
-            self.furoMentsuList.append(mentsu)
-            self.mentsuList.append(mentsu)
-        }
-    }
+    public func menzenMentsuList() -> [Mentsu]{ return mentsuList.filter{$0.isMenzen()} }
+    public func furoMentsuList() -> [Mentsu]{return mentsuList.filter{$0.isFuro()} }
+    public func nakiMentsuList() -> [Mentsu]{return mentsuList.filter{$0.isNaki()} }
+    public func notNakiMentsuList() -> [Mentsu]{return mentsuList.filter{!($0.isNaki())} }
+//    public func atama() -> Mentsu?{
+//        for mentsu in mentsuList{
+//            if(mentsu.type() == MentsuType.TOITSU){
+//                return mentsu
+//            }
+//        }
+//        return nil
+//    }
     //このアガリ系で両面待ちがあり得るか
     public func isRyanmenMachi()->Bool{
-        for mentsu in menzenMentsuList{
+        for mentsu in notNakiMentsuList(){
             if mentsu.include(tsumoPai) {
                 if let shuntsu = mentsu as? ShuntsuMentsu{
                     switch shuntsu.paiList.indexOf(tsumoPai)!{
@@ -52,13 +40,27 @@ public class Agari:Equatable{
         }
         return false
     }
-    public func includeFuro()-> Bool{return furoMentsuList.count > 0}
+    public func includeNaki()-> Bool{return self.nakiMentsuList().count > 0}
     public func toString() -> String{
-        return "ツモ:" + tsumoPai.toString() + ";雀頭:" + atama.toString() + ";面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
+        return "ツモ:" + tsumoPai.toString() + ";面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
+    }
+    public func copy() -> Agari{
+        return Agari(tsumoPai:tsumoPai,mentsuList:mentsuList.copy())
+    }
+    //面子を入れ替えたAgariを返す。
+    public func replaceMenzenOneMentsu(oldMentsu:Mentsu,newMentsu:Mentsu) -> Agari{
+        var newAgari = self.copy()
+        for (var i = 0 ; i < newAgari.mentsuList.count; i++){
+            if newAgari.mentsuList[i] == oldMentsu{
+                newAgari.mentsuList[i] = newMentsu
+                return newAgari
+            }
+        }
+        return newAgari
     }
 }
 public func == (lhs: Agari, rhs: Agari) -> Bool {
     let lstr = join(",",lhs.mentsuList.map({ m in m.toString()}))
     let rstr = join(",",rhs.mentsuList.map({ m in m.toString()}))
-    return lhs.tsumoPai == rhs.tsumoPai && lhs.atama == rhs.atama && lstr == rstr
+    return lhs.tsumoPai == rhs.tsumoPai && lstr == rstr
 }

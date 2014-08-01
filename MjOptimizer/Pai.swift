@@ -66,6 +66,9 @@ public class Pai: Equatable, Comparable {
     public func toString() -> String{
         return self.type.toRaw() + String(self.number) + self.direction.toRaw()
     }
+    public func toShortStr() -> String{
+        return self.type.toRaw() + String(self.number)
+    }
     
     public func next(range: Int = 1) -> Pai?{
         if self.isShupai && self.number < 10 - range {

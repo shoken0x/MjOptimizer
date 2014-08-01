@@ -20,12 +20,59 @@ class MentsuResolverSpec: QuickSpec {
                 switch mrr{
                 case let .SUCCESS(agariList):
                     expect(agariList.count).to(equal(1))
-                    expect(agariList[0].atama.toString()).to(equal("トイツ:j1"))
-                    expect(agariList[0].furoMentsuList[0].toString()).to(equal("ポン:j2"))
-                    expect(agariList[0].menzenMentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
-                    expect(agariList[0].menzenMentsuList[1].toString()).to(equal("シュンツ:m4m5m6"))
-                    expect(agariList[0].menzenMentsuList[2].toString()).to(equal("シュンツ:m7m8m9"))
-                    expect(agariList[0].menzenMentsuList[3].toString()).to(equal("トイツ:j1"))
+                    expect(agariList[0].furoMentsuList().count).to(equal(1))
+                    expect(agariList[0].menzenMentsuList().count).to(equal(4))
+                    expect(agariList[0].furoMentsuList()[0].toString()).to(equal("ポン:j2"))
+                    expect(agariList[0].menzenMentsuList()[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[0].menzenMentsuList()[1].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[0].menzenMentsuList()[2].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[0].menzenMentsuList()[3].toString()).to(equal("トイツ:j1(ツモj1)"))
+                default:
+                    //この分岐にきたらテスト失敗
+                    expect(false).to(beTruthy())
+                }
+            }
+            it("returns mentsu list 2"){
+                let pl : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tm9ts1ts1ts1tm9t")!
+                let mrr : MentsuResolveResult = MentsuResolver.resolve(pl)
+                switch mrr{
+                case let .SUCCESS(agariList):
+                    expect(agariList.count).to(equal(2))
+                    expect(agariList[0].furoMentsuList().count).to(equal(0))
+                    expect(agariList[0].menzenMentsuList()[0].toString()).to(equal("アンコウ:s1"))
+                    expect(agariList[0].menzenMentsuList()[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[0].menzenMentsuList()[2].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[0].menzenMentsuList()[3].toString()).to(equal("シュンツ:m7m8m9(ツモm9)"))
+                    expect(agariList[0].menzenMentsuList()[4].toString()).to(equal("トイツ:m9"))
+                    expect(agariList[1].furoMentsuList().count).to(equal(0))
+                    expect(agariList[1].menzenMentsuList()[0].toString()).to(equal("アンコウ:s1"))
+                    expect(agariList[1].menzenMentsuList()[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].menzenMentsuList()[2].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[1].menzenMentsuList()[3].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[1].menzenMentsuList()[4].toString()).to(equal("トイツ:m9(ツモm9)"))
+                default:
+                    //この分岐にきたらテスト失敗
+                    expect(false).to(beTruthy())
+                }
+            }
+            it("returns mentsu list 2"){
+                let pl : [Pai] = Pai.parseList("m7tm8tm9tm4tm5tm6tm7tm8tm9tm9ts1ts1ts1tm9t")!
+                let mrr : MentsuResolveResult = MentsuResolver.resolve(pl)
+                switch mrr{
+                case let .SUCCESS(agariList):
+                    expect(agariList.count).to(equal(2))
+                    expect(agariList[0].furoMentsuList().count).to(equal(0))
+                    expect(agariList[0].menzenMentsuList()[0].toString()).to(equal("アンコウ:s1"))
+                    expect(agariList[0].menzenMentsuList()[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[0].menzenMentsuList()[2].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[0].menzenMentsuList()[3].toString()).to(equal("シュンツ:m7m8m9(ツモm9)"))
+                    expect(agariList[0].menzenMentsuList()[4].toString()).to(equal("トイツ:m9"))
+                    expect(agariList[1].furoMentsuList().count).to(equal(0))
+                    expect(agariList[1].menzenMentsuList()[0].toString()).to(equal("アンコウ:s1"))
+                    expect(agariList[1].menzenMentsuList()[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].menzenMentsuList()[2].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[1].menzenMentsuList()[3].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[1].menzenMentsuList()[4].toString()).to(equal("トイツ:m9(ツモm9)"))
                 default:
                     //この分岐にきたらテスト失敗
                     expect(false).to(beTruthy())
@@ -394,12 +441,11 @@ class MentsuResolverSpec: QuickSpec {
                 case let .SUCCESS(agariList):
                     expect(agariList.count).to(equal(1))
                     expect(agariList[0].tsumoPai.toString()).to(equal("j1t"))
-                    expect(agariList[0].atama.toString()).to(equal("トイツ:j1"))
                     expect(agariList[0].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[0].mentsuList[1].toString()).to(equal("シュンツ:m4m5m6"))
                     expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m7m8m9"))
                     expect(agariList[0].mentsuList[3].toString()).to(equal("アンコウ:m9"))
-                    expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:j1"))
+                    expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:j1(ツモj1)"))
                 default:
                     //この分岐にきたらテスト失敗
                     expect(false).to(beTruthy())
@@ -411,12 +457,17 @@ class MentsuResolverSpec: QuickSpec {
                 switch mrr{
                 case let .SUCCESS(agariList):
                     expect(agariList[0].tsumoPai.toString()).to(equal("m9t"))
-                    expect(agariList[0].atama.toString()).to(equal("トイツ:m9"))
                     expect(agariList[0].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[0].mentsuList[1].toString()).to(equal("アンコウ:m1"))
                     expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m4m5m6"))
-                    expect(agariList[0].mentsuList[3].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[0].mentsuList[3].toString()).to(equal("シュンツ:m7m8m9(ツモm9)"))
                     expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:m9"))
+                    expect(agariList[1].tsumoPai.toString()).to(equal("m9t"))
+                    expect(agariList[1].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].mentsuList[1].toString()).to(equal("アンコウ:m1"))
+                    expect(agariList[1].mentsuList[2].toString()).to(equal("シュンツ:m4m5m6"))
+                    expect(agariList[1].mentsuList[3].toString()).to(equal("シュンツ:m7m8m9"))
+                    expect(agariList[1].mentsuList[4].toString()).to(equal("トイツ:m9(ツモm9)"))
                 default:
                     //この分岐にきたらテスト失敗
                     expect(false).to(beTruthy())
@@ -428,27 +479,74 @@ class MentsuResolverSpec: QuickSpec {
                 switch mrr{
                 case let .SUCCESS(agariList):
                     expect(agariList.count).to(equal(3))
+                    //4シュンツ 1トイツ
                     expect(agariList[0].tsumoPai.toString()).to(equal("m4t"))
-                    expect(agariList[0].atama.toString()).to(equal("トイツ:m1"))
                     expect(agariList[0].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[0].mentsuList[1].toString()).to(equal("シュンツ:m1m2m3"))
-                    expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m2m3m4"))
+                    expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m2m3m4(ツモm4)"))
                     expect(agariList[0].mentsuList[3].toString()).to(equal("シュンツ:m2m3m4"))
                     expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:m1"))
-                    expect(agariList[1].tsumoPai.toString()).to(equal("m4t"))
-                    expect(agariList[1].atama.toString()).to(equal("トイツ:m4"))
-                    expect(agariList[1].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
-                    expect(agariList[1].mentsuList[1].toString()).to(equal("アンコウ:m1"))
-                    expect(agariList[1].mentsuList[2].toString()).to(equal("アンコウ:m2"))
-                    expect(agariList[1].mentsuList[3].toString()).to(equal("アンコウ:m3"))
-                    expect(agariList[1].mentsuList[4].toString()).to(equal("トイツ:m4"))
+                    
                     expect(agariList[2].tsumoPai.toString()).to(equal("m4t"))
-                    expect(agariList[2].atama.toString()).to(equal("トイツ:m4"))
                     expect(agariList[2].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[2].mentsuList[1].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[2].mentsuList[2].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[2].mentsuList[3].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[2].mentsuList[4].toString()).to(equal("トイツ:m4(ツモm4)"))
+                    
+                    //1シュンツ 3アンコウ 1トイツ
+                    expect(agariList[1].tsumoPai.toString()).to(equal("m4t"))
+                    expect(agariList[1].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].mentsuList[1].toString()).to(equal("アンコウ:m1"))
+                    expect(agariList[1].mentsuList[2].toString()).to(equal("アンコウ:m2"))
+                    expect(agariList[1].mentsuList[3].toString()).to(equal("アンコウ:m3"))
+                    expect(agariList[1].mentsuList[4].toString()).to(equal("トイツ:m4(ツモm4)"))
+                default:
+                    //この分岐にきたらテスト失敗
+                    expect(false).to(beTruthy())
+                }
+            }
+            it("works4"){
+                var paiList : [Pai] = Pai.parseList("m1tm1tm1tm2tm2tm2tm2tm3tm3tm3tm3tm4tm4tm1t")!
+                var mrr : MenzenResolveResult = MentsuResolver.menzenResolve(paiList)
+                switch mrr{
+                case let .SUCCESS(agariList):
+                    expect(agariList.count).to(equal(5))
+                    for agari in agariList{
+                        println("■" + agari.toString())
+                    }
+                    //m1m2m3  m1m2m3  m2m3m4 m2m3m4 m1m1
+                    expect(agariList[0].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3(ツモm1)"))
+                    expect(agariList[0].mentsuList[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m2m3m4"))
+                    expect(agariList[0].mentsuList[3].toString()).to(equal("シュンツ:m2m3m4"))
+                    expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:m1"))
+
+                    expect(agariList[1].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].mentsuList[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[1].mentsuList[2].toString()).to(equal("シュンツ:m2m3m4"))
+                    expect(agariList[1].mentsuList[3].toString()).to(equal("シュンツ:m2m3m4"))
+                    expect(agariList[1].mentsuList[4].toString()).to(equal("トイツ:m1(ツモm1)"))
+
+                    //m1m2m3 m1m1m1 m2m2m2 m3m3m3 m4m4m4
+                    expect(agariList[2].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3(ツモm1)"))
+                    expect(agariList[2].mentsuList[1].toString()).to(equal("アンコウ:m1"))
+                    expect(agariList[2].mentsuList[2].toString()).to(equal("アンコウ:m2"))
+                    expect(agariList[2].mentsuList[3].toString()).to(equal("アンコウ:m3"))
                     expect(agariList[2].mentsuList[4].toString()).to(equal("トイツ:m4"))
+
+                    expect(agariList[3].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[3].mentsuList[1].toString()).to(equal("アンコウ:m1(ツモm1)"))
+                    expect(agariList[3].mentsuList[2].toString()).to(equal("アンコウ:m2"))
+                    expect(agariList[3].mentsuList[3].toString()).to(equal("アンコウ:m3"))
+                    expect(agariList[3].mentsuList[4].toString()).to(equal("トイツ:m4"))
+
+                    //m1m2m3 m1m2m3 m1m2m3 m1m2m3 m4m4
+                    expect(agariList[4].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3(ツモm1)"))
+                    expect(agariList[4].mentsuList[1].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[4].mentsuList[2].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[4].mentsuList[3].toString()).to(equal("シュンツ:m1m2m3"))
+                    expect(agariList[4].mentsuList[4].toString()).to(equal("トイツ:m4"))
                 default:
                     //この分岐にきたらテスト失敗
                     expect(false).to(beTruthy())

@@ -23,9 +23,16 @@ extension Array {
         for var i=0;i<count;i++ {
             for var j=i+1;j<count;j++ {
                 for var k=j+1;k<count;k++ {
-                ret.append([self[i],self[j],self[k]])
+                    ret.append([self[i],self[j],self[k]])
                 }
             }
+        }
+        return ret
+    }
+    func copy() -> Array{
+        var ret = Array()
+        for ele in self{
+            ret.append(ele)
         }
         return ret
     }

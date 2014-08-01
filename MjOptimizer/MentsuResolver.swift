@@ -32,7 +32,7 @@ public class MentsuResolver{
             case let .SUCCESS(agariList):
                 for agari in agariList{
                     //面前の面子リストだけ入っているアガリに対して、ふうろを追加する
-                    agari.addFuroMentsuList(furoMentsuList.array)
+                    for m in furoMentsuList.array{agari.mentsuList.append(m)}
                 }
                 return MentsuResolveResult.SUCCESS(agariList)
             case let .ERROR(msg):
@@ -221,8 +221,7 @@ public class MentsuResolver{
                         mentsuList.append(atama)
                         var agari :Agari = Agari(
                             tsumoPai: tsumoPai,
-                            atama: atama,
-                            menzenMentsuList: mentsuList.array
+                            mentsuList: mentsuList.array
                         )
                         agariList.append(agari)
                     }
@@ -242,7 +241,28 @@ public class MentsuResolver{
         for agari in agariList{
             Log.debug(agari.toString())
         }
-        return MenzenResolveResult.SUCCESS(agariList.unique())
+        //重複除去
+        agariList = agariList.unique()
+        //ツモがどの面子に含まれるかを計算し、面子候補が複数ある場合はagariを分割する
+        var newAgariList:[Agari] = []
+        for agari in agariList{
+            for mentsu in agari.notNakiMentsuList(){
+                if mentsu.include(agari.tsumoPai){
+                    //ツモ牌を含む面子を見つけたため、その面子を「ツモ牌を含む面子」に交換して、newAgariListに追加
+                    var newMentsu = mentsu.copy()
+                    newMentsu.tsumoPai = agari.tsumoPai
+                    newAgariList.append(agari.replaceMenzenOneMentsu(mentsu,newMentsu:newMentsu))
+                }
+            }
+        }
+        if newAgariList.count == 0{
+            return MenzenResolveResult.ERROR("プログラミングエラー。メンゼン牌にツモ牌が含まれていない")
+        }
+        //print debug
+        for agari in newAgariList{
+            Log.debug(agari.toString())
+        }
+        return MenzenResolveResult.SUCCESS(newAgariList.unique())
     }
     
     
