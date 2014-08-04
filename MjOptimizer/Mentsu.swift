@@ -34,11 +34,14 @@ protocol MentsuProtocol{
     func isYaochu() -> Bool
     func isJihai() -> Bool
     func isSangen() -> Bool
+    func isKaze() -> Bool
+    func isGreen() -> Bool
     func paiType() -> PaiType
     func consistOfSamePai() -> Bool
     func consistOfDifferentPai() -> Bool
     func isRyanmenmachi() -> Bool
     func includeAgariPai() -> Bool
+    func paiArray() -> [Pai]
 }
 //親クラス
 public class Mentsu: MentsuProtocol, Equatable, Comparable {
@@ -83,7 +86,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
 
     //親クラスであるため、以下の関数が直接呼ばれることはない。値は全部ダミー
     public func copy() -> Mentsu {return self}
-    public func identical() -> Pai { return PaiMaster.pais["j1t"]! }
+    public func identical() -> Pai { return PaiMaster.pais["r0t"]! }
     public func toString() -> String { return "Mentsu親クラス" }
     public func fuNum() -> Int { return -200 }
     public func isFuro() -> Bool { return false }
@@ -96,11 +99,14 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func isYaochu() -> Bool { return false}
     public func isJihai() -> Bool {return false}
     public func isSangen() -> Bool {return false}
+    public func isKaze() -> Bool {return false}
+    public func isGreen() -> Bool {return false}
     public func paiType() -> PaiType {return PaiType.MANZU}
     public func consistOfSamePai() -> Bool{return false}
     public func consistOfDifferentPai() -> Bool{return false}
     public func isRyanmenmachi() -> Bool{return false}
     public func includeAgariPai() -> Bool{return agariPai != nil}
+    public func paiArray() -> [Pai]{return [PaiMaster.pais["r0t"]!]}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -146,10 +152,13 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func isYaochu() -> Bool { return pai.isYaochu}
     override public func isJihai() -> Bool {return pai.type == PaiType.JIHAI}
     override public func isSangen() -> Bool {return pai.isSangen }
+    override public func isKaze() -> Bool {return pai.isKaze }
+    override public func isGreen() -> Bool {return pai.isGreen }
     override public func paiType() -> PaiType {return pai.type}
     override public func consistOfSamePai() -> Bool{return true}
     override public func consistOfDifferentPai() -> Bool{return false}
     override public func isRyanmenmachi() -> Bool{return false}
+    override public func paiArray() -> [Pai]{return [PaiMaster.pais["r0t"]!]}
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
@@ -183,6 +192,7 @@ public class ToitsuMentsu: SamePaiMentsu{
     override public func isNaki() -> Bool { return false }
     override public func size()->Int{return 2}
     override public func type()->MentsuType{return MentsuType.TOITSU}
+    override public func paiArray() -> [Pai]{return [pai,pai]}
 }
 //アンコウ
 public class AnkouMentsu: SamePaiMentsu{
@@ -194,6 +204,7 @@ public class AnkouMentsu: SamePaiMentsu{
     override public func isNaki() -> Bool { return false }
     override public func size()->Int{return 3}
     override public func type()->MentsuType{return MentsuType.ANKOU}
+    override public func paiArray() -> [Pai]{return [pai,pai,pai]}
 }
 //ポン
 public class PonMentsu: SamePaiMentsu{
@@ -205,6 +216,7 @@ public class PonMentsu: SamePaiMentsu{
     override public func isNaki() -> Bool { return true}
     override public func size()->Int{return 3}
     override public func type()->MentsuType{return MentsuType.PON}
+    override public func paiArray() -> [Pai]{return [pai,pai,pai]}
 }
 //アンカン
 public class AnkanMentsu: SamePaiMentsu{
@@ -216,6 +228,7 @@ public class AnkanMentsu: SamePaiMentsu{
     override public func isNaki() -> Bool { return false}
     override public func size()->Int{return 4}
     override public func type()->MentsuType{return MentsuType.ANKAN}
+    override public func paiArray() -> [Pai]{return [pai,pai,pai,pai]}
 }
 //ミンカン
 public class MinkanMentsu: SamePaiMentsu{
@@ -227,6 +240,7 @@ public class MinkanMentsu: SamePaiMentsu{
     override public func isNaki() -> Bool { return true}
     override public func size()->Int{return 4}
     override public func type()->MentsuType{return MentsuType.MINKAN}
+    override public func paiArray() -> [Pai]{return [pai,pai,pai,pai]}
 }
 
 //異なる牌で構成される面子の親クラス
@@ -253,10 +267,13 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func isYaochu() -> Bool {return false}
     override public func isJihai() -> Bool {return false}
     override public func isSangen() -> Bool {return false }
+    override public func isKaze() -> Bool {return false }
+    override public func isGreen() -> Bool {return paiList.all({$0.isGreen})}
     override public func paiType() -> PaiType {return paiList[0].type}
     override public func consistOfSamePai() -> Bool{return false}
     override public func consistOfDifferentPai() -> Bool{return true}
     override public func isRyanmenmachi() -> Bool{return false}
+    override public func paiArray() -> [Pai]{return self.paiList}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
