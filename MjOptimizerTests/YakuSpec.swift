@@ -550,4 +550,26 @@ class YakuSpec3: QuickSpec {
         }
     }
 }
+//テストクラスが長くなぎすぎるとよくXCodeが落ちるので、適当に分割
+class YakuSpec4: QuickSpec {
+    override func spec() {
+        describe("YCChitoitsu"){
+            it("returns 七対子"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("j5tj5t")!,
+                    Mentsu.parseStr("p1tp1t")!,
+                    Mentsu.parseStr("m3tm3t")!,
+                    Mentsu.parseStr("s3ts3t")!,
+                    Mentsu.parseStr("s5ts5t")!,
+                    Mentsu.parseStr("m5tm5t")!,
+                    Mentsu.parseStr("j1tj1t")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                expect(YCChitoitsu().check(agari,kyoku: kyoku)!.kanji).to(equal("七対子"))
+            }
+        }
+    }
+}
+
 

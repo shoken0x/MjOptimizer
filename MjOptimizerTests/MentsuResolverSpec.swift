@@ -11,7 +11,7 @@ import MjOptimizer
 import Quick
 import Nimble
 
-class MentsuResolverSpec: QuickSpec {
+class MentsuResolverSpec1: QuickSpec {
     override func spec() {
         describe("resolve"){
             it("returns mentsu list 1"){
@@ -79,6 +79,11 @@ class MentsuResolverSpec: QuickSpec {
                 }
             }
         }
+    }
+}
+//テストケースが多いとXcodeが死ぬので適当に分割
+class MentsuResolverSpec2: QuickSpec {
+    override func spec() {
         describe("furoResolve"){
             it("returns mentsu list 1"){
                 let pl : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
@@ -206,6 +211,11 @@ class MentsuResolverSpec: QuickSpec {
                 }
             }
         }
+    }
+}
+//テストケースが多いとXcodeが死ぬので適当に分割
+class MentsuResolverSpec3: QuickSpec {
+    override func spec() {
         describe("getOneFuro"){
             it("gets pon"){
                 let pl : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tj1tj1tj2tj2tj2l")!
@@ -432,7 +442,11 @@ class MentsuResolverSpec: QuickSpec {
                 }
             }
         }
-
+    }
+}
+//テストケースが多いとXcodeが死ぬので適当に分割
+class MentsuResolverSpec4: QuickSpec {
+    override func spec() {
         describe("menzenResolve"){
             it("works1"){
                 var paiList : [Pai] = Pai.parseList("m1tm2tm3tm4tm5tm6tm7tm8tm9tm9tm9tm9tj1tj1t")!
@@ -460,7 +474,7 @@ class MentsuResolverSpec: QuickSpec {
                     expect(agariList[0].mentsuList[2].toString()).to(equal("シュンツ:m4m5m6"))
                     expect(agariList[0].mentsuList[3].toString()).to(equal("シュンツ:m7m8m9(アガリ牌m9)"))
                     expect(agariList[0].mentsuList[4].toString()).to(equal("トイツ:m9"))
-
+                    
                     expect(agariList[1].mentsuList[0].toString()).to(equal("シュンツ:m1m2m3"))
                     expect(agariList[1].mentsuList[1].toString()).to(equal("アンコウ:m1"))
                     expect(agariList[1].mentsuList[2].toString()).to(equal("シュンツ:m4m5m6"))
@@ -550,9 +564,23 @@ class MentsuResolverSpec: QuickSpec {
 //                    expect(false).to(beTruthy())
 //                }
 //            }
+            it("returns Kokushimuso"){
+                var paiList : [Pai] = Pai.parseList("m1tm9ts1ts9tp1tp9tj1tj2tj3tj4tj5tj6tj7tj7t")!
+                var mrr :MenzenResolveResult = MentsuResolver.menzenResolve(paiList)
+                switch mrr{
+                case let .SUCCESS(agariList):
+                    expect(agariList[0].mentsuList[0].toString()).to(equal("国士無双:j1j2j3j4j5j6j7j7m1m9p1p9s1s9(アガリ牌j7)"))
+                default:
+                    //この分岐にきたらテスト失敗
+                    expect(false).to(beTruthy())
+                }
+            }
         }
-        
-        
+    }
+}
+//テストケースが多いとXcodeが死ぬので適当に分割
+class MentsuResolverSpec5: QuickSpec {
+    override func spec() {
         describe("makeMenzenMentsuList"){
             it("return 1 ankou"){
                 let pnl : PaiNumList = PaiNumList(paiList: Pai.parseList("m1tm1tm1t")!)

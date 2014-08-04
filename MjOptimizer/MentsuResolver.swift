@@ -202,12 +202,43 @@ public class MentsuResolver{
             return MenzenResolveResult.ERROR("入力の牌のリストが0〜1枚")
         }
         let agariPai : Pai = paiList.last()!
-        let paiNumMaster : [PaiNum] = []
         //頭候補計算
         //辞書順に並び替え
         var sortedList = paiList
         sort(&sortedList,{(p1:Pai,p2:Pai) -> Bool in return p1.toString() < p2.toString()})
+        //牌の枚数ごとに整理した配列
+        let paiNumList = PaiNumList(paiList:sortedList)
+        //アガリ配列。以降はこの配列を埋めて、最後にリターンする
         var agariList: [Agari] = []
+        
+        //七対子判定
+        if (sortedList.count == 14 && paiNumList.list.all{($0.num == 0 || $0.num == 2)} ){
+            agariList.append(Agari(mentsuList:[
+                ToitsuMentsu(pai:sortedList[0]),
+                ToitsuMentsu(pai:sortedList[2]),
+                ToitsuMentsu(pai:sortedList[4]),
+                ToitsuMentsu(pai:sortedList[6]),
+                ToitsuMentsu(pai:sortedList[8]),
+                ToitsuMentsu(pai:sortedList[10]),
+                ToitsuMentsu(pai:sortedList[12])
+                ]))
+        }
+
+        //国士無双が成立するかどうか
+        if sortedList.count == 14 {
+            let strs = ["m1t","m9t","s1t","s9t","p1t","p9t","j1t","j2t","j3t","j4t","j5t","j6t","j7t"]
+            if (strs.all{paiNumList.getNum(PaiMaster.pais[$0]!) >= 1} ){//牌が14枚で国士無双牌すべてが１枚以上あれば成立
+                agariList.append(Agari(mentsuList:[KokushiMentsu(paiList:sortedList)]))
+            }
+        }
+        //TODOしーさんぷーたが成立するかどうか
+        if sortedList.count == 14 {
+            if false{
+                agariList.append(Agari(mentsuList:[ShisanputaMentsu(paiList:sortedList)]))
+            }
+        }
+        
+        //通常の４面子１雀頭構成
         //雀頭候補を検索
         for var i = 0; i < sortedList.count - 1; ++i {
             if sortedList[i] == sortedList[i+1]{ //雀頭候補発見
@@ -236,6 +267,7 @@ public class MentsuResolver{
                 }
             }
         }
+        
         //print debug
         for agari in agariList{
             Log.debug(agari.toString())
@@ -362,6 +394,8 @@ public class MentsuResolver{
         //ここまで処理が来るということはシュンツもアンコウも見つからなかったため、この入力では面子は成立しない
         return makeMenzenMentsuResult.CONFLICT
     }
+    
+
 }
 
 

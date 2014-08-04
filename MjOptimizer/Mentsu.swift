@@ -16,7 +16,8 @@ public enum MentsuType: Int{
     case ANKOU   = 5
     case MINKAN  = 6
     case ANKAN   = 7
-    case SPECIAL = 8
+    case KOKUSHI = 8
+    case SHISAN  = 9
     case ABSTRUCT = -1
 }
 protocol MentsuProtocol{
@@ -66,8 +67,8 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
             return isFuro ? PonMentsu(pai: pl[0]) : AnkouMentsu(pai: pl[0])
         }else if(pl.count == 4 && pl[0] == pl[1] && pl[1] == pl[2] && pl[2] == pl[3]){
             return isFuro ? MinkanMentsu(pai: pl[0]) : AnkanMentsu(pai: pl[0])
-        }else if(pl.count == 14){
-            return SpecialMentsu(paiList:pl)
+        }else if(pl.count == 14){//TODOシーサンプータ
+            return KokushiMentsu(paiList:pl)
         }else{
             return nil
         }
@@ -333,9 +334,24 @@ public class ChiMentsu: DifferentPaiMentsu{
         return furoNum == 1 && pl.count == 3 && pl[0].isNext(pl[1]) && pl[1].isNext(pl[2])
     }
 }
-//国士かシーサンプータ
-public class SpecialMentsu: DifferentPaiMentsu{
-    override public func copy() -> Mentsu {return SpecialMentsu(paiList:paiList)}
+
+//国士
+public class KokushiMentsu: DifferentPaiMentsu{
+    override public func copy() -> Mentsu {return KokushiMentsu(paiList:paiList)}
+    override public func toString() -> String{
+        return "国士無双:" + super.toString()
+    }
+    override public func fuNum()->Int{return 0}//TODO}
+    override public func isFuro()->Bool{return false}
+    override public func isMenzen() -> Bool {return true}
+    override public func isNaki() -> Bool { return false}
+    override public func type()->MentsuType{return MentsuType.KOKUSHI}
+    override public func isRyanmenmachi() -> Bool{return false}
+}
+
+//シーサンプータ
+public class ShisanputaMentsu: DifferentPaiMentsu{
+    override public func copy() -> Mentsu {return ShisanputaMentsu(paiList:paiList)}
     override public func toString() -> String{
         return "特殊系:" + super.toString()
     }
@@ -343,7 +359,7 @@ public class SpecialMentsu: DifferentPaiMentsu{
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
-    override public func type()->MentsuType{return MentsuType.SPECIAL}
+    override public func type()->MentsuType{return MentsuType.SHISAN}
     override public func isRyanmenmachi() -> Bool{return false}
 }
 

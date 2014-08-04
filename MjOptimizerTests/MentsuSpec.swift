@@ -116,7 +116,7 @@ class MentsuSpec: QuickSpec {
                 expect(m.isNaki()).to(beTruthy())
                 expect(m.size()).to(equal(4))
             }
-            it("makes 特殊面子"){
+            it("makes 国士無双面子"){
                 var pl:[Pai] = Pai.parseList("m1tm9ts1ts9tp1tp9tj1tj2tj3tj4tj5tj6tj7tj7t")!
                 var m:Mentsu = Mentsu.parse(pl)!
                 expect(m.isFuro()).to(beFalsy())

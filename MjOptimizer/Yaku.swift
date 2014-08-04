@@ -273,8 +273,24 @@ public class YCSomete : YakuChecker{
 }
 
 //七対子
+public class YCChitoitsu : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if(agari.mentsuList.filter{$0.type() == MentsuType.TOITSU}.count == 7){
+            return Yaku(name:"chitoitsu",kanji:"七対子",hanNum:2,nakiHanNum:0)
+        }
+        return nil
+    }
+}
 
 //国士無双
+public class YCKokushimuso : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if(agari.mentsuList.all{$0.type() == MentsuType.KOKUSHI}){
+            return Yaku(name:"kokushimuso",kanji:"国士無双")
+        }
+        return nil
+    }
+}
 
 //---------------------
 // 局で決まる役
