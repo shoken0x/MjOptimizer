@@ -545,7 +545,7 @@ class YakuSpec3: QuickSpec {
                 ]
                 let agari = Agari(mentsuList: mentsuList)
                 let kyoku = Kyoku()
-                expect(YCSomete().check(agari,kyoku: kyoku)).to(beFalsy())
+                expect(YCSomete().check(agari,kyoku: kyoku)).to(beNil())
             }
         }
     }
@@ -567,6 +567,76 @@ class YakuSpec4: QuickSpec {
                 let agari = Agari(mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YCChitoitsu().check(agari,kyoku: kyoku)!.kanji).to(equal("七対子"))
+            }
+        }
+        describe("YCHaku"){
+            it("returns 白"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("m5tm6tm7t")!,
+                    Mentsu.parseStr("m3tm4tm5t")!,
+                    Mentsu.parseStr("j5tj5tj5tj5t")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                expect(YCHaku().check(agari,kyoku: kyoku)!.kanji).to(equal("白"))
+            }
+        }
+        describe("YCJikaze"){
+            it("returns 自風(南)"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("m5tm6tm7t")!,
+                    Mentsu.parseStr("m3tm4tm5t")!,
+                    Mentsu.parseStr("j2tj2tj2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                kyoku.jikaze = Kaze.NAN
+                expect(YCJikaze().check(agari,kyoku: kyoku)!.kanji).to(equal("自風(南)"))
+            }
+            it("returns nil"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("m5tm6tm7t")!,
+                    Mentsu.parseStr("m3tm4tm5t")!,
+                    Mentsu.parseStr("j2tj2tj2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                kyoku.jikaze = Kaze.SHA
+                expect(YCJikaze().check(agari,kyoku: kyoku)).to(beNil())
+            }
+        }
+        describe("YCBakaze"){
+            it("returns 場風(南)"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("m5tm6tm7t")!,
+                    Mentsu.parseStr("m3tm4tm5t")!,
+                    Mentsu.parseStr("j2tj2tj2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                kyoku.bakaze = Kaze.NAN
+                expect(YCBakaze().check(agari,kyoku: kyoku)!.kanji).to(equal("場風(南)"))
+            }
+            it("returns nil"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("s1ts1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("m5tm6tm7t")!,
+                    Mentsu.parseStr("m3tm4tm5t")!,
+                    Mentsu.parseStr("j2tj2tj2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                kyoku.bakaze = Kaze.SHA
+                expect(YCBakaze().check(agari,kyoku: kyoku)).to(beNil())
             }
         }
     }

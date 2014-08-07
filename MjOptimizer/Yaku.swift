@@ -292,30 +292,118 @@ public class YCKokushimuso : YakuChecker{
     }
 }
 
+
+//白
+public class YCHaku : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if(agari.paiNumList.getNum("j5t") >= 3){
+            return Yaku(name:"haku",kanji:"白",hanNum:1,nakiHanNum:1)
+        }
+        return nil
+    }
+}
+//發
+public class YCHatsu : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if(agari.paiNumList.getNum("j6t") >= 3){
+            return Yaku(name:"hatsu",kanji:"發",hanNum:1,nakiHanNum:1)
+        }
+        return nil
+    }
+}
+//中
+public class YCChun : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if(agari.paiNumList.getNum("j7t") >= 3){
+            return Yaku(name:"chun",kanji:"中",hanNum:1,nakiHanNum:1)
+        }
+        return nil
+    }
+}
+
+//自風(東)//自風(南)//自風(西)//自風(北)
+public class YCJikaze : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        switch kyoku.jikaze{
+        case .TON: if(agari.paiNumList.getNum("j1t") >= 3){ return Yaku(name:"jikazeton",kanji:"自風(東)",hanNum:1,nakiHanNum:1)}
+        case .NAN: if(agari.paiNumList.getNum("j2t") >= 3){ return Yaku(name:"jikazenan",kanji:"自風(南)",hanNum:1,nakiHanNum:1)}
+        case .SHA: if(agari.paiNumList.getNum("j3t") >= 3){ return Yaku(name:"jikazesha",kanji:"自風(西)",hanNum:1,nakiHanNum:1)}
+        case .PEI: if(agari.paiNumList.getNum("j4t") >= 3){ return Yaku(name:"jikazepei",kanji:"自風(北)",hanNum:1,nakiHanNum:1)}
+        }
+        return nil
+    }
+}
+//場風(東)//場風(南)//場風(西)//場風(北)
+public class YCBakaze : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        switch kyoku.bakaze{
+        case .TON: if(agari.paiNumList.getNum("j1t") >= 3){ return Yaku(name:"bakazeton",kanji:"場風(東)",hanNum:1,nakiHanNum:1)}
+        case .NAN: if(agari.paiNumList.getNum("j2t") >= 3){ return Yaku(name:"bakazenan",kanji:"場風(南)",hanNum:1,nakiHanNum:1)}
+        case .SHA: if(agari.paiNumList.getNum("j3t") >= 3){ return Yaku(name:"bakazesha",kanji:"場風(西)",hanNum:1,nakiHanNum:1)}
+        case .PEI: if(agari.paiNumList.getNum("j4t") >= 3){ return Yaku(name:"bakazepei",kanji:"場風(北)",hanNum:1,nakiHanNum:1)}
+        }
+        return nil
+    }
+}
+
 //---------------------
-// 局で決まる役
+// 局のみで決まる役
 //---------------------
 
 //ドラ
-//リーチ
+public class YCDora : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if (kyoku.doraNum > 0){
+            return Yaku(name:"dora",kanji: "ドラ" + String(kyoku.doraNum), hanNum:kyoku.doraNum,nakiHanNum:kyoku.doraNum)
+        }
+        return nil
+    }
+}
+//立直//ダブル立直
+public class YCReach : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        switch kyoku.reachNum{
+        case 1: return Yaku(name:"reach",kanji: "立直", hanNum:1,nakiHanNum:0)
+        case 2: return Yaku(name:"doubleReach",kanji: "ダブル立直", hanNum:2,nakiHanNum:0)
+        default:return nil
+        }
+    }
+}
 //一発
+public class YCIppatsu : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if (kyoku.isIppatsu){
+            return Yaku(name:"ippatsu",kanji: "一発", hanNum:1,nakiHanNum:0)
+        }
+        return nil
+    }
+}
 //門前清自摸和
-//自風(東)
-//自風(南)
-//自風(西)
-//自風(北)
-//場風(東)
-//場風(南)
-//場風(西)
-//場風(北)
-//白
-//發
-//中
-//海底摸月
-//河底撈魚
-//嶺上開花
-//槍槓
-//ダブル立直
-//天和
-//地和
+public class YCTsumo : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if (kyoku.isTsumo){
+            return Yaku(name:"tsumo",kanji: "門前清自摸和", hanNum:1,nakiHanNum:0)
+        }
+        return nil
+    }
+}
+
+//海底摸月(河底撈魚)//嶺上開花//槍槓//天和//地和
+public class YCAgariTiming : YakuChecker{
+    public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
+        if (kyoku.isHaitei){
+            return Yaku(name:"haitei",kanji: "海底摸月", hanNum:1,nakiHanNum:1)
+        }else if(kyoku.isRinshan){
+            return Yaku(name:"rinshan",kanji: "嶺上開花", hanNum:1,nakiHanNum:1)
+        }else if(kyoku.isChankan){
+            return Yaku(name:"chankan",kanji: "槍槓", hanNum:1,nakiHanNum:1)
+        }else if(kyoku.isChiho){
+            return Yaku(name:"chiho",kanji: "地和")
+        }else if(kyoku.isTenho){
+            return Yaku(name:"tenho",kanji: "天和")
+        }
+        return nil
+    }
+}
+
 //しーさんぷーた

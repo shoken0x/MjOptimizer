@@ -106,6 +106,14 @@ public class PaiNumList {
         }
         return 0
     }
+    //引数paistrの枚数を返す
+    public func getNum(paiStr:String) -> Int{
+        let pai = PaiMaster.pais[paiStr]!
+        for paiNum in self.list{
+            if paiNum.pai == pai {return paiNum.num}
+        }
+        return 0
+    }
     //引数paiの枚数を一枚減らす
     public func decNum(pai:Pai){
         for paiNum in self.list{

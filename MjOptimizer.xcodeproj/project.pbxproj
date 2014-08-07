@@ -926,6 +926,7 @@
 		C42D75611961802B00183C24 /* parse */ = {
 			isa = PBXGroup;
 			children = (
+				C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */,
 				C42D756F196180C600183C24 /* Mentsu.swift */,
 				C40B15C7197EB84500880D4C /* Agari.swift */,
 				C4AC26551986A2D8007533C6 /* Yaku.swift */,
@@ -953,7 +954,6 @@
 			isa = PBXGroup;
 			children = (
 				C4DEE67619810F1700CB5681 /* MentsuList.swift */,
-				C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */,
 				C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */,
 			);
 			name = MentsuResolver;

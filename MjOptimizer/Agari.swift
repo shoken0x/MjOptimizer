@@ -8,8 +8,17 @@
 
 public class Agari:Equatable{
     public var mentsuList: [Mentsu]
+    public var paiList:[Pai]
+    public var paiNumList: PaiNumList
     public init(mentsuList:[Mentsu]) {
         self.mentsuList = mentsuList
+        self.paiList = []
+        for mentsu in mentsuList{
+            for pai in mentsu.paiArray(){
+                self.paiList.append(pai)
+            }
+        }
+        self.paiNumList = PaiNumList(paiList:self.paiList)
     }
     public func menzenMentsuList() -> [Mentsu]{ return mentsuList.filter{$0.isMenzen()} }
     public func furoMentsuList() -> [Mentsu]{return mentsuList.filter{$0.isFuro()} }
