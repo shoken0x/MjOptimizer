@@ -12,32 +12,6 @@ import Nimble
 
 class YakuSpec: QuickSpec {
     override func spec() {
-        describe("YCTanyao"){
-            it("returns Yaku"){
-                let mentsuList:[Mentsu] = [
-                    Mentsu.parseStr("m2tm2t")!,
-                    Mentsu.parseStr("m2tm3tm4t")!,
-                    Mentsu.parseStr("s5ts3ts4t")!,
-                    Mentsu.parseStr("p2tp3tp4t")!,
-                    Mentsu.parseStr("s2ts2ts2l")!
-                ]
-                let agari = Agari(mentsuList: mentsuList)
-                let kyoku = Kyoku()
-                expect(YCTanyao().check(agari,kyoku: kyoku)!.kanji).to(equal("断么九"))
-            }
-            it("returns nil"){
-                let mentsuList:[Mentsu] = [
-                    Mentsu.parseStr("j1tj1t")!,
-                    Mentsu.parseStr("m2tm3tm4t")!,
-                    Mentsu.parseStr("s5ts3ts4t")!,
-                    Mentsu.parseStr("p2tp3tp4t")!,
-                    Mentsu.parseStr("s2ts2ts2l")!
-                ]
-                let agari = Agari(mentsuList: mentsuList)
-                let kyoku = Kyoku()
-                expect(YCTanyao().check(agari,kyoku: kyoku)).to(beNil())
-            }
-        }
         describe("YCPinfu"){
             it("returns Yaku"){
                 let agariPai = PaiMaster.pais["m2t"]!
@@ -98,6 +72,32 @@ class YakuSpec: QuickSpec {
                 let agari = Agari(mentsuList: mentsuList)
                 let kyoku = Kyoku()
                 expect(YCPinfu().check(agari,kyoku: kyoku)).to(beNil())
+            }
+        }
+        describe("YCTanyao"){
+            it("returns Yaku"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("m2tm2t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("s5ts3ts4t")!,
+                    Mentsu.parseStr("p2tp3tp4t")!,
+                    Mentsu.parseStr("s2ts2ts2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                expect(YCTanyao().check(agari,kyoku: kyoku)!.kanji).to(equal("断么九"))
+            }
+            it("returns nil"){
+                let mentsuList:[Mentsu] = [
+                    Mentsu.parseStr("j1tj1t")!,
+                    Mentsu.parseStr("m2tm3tm4t")!,
+                    Mentsu.parseStr("s5ts3ts4t")!,
+                    Mentsu.parseStr("p2tp3tp4t")!,
+                    Mentsu.parseStr("s2ts2ts2l")!
+                ]
+                let agari = Agari(mentsuList: mentsuList)
+                let kyoku = Kyoku()
+                expect(YCTanyao().check(agari,kyoku: kyoku)).to(beNil())
             }
         }
         describe("YCPeikou"){

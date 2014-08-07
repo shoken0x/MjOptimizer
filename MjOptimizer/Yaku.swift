@@ -61,7 +61,10 @@ public class YCPeikou : YakuChecker{
         if agari.includeNaki(){return nil}
         var count = 0
         for mentsuConbi : [Mentsu] in agari.mentsuList.conbination(){
-            if mentsuConbi[0] == mentsuConbi[1] {count++ }
+            if (mentsuConbi[0].type() == mentsuConbi[1].type()) &&
+                (mentsuConbi[0].identical() == mentsuConbi[1].identical()){
+                count++
+            }
         }
         switch count{
         case 1: return Yaku(name:"iipeikou",kanji:"一盃口",hanNum:1,nakiHanNum:0)
@@ -406,4 +409,4 @@ public class YCAgariTiming : YakuChecker{
     }
 }
 
-//しーさんぷーた
+//TODOしーさんぷーた

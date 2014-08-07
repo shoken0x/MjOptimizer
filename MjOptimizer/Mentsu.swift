@@ -24,7 +24,7 @@ protocol MentsuProtocol{
     func copy() -> Mentsu
     func identical() -> Pai
     func toString() -> String
-    func fuNum() -> Int
+    func fuNum(kyoku:Kyoku) -> Int
     func isFuro() -> Bool//副露かどうか。面前の逆。アンカンも含む。
     func isMenzen() -> Bool//面前かどうか。副露の逆。アンカンは含まない。
     func isNaki() -> Bool//鳴いたかどうか。アンカンは含まない。
@@ -89,7 +89,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func copy() -> Mentsu {return self}
     public func identical() -> Pai { return PaiMaster.pais["r0t"]! }
     public func toString() -> String { return "Mentsu親クラス" }
-    public func fuNum() -> Int { return -200 }
+    public func fuNum(kyoku:Kyoku) -> Int { return -200 }
     public func isFuro() -> Bool { return false }
     public func isMenzen() -> Bool {return false}
     public func isNaki() -> Bool { return false }
@@ -142,7 +142,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
         let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return pai.toShortStr() + str
     }
-    override public func fuNum()->Int{return 0}
+    override public func fuNum(kyoku:Kyoku)->Int{return 0}
     override public func isFuro() -> Bool { return false }
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return false }
@@ -187,7 +187,14 @@ public class ToitsuMentsu: SamePaiMentsu{
     public init(pai: Pai) { return super.init(pai: pai) }
     override public func copy() -> Mentsu {return ToitsuMentsu(pai:pai)}
     override public func toString() -> String{ return "トイツ:" + super.toString() }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{
+        var fu:Int = 0
+        if(agariPai){fu += 2} //単騎待ちであるため
+        if(super.isSangen()){fu += 2} //三元牌
+        if(kyoku.jikaze.toPai() == pai){ fu += 2}//自風
+        if(kyoku.bakaze.toPai() == pai){ fu += 2}//場風
+        return fu
+    }
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false }
@@ -199,7 +206,7 @@ public class ToitsuMentsu: SamePaiMentsu{
 public class AnkouMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return AnkouMentsu(pai:pai)}
     override public func toString() -> String{ return "アンコウ:" + super.toString() }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 16 : 8}
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false }
@@ -211,7 +218,7 @@ public class AnkouMentsu: SamePaiMentsu{
 public class PonMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return PonMentsu(pai:pai)}
     override public func toString() -> String{ return "ポン:" + super.toString() }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 8 : 4}
     override public func isFuro()->Bool{return true}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return true}
@@ -223,7 +230,7 @@ public class PonMentsu: SamePaiMentsu{
 public class AnkanMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return AnkanMentsu(pai:pai)}
     override public func toString() -> String{ return "アンカン:" + super.toString() }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 32 : 16}
     override public func isFuro()->Bool{return true}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return false}
@@ -235,7 +242,7 @@ public class AnkanMentsu: SamePaiMentsu{
 public class MinkanMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return MinkanMentsu(pai:pai)}
     override public func toString() -> String{ return "ミンカン:" + super.toString() }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 16 : 8}
     override public func isFuro()->Bool{return true}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return true}
@@ -257,7 +264,7 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
         let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return join("",paiList.map({ $0.toShortStr()})) + str
     }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return 0}//TODO}
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return false}
@@ -304,7 +311,12 @@ public class ShuntsuMentsu: DifferentPaiMentsu{
     override public func toString() -> String{
         return "シュンツ:" + super.toString()
     }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{
+        if(agariPai){
+            if !(self.isRyanmenmachi()){return 2} //カンチャン・ペンチャン
+        }
+        return 0
+    }
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
@@ -317,7 +329,7 @@ public class ChiMentsu: DifferentPaiMentsu{
     override public func toString() -> String{
         return "チー:" + super.toString()
     }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return 0}
     override public func isFuro()->Bool{return true}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return true}
@@ -341,7 +353,7 @@ public class KokushiMentsu: DifferentPaiMentsu{
     override public func toString() -> String{
         return "国士無双:" + super.toString()
     }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return 0}//TODO}
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
@@ -355,7 +367,7 @@ public class ShisanputaMentsu: DifferentPaiMentsu{
     override public func toString() -> String{
         return "特殊系:" + super.toString()
     }
-    override public func fuNum()->Int{return 0}//TODO}
+    override public func fuNum(kyoku:Kyoku)->Int{return 0}//TODO}
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
