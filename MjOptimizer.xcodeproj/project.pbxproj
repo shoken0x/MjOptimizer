@@ -142,6 +142,7 @@
 		C421E895197430EA001C2F34 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
 		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
+		C439EB6E1998FC4200116820 /* TotalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EB6D1998FC4200116820 /* TotalSpec.swift */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
 		C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */; };
@@ -553,6 +554,7 @@
 		C40B15C7197EB84500880D4C /* Agari.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agari.swift; sourceTree = "<group>"; };
 		C42D756F196180C600183C24 /* Mentsu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentsu.swift; sourceTree = "<group>"; };
 		C42D7571196180D100183C24 /* MentsuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuSpec.swift; sourceTree = "<group>"; };
+		C439EB6D1998FC4200116820 /* TotalSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalSpec.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
 		C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultProtocol.swift; sourceTree = "<group>"; };
@@ -931,7 +933,8 @@
 				C40B15C7197EB84500880D4C /* Agari.swift */,
 				C4AC26551986A2D8007533C6 /* Yaku.swift */,
 				C4E90DA91989283A00948322 /* Kyoku.swift */,
-				C44F27A81987DE1E0058B3C3 /* MentsuResolver */,
+				C4DEE67619810F1700CB5681 /* MentsuList.swift */,
+				C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */,
 				C47F807F1998B5760008A706 /* MjParse.swift */,
 			);
 			name = parse;
@@ -940,6 +943,7 @@
 		C42D756C1961805300183C24 /* parse */ = {
 			isa = PBXGroup;
 			children = (
+				C439EB6D1998FC4200116820 /* TotalSpec.swift */,
 				C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */,
 				C42D7571196180D100183C24 /* MentsuSpec.swift */,
 				C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */,
@@ -948,15 +952,6 @@
 				C47F80891998C8B30008A706 /* MJParseSpec.swift */,
 			);
 			name = parse;
-			sourceTree = "<group>";
-		};
-		C44F27A81987DE1E0058B3C3 /* MentsuResolver */ = {
-			isa = PBXGroup;
-			children = (
-				C4DEE67619810F1700CB5681 /* MentsuList.swift */,
-				C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */,
-			);
-			name = MentsuResolver;
 			sourceTree = "<group>";
 		};
 		C4CC34231954BBC60030EE0A /* mocks */ = {
@@ -1380,6 +1375,7 @@
 				C44F27B41987EECB0058B3C3 /* YakuSpec.swift in Sources */,
 				447486EC1951E74200AC1310 /* ViewUtilsSpec.swift in Sources */,
 				C47F808A1998C8B30008A706 /* MJParseSpec.swift in Sources */,
+				C439EB6E1998FC4200116820 /* TotalSpec.swift in Sources */,
 				C4914A2019893BD100BD663E /* AgariSpec.swift in Sources */,
 				C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */,
 				441CDF5E194BE09E00199893 /* CameraManagerSpec.swift in Sources */,

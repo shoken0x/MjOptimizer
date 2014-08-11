@@ -189,7 +189,7 @@ public class ToitsuMentsu: SamePaiMentsu{
     override public func toString() -> String{ return "トイツ:" + super.toString() }
     override public func fuNum(kyoku:Kyoku)->Int{
         var fu:Int = 0
-        if(agariPai){fu += 2} //単騎待ちであるため
+        if(agariPai){fu += 2} //アガリ牌を含む＝単騎待ちであるため
         if(super.isSangen()){fu += 2} //三元牌
         if(kyoku.jikaze.toPai() == pai){ fu += 2}//自風
         if(kyoku.bakaze.toPai() == pai){ fu += 2}//場風
@@ -206,7 +206,13 @@ public class ToitsuMentsu: SamePaiMentsu{
 public class AnkouMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return AnkouMentsu(pai:pai)}
     override public func toString() -> String{ return "アンコウ:" + super.toString() }
-    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 16 : 8}
+    override public func fuNum(kyoku:Kyoku)->Int{
+        if (agariPai && !(kyoku.isTsumo)){//ロンでアガリ牌を含む場合は半分
+            return super.isYaochu() ? 4 : 2
+        }else{
+            return super.isYaochu() ? 8 : 4
+        }
+    }
     override public func isFuro()->Bool{return false}
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false }
@@ -218,7 +224,7 @@ public class AnkouMentsu: SamePaiMentsu{
 public class PonMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return PonMentsu(pai:pai)}
     override public func toString() -> String{ return "ポン:" + super.toString() }
-    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 8 : 4}
+    override public func fuNum(kyoku:Kyoku)->Int{return super.isYaochu() ? 4 : 2}
     override public func isFuro()->Bool{return true}
     override public func isMenzen() -> Bool {return false}
     override public func isNaki() -> Bool { return true}
@@ -321,7 +327,10 @@ public class ShuntsuMentsu: DifferentPaiMentsu{
     override public func isMenzen() -> Bool {return true}
     override public func isNaki() -> Bool { return false}
     override public func type()->MentsuType{return MentsuType.SHUNTSU}
-    override public func isRyanmenmachi() -> Bool{return agariPai == paiList[0] || agariPai == paiList[2]}
+    override public func isRyanmenmachi() -> Bool{
+        return ((agariPai == paiList[0]) && (paiList[0].number != 7)) ||  // 789以外で最初の最小の牌で待つ
+        ((agariPai == paiList[2]) && (paiList[0].number != 1)) //123以外で最大の牌で待つ
+    }
 }
 //チー
 public class ChiMentsu: DifferentPaiMentsu{

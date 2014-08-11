@@ -35,6 +35,7 @@ public class Pai: Equatable, Comparable {
     public let isSangen : Bool
     public let isKaze : Bool
     public let isGreen : Bool //緑一色牌かどうか
+    public let isUra : Bool
     init(type: PaiType, number: Int, direction: PaiDirection = .TOP ){
         self.type = type
         self.number = number
@@ -47,6 +48,7 @@ public class Pai: Equatable, Comparable {
         self.isSangen = ((type == PaiType.JIHAI) && (number == 5 || number == 6 || number == 7))
         self.isKaze = ((type == PaiType.JIHAI) && (number == 1 || number == 2 || number == 3 || number == 4))
         self.isGreen = ((type == PaiType.SOUZU) && (number == 2 || number == 3 || number == 4 || number == 6 || number == 8)) || (type == PaiType.JIHAI && number == 6 )
+        self.isUra = (type == PaiType.REVERSE)
     }
 
     //"m1t"などの文字列からオブジェクトを作る

@@ -16,7 +16,7 @@ public class Agari:Equatable,Comparable {
     public var yakuList: [Yaku] = []
     public var fuNum: Int = -1
     public var hanNum: Int = -1
-    public var score: Score = Score(c:-1,p:-1,t:-1,m:-1.0)
+    public var score: Score = Score(child:-1,parent:-1,total:-1,manganScale:-1.0)
     
     public init(mentsuList:[Mentsu]) {
         self.mentsuList = mentsuList
@@ -27,6 +27,12 @@ public class Agari:Equatable,Comparable {
             }
         }
         self.paiNumList = PaiNumList(paiList:self.paiList)
+    }
+    public func addMentsu(mentsu:Mentsu) {
+        self.mentsuList.append(mentsu)
+        for pai in mentsu.paiArray(){
+            self.paiNumList.incNum(pai)
+        }
     }
     public func menzenMentsuList() -> [Mentsu]{ return mentsuList.filter{$0.isMenzen()} }
     public func furoMentsuList() -> [Mentsu]{return mentsuList.filter{$0.isFuro()} }
@@ -52,7 +58,14 @@ public class Agari:Equatable,Comparable {
     }
     //有効なアガリかどうか。役無しはfalse
     public func valid() -> Bool{
-        return self.score.t > 0
+        return (self.score.total > 0) && !(yakuList.all{$0.isDora})
+    }
+    public func yakuNameList() -> [String]{
+        var strs : [String] = []
+        for yaku in yakuList{
+            strs.append(yaku.name)
+        }
+        return strs
     }
 }
 public func == (lhs: Agari, rhs: Agari) -> Bool {
@@ -61,10 +74,10 @@ public func == (lhs: Agari, rhs: Agari) -> Bool {
     return lstr == rstr
 }
 public func < (lhs: Agari, rhs: Agari) -> Bool {
-    return lhs.score.t < rhs.score.t
+    return lhs.score.total == rhs.score.total ? lhs.hanNum < rhs.hanNum : lhs.score.total < rhs.score.total
 }
 public func > (lhs: Agari, rhs: Agari) -> Bool {
-    return lhs.score.t > rhs.score.t
+    return lhs.score.total == rhs.score.total ? lhs.hanNum > rhs.hanNum : lhs.score.total > rhs.score.total
 }
 
 

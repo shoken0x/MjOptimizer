@@ -49,7 +49,7 @@ public class MjParse{
                 if(maxAgari.valid()){
                     return MjParseResult.SUCCESS(maxAgari)
                 }else{
-                    return MjParseResult.ERROR("有効な役無し")
+                    return MjParseResult.ERROR("役がありません")
                 }
             }//end switch
         }
@@ -107,10 +107,27 @@ public class MjParse{
         }else{
             var fuNum = 20
             for mentsu in agari.mentsuList{
-                println(mentsu.toString() + String(mentsu.fuNum(kyoku)))
+                //debug println(mentsu.toString() + ":" + String(mentsu.fuNum(kyoku)))
                 fuNum += mentsu.fuNum(kyoku)
             }
-            return ((fuNum % 10) == 0 ) ? fuNum : (fuNum + 10) //1の位切り上げ
+            if fuNum == 20 {
+                if kyoku.isTsumo && !(agari.includeNaki()){
+                    //面前ツモ20符のみはピンフ。例外で20
+                    return 20
+                }
+                if !(kyoku.isTsumo) && agari.includeNaki(){
+                    //鳴きロンピンフ系は例外で30符
+                    return 30
+                }
+            }
+            if kyoku.isTsumo{//ツモ
+                fuNum += 2
+            }else{//ロン
+                if !(agari.includeNaki()){//鳴き無し
+                    fuNum += 10
+                }
+            }
+            return ceil1(fuNum)
         }
     }
     //点数計算
@@ -152,7 +169,7 @@ public class MjParse{
         if isParent{
             if isTsumo{
                 c = ceil10(base*2)
-                t = ceil10(base*2) * 3
+                t = c * 3
             }else{
                 t = ceil10(base*6)
             }
@@ -160,7 +177,7 @@ public class MjParse{
             if isTsumo{
                 c = ceil10(base)
                 p = ceil10(base*2)
-                t = ceil10(base)*2 + ceil10(base*2)
+                t = c * 2 + p
             }else{
                 t = ceil10(base*4)
             }
@@ -168,9 +185,13 @@ public class MjParse{
         c += kyoku.honbaNum * 100
         c += kyoku.honbaNum * 100
         t += kyoku.honbaNum * 300
-        return Score(c:c,p:p,t:t,m:m)
+        return Score(child:c,parent:p,total:t,manganScale:m)
     }
     
+    //1の位切り上げ
+    private class func ceil1(i:Int) -> Int{
+        return ( i % 10 == 0 ) ? i : (Int(i / 10) * 10 + 10)
+    }
     //10の位切り上げ
     private class func ceil10(i:Int) -> Int{
         return ( i % 100 == 0 ) ? i : (Int(i / 100) * 100 + 100)
@@ -179,19 +200,19 @@ public class MjParse{
 
 
 public class Score{
-    public var c:Int //子の支払い
-    public var p:Int //親の支払い
-    public var t:Int //収入総額
-    public var m:Float //満貫スケール
-    public init(c:Int,p:Int,t:Int,m:Float){
-        self.c = c
-        self.p = p
-        self.t = t
-        self.m = m
+    public var child:Int //子の支払い
+    public var parent:Int //親の支払い
+    public var total:Int //収入総額
+    public var manganScale:Float //満貫スケール
+    public init(child:Int,parent:Int,total:Int,manganScale:Float){
+        self.child = child
+        self.parent = parent
+        self.total = total
+        self.manganScale = manganScale
     }
     public func toString() -> String{
         var str : String
-        switch m{
+        switch manganScale{
         case 1.0: str = "[満貫]"
         case 1.5: str = "[跳満]"
         case 2.0: str = "[倍満]"
@@ -202,12 +223,12 @@ public class Score{
         case 16.0: str = "[四倍役満]"
         default : str = ""
         }
-        if p == 0 && c == 0{
-            return str + String(t) + "点"
-        }else if p == 0 {
-            return str + String(c) + "オール 合計" + String(t) + "点"
+        if parent == 0 && child == 0{
+            return str + String(total) + "点"
+        }else if parent == 0 {
+            return str + String(child) + "オール 合計" + String(total) + "点"
         }else{
-            return str + String(c) + "/" + String(p) + " 合計" + String(t) + "点"
+            return str + String(child) + "/" + String(parent) + " 合計" + String(total) + "点"
         }
     }
 }

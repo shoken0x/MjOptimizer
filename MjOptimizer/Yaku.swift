@@ -14,12 +14,14 @@ public class Yaku {
     public let hanNum:Int
     public let nakiHanNum:Int
     public let isYakuman:Bool
-    init(name:String,kanji:String,hanNum:Int = 13,nakiHanNum:Int = 13){
+    public let isDora:Bool
+    init(name:String,kanji:String,hanNum:Int = 13,nakiHanNum:Int = 13,isDora:Bool = false){
         self.name = name
         self.kanji = kanji
         self.hanNum = hanNum
         self.nakiHanNum = nakiHanNum
         self.isYakuman = hanNum == 13
+        self.isDora = isDora
     }
 }
 
@@ -87,7 +89,7 @@ public class YCChanta : YakuChecker{
                 }
             }else {// 字牌がない
                 if ( agari.mentsuList.any{$0.consistOfDifferentPai()} ){// シュンツがある
-                    return Yaku(name:"chanta",kanji:"純全帯么九",hanNum:3,nakiHanNum:2)
+                    return Yaku(name:"junchan",kanji:"純全帯么九",hanNum:3,nakiHanNum:2)
                 }else { //シュンツがない
                     return Yaku(name:"chinroutou",kanji:"清老頭")
                 }
@@ -163,7 +165,7 @@ public class YCSansyokudouko : YakuChecker{
 //対々和
 public class YCToitoihou : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
-        if(agari.mentsuList.all{$0.consistOfSamePai()}){
+        if(agari.mentsuList.all{$0.consistOfSamePai()} && (agari.mentsuList.count == 5)){ //チートイツは除外
             return Yaku(name:"toitoihou",kanji:"対々和",hanNum:2,nakiHanNum:2)
         }
         return nil
@@ -211,7 +213,7 @@ public class YCSangen : YakuChecker{
         if(agari.mentsuList.filter{$0.isSangen()}.count == 3){//三元牌からなる面子が３つある
             var toitsuNum:Int = agari.mentsuList.filter{($0.isSangen() && $0.type() == MentsuType.TOITSU)}.count
             switch toitsuNum{
-            case 1: return Yaku(name:"shousangen",kanji:"小三元",hanNum:1,nakiHanNum:0)//三元牌からなるトイツが一つある
+            case 1: return Yaku(name:"shousangen",kanji:"小三元",hanNum:2,nakiHanNum:2)//三元牌からなるトイツが一つある
             case 0: return Yaku(name:"daisangen",kanji:"大三元")
             default:return nil //三元牌を含むチートイなど
             }
@@ -263,15 +265,15 @@ public class YCSomete : YakuChecker{
                         }
                         //TODO 純正九蓮宝燈
                         if count[1] >= 3 && count[2] >= 1 && count[3] >= 1 && count[4] >= 1 && count[5] >= 1 && count[6] >= 1 && count[7] >= 1 && count[8] >= 1 && count[9] >= 3{
-                             return Yaku(name:"honisou",kanji:"九蓮宝燈")
+                             return Yaku(name:"churenpoutou",kanji:"九蓮宝燈")
                         }
                     }
-                    return Yaku(name:"honisou",kanji:"清一色",hanNum:6,nakiHanNum:5)
+                    return Yaku(name:"chinitsu",kanji:"清一色",hanNum:6,nakiHanNum:5)
                 }else{ // 字牌あり
                     if (manzuNum == 0 && pinzuNum == 0 && souzuNum == 0){ //数牌無し
                         return Yaku(name:"tsuisou",kanji:"字一色")
                     }else{
-                        return Yaku(name:"honisou",kanji:"混一色",hanNum:3,nakiHanNum:2)
+                        return Yaku(name:"honitsu",kanji:"混一色",hanNum:3,nakiHanNum:2)
                 }
                 
             }
@@ -362,7 +364,7 @@ public class YCBakaze : YakuChecker{
 public class YCDora : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
         if (kyoku.doraNum > 0){
-            return Yaku(name:"dora",kanji: "ドラ" + String(kyoku.doraNum), hanNum:kyoku.doraNum,nakiHanNum:kyoku.doraNum)
+            return Yaku(name:"dora" + String(kyoku.doraNum),kanji: "ドラ" + String(kyoku.doraNum), hanNum:kyoku.doraNum,nakiHanNum:kyoku.doraNum,isDora:true)
         }
         return nil
     }
@@ -372,7 +374,7 @@ public class YCReach : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
         switch kyoku.reachNum{
         case 1: return Yaku(name:"reach",kanji: "立直", hanNum:1,nakiHanNum:0)
-        case 2: return Yaku(name:"doubleReach",kanji: "ダブル立直", hanNum:2,nakiHanNum:0)
+        case 2: return Yaku(name:"doublereach",kanji: "ダブル立直", hanNum:2,nakiHanNum:0)
         default:return nil
         }
     }
@@ -389,7 +391,7 @@ public class YCIppatsu : YakuChecker{
 //門前清自摸和
 public class YCTsumo : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
-        if (kyoku.isTsumo){
+        if (kyoku.isTsumo && !(agari.includeNaki())){
             return Yaku(name:"tsumo",kanji: "門前清自摸和", hanNum:1,nakiHanNum:0)
         }
         return nil

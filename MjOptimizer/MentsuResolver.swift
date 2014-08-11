@@ -32,7 +32,18 @@ public class MentsuResolver{
             case let .SUCCESS(agariList):
                 for agari in agariList{
                     //面前の面子リストだけ入っているアガリに対して、ふうろを追加する
-                    for m in furoMentsuList.array{agari.mentsuList.append(m)}
+                    for m in furoMentsuList.array{agari.addMentsu(m)}
+                }
+                //面子の構成が正しいか確認
+                for agari in agariList{
+                    let toitsuNum = agari.mentsuList.filter{$0.type() == MentsuType.TOITSU}.count
+                    let specialNum = agari.mentsuList.filter{($0.type() == MentsuType.KOKUSHI) || ($0.type() == MentsuType.SHISAN)}.count
+                    let mentsuNum = agari.mentsuList.count
+                    if !((mentsuNum == 5 && toitsuNum == 1 ) ||
+                        (mentsuNum == 7 && toitsuNum == 7 ) ||
+                        (mentsuNum == 1 && specialNum == 1 )){
+                            return MentsuResolveResult.ERROR("5面子(うち1対子)、7対子、国士、シーサンのいずれでもありません。面子の数:" + String(mentsuNum) + ",トイツの数:" + String(toitsuNum) + ",特殊系数:" + String(specialNum))
+                    }
                 }
                 return MentsuResolveResult.SUCCESS(agariList)
             case let .ERROR(msg):
@@ -41,7 +52,6 @@ public class MentsuResolver{
         case let .ERROR(msg):
             return MentsuResolveResult.ERROR(msg)
         }
-        
     }
     
     //牌リストから副露面子のリストを取得する
@@ -83,7 +93,7 @@ public class MentsuResolver{
         //背面を向けた牌の数を計算
         var reversePai : Int = 0
         for pai in pl {
-            if pai.type == PaiType.REVERSE {
+            if pai.isUra {
                 reversePai += 1
             }
         }
@@ -132,9 +142,9 @@ public class MentsuResolver{
                         // 1〜4枚目の牌は組となることが確実であるため、明槓面子となる。
                         // 不要処理（step1-1-7-3で包含され、かつ結果が同じため不要）
                         
-                    else if pl[4].isFuro || pl[5].isFuro || pl[6].isFuro || pl[7].isFuro {
+                    else if pl[4].isFuro || pl[5].isFuro || pl[6].isFuro || pl[7].isFuro || pl[4].isUra || pl[5].isUra || pl[6].isUra || pl[7].isUra {
                         // step1-1-7-3.
-                        // 1〜4枚目の牌が全て同じであり、5〜8枚目の牌のいずれかが鳴き牌だった場合、
+                        // 1〜4枚目の牌が全て同じであり、5〜8枚目の牌のいずれかが鳴き牌か裏牌だった場合、
                         // この時点で4枚目を含むチー面子は存在せず、かつ同一牌が4枚までしか存在しないことから、
                         // 1〜4枚目の牌は組となることが確実であるため、明槓面子となる。
                         return GetOneFuroResult.SUCCESS(MinkanMentsu(pai:pl[0]))
@@ -177,13 +187,13 @@ public class MentsuResolver{
                 return GetOneFuroResult.ERROR("Pai配列の1〜3枚目に鳴き牌が存在せず、かつ4枚目が鳴き牌があるが、4枚の牌が同じではない。これは牌を誤検知している")
             }//2-2終わり
         }//step2終わり
-        else if pl[0].type == PaiType.REVERSE || pl[1].type == PaiType.REVERSE {
+        else if pl[0].isUra || pl[1].isUra || pl[2].isUra || pl[3].isUra {
             // step3. 背面牌が含まれる場合
-            if pl[0].type == PaiType.REVERSE && pl[1].type != PaiType.REVERSE && pl[1] == pl[2] && pl[0] == pl[3] {
+            if pl[0].isUra && !(pl[1].isUra) && !(pl[2].isUra) && pl[3].isUra && pl[1] == pl[2] {
                 // step3-1. 裏表表裏
                 return GetOneFuroResult.SUCCESS(AnkanMentsu(pai: pl[1]))
             }
-            else if pl[0].type != PaiType.REVERSE && pl[1].type == PaiType.REVERSE && pl[0] == pl[3] && pl[1] == pl[2] {
+            else if !(pl[0].isUra) && pl[1].isUra && pl[2].isUra && !(pl[3].isUra) && pl[0] == pl[3] {
                 // step3-2. 表裏裏表
                 return GetOneFuroResult.SUCCESS(AnkanMentsu(pai: pl[0]))
             }
@@ -259,8 +269,10 @@ public class MentsuResolver{
                     Log.error("面子解析でエラー：" + msg);
                     return MenzenResolveResult.ERROR("面子解析でエラー：" + msg);
                 case let .FINISH:
-                    Log.error("入力不正。メンゼン牌が０枚")
-                    return MenzenResolveResult.ERROR("入力不正。メンゼン牌が０枚")
+                    //面子解析をした結果、雀頭以外の面子は0枚であった。雀頭だけでagariオブジェクトを作る
+                    var mentsuList : [Mentsu] = [atama]
+                    var agari :Agari = Agari( mentsuList: mentsuList)
+                    agariList.append(agari)
                 case let .CONFLICT:
                     //この雀頭候補では残りの面子が成立しない
                     continue
