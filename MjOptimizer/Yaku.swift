@@ -175,10 +175,15 @@ public class YCAnkou : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
         var ankouNum : Int
         if kyoku.isTsumo{
-            ankouNum = agari.mentsuList.filter{$0.type() == MentsuType.ANKOU}.count
+            ankouNum = agari.mentsuList.filter{(($0.type() == MentsuType.ANKOU) || ($0.type() == MentsuType.ANKAN))}.count
         }else{
             //ロンの場合はアガリ牌を含む面子は除外
-            ankouNum = agari.mentsuList.filter{( $0.type() == MentsuType.ANKOU && !($0.includeAgariPai()) )}.count
+            ankouNum = agari.mentsuList.filter{
+                (
+                ($0.type() == MentsuType.ANKOU || $0.type() == MentsuType.ANKAN) &&
+                !($0.includeAgariPai())
+                )
+                }.count
         }
         switch ankouNum{
         case 3: return Yaku(name:"sanankou",kanji:"三暗刻",hanNum:2,nakiHanNum:2)
@@ -264,7 +269,7 @@ public class YCSomete : YakuChecker{
                     return Yaku(name:"honisou",kanji:"清一色",hanNum:6,nakiHanNum:5)
                 }else{ // 字牌あり
                     if (manzuNum == 0 && pinzuNum == 0 && souzuNum == 0){ //数牌無し
-                        return Yaku(name:"tsuisou",kanji:"文一色")
+                        return Yaku(name:"tsuisou",kanji:"字一色")
                     }else{
                         return Yaku(name:"honisou",kanji:"混一色",hanNum:3,nakiHanNum:2)
                 }
@@ -392,20 +397,16 @@ public class YCTsumo : YakuChecker{
 }
 
 //海底摸月(河底撈魚)//嶺上開花//槍槓//天和//地和
-public class YCAgariTiming : YakuChecker{
+public class YCFinishType : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
-        if (kyoku.isHaitei){
-            return Yaku(name:"haitei",kanji: "海底摸月", hanNum:1,nakiHanNum:1)
-        }else if(kyoku.isRinshan){
-            return Yaku(name:"rinshan",kanji: "嶺上開花", hanNum:1,nakiHanNum:1)
-        }else if(kyoku.isChankan){
-            return Yaku(name:"chankan",kanji: "槍槓", hanNum:1,nakiHanNum:1)
-        }else if(kyoku.isChiho){
-            return Yaku(name:"chiho",kanji: "地和")
-        }else if(kyoku.isTenho){
-            return Yaku(name:"tenho",kanji: "天和")
+        switch kyoku.finishType{
+        case .HAITEI: return Yaku(name:"haitei",kanji: "海底摸月", hanNum:1,nakiHanNum:1)
+        case .RINSHAN: return Yaku(name:"rinshan",kanji: "嶺上開花", hanNum:1,nakiHanNum:1)
+        case .CHANKAN: return Yaku(name:"chankan",kanji: "槍槓", hanNum:1,nakiHanNum:1)
+        case .TENHO: return Yaku(name:"chiho",kanji: "地和")
+        case .CHIHO:return Yaku(name:"tenho",kanji: "天和")
+        default : return nil
         }
-        return nil
     }
 }
 

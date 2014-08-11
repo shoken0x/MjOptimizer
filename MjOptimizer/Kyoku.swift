@@ -22,10 +22,17 @@ public enum Kaze : String{
         }
     }
 }
+public enum FinishType : String{
+    case NORMAL = "normal"
+    case HAITEI = "haitei" //海底摸月(河底撈魚)
+    case RINSHAN = "rinshan" //嶺上開花
+    case CHANKAN = "chankan" //槍槓
+    case TENHO = "tenho" //天和
+    case CHIHO = "chiho" //地和
+}
 
 public class Kyoku{
     public var isTsumo:Bool = false
-    public var isHaitei:Bool = false
     public var doraNum:Int = 0
     public var bakaze:Kaze = Kaze.TON
     public var jikaze:Kaze = Kaze.TON
@@ -33,9 +40,6 @@ public class Kyoku{
     public var honbaNum:Int = 0
     public var reachNum:Int = 0 //ダブリーなら2
     public var isIppatsu:Bool = false
-    public var isRinshan:Bool = false
-    public var isChankan:Bool = false
-    public var isTenho:Bool = false
-    public var isChiho:Bool = false
+    public var finishType:FinishType = FinishType.NORMAL
     public init(){}
 }

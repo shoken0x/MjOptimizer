@@ -313,8 +313,8 @@ class YakuSpec2: QuickSpec {
             it("returns 三暗刻"){
                 let mentsuList:[Mentsu] = [
                     Mentsu.parseStr("m1tm1t")!,
-                    Mentsu.parseStr("m2tm2tm2t")!,
-                    Mentsu.parseStr("s2ts2ts2t")!,
+                    Mentsu.parseStr("m2tm2tm2tm2t")!,
+                    Mentsu.parseStr("s2ts2ts2ts2t")!,
                     Mentsu.parseStr("p1tp2tp3t")!,
                     Mentsu.parseStr("p2tp2tp2t")!
                 ]
@@ -325,8 +325,8 @@ class YakuSpec2: QuickSpec {
             it("returns 四暗刻"){
                 let mentsuList:[Mentsu] = [
                     Mentsu.parseStr("m1tm1t")!,
-                    Mentsu.parseStr("m2tm2tm2t")!,
-                    Mentsu.parseStr("s2ts2ts2t")!,
+                    Mentsu.parseStr("m2tm2tm2tm2t")!,
+                    Mentsu.parseStr("s2ts2ts2ts2t")!,
                     Mentsu.parseStr("p5tp5tp5t")!,
                     Mentsu.parseStr("p2tp2tp2t")!
                 ]
@@ -487,7 +487,7 @@ class YakuSpec3: QuickSpec {
                 let kyoku = Kyoku()
                 expect(YCSomete().check(agari,kyoku: kyoku)!.kanji).to(equal("清一色"))
             }
-            it("returns 文一色"){
+            it("returns 字一色"){
                 let mentsuList:[Mentsu] = [
                     Mentsu.parseStr("j1tj1tj1tj1t")!,
                     Mentsu.parseStr("j2rj2tj2t")!,
@@ -497,7 +497,7 @@ class YakuSpec3: QuickSpec {
                 ]
                 let agari = Agari(mentsuList: mentsuList)
                 let kyoku = Kyoku()
-                expect(YCSomete().check(agari,kyoku: kyoku)!.kanji).to(equal("文一色"))
+                expect(YCSomete().check(agari,kyoku: kyoku)!.kanji).to(equal("字一色"))
             }
             it("returns 混一色"){
                 let mentsuList:[Mentsu] = [
