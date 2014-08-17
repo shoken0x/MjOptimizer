@@ -8,6 +8,7 @@
 
 import Foundation
 
+//牌とその数を表すクラス。解析用
 public class PaiNum{
     var pai : Pai
     var num : Int

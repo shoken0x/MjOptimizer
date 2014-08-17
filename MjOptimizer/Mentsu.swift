@@ -21,15 +21,17 @@ public enum MentsuType: Int{
     case ABSTRUCT = -1
 }
 protocol MentsuProtocol{
+    func type() -> MentsuType // 面子のタイプ
+    func paiArray() -> [Pai] // 牌の配列。牌のDirectionはすべてTOP
+    func fuNum(kyoku:Kyoku) -> Int //符数。面子の形、雀頭、待ちの３つの符を考慮している。
+    //以下は計算用
     func copy() -> Mentsu
     func identical() -> Pai
     func toString() -> String
-    func fuNum(kyoku:Kyoku) -> Int
     func isFuro() -> Bool//副露かどうか。面前の逆。アンカンも含む。
     func isMenzen() -> Bool//面前かどうか。副露の逆。アンカンは含まない。
     func isNaki() -> Bool//鳴いたかどうか。アンカンは含まない。
     func size() -> Int
-    func type() -> MentsuType
     func include(pai:Pai) -> Bool
     func isChuchan() -> Bool
     func isYaochu() -> Bool
@@ -42,7 +44,6 @@ protocol MentsuProtocol{
     func consistOfDifferentPai() -> Bool
     func isRyanmenmachi() -> Bool
     func includeAgariPai() -> Bool
-    func paiArray() -> [Pai]
 }
 //親クラス
 public class Mentsu: MentsuProtocol, Equatable, Comparable {

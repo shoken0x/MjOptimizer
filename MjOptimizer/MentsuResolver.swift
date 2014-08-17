@@ -13,8 +13,9 @@ public enum MentsuResolveResult{
     case ERROR(String) //入力不正
 }
 
+//面子解析クラス
 public class MentsuResolver{
-    //面前手牌の解析
+    //手牌の解析
     public class func resolve(paiList: [Pai]) -> MentsuResolveResult{
         if paiList.count < 14 || paiList.count > 18{
             return MentsuResolveResult.ERROR("牌の枚数が１４枚〜１８枚ではありません")

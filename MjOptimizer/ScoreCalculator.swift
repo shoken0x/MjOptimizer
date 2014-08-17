@@ -1,5 +1,5 @@
 //
-//  MjParse.swift
+//  ScoreCalculator.swift
 //  MjOptimizer
 //
 //  Created by fetaro on 2014/08/11.
@@ -7,55 +7,65 @@
 //
 
 import Foundation
-public enum MjParseResult{
-    case SUCCESS(Agari) //アガリ
-    case ERROR(String) //入力不正
+
+//得点計算結果
+public enum ScoreCalcResult{
+    case SUCCESS(Agari) //得点計算に成功した場合、アガリを返す
+    case ERROR(String) //得点計算に失敗した場合、エラーメッセージを返す
 }
 
-public class MjParse{
-    //得点計算のメイン関数。引数の文字列から役と得点を計算する。
-    public class func parse(paiStr : String,kyoku:Kyoku) -> MjParseResult{
+//得点計算のメイン関数。
+//これをUI側から呼び出して得点を計算する。
+public class ScoreCalculator{
+    //得点計算のメイン関数。牌のリストと局状態から役と得点を計算する。
+    //局状態が省略された場合は、デフォルトの局状態で計算する。
+    public class func calc(paiList:[Pai],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
+        //文字列を面子に分解する
+        let mentsuResolveResult = MentsuResolver.resolve(paiList)
+        switch mentsuResolveResult{
+        case let .ERROR(str):
+            return ScoreCalcResult.ERROR(str)
+        case let .SUCCESS(agariList):
+            for agari in agariList{
+                //各アガリについて役、翻数、符、点を計算して更新していく
+                //役を計算
+                agari.yakuList = yakuJudge(agari, kyoku:kyoku)
+                if agari.yakuList.count != 0{
+                    //翻数を計算
+                    var hanNum : Int = 0
+                    for yaku in agari.yakuList{
+                        hanNum += agari.includeNaki() ?  yaku.nakiHanNum : yaku.hanNum
+                    }
+                    agari.hanNum = hanNum
+                    //符を計算
+                    agari.fuNum = calcFuNum(agari,kyoku:kyoku)
+                    //点数を計算
+                    agari.score = calcPoint(agari.fuNum, hanNum:agari.hanNum,kyoku:kyoku)
+                }
+            }//end for
+            //deubg
+            Log.info("得られたアガリ一覧")
+            for agari in agariList{
+                Log.info(agari.toString())
+            }
+            let maxAgari : Agari = agariList.max()
+            if(maxAgari.valid()){
+                return ScoreCalcResult.SUCCESS(maxAgari)
+            }else{
+                return ScoreCalcResult.ERROR("役がありません")
+            }
+        }//end switch
+    }
+
+    //引数の文字列("m1tm2tm3t")と局状態から役と得点を計算する。
+    public class func calcFromStr(paiStr : String,kyoku:Kyoku = Kyoku()) -> ScoreCalcResult{
         let paiList : [Pai]? = Pai.parseList(paiStr)
         if(paiList){
-            //文字列を面子に分解する
-            let mentsuResolveResult = MentsuResolver.resolve(paiList!)
-            switch mentsuResolveResult{
-            case let .ERROR(str):
-                return MjParseResult.ERROR(str)
-            case let .SUCCESS(agariList):
-                for agari in agariList{
-                    //各アガリについて役、翻数、符、点を計算して更新していく
-                    //役を計算
-                    agari.yakuList = yakuJudge(agari, kyoku:kyoku)
-                    if agari.yakuList.count != 0{
-                        //翻数を計算
-                        var hanNum : Int = 0
-                        for yaku in agari.yakuList{
-                            hanNum += agari.includeNaki() ?  yaku.nakiHanNum : yaku.hanNum
-                        }
-                        agari.hanNum = hanNum
-                        //符を計算
-                        agari.fuNum = calcFuNum(agari,kyoku:kyoku)
-                        //点数を計算
-                        agari.score = calcPoint(agari.fuNum, hanNum:agari.hanNum,kyoku:kyoku)
-                    }
-                }//end for
-                //deubg
-                Log.info("得られたアガリ一覧")
-                for agari in agariList{
-                    Log.info(agari.toString())
-                }
-                let maxAgari : Agari = agariList.max()
-                if(maxAgari.valid()){
-                    return MjParseResult.SUCCESS(maxAgari)
-                }else{
-                    return MjParseResult.ERROR("役がありません")
-                }
-            }//end switch
+            return calc(paiList!,kyoku:kyoku)
         }
-        return MjParseResult.ERROR("引数の文字列が不正な牌リストの形式です:" + paiStr)
+        return ScoreCalcResult.ERROR("引数の文字列が不正な牌リストの形式です:" + paiStr)
     }
-    
+
     //役判定
     public class func yakuJudge(agari:Agari,kyoku:Kyoku)->[Yaku]{
         let yakuCheckerList :[YakuChecker] = [
@@ -197,40 +207,3 @@ public class MjParse{
         return ( i % 100 == 0 ) ? i : (Int(i / 100) * 100 + 100)
     }
 }
-
-
-public class Score{
-    public var child:Int //子の支払い
-    public var parent:Int //親の支払い
-    public var total:Int //収入総額
-    public var manganScale:Float //満貫スケール
-    public init(child:Int,parent:Int,total:Int,manganScale:Float){
-        self.child = child
-        self.parent = parent
-        self.total = total
-        self.manganScale = manganScale
-    }
-    public func toString() -> String{
-        var str : String
-        switch manganScale{
-        case 1.0: str = "[満貫]"
-        case 1.5: str = "[跳満]"
-        case 2.0: str = "[倍満]"
-        case 3.0: str = "[三倍満]"
-        case 4.0: str = "[役満]"
-        case 8.0: str = "[ダブル役満]"
-        case 12.0: str = "[トリプル役満]"
-        case 16.0: str = "[四倍役満]"
-        default : str = ""
-        }
-        if parent == 0 && child == 0{
-            return str + String(total) + "点"
-        }else if parent == 0 {
-            return str + String(child) + "オール 合計" + String(total) + "点"
-        }else{
-            return str + String(child) + "/" + String(parent) + " 合計" + String(total) + "点"
-        }
-    }
-}
-
-
