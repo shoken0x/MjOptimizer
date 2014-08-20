@@ -52,14 +52,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
-        
-        //debug
-//        isScan = true
-//        startButton.hidden = true
-//        label.text = "scanning ..."
-//        setFilterView()
-//        focusOn()
-//        setLogView()
     }
     
     func setPreview(session: AVCaptureSession) {
@@ -70,11 +62,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
         
     func setOverlayView() {
-        let imagePath = NSBundle.mainBundle().pathForResource("redrect", ofType: "png")
-        let overlayImageView: UIImageView = UIImageView(image: UIImage(contentsOfFile: imagePath))
+        let overlayImageView: UIImageView = UIImageView(image: UIImage(named:"RedRectangle"))
         overlayImageView.frame = targetFrame
         
-        debugButton.frame = CGRectMake(290, 30, 200, 100)
+        debugButton.frame = CGRectMake(290, 0, 200, 100)
         debugButton.setTitle("DisplayResults", forState: UIControlState.Normal)
         debugButton.addTarget(self, action: "debugButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         //view.addSubview(debugButton)
@@ -154,7 +145,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             return false
         }
     }
-    
+
+
     func debugButtonDidPush() {
         isFinishAnalyze = true
         animationView.removeFromSuperview()
@@ -214,7 +206,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                     // Display SutehaiSelectResult
                     var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
                     self.label.text = "Finish scan."
-                    self.drawMjImages(27, 205, ViewUtils.convertStringListFromPaiList(sutehaiSelectResult.tehai), 0.8)
+                    self.drawMjImages(27, 205, sutehaiSelectResult.tehai, 0.8)
                     self.setBody(sutehaiCandidateList)
                     self.animationView.removeFromSuperview()
                     self.filterView.removeFromSuperview()
@@ -245,9 +237,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         var limit = 3
         var i = 0
         for sutehaiCandidate: SutehaiCandidate in sutehaiCandidateList {
-            drawMjImages(x, y, [ViewUtils.convertStringFromPai(sutehaiCandidate.pai)])
+            drawMjImages(x, y, [sutehaiCandidate.pai])
             drawMjImages(x + 50, y,
-                ViewUtils.convertStringListFromPaiList(sutehaiCandidate.getUkeirePaiToPaiList()))
+                sutehaiCandidate.getUkeirePaiToPaiList())
             let totalNumLabel =   UILabel(frame: CGRectMake(x + 215, y + 15, 20, 20))
             totalNumLabel.textColor = UIColor.greenColor()
             totalNumLabel.text = String(sutehaiCandidate.getUkeireTotalNum())
@@ -274,16 +266,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         view.addSubview(logView)
     }
     
-    func viewMjImages() {
-        let paiStrArray = ["MJw1", "MJw2", "MJw3",
-                            "MJw4", "MJw5", "MJw6",
-                            "MJs1", "MJs2", "MJs3",
-                            "MJd1", "MJd1", "MJd1",
-                            "MJf1", "MJf1"]
-        drawMjImages(27, 205, paiStrArray, 0.8)
-    }
     
-    func drawMjImages(x: CGFloat, _ y: CGFloat, _ strArray: [String], _ rate: CGFloat = 0.5) {
+    func drawMjImages(x: CGFloat, _ y: CGFloat, _ paiArray: [Pai], _ rate: CGFloat = 0.5) {
         var width:  CGFloat = 700
         var height: CGFloat = 200
         var imageX: CGFloat = 10
@@ -292,9 +276,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         UIGraphicsBeginImageContext(CGSizeMake(width, height))
         
-        for pai in strArray  {
-            let imagePath = NSBundle.mainBundle().pathForResource(pai, ofType: "png")
-            let image: UIImage = UIImage(contentsOfFile: imagePath)
+        for pai in paiArray  {
+            let image: UIImage = UIImage(named:pai.toString())
             image.drawAtPoint(CGPointMake(imageX, imageY))
             imageX += deltaX
         }
@@ -307,9 +290,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func focusOn() {
-        let imgArray = NSArray(array: [UIImage(named:"circle01.png"),
-                                       UIImage(named:"circle02.png"),
-                                       UIImage(named:"circle03.png")])
+        let imgArray = NSArray(array: [UIImage(named:"circle01"),
+                                       UIImage(named:"circle02"),
+                                       UIImage(named:"circle03")])
         
         animationView.animationImages = imgArray
         animationView.animationDuration = 0.5
