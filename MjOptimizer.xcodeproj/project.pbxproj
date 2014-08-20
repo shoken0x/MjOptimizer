@@ -139,7 +139,6 @@
 		A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */; };
 		A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DEAC481951F2D70075A0BB /* Tehai.swift */; };
 		C40B15C8197EB84500880D4C /* Agari.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40B15C7197EB84500880D4C /* Agari.swift */; };
-		C421E895197430EA001C2F34 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
 		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
 		C439EB6E1998FC4200116820 /* ScoreCalculatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EB6D1998FC4200116820 /* ScoreCalculatorSpec.swift */; };
@@ -159,7 +158,6 @@
 		C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */; };
 		C4914A2019893BD100BD663E /* AgariSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4914A1F19893BD100BD663E /* AgariSpec.swift */; };
 		C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC26551986A2D8007533C6 /* Yaku.swift */; };
-		C4C08E9D1986A0EC00926E66 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941B8E2B1983E01400398CE4 /* Nimble.framework */; };
 		C4CA4FEF197135FA0089E2B2 /* PaiNumList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */; };
 		C4CA4FF91971361E0089E2B2 /* PaiNumListSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */; };
 		C4CC34011954A52D0030EE0A /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FE1954A52D0030EE0A /* Stats.m */; };
@@ -600,9 +598,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4C08E9D1986A0EC00926E66 /* Nimble.framework in Frameworks */,
 				941B8E3E1983E41400398CE4 /* libPods.a in Frameworks */,
-				C421E895197430EA001C2F34 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
