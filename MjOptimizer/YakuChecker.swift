@@ -353,14 +353,13 @@ public class YCDora : YakuChecker{
         return nil
     }
 }
-//立直//ダブル立直
+//立直
 public class YCReach : YakuChecker{
     public init(){} ; public func check(agari:Agari,kyoku:Kyoku) -> Yaku?{
-        switch kyoku.reachNum{
-        case 1: return Yaku(name:"reach",kanji: "立直", hanNum:1,nakiHanNum:0)
-        case 2: return Yaku(name:"doublereach",kanji: "ダブル立直", hanNum:2,nakiHanNum:0)
-        default:return nil
+        if (kyoku.isReach){
+            return Yaku(name:"reach",kanji: "立直", hanNum:1,nakiHanNum:0)
         }
+        return nil
     }
 }
 //一発

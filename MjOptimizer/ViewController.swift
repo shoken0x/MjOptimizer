@@ -33,7 +33,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var captureDevice: AVCaptureDevice!
     var isFinishAnalyze = false
     var isScan = false
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,6 +52,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
+        
+        //局状況入力
+        view.addSubview(KyokuView())
+
     }
     
     func setPreview(session: AVCaptureSession) {

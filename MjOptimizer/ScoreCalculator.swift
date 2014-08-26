@@ -142,7 +142,7 @@ public class ScoreCalculator{
     }
     //点数計算
     public class func calcPoint(fuNum:Int,hanNum:Int,kyoku:Kyoku)->Score{
-        var isParent = kyoku.isParent
+        var isParent = kyoku.isParent()
         var isTsumo = kyoku.isTsumo
         var c:Int = 0
         var p:Int = 0

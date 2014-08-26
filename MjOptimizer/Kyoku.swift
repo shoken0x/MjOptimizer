@@ -10,16 +10,18 @@ import Foundation
 
 //局状態
 public class Kyoku{
+    public var isReach:Bool = false   //リーチかどうか
+    public var isIppatsu:Bool = false  //一発かどうか
     public var isTsumo:Bool = false   //ツモかどうか（面前、鳴きあり問わず）
     public var doraNum:Int = 0        //ドラ枚数
+    public var honbaNum:Int = 0       //本場
     public var bakaze:Kaze = Kaze.TON //場風
     public var jikaze:Kaze = Kaze.TON //自風
-    public var isParent:Bool = true   //親かどうか
-    public var honbaNum:Int = 0       //本場
-    public var reachNum:Int = 0 //リーチなら1,ダブリーなら2
-    public var isIppatsu:Bool = false  //一発かどうか
     public var finishType:FinishType = FinishType.NORMAL //あがり型
     public init(){}
+    public func isParent() -> Bool {
+        return jikaze == Kaze.TON
+    }
 }
 
 
