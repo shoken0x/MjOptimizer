@@ -52,10 +52,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setPreview(session)
         }
         setOverlayView()
-        
         //局状況入力
         view.addSubview(KyokuView())
-
     }
     
     func setPreview(session: AVCaptureSession) {
