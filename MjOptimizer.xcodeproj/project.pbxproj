@@ -138,6 +138,7 @@
 		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
 		C4CD713919B49C1E003A69D1 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD713819B49C1E003A69D1 /* ScoreView.swift */; };
 		C4CD713A19B4A159003A69D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
+		C4CD713C19B4C94B003A69D1 /* PaiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD713B19B4C94B003A69D1 /* PaiListView.swift */; };
 		C4DC44421961A2C1009AEA97 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC44411961A2C1009AEA97 /* Log.swift */; };
 		C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC4451196319E7009AEA97 /* Array+Slice.swift */; };
 		C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */; };
@@ -507,6 +508,7 @@
 		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
 		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
 		C4CD713819B49C1E003A69D1 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		C4CD713B19B4C94B003A69D1 /* PaiListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiListView.swift; sourceTree = "<group>"; };
 		C4DC44411961A2C1009AEA97 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4DC4451196319E7009AEA97 /* Array+Slice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Slice.swift"; sourceTree = "<group>"; };
 		C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolver.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 				C473CD7D19AFFD50006B22A8 /* LogView.swift */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
 				C4CD713819B49C1E003A69D1 /* ScoreView.swift */,
+				C4CD713B19B4C94B003A69D1 /* PaiListView.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
 				C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */,
@@ -1202,6 +1205,7 @@
 				34636E6B1954CD6D004F41F6 /* TMAnalyzer.swift in Sources */,
 				C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */,
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
+				C4CD713C19B4C94B003A69D1 /* PaiListView.swift in Sources */,
 				C4CD713919B49C1E003A69D1 /* ScoreView.swift in Sources */,
 				34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */,
 				C4DC44421961A2C1009AEA97 /* Log.swift in Sources */,

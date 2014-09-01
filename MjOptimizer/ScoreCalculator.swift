@@ -50,6 +50,7 @@ public class ScoreCalculator{
             }
             let maxAgari : Agari = agariList.max()
             if(maxAgari.valid()){
+                maxAgari.orgPaiList = paiList //返す前に入力のpaiListをセット
                 return ScoreCalcResult.SUCCESS(maxAgari)
             }else{
                 return ScoreCalcResult.ERROR("役がありません")

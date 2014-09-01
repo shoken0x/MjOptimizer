@@ -17,7 +17,7 @@ public class Agari:Equatable,Comparable {
     public var hanNum: Int      //翻数
     public var score: Score     //点数
     public var mentsuList: [Mentsu] //面子リスト
-
+    public var orgPaiList:[Pai] //元の牌リスト
     //以下は解析の際にのみ用いるフールド
     public var paiList:[Pai]
     public var paiNumList: PaiNumList
@@ -37,6 +37,7 @@ public class Agari:Equatable,Comparable {
         self.fuNum = -1
         self.hanNum = -1
         self.score = Score(child:-1,parent:-1,total:-1,manganScale: -1.0 )
+        self.orgPaiList = []
     }
     public func addMentsu(mentsu:Mentsu) {
         self.mentsuList.append(mentsu)
