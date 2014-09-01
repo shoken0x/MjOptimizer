@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import CoreMedia
 
-class ControllerMock:ControllerProtocol{
-    func sutehaiSelect(image : CMSampleBuffer, targetFrame : CGRect) -> SutehaiSelectResult{
+class ControllerMock{
+    func sutehaiSelect() -> SutehaiSelectResult{
         var sc1:SutehaiCandidate = SutehaiCandidate(
             pai:Pai.parse("m3t")!,
             ukeirePaiList:[

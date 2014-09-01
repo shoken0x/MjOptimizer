@@ -112,8 +112,10 @@
 		C43CD98F199BE34900CE1613 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CD98E199BE34900CE1613 /* Score.swift */; };
 		C44F27B41987EECB0058B3C3 /* YakuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F27B31987EECB0058B3C3 /* YakuSpec.swift */; };
 		C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46217D21989FB65002982B2 /* Array+Conbination.swift */; };
-		C4621A6E1955519700F43A2F /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */; };
+		C473CD7419AFFAC7006B22A8 /* SutehaiSelectResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C473CD7319AFFAC7006B22A8 /* SutehaiSelectResultView.swift */; };
+		C473CD7E19AFFD50006B22A8 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C473CD7D19AFFD50006B22A8 /* LogView.swift */; };
+		C473CD8019AFFDAD006B22A8 /* ForcusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C473CD7F19AFFDAD006B22A8 /* ForcusView.swift */; };
 		C47F80801998B5760008A706 /* ScoreCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F807F1998B5760008A706 /* ScoreCalculator.swift */; };
 		C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */; };
 		C4914A2019893BD100BD663E /* AgariSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4914A1F19893BD100BD663E /* AgariSpec.swift */; };
@@ -134,6 +136,8 @@
 		C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */; };
 		C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3433195518E10030EE0A /* TehaiProtocol.swift */; };
 		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
+		C4CD713919B49C1E003A69D1 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD713819B49C1E003A69D1 /* ScoreView.swift */; };
+		C4CD713A19B4A159003A69D1 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441DC53F195356FE00E6023D /* Quick.framework */; };
 		C4DC44421961A2C1009AEA97 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC44411961A2C1009AEA97 /* Log.swift */; };
 		C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC4451196319E7009AEA97 /* Array+Slice.swift */; };
 		C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */; };
@@ -485,6 +489,9 @@
 		C44F27B31987EECB0058B3C3 /* YakuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuSpec.swift; sourceTree = "<group>"; };
 		C46217D21989FB65002982B2 /* Array+Conbination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Conbination.swift"; sourceTree = "<group>"; };
 		C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorSpec.swift; sourceTree = "<group>"; };
+		C473CD7319AFFAC7006B22A8 /* SutehaiSelectResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResultView.swift; sourceTree = "<group>"; };
+		C473CD7D19AFFD50006B22A8 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		C473CD7F19AFFDAD006B22A8 /* ForcusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForcusView.swift; sourceTree = "<group>"; };
 		C47F807F1998B5760008A706 /* ScoreCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCalculator.swift; sourceTree = "<group>"; };
 		C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolverSpec.swift; sourceTree = "<group>"; };
 		C4914A1F19893BD100BD663E /* AgariSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgariSpec.swift; sourceTree = "<group>"; };
@@ -499,6 +506,7 @@
 		C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultMock.swift; sourceTree = "<group>"; };
 		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
 		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
+		C4CD713819B49C1E003A69D1 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		C4DC44411961A2C1009AEA97 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4DC4451196319E7009AEA97 /* Array+Slice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Slice.swift"; sourceTree = "<group>"; };
 		C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolver.swift; sourceTree = "<group>"; };
@@ -526,8 +534,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CD713A19B4A159003A69D1 /* Quick.framework in Frameworks */,
 				941B8E3C1983E40800398CE4 /* Nimble.framework in Frameworks */,
-				C4621A6E1955519700F43A2F /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,15 +645,18 @@
 			children = (
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
+				C473CD7F19AFFDAD006B22A8 /* ForcusView.swift */,
+				C473CD7D19AFFD50006B22A8 /* LogView.swift */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
+				C4CD713819B49C1E003A69D1 /* ScoreView.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
-				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */,
 				C4CC33FD1954A52D0030EE0A /* Stats.h */,
 				C4CC33FE1954A52D0030EE0A /* Stats.m */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				C4E90DA91989283A00948322 /* Kyoku.swift */,
+				C473CD8119B0ED76006B22A8 /* sutehaiSelector */,
 				C42B287719808465009FE514 /* optimizer */,
 				C42B286D198083CD009FE514 /* templateMatching */,
 				C42D75611961802B00183C24 /* scoreCalculator */,
@@ -825,12 +836,29 @@
 			name = parse;
 			sourceTree = "<group>";
 		};
+		C473CD8119B0ED76006B22A8 /* sutehaiSelector */ = {
+			isa = PBXGroup;
+			children = (
+				C473CD8219B0EDC4006B22A8 /* mocks */,
+				C4CC340C1954A85A0030EE0A /* Controller.swift */,
+				C473CD7319AFFAC7006B22A8 /* SutehaiSelectResultView.swift */,
+			);
+			name = sutehaiSelector;
+			sourceTree = "<group>";
+		};
+		C473CD8219B0EDC4006B22A8 /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
+			);
+			name = mocks;
+			sourceTree = "<group>";
+		};
 		C4CC34231954BBC60030EE0A /* mocks */ = {
 			isa = PBXGroup;
 			children = (
 				C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */,
 				C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */,
-				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
 			);
 			name = mocks;
 			sourceTree = "<group>";
@@ -1152,9 +1180,11 @@
 				C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */,
 				C4CC34071954A7150030EE0A /* Float.swift in Sources */,
 				C4CC34081954A7150030EE0A /* Int.swift in Sources */,
+				C473CD8019AFFDAD006B22A8 /* ForcusView.swift in Sources */,
 				C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */,
 				C4CC34091954A7150030EE0A /* NSArray.swift in Sources */,
 				C4E90DAA1989283A00948322 /* Kyoku.swift in Sources */,
+				C473CD7E19AFFD50006B22A8 /* LogView.swift in Sources */,
 				C4CC340A1954A7150030EE0A /* Range.swift in Sources */,
 				34636E691954CB34004F41F6 /* TMARes.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,
@@ -1172,12 +1202,14 @@
 				34636E6B1954CD6D004F41F6 /* TMAnalyzer.swift in Sources */,
 				C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */,
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
+				C4CD713919B49C1E003A69D1 /* ScoreView.swift in Sources */,
 				34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */,
 				C4DC44421961A2C1009AEA97 /* Log.swift in Sources */,
 				C40B15C8197EB84500880D4C /* Agari.swift in Sources */,
 				342182021954C89900E3436B /* CvView.swift in Sources */,
 				C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */,
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
+				C473CD7419AFFAC7006B22A8 /* SutehaiSelectResultView.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
 				C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */,
 				C43CD98F199BE34900CE1613 /* Score.swift in Sources */,
