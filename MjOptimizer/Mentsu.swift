@@ -23,6 +23,7 @@ public enum MentsuType: Int{
 protocol MentsuProtocol{
     func type() -> MentsuType // 面子のタイプ
     func paiArray() -> [Pai] // 牌の配列。牌のDirectionはすべてTOP
+    func displayPaiArray() -> [Pai] // 表示用の牌の配列。牌のDirectionや表裏が正しい
     func fuNum(kyoku:Kyoku) -> Int //符数。面子の形、雀頭、待ちの３つの符を考慮している。
     //以下は計算用
     func copy() -> Mentsu
@@ -109,6 +110,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     public func isRyanmenmachi() -> Bool{return false}
     public func includeAgariPai() -> Bool{return agariPai != nil}
     public func paiArray() -> [Pai]{return [PaiMaster.pais["r0t"]!]}
+    public func displayPaiArray()-> [Pai]{return [PaiMaster.pais["r0t"]!]}
 }
 
 public func == (lhs: Mentsu, rhs: Mentsu) -> Bool {
@@ -135,7 +137,7 @@ public func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
 //同じ牌で構成される面子の親クラス
 public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     var pai : Pai
-    public init(pai:Pai){self.pai = pai}
+    public init(pai:Pai){self.pai = pai.top()}
     public init(paiList:[Pai]){self.pai = paiList[0]}
     override public func copy() -> Mentsu {return SamePaiMentsu(pai:pai)}
     override public func identical() ->Pai{ return self.pai }
@@ -161,6 +163,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func consistOfDifferentPai() -> Bool{return false}
     override public func isRyanmenmachi() -> Bool{return false}
     override public func paiArray() -> [Pai]{return [PaiMaster.pais["r0t"]!]}
+    override public func displayPaiArray() -> [Pai]{return [PaiMaster.pais["r0t"]!]}
 }
 public func == (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai
@@ -202,6 +205,7 @@ public class ToitsuMentsu: SamePaiMentsu{
     override public func size()->Int{return 2}
     override public func type()->MentsuType{return MentsuType.TOITSU}
     override public func paiArray() -> [Pai]{return [pai,pai]}
+    override public func displayPaiArray() -> [Pai]{return [pai,pai]}
 }
 //アンコウ
 public class AnkouMentsu: SamePaiMentsu{
@@ -220,6 +224,7 @@ public class AnkouMentsu: SamePaiMentsu{
     override public func size()->Int{return 3}
     override public func type()->MentsuType{return MentsuType.ANKOU}
     override public func paiArray() -> [Pai]{return [pai,pai,pai]}
+    override public func displayPaiArray() -> [Pai]{return [pai,pai,pai]}
 }
 //ポン
 public class PonMentsu: SamePaiMentsu{
@@ -232,6 +237,7 @@ public class PonMentsu: SamePaiMentsu{
     override public func size()->Int{return 3}
     override public func type()->MentsuType{return MentsuType.PON}
     override public func paiArray() -> [Pai]{return [pai,pai,pai]}
+    override public func displayPaiArray() -> [Pai]{return [pai,pai.left(),pai]}
 }
 //アンカン
 public class AnkanMentsu: SamePaiMentsu{
@@ -244,6 +250,7 @@ public class AnkanMentsu: SamePaiMentsu{
     override public func size()->Int{return 4}
     override public func type()->MentsuType{return MentsuType.ANKAN}
     override public func paiArray() -> [Pai]{return [pai,pai,pai,pai]}
+    override public func displayPaiArray() -> [Pai]{return [pai,PaiMaster.pais["r0t"]!,PaiMaster.pais["r0t"]!,pai]}
 }
 //ミンカン
 public class MinkanMentsu: SamePaiMentsu{
@@ -256,6 +263,7 @@ public class MinkanMentsu: SamePaiMentsu{
     override public func size()->Int{return 4}
     override public func type()->MentsuType{return MentsuType.MINKAN}
     override public func paiArray() -> [Pai]{return [pai,pai,pai,pai]}
+    override public func displayPaiArray() -> [Pai]{return [pai,pai.left(),pai,pai]}
 }
 
 //異なる牌で構成される面子の親クラス
@@ -289,6 +297,7 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func consistOfDifferentPai() -> Bool{return true}
     override public func isRyanmenmachi() -> Bool{return false}
     override public func paiArray() -> [Pai]{return self.paiList}
+    override public func displayPaiArray() -> [Pai]{return self.paiList}
 }
 public func == (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     return lhs.type() == rhs.type() && lhs.identical() == rhs.identical() && lhs.agariPai == rhs.agariPai

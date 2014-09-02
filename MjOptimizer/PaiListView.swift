@@ -14,11 +14,11 @@ class PaiListView:UIView{
     let YOKO_W : CGFloat = 32
     let YOKO_H : CGFloat = 28
     
-    init(paiList:[Pai]){
+    init(x:CGFloat,y:CGFloat,paiList:[Pai]){
         let yokoNum = paiList.filter({$0.isYoko}).count
         let tateNum = paiList.filter({!$0.isYoko}).count
         let YOKO_MAX:CGFloat = CGFloat(yokoNum) * YOKO_W + CGFloat(tateNum) * TATE_W
-        super.init(frame: CGRectMake(0, 0, YOKO_MAX, TATE_H))
+        super.init(frame: CGRectMake(x, y, YOKO_MAX, TATE_H))
         var nextX : CGFloat = 0
         UIGraphicsBeginImageContext(CGSizeMake( YOKO_MAX , TATE_H)) //描画領域を確保
         for pai in paiList{

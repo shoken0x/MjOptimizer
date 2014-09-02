@@ -61,7 +61,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let scr : ScoreCalcResult = ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
         switch scr{
         case let .SUCCESS(agari):
-            view.addSubview(PaiListView(paiList:agari.orgPaiList))
+            view.addSubview(ScoreView(agari:agari))
         case let .ERROR(msg):
             println(msg)
         }

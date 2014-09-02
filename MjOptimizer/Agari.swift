@@ -82,6 +82,9 @@ public class Agari:Equatable,Comparable {
     public func toString() -> String{
         return "\(fuNum)符,\(hanNum)翻," + score.toString() + ",役リスト:" + join(",",yakuList.map({$0.kanji})) + ",面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
     }
+    public func toScoreString() -> String{
+        return  "\(fuNum)符,\(hanNum)翻," + score.toString()
+    }
 }
 public func == (lhs: Agari, rhs: Agari) -> Bool {
     let lstr = join(",",lhs.mentsuList.map({ m in m.toString()}))
