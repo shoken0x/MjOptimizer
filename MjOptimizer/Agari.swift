@@ -7,18 +7,9 @@
 //
 
 //アガリクラス。
-//得点計算結果(面子解析、役一覧、翻数、符数、点数)の全てを格納する。
-//得点計算中はこのオブジェクトを更新することで計算が進む。
-public class Agari:Equatable,Comparable {
+public class Agari:Equatable {
     
-    public var kyoku: Kyoku     //局の状態
-    public var yakuList: [Yaku] //役リスト
-    public var fuNum: Int       //符数
-    public var hanNum: Int      //翻数
-    public var score: Score     //点数
     public var mentsuList: [Mentsu] //面子リスト
-    public var orgPaiList:[Pai] //元の牌リスト
-    //以下は解析の際にのみ用いるフールド
     public var paiList:[Pai]
     public var paiNumList: PaiNumList
     
@@ -32,12 +23,6 @@ public class Agari:Equatable,Comparable {
         }
         self.paiNumList = PaiNumList(paiList:self.paiList)
         //以下のフィールドは初期化時にはダミーの値をいれておき、後で埋める
-        self.kyoku = Kyoku()
-        self.yakuList = []
-        self.fuNum = -1
-        self.hanNum = -1
-        self.score = Score(child:-1,parent:-1,total:-1,manganScale: -1.0 )
-        self.orgPaiList = []
     }
     public func addMentsu(mentsu:Mentsu) {
         self.mentsuList.append(mentsu)
@@ -45,6 +30,7 @@ public class Agari:Equatable,Comparable {
             self.paiNumList.incNum(pai)
         }
     }
+    
     //面前面子のリスト。アンカン含まず。
     public func menzenMentsuList() -> [Mentsu]{ return mentsuList.filter{$0.isMenzen()} }
     //副露面子のリスト。アンカンを含む
@@ -66,36 +52,15 @@ public class Agari:Equatable,Comparable {
         }
         return newAgari
     }
-    //有効なアガリかどうか。役無しやドラのみはfalse
-    public func valid() -> Bool{
-        return (self.score.total > 0) && !(yakuList.all{$0.isDora})
-    }
-    //役名のリスト。テストで使う
-    public func yakuNameList() -> [String]{
-        var strs : [String] = []
-        for yaku in yakuList{
-            strs.append(yaku.name)
-        }
-        return strs
-    }
     public func copy() -> Agari{return Agari(mentsuList:mentsuList.copy())}
     public func toString() -> String{
-        return "\(fuNum)符,\(hanNum)翻," + score.toString() + ",役リスト:" + join(",",yakuList.map({$0.kanji})) + ",面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
-    }
-    public func toScoreString() -> String{
-        return  "\(fuNum)符,\(hanNum)翻," + score.toString()
+        return "面子リスト:" + join(",",mentsuList.map({ $0.toString()}))
     }
 }
 public func == (lhs: Agari, rhs: Agari) -> Bool {
     let lstr = join(",",lhs.mentsuList.map({ m in m.toString()}))
     let rstr = join(",",rhs.mentsuList.map({ m in m.toString()}))
     return lstr == rstr
-}
-public func < (lhs: Agari, rhs: Agari) -> Bool {
-    return lhs.score.total == rhs.score.total ? lhs.hanNum < rhs.hanNum : lhs.score.total < rhs.score.total
-}
-public func > (lhs: Agari, rhs: Agari) -> Bool {
-    return lhs.score.total == rhs.score.total ? lhs.hanNum > rhs.hanNum : lhs.score.total > rhs.score.total
 }
 
 

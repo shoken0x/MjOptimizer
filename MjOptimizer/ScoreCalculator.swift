@@ -1,5 +1,5 @@
 //
-//  ScoreCalculator.swift
+//  PointCalculator.swift
 //  MjOptimizer
 //
 //  Created by fetaro on 2014/08/11.
@@ -10,7 +10,7 @@ import Foundation
 
 //得点計算結果
 public enum ScoreCalcResult{
-    case SUCCESS(Agari) //得点計算に成功した場合、アガリを返す
+    case SUCCESS(Score) //得点計算に成功した場合、Scoreを返す
     case ERROR(String) //得点計算に失敗した場合、エラーメッセージを返す
 }
 
@@ -20,6 +20,7 @@ public class ScoreCalculator{
     //得点計算のメイン関数。牌のリストと局状態から役と得点を計算する。
     //局状態が省略された場合は、デフォルトの局状態で計算する。
     public class func calc(paiList:[Pai],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
+        var scoreList : [Score] = []
         //文字列を面子に分解する
         let mentsuResolveResult = MentsuResolver.resolve(paiList)
         switch mentsuResolveResult{
@@ -27,31 +28,35 @@ public class ScoreCalculator{
             return ScoreCalcResult.ERROR(str)
         case let .SUCCESS(agariList):
             for agari in agariList{
-                //各アガリについて役、翻数、符、点を計算して更新していく
+                //各アガリについて役、翻数、符、点を計算してScoreを作っていく
                 //役を計算
-                agari.yakuList = yakuJudge(agari, kyoku:kyoku)
-                if agari.yakuList.count != 0{
+                var yakuList:[Yaku] = yakuJudge(agari, kyoku:kyoku)
+                if yakuList.count != 0{
                     //翻数を計算
                     var hanNum : Int = 0
-                    for yaku in agari.yakuList{
+                    for yaku in yakuList{
                         hanNum += agari.includeNaki() ?  yaku.nakiHanNum : yaku.hanNum
                     }
-                    agari.hanNum = hanNum
                     //符を計算
-                    agari.fuNum = calcFuNum(agari,kyoku:kyoku)
+                    var fuNum : Int = calcFuNum(agari,kyoku:kyoku)
                     //点数を計算
-                    agari.score = calcPoint(agari.fuNum, hanNum:agari.hanNum,kyoku:kyoku)
+                    var point : Point = calcPoint(fuNum, hanNum:hanNum,kyoku:kyoku)
+                    //Scoreを作成
+                    scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, fuNum: fuNum, hanNum: hanNum, point: point,paiList: paiList))
                 }
             }//end for
             //deubg
-            Log.info("得られたアガリ一覧")
-            for agari in agariList{
-                Log.info(agari.toString())
+            Log.info("得られたScore一覧")
+            for score in scoreList{
+                Log.info(score.toString())
             }
-            let maxAgari : Agari = agariList.max()
-            if(maxAgari.valid()){
-                maxAgari.orgPaiList = paiList //返す前に入力のpaiListをセット
-                return ScoreCalcResult.SUCCESS(maxAgari)
+            if scoreList.count != 0 {
+                let maxScore : Score = scoreList.max()
+                if(maxScore.valid()){
+                    return ScoreCalcResult.SUCCESS(maxScore)
+                }else{
+                    return ScoreCalcResult.ERROR("役がありません")
+                }
             }else{
                 return ScoreCalcResult.ERROR("役がありません")
             }
@@ -142,7 +147,7 @@ public class ScoreCalculator{
         }
     }
     //点数計算
-    public class func calcPoint(fuNum:Int,hanNum:Int,kyoku:Kyoku)->Score{
+    public class func calcPoint(fuNum:Int,hanNum:Int,kyoku:Kyoku)->Point{
         var isParent = kyoku.isParent()
         var isTsumo = kyoku.isTsumo
         var c:Int = 0
@@ -196,7 +201,7 @@ public class ScoreCalculator{
         c += kyoku.honbaNum * 100
         c += kyoku.honbaNum * 100
         t += kyoku.honbaNum * 300
-        return Score(child:c,parent:p,total:t,manganScale:m)
+        return Point(child:c,parent:p,total:t,manganScale:m)
     }
     
     //1の位切り上げ
