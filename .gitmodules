@@ -4,3 +4,9 @@
 [submodule "submodule/ExSwift"]
 	path = submodule/ExSwift
 	url = git@github.com:pNre/ExSwift.git
+[submodule "submodule/Nimble"]
+	path = submodule/Nimble
+	url = git@github.com:Quick/Nimble.git
+[submodule "submodule/Quick"]
+	path = submodule/Quick
+	url = git@github.com:Quick/Quick.git
