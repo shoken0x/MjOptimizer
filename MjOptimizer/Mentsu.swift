@@ -77,7 +77,7 @@ public class Mentsu: MentsuProtocol, Equatable, Comparable {
     //文字列をパースして面子を作る
     public class func parseStr(paiStr:String) -> Mentsu?{
         let paiList = Pai.parseList(paiStr)
-        if (paiList){
+        if (paiList != nil){
             return Mentsu.parse(paiList!)!
         }
         return nil
@@ -119,14 +119,14 @@ func != (lhs: Mentsu, rhs: Mentsu) -> Bool {
 }
 public func < (lhs: Mentsu, rhs: Mentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() < rhs.type().toRaw()
+        return lhs.type().rawValue < rhs.type().rawValue
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
 public func > (lhs: Mentsu, rhs: Mentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() > rhs.type().toRaw()
+        return lhs.type().rawValue > rhs.type().rawValue
     }else{
         return lhs.identical() > rhs.identical()
     }
@@ -140,7 +140,7 @@ public class SamePaiMentsu: Mentsu,Equatable,Comparable{
     override public func copy() -> Mentsu {return SamePaiMentsu(pai:pai)}
     override public func identical() ->Pai{ return self.pai }
     override public func toString() -> String{
-        let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
+        let str = super.agariPai != nil ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return pai.toShortStr() + str
     }
     override public func fuNum(kyoku:Kyoku)->Int{return 0}
@@ -170,14 +170,14 @@ func != (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
 }
 public func < (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() < rhs.type().toRaw()
+        return lhs.type().rawValue < rhs.type().rawValue
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
 public func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() > rhs.type().toRaw()
+        return lhs.type().rawValue > rhs.type().rawValue
     }else{
         return lhs.identical() > rhs.identical()
     }
@@ -185,12 +185,12 @@ public func > (lhs: SamePaiMentsu, rhs: SamePaiMentsu) -> Bool {
 
 //トイツ
 public class ToitsuMentsu: SamePaiMentsu{
-    public init(pai: Pai) { return super.init(pai: pai) }
+    public override init(pai: Pai) { super.init(pai: pai) }
     override public func copy() -> Mentsu {return ToitsuMentsu(pai:pai)}
     override public func toString() -> String{ return "トイツ:" + super.toString() }
     override public func fuNum(kyoku:Kyoku)->Int{
         var fu:Int = 0
-        if(agariPai){fu += 2} //アガリ牌を含む＝単騎待ちであるため
+        if(agariPai != nil){fu += 2} //アガリ牌を含む＝単騎待ちであるため
         if(super.isSangen()){fu += 2} //三元牌
         if(kyoku.jikaze.toPai() == pai){ fu += 2}//自風
         if(kyoku.bakaze.toPai() == pai){ fu += 2}//場風
@@ -208,7 +208,7 @@ public class AnkouMentsu: SamePaiMentsu{
     override public func copy() -> Mentsu {return AnkouMentsu(pai:pai)}
     override public func toString() -> String{ return "アンコウ:" + super.toString() }
     override public func fuNum(kyoku:Kyoku)->Int{
-        if (agariPai && !(kyoku.isTsumo)){//ロンでアガリ牌を含む場合は半分
+        if (agariPai != nil && !(kyoku.isTsumo)){//ロンでアガリ牌を含む場合は半分
             return super.isYaochu() ? 4 : 2
         }else{
             return super.isYaochu() ? 8 : 4
@@ -268,7 +268,7 @@ public class DifferentPaiMentsu: Mentsu,Equatable,Comparable{
     override public func copy() -> Mentsu {return DifferentPaiMentsu(paiList:paiList)}
     override public func identical() -> Pai{return self.paiList[0]}
     override public func toString() -> String{
-        let str = super.agariPai ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
+        let str = (super.agariPai != nil) ? "(アガリ牌" + agariPai!.toShortStr() + ")" : ""
         return join("",paiList.map({ $0.toShortStr()})) + str
     }
     override public func fuNum(kyoku:Kyoku)->Int{return 0}//TODO}
@@ -298,14 +298,14 @@ func != (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
 }
 public func < (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() < rhs.type().toRaw()
+        return lhs.type().rawValue < rhs.type().rawValue
     }else{
         return lhs.identical() < rhs.identical()
     }
 }
 public func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
     if lhs.identical() == rhs.identical(){
-        return lhs.type().toRaw() > rhs.type().toRaw()
+        return lhs.type().rawValue > rhs.type().rawValue
     }else{
         return lhs.identical() > rhs.identical()
     }
@@ -313,13 +313,13 @@ public func > (lhs: DifferentPaiMentsu, rhs: DifferentPaiMentsu) -> Bool {
 
 //シュンツ
 public class ShuntsuMentsu: DifferentPaiMentsu{
-    public init(paiList: [Pai]) { return super.init(paiList: paiList) }
+    public override init(paiList: [Pai]) { super.init(paiList: paiList) }
     override public func copy() -> Mentsu {return ShuntsuMentsu(paiList:paiList)}
     override public func toString() -> String{
         return "シュンツ:" + super.toString()
     }
     override public func fuNum(kyoku:Kyoku)->Int{
-        if(agariPai){
+        if(agariPai != nil){
             if !(self.isRyanmenmachi()){return 2} //カンチャン・ペンチャン
         }
         return 0

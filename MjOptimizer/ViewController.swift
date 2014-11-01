@@ -26,7 +26,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     let animationView = UIImageView(frame: CGRectMake(24, 100, 100, 100))
     let targetFrame = CGRectMake(24, 130, 520, 50)
     let systemStats = Stats()
-    let controller = Controller()
+    ///let controller = Controller()
     
     var scanCounter = 0
     var log = "START SCAN..."
@@ -98,8 +98,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
         
         var queue: dispatch_queue_t = dispatch_queue_create("com.mjoptimizer.myQueue", nil)
-        let settings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
-        videoDataOutput.videoSettings = settings
+//        let settings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
+        videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
         
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
@@ -136,7 +136,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             }
         }
         
-        if captureDevice {
+        if (captureDevice != nil) {
             // Debug
             println("Success finding Camera")
             println("Camera name = " + captureDevice!.localizedName)
@@ -200,36 +200,36 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 //                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
 //            }
 //        }
-        dispatch_async( dispatch_get_main_queue() ) {
-            if self.isScan {
-                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
-                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
-                if self.isFinishAnalyze {
-                    // Display SutehaiSelectResult
-                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                    self.label.text = "Finish scan."
-                    self.drawMjImages(27, 205, sutehaiSelectResult.tehai, 0.8)
-                    self.setBody(sutehaiCandidateList)
-                    self.animationView.removeFromSuperview()
-                    self.filterView.removeFromSuperview()
-                    self.setHeaderLabel()
-                    //self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
-                
-                    self.session.stopRunning()
-                    self.startButton.hidden = true
-                    self.rescanButton.hidden = false
-                } else {
-                    println("update view")
-                    self.label.text = now.description
-                    self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
-                    var range = self.logView.selectedRange
-                    range.location = self.logView.text.length
-                    self.logView.scrollEnabled = false
-                    self.logView.scrollRangeToVisible(range)
-                    self.logView.scrollEnabled = true
-                }
-            }
-        }
+//        dispatch_async( dispatch_get_main_queue() ) {
+//            if self.isScan {
+//                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetFrame)
+//                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+//                if self.isFinishAnalyze {
+//                    // Display SutehaiSelectResult
+//                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
+//                    self.label.text = "Finish scan."
+//                    self.drawMjImages(27, 205, sutehaiSelectResult.tehai, 0.8)
+//                    self.setBody(sutehaiCandidateList)
+//                    self.animationView.removeFromSuperview()
+//                    self.filterView.removeFromSuperview()
+//                    self.setHeaderLabel()
+//                    //self.setFooterLabel(sutehaiSelectResult.tehaiShantenNum!)
+//                
+//                    self.session.stopRunning()
+//                    self.startButton.hidden = true
+//                    self.rescanButton.hidden = false
+//                } else {
+//                    println("update view")
+//                    self.label.text = now.description
+//                    self.logView.text = self.logView.text.stringByAppendingString("\(self.systemStats.updateStates())")
+//                    var range = self.logView.selectedRange
+//                    range.location = self.logView.text.length
+//                    self.logView.scrollEnabled = false
+//                    self.logView.scrollRangeToVisible(range)
+//                    self.logView.scrollEnabled = true
+//                }
+//            }
+//        }
     }
     
     func setBody(sutehaiCandidateList: [SutehaiCandidate]) {
@@ -279,7 +279,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         UIGraphicsBeginImageContext(CGSizeMake(width, height))
         
         for pai in paiArray  {
-            let image: UIImage = UIImage(named:pai.toString())
+            let image: UIImage = UIImage(named:pai.toString())!
             image.drawAtPoint(CGPointMake(imageX, imageY))
             imageX += deltaX
         }
@@ -292,9 +292,10 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func focusOn() {
-        let imgArray = NSArray(array: [UIImage(named:"circle01"),
-                                       UIImage(named:"circle02"),
-                                       UIImage(named:"circle03")])
+        let c1 : UIImage = UIImage(named:"circle01")!;
+        let c2 : UIImage = UIImage(named:"circle02")!;
+        let c3 : UIImage = UIImage(named:"circle03")!;
+        let imgArray = NSArray(array: [c1,c2,c3])
         
         animationView.animationImages = imgArray
         animationView.animationDuration = 0.5

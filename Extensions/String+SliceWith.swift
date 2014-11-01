@@ -14,9 +14,9 @@ extension String {
         
         var result = Array<String>()
         var idx = 1
-        var str = ""
-        for char in self {
-            str += char
+        var str : String = ""
+        for char:Character in self {
+            str.append(char)
             if idx % n == 0 {
                 result.append(str)
                 str = ""

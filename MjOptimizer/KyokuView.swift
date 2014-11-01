@@ -20,7 +20,7 @@ class KyokuView: UIView {
     let bakazeView      = KazeSelectorView(x: 240, y: 50 * 2,name:"場風")
     let finishTypeView  = FinishTypeSelectorView(x: 0, y: 50 * 3)
     private let kyoku = Kyoku()
-    init(){
+    override init(){
         super.init(frame:CGRect(x: 0, y: 0, width: 700, height: 50 * 4))
         let color = UIColor.grayColor()
         self.backgroundColor = color.colorWithAlphaComponent(0.5)
@@ -38,6 +38,10 @@ class KyokuView: UIView {
         btOk.setTitle("OK", forState: UIControlState.Normal)
         //btOk.addTarget(self,action: "okButtonPush",forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(btOk)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public func value() -> Kyoku{
@@ -63,9 +67,13 @@ class SwitchView:UIView{
         self.label = UILabel(frame:CGRect(x: 0, y: 0, width: 60, height: 40))
         self.label.text = name
         self.addSubview(self.label)
-        self.ctrl = UISwitch(frame:CGRect(x: 60, y: 0, width: 120, height: 40))
+        self.ctrl = UISwitch(frame:CGRect(x: 60, y: 0, width: 120, height: 40))!
         self.ctrl.addTarget(self,action: "update",forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(self.ctrl)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     func update(){
         println(self.ctrl.on)
@@ -77,7 +85,7 @@ class SwitchView:UIView{
 
 class IsTsumoView:UIView{
     var label = UILabel()
-    var ctrl = UISegmentedControl(items:["ロン","ツモ"])
+    var ctrl = UISegmentedControl(items:["ロン","ツモ"])!
     init(x:Int, y:Int){
         super.init(frame:CGRect(x: x, y: y, width: 180, height: 40))
         self.label = UILabel(frame:CGRect(x: 0, y: 0, width: 60, height: 40))
@@ -87,6 +95,10 @@ class IsTsumoView:UIView{
         self.ctrl.selectedSegmentIndex = 0
         self.ctrl.addTarget(self,action: "update",forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(self.ctrl)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     func update(){
         println(self.ctrl.selectedSegmentIndex == 0 ? "ロン" : "ツモ")
@@ -114,6 +126,10 @@ class NumStepperView: UIView{
         self.ctrl.addTarget(self,action: "update",forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(self.ctrl)
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func update(){
         println(String(Int(self.ctrl.value)))
         self.num.text = String(Int(self.ctrl.value))
@@ -126,7 +142,7 @@ class NumStepperView: UIView{
 class KazeSelectorView:UIView{
     let kazeList : [Kaze] = [Kaze.TON,Kaze.NAN,Kaze.SHA,Kaze.PEI]
     var label = UILabel()
-    var ctrl = UISegmentedControl(items:["東","南","西","北"])
+    var ctrl = UISegmentedControl(items:["東","南","西","北"])!
     init(x:Int, y:Int, name:String){
         super.init(frame:CGRect(x: x, y: y, width: 220, height: 40))
         self.label = UILabel(frame:CGRect(x: 0, y: 0, width: 60, height: 40))
@@ -137,8 +153,12 @@ class KazeSelectorView:UIView{
         self.ctrl.addTarget(self,action: "update",forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(self.ctrl)
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func update(){
-        println(kazeList[self.ctrl.selectedSegmentIndex].toRaw())
+        println(kazeList[self.ctrl.selectedSegmentIndex].rawValue)
     }
     func value() -> Kaze{
         return kazeList[self.ctrl.selectedSegmentIndex]
@@ -148,7 +168,7 @@ class KazeSelectorView:UIView{
 class FinishTypeSelectorView:UIView{
     let kazeList:[FinishType] = [FinishType.NORMAL,FinishType.HAITEI,FinishType.RINSHAN,FinishType.CHANKAN,FinishType.CHIHO,FinishType.TENHO]
     var label = UILabel()
-    var ctrl = UISegmentedControl(items:["なし","海底","嶺上","槍槓","地和","天和"])
+    var ctrl = UISegmentedControl(items:["なし","海底","嶺上","槍槓","地和","天和"])!
     init(x:Int, y:Int){
         super.init(frame:CGRect(x: x, y: y, width: 300, height: 40))
         self.label = UILabel(frame:CGRect(x: 0, y: 0, width: 60, height: 40))
@@ -159,8 +179,12 @@ class FinishTypeSelectorView:UIView{
         self.ctrl.addTarget(self,action: "update",forControlEvents: UIControlEvents.ValueChanged)
         self.addSubview(self.ctrl)
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func update(){
-        println(kazeList[self.ctrl.selectedSegmentIndex].toRaw())
+        println(kazeList[self.ctrl.selectedSegmentIndex].rawValue)
     }
     func value() -> FinishType{
         return kazeList[self.ctrl.selectedSegmentIndex]

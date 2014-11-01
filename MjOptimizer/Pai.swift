@@ -72,15 +72,15 @@ public class Pai: Equatable, Comparable {
     }
 
     public func toString() -> String{
-        return self.type.toRaw() + String(self.number) + self.direction.toRaw()
+        return self.type.rawValue + String(self.number) + self.direction.rawValue
     }
     public func toShortStr() -> String{
-        return self.type.toRaw() + String(self.number)
+        return self.type.rawValue + String(self.number)
     }
     
     public func next(range: Int = 1) -> Pai?{
         if self.isShupai && self.number < 10 - range {
-            return PaiMaster.pais[self.type.toRaw() + String(self.number + range) + PaiDirection.TOP.toRaw()]!
+            return PaiMaster.pais[self.type.rawValue + String(self.number + range) + PaiDirection.TOP.rawValue]!
         }else{
             return nil
         }
@@ -88,7 +88,7 @@ public class Pai: Equatable, Comparable {
     
     public func prev(range: Int = 1) -> Pai?{
         if self.isShupai && self.number > range {
-            return PaiMaster.pais[self.type.toRaw() + String(self.number - range) + PaiDirection.TOP.toRaw()]!
+            return PaiMaster.pais[self.type.rawValue + String(self.number - range) + PaiDirection.TOP.rawValue]!
         }else{
             return nil
         }

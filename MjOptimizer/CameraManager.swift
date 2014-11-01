@@ -12,8 +12,8 @@ import AVFoundation
 import CoreMedia
 
 public class CameraManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-    public init() {
-        return super.init()
+    public override init() {
+        super.init()
     }
     
     // for just test

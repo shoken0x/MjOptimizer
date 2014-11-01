@@ -18,6 +18,10 @@ class CvView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(patternImage:background)
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func addRect(rect: CGRect) {
         rectList.append(rect)

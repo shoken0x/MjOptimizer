@@ -18,12 +18,12 @@ extension Array {
     }
 }
 
-extension Int {
-    func timesWithIndex(iterator: (Int) -> Void) -> Int{
-        for i in 0..self {
-            iterator(i)
-        }
-        
-        return self
-    }
-}
+//extension Int {
+//    func timesWithIndex(iterator: (Int) -> Void) -> Int{
+//        for i in 0..self {
+//            iterator(i)
+//        }
+//        
+//        return self
+//    }
+//}

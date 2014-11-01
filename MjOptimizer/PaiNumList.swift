@@ -14,7 +14,7 @@ public class PaiNum{
     var num : Int
     init(pai:Pai,num:Int){self.pai = pai;self.num = num}
     func inc(){num++}
-    public func toString()->String{return pai.type.toRaw() + String(pai.number) + "=" + String(num)}
+    public func toString()->String{return pai.type.rawValue + String(pai.number) + "=" + String(num)}
     func copy()->PaiNum{return PaiNum(pai: self.pai,num: self.num)}
 }
 

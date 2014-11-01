@@ -60,7 +60,7 @@ public class ScoreCalculator{
     //引数の文字列("m1tm2tm3t")と局状態から役と得点を計算する。
     public class func calcFromStr(paiStr : String,kyoku:Kyoku = Kyoku()) -> ScoreCalcResult{
         let paiList : [Pai]? = Pai.parseList(paiStr)
-        if(paiList){
+        if(paiList != nil){
             return calc(paiList!,kyoku:kyoku)
         }
         return ScoreCalcResult.ERROR("引数の文字列が不正な牌リストの形式です:" + paiStr)
@@ -98,7 +98,7 @@ public class ScoreCalculator{
         var yakuList:[Yaku] = []
         for yakuChecker in yakuCheckerList{
             var yaku : Yaku? = yakuChecker.check(agari,kyoku:kyoku)
-            if(yaku){
+            if(yaku != nil){
                 yakuList.append(yaku!)
             }
         }
