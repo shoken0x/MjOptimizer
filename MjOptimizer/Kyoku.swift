@@ -23,7 +23,7 @@ public class Kyoku{
         return jikaze == Kaze.TON
     }
     public func toString() -> String{
-        return "isReach:\(isReach) isIppatsu:\(isIppatsu) doraNum:\(doraNum) honbaNum:\(honbaNum) bakaze:\(bakaze.toRaw()) jikaze:\(jikaze.toRaw()) finishType:\(finishType.toRaw())"
+        return "isReach:\(isReach) isIppatsu:\(isIppatsu) doraNum:\(doraNum) honbaNum:\(honbaNum) bakaze:\(bakaze.rawValue) jikaze:\(jikaze.rawValue) finishType:\(finishType.rawValue)"
     }
 }
 

@@ -14,7 +14,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
-    let controller = Controller()
+    //let controller = Controller()
     var captureDevice: AVCaptureDevice!
     
     //UI部品
@@ -78,7 +78,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             }
         }
         
-        if captureDevice {
+        if (captureDevice != nil) {
             // Debug
             println("Success finding Camera")
             println("Camera name = " + captureDevice!.localizedName)
@@ -96,8 +96,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
         
         var queue: dispatch_queue_t = dispatch_queue_create("com.mjoptimizer.myQueue", nil)
-        let settings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
-        videoDataOutput.videoSettings = settings
+        //TODO:コンパイルを通すために一旦コメントアウト
+        //        let settings = [kCVPixelBufferPixelFormatTypeKey: kCVPixelFormatType_32BGRA]
+        //        videoDataOutput.videoSettings = settings
         
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
@@ -187,21 +188,21 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         dispatch_async( dispatch_get_main_queue() ) {//メインスレッドの処理
             if self.isStartScan {//スタートボタンが押されて開始している場合
                 //捨て牌選択
-                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetRect)
-                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
-                if self.isFinishAnalyze {
-                    // Display SutehaiSelectResult
-                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                    self.statusLabel.text = "Finish scan."
-                    self.focusView.removeFromSuperview()
-                    self.filterView.removeFromSuperview()
-                    self.session.stopRunning()
-                    self.startButton.hidden = true
-                    self.rescanButton.hidden = false
-                } else {
-                    self.statusLabel.text = now.description
-                    
-                }
+//                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetRect)
+//                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+//                if self.isFinishAnalyze {
+//                    // Display SutehaiSelectResult
+//                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
+//                    self.statusLabel.text = "Finish scan."
+//                    self.focusView.removeFromSuperview()
+//                    self.filterView.removeFromSuperview()
+//                    self.session.stopRunning()
+//                    self.startButton.hidden = true
+//                    self.rescanButton.hidden = false
+//                } else {
+//                    self.statusLabel.text = now.description
+//                    
+//                }
             }
         }
     }

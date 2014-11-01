@@ -10,14 +10,19 @@ import Foundation
 
 class FocusView: UIImageView{
 
-    init(){
+    override init(){
         super.init(frame: CGRectMake(24, 100, 100, 100))
-        let imgArray = NSArray(array: [UIImage(named:"circle01"),
-            UIImage(named:"circle02"),
-            UIImage(named:"circle03")])
+        let imgArray = NSArray(array: [
+                UIImage(named:"circle01")!,
+                UIImage(named:"circle02")!,
+                UIImage(named:"circle03")!])
         
         self.animationImages = imgArray
         self.animationDuration = 0.5
         self.startAnimating()
     }
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }

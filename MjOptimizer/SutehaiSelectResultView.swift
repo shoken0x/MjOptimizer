@@ -44,6 +44,10 @@ class SutehaiSelectResultView:UIView{
             if i > limit { break }
         }
     }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     func drawMjImages(x: CGFloat, _ y: CGFloat, _ paiArray: [Pai], _ rate: CGFloat = 0.5) {
         var width:  CGFloat = 700
         var height: CGFloat = 200
@@ -54,7 +58,7 @@ class SutehaiSelectResultView:UIView{
         UIGraphicsBeginImageContext(CGSizeMake(width, height))
         
         for pai in paiArray  {
-            let image: UIImage = UIImage(named:pai.toString())
+            let image: UIImage = UIImage(named:pai.toString())!
             image.drawAtPoint(CGPointMake(imageX, imageY))
             imageX += deltaX
         }

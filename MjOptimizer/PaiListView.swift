@@ -22,7 +22,7 @@ class PaiListView:UIView{
         var nextX : CGFloat = 0
         UIGraphicsBeginImageContext(CGSizeMake( YOKO_MAX , TATE_H)) //描画領域を確保
         for pai in paiList{
-            let image: UIImage = UIImage(named:pai.toString())
+            let image: UIImage = UIImage(named:pai.toString())!
             if pai.isYoko{
                 image.drawAtPoint(CGPointMake(nextX, TATE_H - YOKO_H))
                 nextX += YOKO_W
@@ -37,5 +37,9 @@ class PaiListView:UIView{
         backImage.frame = CGRectMake(0, 0, YOKO_MAX, TATE_H)
         self.addSubview(backImage)
         
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
