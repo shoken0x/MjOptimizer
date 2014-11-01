@@ -98,7 +98,10 @@ public class Pai: Equatable, Comparable {
     public func isNext(pai:Pai) -> Bool{return pai == self.next()}
     public func isPrev(pai:Pai) -> Bool{return pai == self.prev()}
     public func clone() -> Pai{ return Pai(type: self.type,number: self.number,direction: self.direction) }
-
+    //縦向きの牌を返す
+    public func top() -> Pai{return PaiMaster.pais[self.toShortStr() + "t"]!}
+    //横向きの牌を返す
+    public func left() -> Pai{return PaiMaster.pais[self.toShortStr() + "l"]!}
 
 }
 

@@ -35,8 +35,9 @@ class KyokuView: UIView {
         
         
         let btOk = UIButton(frame:CGRect(x: 380, y: 50 * 3, width: 40, height: 50))
+        btOk.backgroundColor = UIColor(red: 0.0, green: 0.4, blue: 1, alpha: 1)
         btOk.setTitle("OK", forState: UIControlState.Normal)
-        //btOk.addTarget(self,action: "okButtonPush",forControlEvents: UIControlEvents.ValueChanged)
+        btOk.addTarget(self,action: "okButtonPush",forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(btOk)
     }
 
@@ -44,6 +45,11 @@ class KyokuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func okButtonPush(){
+        self.hidden = true
+        
+        println(self.value().toString())
+    }
     public func value() -> Kyoku{
         self.kyoku.isReach = isReachView.value()
         self.kyoku.isIppatsu = isIppatsuView.value()
