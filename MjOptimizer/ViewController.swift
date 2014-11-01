@@ -14,7 +14,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
-    //let controller = Controller()
+    let controller = Controller()
     var captureDevice: AVCaptureDevice!
     
     //UI部品
@@ -50,21 +50,21 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             setuptAVCapture(captureDevice)
             setPreview(session)
         }
-        //setOverlayView()
-        //view.addSubview(logView)
-        //view.addSubview(self.focusView)
+        setOverlayView()
+        view.addSubview(logView)
+        view.addSubview(self.focusView)
         
         //局状況入力
         //view.addSubview(KyokuView())
         
-        //得点計算
-        let scr : ScoreCalcResult = ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
-        switch scr{
-        case let .SUCCESS(score):
-            view.addSubview(ScoreView(score:score))
-        case let .ERROR(msg):
-            println(msg)
-        }
+        //ダミー得点計算
+//        let scr : ScoreCalcResult = ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
+//        switch scr{
+//        case let .SUCCESS(score):
+//            view.addSubview(ScoreView(score:score))
+//        case let .ERROR(msg):
+//            println(msg)
+//        }
 
     }
     
@@ -187,22 +187,22 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
         dispatch_async( dispatch_get_main_queue() ) {//メインスレッドの処理
             if self.isStartScan {//スタートボタンが押されて開始している場合
-                //捨て牌選択
-//                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetRect)
-//                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
-//                if self.isFinishAnalyze {
-//                    // Display SutehaiSelectResult
-//                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-//                    self.statusLabel.text = "Finish scan."
-//                    self.focusView.removeFromSuperview()
-//                    self.filterView.removeFromSuperview()
-//                    self.session.stopRunning()
-//                    self.startButton.hidden = true
-//                    self.rescanButton.hidden = false
-//                } else {
-//                    self.statusLabel.text = now.description
-//                    
-//                }
+                //得点計算
+                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetRect)
+                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
+                if self.isFinishAnalyze {
+                    // Display SutehaiSelectResult
+                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
+                    self.statusLabel.text = "Finish scan."
+                    self.focusView.removeFromSuperview()
+                    self.filterView.removeFromSuperview()
+                    self.session.stopRunning()
+                    self.startButton.hidden = true
+                    self.rescanButton.hidden = false
+                } else {
+                    self.statusLabel.text = now.description
+                    
+                }
             }
         }
     }

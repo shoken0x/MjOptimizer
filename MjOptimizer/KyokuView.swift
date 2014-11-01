@@ -45,12 +45,12 @@ class KyokuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func okButtonPush(){
+    internal func okButtonPush(){
         self.hidden = true
         
         println(self.value().toString())
     }
-    public func value() -> Kyoku{
+    internal func value() -> Kyoku{
         self.kyoku.isReach = isReachView.value()
         self.kyoku.isIppatsu = isIppatsuView.value()
         self.kyoku.isTsumo = isTsumoView.value()
