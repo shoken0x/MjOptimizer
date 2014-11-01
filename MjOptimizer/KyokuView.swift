@@ -19,11 +19,15 @@ class KyokuView: UIView {
     let jikazeView      = KazeSelectorView(x: 0, y: 50 * 2,name:"自風")
     let bakazeView      = KazeSelectorView(x: 240, y: 50 * 2,name:"場風")
     let finishTypeView  = FinishTypeSelectorView(x: 0, y: 50 * 3)
-    private let kyoku = Kyoku()
-    override init(){
-        super.init(frame:CGRect(x: 0, y: 0, width: 700, height: 50 * 4))
+    var kyoku : Kyoku
+    init(kyoku:Kyoku){
+        self.kyoku = kyoku
+        super.init(frame: CGRectMake(0, 0, 700, 50 * 4))
         let color = UIColor.grayColor()
-        self.backgroundColor = color.colorWithAlphaComponent(0.5)
+        self.backgroundColor = color.colorWithAlphaComponent(0.85)
+        
+        commit();
+        
         self.addSubview(self.isReachView)
         self.addSubview(self.isIppatsuView)
         self.addSubview(self.isTsumoView)
@@ -33,24 +37,30 @@ class KyokuView: UIView {
         self.addSubview(self.bakazeView)
         self.addSubview(self.finishTypeView)
         
-        
-        let btOk = UIButton(frame:CGRect(x: 380, y: 50 * 3, width: 40, height: 50))
-        btOk.backgroundColor = UIColor(red: 0.0, green: 0.4, blue: 1, alpha: 1)
-        btOk.setTitle("OK", forState: UIControlState.Normal)
-        btOk.addTarget(self,action: "okButtonPush",forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(btOk)
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func okButtonPush(){
-        self.hidden = true
-        
-        println(self.value().toString())
+    //デフォルトに戻す
+    internal func clear(){
+        self.kyoku = Kyoku()
+        commit()
     }
-    internal func value() -> Kyoku{
+    //画面の内容をデータに戻す
+    internal func rollback(){
+        self.isReachView.setCtrl(kyoku.isReach)
+        self.isIppatsuView.setCtrl(kyoku.isIppatsu)
+        self.isTsumoView.setCtrl(kyoku.isTsumo)
+        self.doraNumView.setCtrl(kyoku.doraNum)
+        self.honbaNumView.setCtrl(kyoku.honbaNum)
+        self.jikazeView.setCtrl(kyoku.jikaze)
+        self.bakazeView.setCtrl(kyoku.bakaze)
+        self.finishTypeView.setCtrl(kyoku.finishType)
+    }
+    //画面の内容でデータを更新する
+    internal func commit(){
         self.kyoku.isReach = isReachView.value()
         self.kyoku.isIppatsu = isIppatsuView.value()
         self.kyoku.isTsumo = isTsumoView.value()
@@ -59,6 +69,14 @@ class KyokuView: UIView {
         self.kyoku.bakaze = bakazeView.value()
         self.kyoku.jikaze = jikazeView.value()
         self.kyoku.finishType = finishTypeView.value()
+    }
+    //画面・データともに更新する
+    internal func setKyoku(kyoku:Kyoku){
+        self.kyoku = kyoku
+        commit()
+    }
+    
+    internal func getKyoku() -> Kyoku{
         return self.kyoku
     }
     
@@ -87,6 +105,9 @@ class SwitchView:UIView{
     func value() -> Bool{
         return self.ctrl.on
     }
+    func setCtrl(b:Bool){
+        self.ctrl.setOn(b, animated: true)
+    }
 }
 
 class IsTsumoView:UIView{
@@ -112,8 +133,9 @@ class IsTsumoView:UIView{
     func value() -> Bool{ //ツモならtrue ロンならfalse
         return self.ctrl.selectedSegmentIndex == 1
     }
-
-    
+    func setCtrl(isTsumo:Bool){
+        ctrl.selectedSegmentIndex = isTsumo ? 0 : 1
+    }
 }
 
 class NumStepperView: UIView{
@@ -143,6 +165,9 @@ class NumStepperView: UIView{
     func value() -> Int{
         return Int(self.ctrl.value)
     }
+    func setCtrl(num:Int){
+        self.num.text = String(num)
+    }
 }
 
 class KazeSelectorView:UIView{
@@ -169,10 +194,13 @@ class KazeSelectorView:UIView{
     func value() -> Kaze{
         return kazeList[self.ctrl.selectedSegmentIndex]
     }
+    func setCtrl(kaze:Kaze){
+        ctrl.selectedSegmentIndex = kazeList.indexOf(kaze)!
+    }
 }
 
 class FinishTypeSelectorView:UIView{
-    let kazeList:[FinishType] = [FinishType.NORMAL,FinishType.HAITEI,FinishType.RINSHAN,FinishType.CHANKAN,FinishType.CHIHO,FinishType.TENHO]
+    let finishTypeList:[FinishType] = [FinishType.NORMAL,FinishType.HAITEI,FinishType.RINSHAN,FinishType.CHANKAN,FinishType.CHIHO,FinishType.TENHO]
     var label = UILabel()
     var ctrl = UISegmentedControl(items:["なし","海底","嶺上","槍槓","地和","天和"])!
     init(x:Int, y:Int){
@@ -190,9 +218,12 @@ class FinishTypeSelectorView:UIView{
         fatalError("init(coder:) has not been implemented")
     }
     func update(){
-        println(kazeList[self.ctrl.selectedSegmentIndex].rawValue)
+        println(finishTypeList[self.ctrl.selectedSegmentIndex].rawValue)
     }
     func value() -> FinishType{
-        return kazeList[self.ctrl.selectedSegmentIndex]
+        return finishTypeList[self.ctrl.selectedSegmentIndex]
+    }
+    func setCtrl(finishType:FinishType){
+        ctrl.selectedSegmentIndex = finishTypeList.indexOf(finishType)!
     }
 }

@@ -15,6 +15,11 @@ protocol ControllerProtocol {
     
     //@image 手牌の画像
     //@targetFrame カメラで映し出す枠。この中に手牌が映っている
-    func sutehaiSelect(image : CMSampleBuffer, targetFrame : CGRect) -> SutehaiSelectResult
+    //func sutehaiSelect(image : CMSampleBuffer, targetFrame : CGRect) -> SutehaiSelectResult
     
+    
+    //@image 手牌の画像
+    //@targetFrame カメラで映し出す枠。この中に手牌が映っている
+    //@kyoku 局状態
+    func scoreCalc(image : CMSampleBuffer, targetFrame : CGRect, kyoku: Kyoku) -> ScoreCalcResult
 }

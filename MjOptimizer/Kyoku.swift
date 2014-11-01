@@ -25,28 +25,12 @@ public class Kyoku{
     public func toString() -> String{
         return "isReach:\(isReach) isIppatsu:\(isIppatsu) doraNum:\(doraNum) honbaNum:\(honbaNum) bakaze:\(bakaze.rawValue) jikaze:\(jikaze.rawValue) finishType:\(finishType.rawValue)"
     }
-}
-
-
-public enum Kaze : String{
-    case TON = "ton"
-    case NAN = "nan"
-    case SHA = "sha"
-    case PEI = "pei"
-    public func toPai() -> Pai{
-        switch self{
-        case .TON: return PaiMaster.pais["j1t"]!
-        case .NAN: return PaiMaster.pais["j2t"]!
-        case .SHA: return PaiMaster.pais["j3t"]!
-        case .PEI: return PaiMaster.pais["j4t"]!
-        }
+    public func toPrettyString() -> String{
+        var str = "\(bakaze.toKanji())場 \(honbaNum)本場 \(jikaze.toKanji())家 ドラ\(doraNum)枚"
+        str += isReach ? "リーチ有り " : "リーチ無し "
+        str += isIppatsu ? "一発有り " : "一発無し "
+        str += finishType == FinishType.NORMAL ? "" : finishType.toKanji()
+        return str
     }
 }
-public enum FinishType : String{
-    case HAITEI = "haitei" //海底摸月(河底撈魚)
-    case RINSHAN = "rinshan" //嶺上開花
-    case CHANKAN = "chankan" //槍槓
-    case TENHO = "tenho" //天和
-    case CHIHO = "chiho" //地和
-    case NORMAL = "normal" //上記のいずれでもない
-}
+
