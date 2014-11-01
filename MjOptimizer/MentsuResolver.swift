@@ -26,7 +26,7 @@ public class MentsuResolver{
         case let .SUCCESS(furoMentsuList):
             //ふうろ以外の牌（＝めんぜん牌）を取得する
             let menzenPaiNum:Int = paiList.count - furoMentsuList.paiCount()
-            let menzenPaiList = paiList.get(0...menzenPaiNum)
+            let menzenPaiList = paiList.get(0..<menzenPaiNum)
             //面前牌を解析する
             let mmr : MenzenResolveResult = menzenResolve(menzenPaiList)
             switch mmr{
