@@ -11,12 +11,15 @@ import AVFoundation
 import CoreMedia
 
 class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    
+
+    //デバイス周り
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
-    let controller = Controller()
     var captureDevice: AVCaptureDevice!
     
+    //局状態の変数
+    let kyoku = Kyoku()//起動時はデフォルトの局状態で計算し、局に局状態を更新する
+
     //UI部品
     let startButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let rescanButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
@@ -44,30 +47,34 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     //メイン処理
     override func viewDidAppear(animated: Bool) {
-        debugPrintln("bounds.size.height = \(view.bounds.size.height)")
-        debugPrintln("bounds.size.width = \(view.bounds.size.width)")
+        Log.debug("bounds.size.height = \(view.bounds.size.height)")
+        Log.debug("bounds.size.width = \(view.bounds.size.width)")
         if findCamera() {
             setuptAVCapture(captureDevice)
             setPreview(session)
+            setOverlayView()
+            view.addSubview(logView)
+            view.addSubview(self.focusView)
+        }else{
+            //カメラがないのでテスト画面を出す
+            Log.info("カメラがないからテスト画面を出す")
+            let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
+            switch scoreCalcResult{
+            case let .SUCCESS(score):
+                view.addSubview(
+                    ScoreView(
+                        score:score,
+                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!
+                    )
+                )
+                
+            case let .ERROR(msg):
+                Log.error(msg)
+            }
         }
-        setOverlayView()
-        view.addSubview(logView)
-        view.addSubview(self.focusView)
-        
-        //局状況入力
-        //view.addSubview(KyokuView())
-        
-        //ダミー得点計算
-//        let scr : ScoreCalcResult = ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
-//        switch scr{
-//        case let .SUCCESS(score):
-//            view.addSubview(ScoreView(score:score))
-//        case let .ERROR(msg):
-//            println(msg)
-//        }
-
     }
     
+    //カメラが見つかろうかどうか
     func findCamera() -> Bool {
         let devices: NSArray = AVCaptureDevice.devices()
         
@@ -80,12 +87,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         if (captureDevice != nil) {
             // Debug
-            println("Success finding Camera")
-            println("Camera name = " + captureDevice!.localizedName)
-            println(captureDevice!.modelID)
+            Log.info("Success finding Camera")
+            Log.info("Camera name = " + captureDevice!.localizedName)
+            Log.info(captureDevice!.modelID)
             return true
         } else {
-            println("Missing Camera")
+            Log.info("Missing Camera")
             return false
         }
     }
@@ -150,8 +157,7 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     
-    //ボタンを押したときの挙動
-    
+    //スタートボタンを押したときの挙動
     func startButtonDidPush() {
         isStartScan = true
         startButton.hidden = true
@@ -161,8 +167,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         view.addSubview(self.logView)
     }
     
+    //リスキャンボタンを押したときの挙動
     func rescanButtonDidPush() {
-        debugPrintln("RESCAN START")
+        Log.debug("RESCAN START")
         rescanButton.hidden = true
         isFinishAnalyze = false
         for subview in view.subviews as [UIView] {
@@ -180,29 +187,38 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         NSThread.sleepForTimeInterval(0.5)
         let now: NSDate = NSDate()
-        println(now)
-        println("update from captureOutput()")
-        var sutehaiSelectResult: SutehaiSelectResult!
-        
-    
+        print(now)
+        Log.info("update from captureOutput()")
         dispatch_async( dispatch_get_main_queue() ) {//メインスレッドの処理
-            if self.isStartScan {//スタートボタンが押されて開始している場合
-                //得点計算
-                var sutehaiSelectResult = self.controller.sutehaiSelect(sampleBuffer, targetFrame: self.targetRect)
-                self.isFinishAnalyze = sutehaiSelectResult.isFinishAnalyze
-                if self.isFinishAnalyze {
-                    // Display SutehaiSelectResult
-                    var sutehaiCandidateList = sutehaiSelectResult.getSutehaiCandidateList()
-                    self.statusLabel.text = "Finish scan."
-                    self.focusView.removeFromSuperview()
-                    self.filterView.removeFromSuperview()
-                    self.session.stopRunning()
-                    self.startButton.hidden = true
-                    self.rescanButton.hidden = false
-                } else {
-                    self.statusLabel.text = now.description
-                    
-                }
+            if(!self.isStartScan) {
+                //スタートボタンが押されて開始していない場合
+                return
+            }
+            //画像解析
+            let tmAnalyzer : TMAnalyzerProtocol = TMAnalyzer()
+            let analyzeResult : AnalyzeResultProtocol = tmAnalyzer.analyze( sampleBuffer,targetFrame : self.targetRect, lastAnalyzerResult : nil )
+            if !analyzeResult.isSuccess(){
+                Log.info("画像解析に失敗しました")
+                return
+            }
+            
+            //得点計算
+            let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(analyzeResult.getPaiList(), kyoku: self.kyoku)
+            switch scoreCalcResult{
+            case let .SUCCESS(score):
+                //得点計算に成功
+                //得点画面の表示
+                self.view.addSubview(ScoreView(score:score,paiList:analyzeResult.getPaiList()))
+                self.statusLabel.text = "Finish scan."
+                self.focusView.removeFromSuperview()
+                self.filterView.removeFromSuperview()
+                self.session.stopRunning()
+                self.startButton.hidden = true
+                self.rescanButton.hidden = false
+            case let .ERROR(msg):
+                //得点計算に失敗
+                self.statusLabel.text = now.description
+                Log.info(msg)
             }
         }
     }

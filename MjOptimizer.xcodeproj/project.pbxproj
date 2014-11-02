@@ -127,6 +127,8 @@
 		C44C50891A046F1C00976E2E /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44C50721A046EFD00976E2E /* Nimble.framework */; };
 		C44C508A1A046F2100976E2E /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44C50821A046F0E00976E2E /* Quick.framework */; };
 		C44F27B41987EECB0058B3C3 /* YakuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44F27B31987EECB0058B3C3 /* YakuSpec.swift */; };
+		C4506DBB1A06070D00667AD0 /* FinishType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4506DBA1A06070D00667AD0 /* FinishType.swift */; };
+		C4506DC51A06071B00667AD0 /* Kaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4506DC41A06071B00667AD0 /* Kaze.swift */; };
 		C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46217D21989FB65002982B2 /* Array+Conbination.swift */; };
 		C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */; };
 		C47F80801998B5760008A706 /* ScoreCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F807F1998B5760008A706 /* ScoreCalculator.swift */; };
@@ -497,6 +499,8 @@
 		C44C506A1A046EFD00976E2E /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = submodule/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
 		C44C50791A046F0E00976E2E /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = submodule/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		C44F27B31987EECB0058B3C3 /* YakuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuSpec.swift; sourceTree = "<group>"; };
+		C4506DBA1A06070D00667AD0 /* FinishType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishType.swift; sourceTree = "<group>"; };
+		C4506DC41A06071B00667AD0 /* Kaze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kaze.swift; sourceTree = "<group>"; };
 		C46217D21989FB65002982B2 /* Array+Conbination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Conbination.swift"; sourceTree = "<group>"; };
 		C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorSpec.swift; sourceTree = "<group>"; };
 		C47F807F1998B5760008A706 /* ScoreCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCalculator.swift; sourceTree = "<group>"; };
@@ -654,12 +658,13 @@
 				C40E09311A049C94003FF411 /* uiViews */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
 				441CDF47194BE02300199893 /* CameraManager.swift */,
-				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */,
 				C4CC33FD1954A52D0030EE0A /* Stats.h */,
 				C4CC33FE1954A52D0030EE0A /* Stats.m */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				C4E90DA91989283A00948322 /* Kyoku.swift */,
+				C4506DBA1A06070D00667AD0 /* FinishType.swift */,
+				C4506DC41A06071B00667AD0 /* Kaze.swift */,
 				C42B287719808465009FE514 /* optimizer */,
 				C42B286D198083CD009FE514 /* templateMatching */,
 				C42D75611961802B00183C24 /* scoreCalculator */,
@@ -747,7 +752,6 @@
 			isa = PBXGroup;
 			children = (
 				C40E08D91A0496E7003FF411 /* ScoreView.swift */,
-				C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */,
 				C40E092F1A049716003FF411 /* LogView.swift */,
 				C40E08D81A0496E7003FF411 /* Point.swift */,
 				C40E08D71A0496E7003FF411 /* PaiListView.swift */,
@@ -776,6 +780,12 @@
 		C42B287719808465009FE514 /* optimizer */ = {
 			isa = PBXGroup;
 			children = (
+				C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */,
+				C4CC343D19551E310030EE0A /* ChunkProtocol.swift */,
+				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
+				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
+				C4CC3433195518E10030EE0A /* TehaiProtocol.swift */,
+				C4CC340C1954A85A0030EE0A /* Controller.swift */,
 				A6DEAC461951DF4C0075A0BB /* SutehaiSelector.swift */,
 				C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */,
 				C4F9B030194DAAC0003FFEEC /* SutehaiCandidate.swift */,
@@ -869,10 +879,6 @@
 			children = (
 				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
 				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
-				C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */,
-				C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */,
-				C4CC3433195518E10030EE0A /* TehaiProtocol.swift */,
-				C4CC343D19551E310030EE0A /* ChunkProtocol.swift */,
 			);
 			name = protocols;
 			sourceTree = "<group>";
@@ -1197,6 +1203,7 @@
 				C44C50631A046E1D00976E2E /* ExSwift.swift in Sources */,
 				34636E6B1954CD6D004F41F6 /* TMAnalyzer.swift in Sources */,
 				C44C50601A046E1D00976E2E /* Array.swift in Sources */,
+				C4506DC51A06071B00667AD0 /* Kaze.swift in Sources */,
 				C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */,
 				C4CC34011954A52D0030EE0A /* Stats.m in Sources */,
 				34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */,
@@ -1207,6 +1214,7 @@
 				C4F9B02D194DA7EB003FFEEC /* UkeirePai.swift in Sources */,
 				441CDF2D194BDF6200199893 /* ViewController.swift in Sources */,
 				C40E09241A0496E7003FF411 /* Point.swift in Sources */,
+				C4506DBB1A06070D00667AD0 /* FinishType.swift in Sources */,
 				C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */,
 				C43CD98F199BE34900CE1613 /* Score.swift in Sources */,
 				C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */,

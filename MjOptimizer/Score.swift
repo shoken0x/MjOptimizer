@@ -19,15 +19,13 @@ public class Score:Equatable,Comparable {
     public var fuNum: Int       //符数
     public var hanNum: Int      //翻数
     public var point: Point     //点数
-    public var paiList : [Pai] //入力の牌リスト
-    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],fuNum:Int,hanNum:Int,point: Point,paiList: [Pai]) {
+    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],fuNum:Int,hanNum:Int,point: Point) {
         self.agari = agari
         self.kyoku = kyoku
         self.yakuList = yakuList
         self.fuNum = fuNum
         self.hanNum = hanNum
         self.point = point
-        self.paiList = paiList
     }
     
     //有効なアガリかどうか。役無しやドラのみはfalse

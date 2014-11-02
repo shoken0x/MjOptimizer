@@ -9,19 +9,40 @@
 import Foundation
 
 class ScoreView:UIView{
-    init(score:Score){
-        super.init(frame: CGRectMake(0, 0, 568, 130))
-        self.addSubview(PaiListView(x:0,y:0,paiList: score.paiList))
+    let kyokuInputButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+    let kyokuOKButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+    let kyokuCancelButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+    var kyokuLabel = UILabel()
+    let kyokuView : KyokuView
+    let score : Score
+    init(score:Score,paiList:[Pai]){
+        self.score = score
+        self.kyokuView = KyokuView(kyoku:score.kyoku)
+
+        super.init(frame: CGRectMake(0, 0, 568, 600))
         
+        //局ラベル
+        kyokuLabel = UILabel(frame:CGRectMake(0,0,560,40))
+        kyokuLabel.text = score.kyoku.toPrettyString()
+        self.addSubview(kyokuLabel)
         
-        //得点view
-        var scoreView = UILabel(frame:CGRectMake(0,40,300,40))
+        //局状態変更ボタン
+        kyokuInputButton.frame = CGRectMake(400, 0, 200, 40)
+        kyokuInputButton.setTitle("状況変更", forState: UIControlState.Normal)
+        kyokuInputButton.addTarget(self, action: "kyokuInputButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(kyokuInputButton)
+        
+        //手牌画像
+        self.addSubview(PaiListView(x:0,y:40,paiList: paiList))
+
+        //得点ラベル
+        var scoreView = UILabel(frame:CGRectMake(40,80,300,40))
         scoreView.text = score.toPointString()
         self.addSubview(scoreView)
         
-        //得点view
+        //役一覧
         var nextX:CGFloat = 0
-        var nextY:CGFloat = 80
+        var nextY:CGFloat = 120
         for yaku in score.yakuList{
             let yakulabel = UILabel(frame:CGRectMake(nextX,nextY,160,40))
             if score.agari.includeNaki(){
@@ -33,9 +54,9 @@ class ScoreView:UIView{
             nextY += 40
         }
         
-        //不計算view
+        //符計算
         nextX = 400
-        nextY = 80
+        nextY = 120
         for mentsu in score.agari.mentsuList{
             let fulabel = UILabel(frame:CGRectMake(nextX,nextY,40,40))
             fulabel.text = String(mentsu.fuNum(score.kyoku)) + "符"
@@ -44,9 +65,51 @@ class ScoreView:UIView{
             self.addSubview( paiListView)
             nextY += 40
         }
+
+        //局OKボタン
+        kyokuOKButton.frame = CGRectMake(0, 50 * 4, 200, 100)
+        kyokuOKButton.setTitle("OK", forState: UIControlState.Normal)
+        kyokuOKButton.addTarget(self, action: "kyokuOKButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+
+        //局キャンセルボタン
+        kyokuCancelButton.frame = CGRectMake(200, 50 * 4, 200, 100)
+        kyokuCancelButton.setTitle("Cancel", forState: UIControlState.Normal)
+        kyokuCancelButton.addTarget(self, action: "kyokuCancelButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+        
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //「局の状態を変更」ボタンを押したとき
+    func kyokuInputButtonDidPush(){
+        Log.info("kyokuInput")
+        self.addSubview(self.kyokuView)
+        self.addSubview(self.kyokuOKButton)
+        self.addSubview(self.kyokuCancelButton)
+    }
+    
+    //OKボタン
+    func kyokuOKButtonDidPush(){
+        Log.info("OK")
+        self.kyokuView.removeFromSuperview()
+        self.kyokuOKButton.removeFromSuperview()
+        self.kyokuCancelButton.removeFromSuperview()
+        //局を更新
+        self.kyokuView.commit()
+        self.score.kyoku = self.kyokuView.getKyoku()
+        kyokuLabel.text = score.kyoku.toPrettyString()
+        
+        //TODO再計算
+        
+    }
+    //Cancelボタン
+    func kyokuCancelButtonDidPush(){
+        Log.info("canceled")
+        self.kyokuView.removeFromSuperview()
+        self.kyokuOKButton.removeFromSuperview()
+        self.kyokuCancelButton.removeFromSuperview()
+        self.kyokuView.rollback()
     }
 }

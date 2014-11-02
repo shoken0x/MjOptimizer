@@ -17,52 +17,6 @@ public enum ScoreCalcResult{
 //得点計算のメイン関数。
 //これをUI側から呼び出して得点を計算する。
 public class ScoreCalculator{
-    //得点計算のメイン関数。牌のリストと局状態から役と得点を計算する。
-    //局状態が省略された場合は、デフォルトの局状態で計算する。
-    public class func calc(paiList:[Pai],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
-        var scoreList : [Score] = []
-        //文字列を面子に分解する
-        let mentsuResolveResult = MentsuResolver.resolve(paiList)
-        switch mentsuResolveResult{
-        case let .ERROR(str):
-            return ScoreCalcResult.ERROR(str)
-        case let .SUCCESS(agariList):
-            for agari in agariList{
-                //各アガリについて役、翻数、符、点を計算してScoreを作っていく
-                //役を計算
-                var yakuList:[Yaku] = yakuJudge(agari, kyoku:kyoku)
-                if yakuList.count != 0{
-                    //翻数を計算
-                    var hanNum : Int = 0
-                    for yaku in yakuList{
-                        hanNum += agari.includeNaki() ?  yaku.nakiHanNum : yaku.hanNum
-                    }
-                    //符を計算
-                    var fuNum : Int = calcFuNum(agari,kyoku:kyoku)
-                    //点数を計算
-                    var point : Point = calcPoint(fuNum, hanNum:hanNum,kyoku:kyoku)
-                    //Scoreを作成
-                    scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, fuNum: fuNum, hanNum: hanNum, point: point,paiList: paiList))
-                }
-            }//end for
-            //deubg
-            Log.info("得られたScore一覧")
-            for score in scoreList{
-                Log.info(score.toString())
-            }
-            if scoreList.count != 0 {
-                let maxScore : Score = scoreList.max()
-                if(maxScore.valid()){
-                    return ScoreCalcResult.SUCCESS(maxScore)
-                }else{
-                    return ScoreCalcResult.ERROR("役がありません")
-                }
-            }else{
-                return ScoreCalcResult.ERROR("役がありません")
-            }
-        }//end switch
-    }
-
     //引数の文字列("m1tm2tm3t")と局状態から役と得点を計算する。
     public class func calcFromStr(paiStr : String,kyoku:Kyoku = Kyoku()) -> ScoreCalcResult{
         let paiList : [Pai]? = Pai.parseList(paiStr)
@@ -72,6 +26,56 @@ public class ScoreCalculator{
         return ScoreCalcResult.ERROR("引数の文字列が不正な牌リストの形式です:" + paiStr)
     }
 
+    //牌のリストと局状態から役と得点を計算する。
+    public class func calc(paiList:[Pai],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
+        //文字列を面子に分解する
+        let mentsuResolveResult = MentsuResolver.resolve(paiList)
+        switch mentsuResolveResult{
+        case let .ERROR(str):
+            return ScoreCalcResult.ERROR(str)
+        case let .SUCCESS(agariList):
+            return calcScore(agariList,kyoku: kyoku)
+        }
+    }
+
+    
+    //各アガリについて役、翻数、符、点を計算してScoreを作っていく
+    public class func calcScore(agariList:[Agari],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
+        var scoreList : [Score] = []
+        for agari in agariList{
+            //役を計算
+            var yakuList:[Yaku] = yakuJudge(agari, kyoku:kyoku)
+            if yakuList.count != 0{
+                //翻数を計算
+                var hanNum : Int = 0
+                for yaku in yakuList{
+                    hanNum += agari.includeNaki() ?  yaku.nakiHanNum : yaku.hanNum
+                }
+                //符を計算
+                var fuNum : Int = calcFuNum(agari,kyoku:kyoku)
+                //点数を計算
+                var point : Point = calcPoint(fuNum, hanNum:hanNum,kyoku:kyoku)
+                //Scoreを作成
+                scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, fuNum: fuNum, hanNum: hanNum, point: point))
+            }
+        }//end for
+        //deubg
+        Log.info("得られたScore一覧")
+        for score in scoreList{
+            Log.info(score.toString())
+        }
+        if scoreList.count != 0 {
+            let maxScore : Score = scoreList.max()
+            if(maxScore.valid()){
+                return ScoreCalcResult.SUCCESS(maxScore)
+            }else{
+                return ScoreCalcResult.ERROR("役がありません")
+            }
+        }else{
+            return ScoreCalcResult.ERROR("役がありません")
+        }
+
+    }
     //役判定
     public class func yakuJudge(agari:Agari,kyoku:Kyoku)->[Yaku]{
         let yakuCheckerList :[YakuChecker] = [

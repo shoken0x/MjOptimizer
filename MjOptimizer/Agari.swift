@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Shoken Fujisaki. All rights reserved.
 //
 
-//アガリクラス。
+//アガリクラス。面子解析結果を格納する。
 public class Agari:Equatable {
     
     public var mentsuList: [Mentsu] //面子リスト
