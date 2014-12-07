@@ -16,15 +16,11 @@ public class Score:Equatable,Comparable {
     public var agari: Agari     //アガリ
     public var kyoku: Kyoku     //局の状態
     public var yakuList: [Yaku] //役リスト
-    public var fuNum: Int       //符数
-    public var hanNum: Int      //翻数
     public var point: Point     //点数
-    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],fuNum:Int,hanNum:Int,point: Point) {
+    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],point: Point) {
         self.agari = agari
         self.kyoku = kyoku
         self.yakuList = yakuList
-        self.fuNum = fuNum
-        self.hanNum = hanNum
         self.point = point
     }
     
@@ -42,10 +38,7 @@ public class Score:Equatable,Comparable {
         return strs
     }
     public func toString() -> String{
-        return "\(fuNum)符,\(hanNum)翻," + point.toString() + ",役リスト:" + join(",",yakuList.map({$0.kanji})) + ",面子リスト:" + join(",",agari.mentsuList.map({ $0.toString()}))
-    }
-    public func toPointString() -> String{
-        return  "\(fuNum)符,\(hanNum)翻," + point.toString()
+        return point.toString() + ",役リスト:" + join(",",yakuList.map({$0.kanji})) + ",面子リスト:" + join(",",agari.mentsuList.map({ $0.toString()}))
     }
 }
 
@@ -55,9 +48,9 @@ public func == (lhs: Score, rhs: Score) -> Bool {
     return lstr == rstr
 }
 public func < (lhs: Score, rhs: Score) -> Bool {
-    return lhs.point.total == rhs.point.total ? lhs.hanNum < rhs.hanNum : lhs.point.total < rhs.point.total
+    return lhs.point.total == rhs.point.total ? lhs.point.hanNum < rhs.point.hanNum : lhs.point.total < rhs.point.total
 }
 public func > (lhs: Score, rhs: Score) -> Bool {
-    return lhs.point.total == rhs.point.total ? lhs.hanNum > rhs.hanNum : lhs.point.total > rhs.point.total
+    return lhs.point.total == rhs.point.total ? lhs.point.hanNum > rhs.point.hanNum : lhs.point.total > rhs.point.total
 }
 

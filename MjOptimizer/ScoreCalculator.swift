@@ -56,7 +56,7 @@ public class ScoreCalculator{
                 //点数を計算
                 var point : Point = calcPoint(fuNum, hanNum:hanNum,kyoku:kyoku)
                 //Scoreを作成
-                scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, fuNum: fuNum, hanNum: hanNum, point: point))
+                scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, point: point))
             }
         }//end for
         //deubg
@@ -205,7 +205,7 @@ public class ScoreCalculator{
         c += kyoku.honbaNum * 100
         c += kyoku.honbaNum * 100
         t += kyoku.honbaNum * 300
-        return Point(child:c,parent:p,total:t,manganScale:m)
+        return Point(fuNum:fuNum,hanNum:hanNum,child:c,parent:p,total:t,manganScale:m)
     }
     
     //1の位切り上げ

@@ -37,7 +37,7 @@ class ScoreView:UIView{
 
         //得点ラベル
         var scoreView = UILabel(frame:CGRectMake(40,80,300,40))
-        scoreView.text = score.toPointString()
+        scoreView.text = score.point.toString()
         self.addSubview(scoreView)
         
         //役一覧

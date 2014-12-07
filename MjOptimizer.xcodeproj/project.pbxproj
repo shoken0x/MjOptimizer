@@ -753,7 +753,6 @@
 			children = (
 				C40E08D91A0496E7003FF411 /* ScoreView.swift */,
 				C40E092F1A049716003FF411 /* LogView.swift */,
-				C40E08D81A0496E7003FF411 /* Point.swift */,
 				C40E08D71A0496E7003FF411 /* PaiListView.swift */,
 				C40E08D51A0496E7003FF411 /* ForcusView.swift */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
@@ -816,6 +815,7 @@
 		C42D75611961802B00183C24 /* scoreCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				C40E08D81A0496E7003FF411 /* Point.swift */,
 				C40B15C7197EB84500880D4C /* Agari.swift */,
 				C4AC26551986A2D8007533C6 /* Yaku.swift */,
 				C43CD98E199BE34900CE1613 /* Score.swift */,

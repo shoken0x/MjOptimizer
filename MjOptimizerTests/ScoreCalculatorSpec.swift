@@ -165,8 +165,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calc(paiList)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1500))
                     expect(score.yakuNameList()).to(contain("pinfu"))
                     
@@ -192,8 +192,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1000))
                     expect(score.yakuNameList()).to(contain("pinfu"))
                     
@@ -220,8 +220,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2000))
                     expect(score.yakuNameList()).to(contain("jikazesha"))
                     expect(score.yakuNameList()).to(contain("dora1"))
@@ -248,8 +248,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(3900))
                     expect(score.yakuNameList()).to(contain("jikazepei"))
                     expect(score.yakuNameList()).to(contain("honitsu"))
@@ -276,8 +276,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(7700))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -306,8 +306,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -336,8 +336,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1300))
                     expect(score.yakuNameList()).to(contain("haku"))
 
@@ -363,8 +363,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2600))
                     expect(score.yakuNameList()).to(contain("ikkitsukan"))
 
@@ -390,8 +390,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(5200))
                     expect(score.yakuNameList()).to(contain("sansyokudouko"))
 
@@ -417,8 +417,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
                     expect(score.yakuNameList()).to(contain("sanankou"))
@@ -445,8 +445,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("honitsu"))
@@ -472,8 +472,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(1600))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
 
@@ -499,8 +499,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -527,8 +527,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(6400))
                     expect(score.yakuNameList()).to(contain("honroutou"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -555,8 +555,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -584,8 +584,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(1500))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -612,8 +612,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(2700))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -640,8 +640,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(5200))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("tanyao"))
@@ -669,8 +669,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -698,8 +698,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1100))
                     expect(score.yakuNameList()).to(contain("tanyao"))
 
@@ -725,8 +725,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2000))
                     expect(score.yakuNameList()).to(contain("jikazenan"))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
@@ -753,8 +753,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(4000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("sansyoku"))
@@ -781,8 +781,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(7900))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tsumo"))
@@ -811,8 +811,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chanta"))
@@ -840,8 +840,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1500))
                     expect(score.yakuNameList()).to(contain("rinshan"))
 
@@ -867,8 +867,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2700))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
 
@@ -894,8 +894,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(5200))
                     expect(score.yakuNameList()).to(contain("jikazenan"))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
@@ -922,8 +922,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("haku"))
                     expect(score.yakuNameList()).to(contain("chun"))
@@ -951,8 +951,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("sanankou"))
@@ -980,8 +980,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -1008,8 +1008,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(6400))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("tanyao"))
@@ -1037,8 +1037,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tsumo"))
@@ -1112,8 +1112,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1500))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
 
@@ -1139,8 +1139,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2900))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -1167,8 +1167,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(5800))
                     expect(score.yakuNameList()).to(contain("junchan"))
                     expect(score.yakuNameList()).to(contain("sansyoku"))
@@ -1195,8 +1195,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(11600))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -1224,8 +1224,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("ippatsu"))
@@ -1254,8 +1254,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
 
@@ -1283,8 +1283,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(7700))
                     expect(score.yakuNameList()).to(contain("honitsu"))
 
@@ -1310,8 +1310,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("ryanpeikou"))
@@ -1338,8 +1338,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("junchan"))
                     expect(score.yakuNameList()).to(contain("sansyoku"))
@@ -1366,8 +1366,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2400))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
 
@@ -1393,8 +1393,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(4800))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -1421,8 +1421,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tanyao"))
@@ -1450,8 +1450,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -1478,8 +1478,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(2100))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -1506,8 +1506,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(3900))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("tanyao"))
@@ -1535,8 +1535,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(7800))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -1564,8 +1564,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(20))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(20))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("pinfu"))
@@ -1593,8 +1593,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1500))
                     expect(score.yakuNameList()).to(contain("chun"))
 
@@ -1620,8 +1620,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(3000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -1648,8 +1648,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(11700))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -1676,8 +1676,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(30))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(30))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("sansyoku"))
@@ -1704,8 +1704,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2100))
                     expect(score.yakuNameList()).to(contain("haitei"))
 
@@ -1731,8 +1731,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(3900))
                     expect(score.yakuNameList()).to(contain("sanankou"))
 
@@ -1758,8 +1758,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(7800))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chanta"))
@@ -1786,8 +1786,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("honroutou"))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
@@ -1814,8 +1814,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(40))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(40))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
@@ -1844,8 +1844,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(4800))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -1872,8 +1872,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("tanyao"))
@@ -1901,8 +1901,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(25))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(25))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chitoitsu"))
@@ -1973,8 +1973,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1600))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
 
@@ -2000,8 +2000,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("chun"))
@@ -2028,8 +2028,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(6400))
                     expect(score.yakuNameList()).to(contain("haku"))
                     expect(score.yakuNameList()).to(contain("jikazepei"))
@@ -2056,8 +2056,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("jikazenan"))
@@ -2085,8 +2085,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("jikazesha"))
@@ -2114,8 +2114,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2000))
                     expect(score.yakuNameList()).to(contain("haku"))
 
@@ -2141,8 +2141,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(3900))
                     expect(score.yakuNameList()).to(contain("chun"))
                     expect(score.yakuNameList()).to(contain("chanta"))
@@ -2169,8 +2169,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(7700))
                     expect(score.yakuNameList()).to(contain("hatsu"))
 
@@ -2196,8 +2196,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
 
@@ -2223,8 +2223,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
 
@@ -2250,8 +2250,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2300))
                     expect(score.yakuNameList()).to(contain("hatsu"))
 
@@ -2277,8 +2277,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(4500))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("jikazepei"))
@@ -2305,8 +2305,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("haku"))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
@@ -2333,8 +2333,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2600))
                     expect(score.yakuNameList()).to(contain("jikazesha"))
 
@@ -2360,8 +2360,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(5200))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -2387,8 +2387,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("hatsu"))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
@@ -2415,8 +2415,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2900))
                     expect(score.yakuNameList()).to(contain("chun"))
 
@@ -2442,8 +2442,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(5800))
                     expect(score.yakuNameList()).to(contain("sanankou"))
 
@@ -2469,8 +2469,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("jikazenan"))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
@@ -2498,8 +2498,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("reach"))
 
@@ -2525,8 +2525,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(6400))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -2552,8 +2552,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("haku"))
@@ -2581,8 +2581,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3600))
                     expect(score.yakuNameList()).to(contain("chun"))
 
@@ -2608,8 +2608,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(7100))
                     expect(score.yakuNameList()).to(contain("sanankou"))
 
@@ -2635,8 +2635,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("sanankou"))
 
@@ -2662,8 +2662,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(1600))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -2689,8 +2689,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("jikazesha"))
                     expect(score.yakuNameList()).to(contain("hatsu"))
@@ -2717,8 +2717,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(6400))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("sanankou"))
@@ -2745,8 +2745,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("chun"))
@@ -2774,8 +2774,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("hatsu"))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
@@ -2803,8 +2803,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2000))
                     expect(score.yakuNameList()).to(contain("jikazepei"))
 
@@ -2830,8 +2830,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(4000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -2857,8 +2857,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(7900))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tsumo"))
@@ -2886,8 +2886,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -2915,8 +2915,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
 
@@ -2942,8 +2942,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2400))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -2969,8 +2969,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(4700))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
@@ -2997,8 +2997,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("hatsu"))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
@@ -3025,8 +3025,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2700))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
 
@@ -3052,8 +3052,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(5200))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3079,8 +3079,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3100))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -3106,8 +3106,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(5900))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3133,8 +3133,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3200))
                     expect(score.yakuNameList()).to(contain("jikazesha"))
 
@@ -3160,8 +3160,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(7200))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3187,8 +3187,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(8000))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3260,8 +3260,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2400))
                     expect(score.yakuNameList()).to(contain("reach"))
 
@@ -3287,8 +3287,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(4800))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -3315,8 +3315,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
@@ -3344,8 +3344,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
@@ -3373,8 +3373,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("haku"))
                     expect(score.yakuNameList()).to(contain("hatsu"))
@@ -3402,8 +3402,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(11600))
                     expect(score.yakuNameList()).to(contain("haku"))
 
@@ -3429,8 +3429,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("bakazenan"))
                     expect(score.yakuNameList()).to(contain("chun"))
@@ -3458,8 +3458,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("junchan"))
 
@@ -3485,8 +3485,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(6800))
                     expect(score.yakuNameList()).to(contain("sanankou"))
 
@@ -3512,8 +3512,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3900))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
 
@@ -3539,8 +3539,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(7700))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3566,8 +3566,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("sansyokudouko"))
 
@@ -3593,8 +3593,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(8700))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -3621,8 +3621,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -3650,8 +3650,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(4800))
                     expect(score.yakuNameList()).to(contain("reach"))
 
@@ -3677,8 +3677,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -3704,8 +3704,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
@@ -3733,8 +3733,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(5300))
                     expect(score.yakuNameList()).to(contain("hatsu"))
 
@@ -3760,8 +3760,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(10600))
                     expect(score.yakuNameList()).to(contain("haku"))
 
@@ -3787,8 +3787,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("chun"))
 
@@ -3814,8 +3814,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(2400))
                     expect(score.yakuNameList()).to(contain("hatsu"))
 
@@ -3841,8 +3841,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(4800))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tsumo"))
@@ -3869,8 +3869,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("tanyao"))
                     expect(score.yakuNameList()).to(contain("sanankou"))
@@ -3897,8 +3897,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("hatsu"))
@@ -3926,8 +3926,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(50))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(50))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("sanankou"))
@@ -3955,8 +3955,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(11700))
                     expect(score.yakuNameList()).to(contain("reach"))
                     expect(score.yakuNameList()).to(contain("tsumo"))
@@ -3984,8 +3984,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(4))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(4))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("tsumo"))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
@@ -4013,8 +4013,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(60))
-                    expect(score.hanNum).to(equal(5))
+                    expect(score.point.fuNum).to(equal(60))
+                    expect(score.point.hanNum).to(equal(5))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
 
@@ -4040,8 +4040,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(3600))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -4067,8 +4067,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(70))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(70))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
@@ -4095,8 +4095,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(80))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(80))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(7800))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -4122,8 +4122,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(1))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(1))
                     expect(score.point.total).to(equal(4500))
                     expect(score.yakuNameList()).to(contain("tsumo"))
 
@@ -4149,8 +4149,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(8700))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
 
@@ -4176,8 +4176,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(90))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(90))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("toitoihou"))
@@ -4204,8 +4204,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(9600))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("bakazeton"))
@@ -4232,8 +4232,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(100))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(100))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("jikazeton"))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
@@ -4260,8 +4260,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(2))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(2))
                     expect(score.point.total).to(equal(10800))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 
@@ -4287,8 +4287,8 @@ class TotalSpec: QuickSpec {
                 let scr : ScoreCalcResult = ScoreCalculator.calcFromStr(paiStr, kyoku: kyoku)
                 switch scr{
                 case let .SUCCESS(score):
-                    expect(score.fuNum).to(equal(110))
-                    expect(score.hanNum).to(equal(3))
+                    expect(score.point.fuNum).to(equal(110))
+                    expect(score.point.hanNum).to(equal(3))
                     expect(score.point.total).to(equal(12000))
                     expect(score.yakuNameList()).to(contain("sankantsu"))
 

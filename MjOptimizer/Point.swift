@@ -9,18 +9,22 @@
 import Foundation
 
 public class Point{
+    public var fuNum:Int
+    public var hanNum:Int
     public var child:Int //子の支払い
     public var parent:Int //親の支払い
     public var total:Int //収入総額
     public var manganScale:Float //満貫の倍率
-    public init(child:Int,parent:Int,total:Int,manganScale:Float){
+    public init(fuNum:Int,hanNum:Int,child:Int,parent:Int,total:Int,manganScale:Float){
+        self.fuNum = fuNum
+        self.hanNum = hanNum
         self.child = child
         self.parent = parent
         self.total = total
         self.manganScale = manganScale
     }
     public func toString() -> String{
-        var str : String
+        var str : String = "\(fuNum)符,\(hanNum)翻,"
         switch manganScale{
         case 1.0: str = "[満貫]"
         case 1.5: str = "[跳満]"
