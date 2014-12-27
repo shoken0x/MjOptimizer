@@ -13,5 +13,4 @@
 @interface TemplateMatcher : NSObject
 +(UIImage *)DetectEdgeWithImage:(UIImage *)image;
 -(NSMutableArray *)matchTarget:(UIImage *)target withTemplate:(NSString *)key;
-+(UIImage *)UIImageFromCMSampleBuffer:(CMSampleBufferRef)sampleBuffer;
 @end

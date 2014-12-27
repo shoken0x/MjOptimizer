@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import CoreMedia
 
-class TMAnalyzer: TMAnalyzerProtocol {
+class TMAnalyzer{
     var matcher: TemplateMatcher
     var paiTypes: [Pai]
     
@@ -27,10 +27,17 @@ class TMAnalyzer: TMAnalyzerProtocol {
         }
     }
     
-    func analyze(image : CMSampleBuffer, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol {
+    func analyze(image : UIImage, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol {
         
         debugPrintln("analyze called")
-        let uiimage: UIImage = TemplateMatcher.UIImageFromCMSampleBuffer(image)
+        
+        //Trim image
+        //CGRect trimArea = CGRectMake(4, 150, 640, 120);
+        let trimArea : CGRect = CGRectMake(0, 150, 640, 120);
+        let srcImageRef : CGImageRef = image.CGImage
+        let trimmedImageRef : CGImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea)
+        let uiimage : UIImage = UIImage(CGImage: trimmedImageRef)!
+        
         debugPrintln(uiimage)
         let results = self.analyze(uiimage)
         debugPrintln("analyze finished")
