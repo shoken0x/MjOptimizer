@@ -37,7 +37,11 @@ public class ScoreCalculator{
             return calcScore(agariList,kyoku: kyoku)
         }
     }
-
+    
+    //再計算する.局の情報が更新されたときに使う
+    public class func recalc(score:Score) -> ScoreCalcResult{
+        return calcScore(score.candidateAgariList,kyoku: score.kyoku)
+    }
     
     //各アガリについて役、翻数、符、点を計算してScoreを作っていく
     public class func calcScore(agariList:[Agari],kyoku:Kyoku = Kyoku())  -> ScoreCalcResult{
@@ -56,7 +60,7 @@ public class ScoreCalculator{
                 //点数を計算
                 var point : Point = calcPoint(fuNum, hanNum:hanNum,kyoku:kyoku)
                 //Scoreを作成
-                scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, point: point))
+                scoreList.append(Score(agari: agari, kyoku: kyoku, yakuList: yakuList, point: point,candidateAgariList: agariList))
             }
         }//end for
         //deubg

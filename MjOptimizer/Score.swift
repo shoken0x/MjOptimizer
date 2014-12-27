@@ -17,11 +17,13 @@ public class Score:Equatable,Comparable {
     public var kyoku: Kyoku     //局の状態
     public var yakuList: [Yaku] //役リスト
     public var point: Point     //点数
-    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],point: Point) {
+    public var candidateAgariList: [Agari] //候補となったアガリリスト
+    public init(agari:Agari,kyoku:Kyoku,yakuList:[Yaku],point: Point,candidateAgariList:[Agari]) {
         self.agari = agari
         self.kyoku = kyoku
         self.yakuList = yakuList
         self.point = point
+        self.candidateAgariList = candidateAgariList
     }
     
     //有効なアガリかどうか。役無しやドラのみはfalse

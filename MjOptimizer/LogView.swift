@@ -11,7 +11,7 @@ import Foundation
 class LogView: UITextView{
     let st = Stats()
     override init(){
-        super.init(frame: CGRect(x: 460, y: 20, width: 150, height: 100), textContainer: nil)
+        super.init(frame: CGRect(x: 400, y: 20, width: 150, height: 100), textContainer: nil)
         
         self.scrollEnabled = true
         self.editable = false

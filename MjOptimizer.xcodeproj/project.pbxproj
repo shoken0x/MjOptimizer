@@ -109,7 +109,6 @@
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
 		C43B6F9E194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */; };
-		C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */; };
 		C43B6FA5194DF27000FBFDD6 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */; };
 		C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */; };
 		C43CD985199BE22300CE1613 /* YakuChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43CD984199BE22300CE1613 /* YakuChecker.swift */; };
@@ -135,18 +134,19 @@
 		C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */; };
 		C4914A2019893BD100BD663E /* AgariSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4914A1F19893BD100BD663E /* AgariSpec.swift */; };
 		C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AC26551986A2D8007533C6 /* Yaku.swift */; };
+		C4AEAD5A1A37C0F600C9FB74 /* YakuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEAD591A37C0F600C9FB74 /* YakuListView.swift */; };
+		C4AEAD671A4F00FE00C9FB74 /* FuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEAD661A4F00FE00C9FB74 /* FuListView.swift */; };
+		C4AEAD691A4F0D3300C9FB74 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AEAD681A4F0D3300C9FB74 /* PointView.swift */; };
 		C4CA4FEF197135FA0089E2B2 /* PaiNumList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */; };
 		C4CA4FF91971361E0089E2B2 /* PaiNumListSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */; };
 		C4CC34011954A52D0030EE0A /* Stats.m in Sources */ = {isa = PBXBuildFile; fileRef = C4CC33FE1954A52D0030EE0A /* Stats.m */; };
 		C4CC340D1954A85A0030EE0A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC340C1954A85A0030EE0A /* Controller.swift */; };
-		C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */; };
 		C4CC34141954B09A0030EE0A /* AnalyzeResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */; };
 		C4CC3434195518E10030EE0A /* TehaiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC3433195518E10030EE0A /* TehaiProtocol.swift */; };
 		C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CC343D19551E310030EE0A /* ChunkProtocol.swift */; };
 		C4DC44421961A2C1009AEA97 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC44411961A2C1009AEA97 /* Log.swift */; };
 		C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DC4451196319E7009AEA97 /* Array+Slice.swift */; };
 		C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */; };
-		C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DEE67619810F1700CB5681 /* MentsuList.swift */; };
 		C4E07A2719A4EDC10024D1ED /* cvtest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4E07A2619A4EDC10024D1ED /* cvtest.jpg */; };
 		C4E90DAA1989283A00948322 /* Kyoku.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E90DA91989283A00948322 /* Kyoku.swift */; };
 		C4F9B029194DA6DC003FFEEC /* Pai.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F9B028194DA6DC003FFEEC /* Pai.swift */; };
@@ -481,7 +481,6 @@
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
 		C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultProtocol.swift; sourceTree = "<group>"; };
-		C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA4194DF27000FBFDD6 /* ControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerMock.swift; sourceTree = "<group>"; };
 		C43CD984199BE22300CE1613 /* YakuChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuChecker.swift; sourceTree = "<group>"; };
@@ -507,20 +506,21 @@
 		C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolverSpec.swift; sourceTree = "<group>"; };
 		C4914A1F19893BD100BD663E /* AgariSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgariSpec.swift; sourceTree = "<group>"; };
 		C4AC26551986A2D8007533C6 /* Yaku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yaku.swift; sourceTree = "<group>"; };
+		C4AEAD591A37C0F600C9FB74 /* YakuListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YakuListView.swift; sourceTree = "<group>"; };
+		C4AEAD661A4F00FE00C9FB74 /* FuListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuListView.swift; sourceTree = "<group>"; };
+		C4AEAD681A4F0D3300C9FB74 /* PointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiNumList.swift; sourceTree = "<group>"; };
 		C4CA4FF81971361E0089E2B2 /* PaiNumListSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaiNumListSpec.swift; sourceTree = "<group>"; };
 		C4CC33FD1954A52D0030EE0A /* Stats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stats.h; sourceTree = "<group>"; };
 		C4CC33FE1954A52D0030EE0A /* Stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stats.m; sourceTree = "<group>"; };
 		C4CC340C1954A85A0030EE0A /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		C4CC340E1954AA020030EE0A /* MjOptimizer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MjOptimizer-Bridging-Header.h"; sourceTree = "<group>"; };
-		C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzerMock.swift; sourceTree = "<group>"; };
 		C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResultMock.swift; sourceTree = "<group>"; };
 		C4CC3433195518E10030EE0A /* TehaiProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TehaiProtocol.swift; sourceTree = "<group>"; };
 		C4CC343D19551E310030EE0A /* ChunkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChunkProtocol.swift; sourceTree = "<group>"; };
 		C4DC44411961A2C1009AEA97 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		C4DC4451196319E7009AEA97 /* Array+Slice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Slice.swift"; sourceTree = "<group>"; };
 		C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolver.swift; sourceTree = "<group>"; };
-		C4DEE67619810F1700CB5681 /* MentsuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuList.swift; sourceTree = "<group>"; };
 		C4E07A2619A4EDC10024D1ED /* cvtest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cvtest.jpg; sourceTree = "<group>"; };
 		C4E90DA91989283A00948322 /* Kyoku.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kyoku.swift; sourceTree = "<group>"; };
 		C4F9B028194DA6DC003FFEEC /* Pai.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pai.swift; sourceTree = "<group>"; };
@@ -756,6 +756,9 @@
 				C40E08D71A0496E7003FF411 /* PaiListView.swift */,
 				C40E08D51A0496E7003FF411 /* ForcusView.swift */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
+				C4AEAD591A37C0F600C9FB74 /* YakuListView.swift */,
+				C4AEAD661A4F00FE00C9FB74 /* FuListView.swift */,
+				C4AEAD681A4F0D3300C9FB74 /* PointView.swift */,
 			);
 			name = uiViews;
 			sourceTree = "<group>";
@@ -823,7 +826,6 @@
 				C4DEE66C19808AA800CB5681 /* MentsuResolver.swift */,
 				C43CD984199BE22300CE1613 /* YakuChecker.swift */,
 				C42D756F196180C600183C24 /* Mentsu.swift */,
-				C4DEE67619810F1700CB5681 /* MentsuList.swift */,
 				C4CA4FEE197135FA0089E2B2 /* PaiNumList.swift */,
 			);
 			name = scoreCalculator;
@@ -867,7 +869,6 @@
 		C4CC34231954BBC60030EE0A /* mocks */ = {
 			isa = PBXGroup;
 			children = (
-				C4CC34111954ADCA0030EE0A /* TMAnalyzerMock.swift */,
 				C4CC34131954B09A0030EE0A /* AnalyzeResultMock.swift */,
 				C43B6FA7194E6A5F00FBFDD6 /* ControllerMock.swift */,
 			);
@@ -877,7 +878,6 @@
 		C4CC34241954BBE60030EE0A /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C43B6F9A194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift */,
 				C43B6F99194DF23D00FBFDD6 /* AnalyzeResultProtocol.swift */,
 			);
 			name = protocols;
@@ -1181,8 +1181,8 @@
 			files = (
 				C44C50661A046E1D00976E2E /* NSArray.swift in Sources */,
 				C42D7570196180C600183C24 /* Mentsu.swift in Sources */,
-				C4DEE67719810F1700CB5681 /* MentsuList.swift in Sources */,
 				C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */,
+				C4AEAD691A4F0D3300C9FB74 /* PointView.swift in Sources */,
 				C44C50651A046E1D00976E2E /* Int.swift in Sources */,
 				C4E90DAA1989283A00948322 /* Kyoku.swift in Sources */,
 				C44C50691A046E1D00976E2E /* String.swift in Sources */,
@@ -1194,7 +1194,6 @@
 				44270B22194F361A00CE7E7A /* String+Substring.swift in Sources */,
 				C47F80801998B5760008A706 /* ScoreCalculator.swift in Sources */,
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
-				C43B6F9F194DF23D00FBFDD6 /* TMAnalyzerProtocol.swift in Sources */,
 				C4CA4FEF197135FA0089E2B2 /* PaiNumList.swift in Sources */,
 				C43B6FA8194E6A5F00FBFDD6 /* ControllerMock.swift in Sources */,
 				342182081954C8D900E3436B /* TemplateMatcher.mm in Sources */,
@@ -1226,11 +1225,12 @@
 				C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */,
 				C44C50621A046E1D00976E2E /* Double.swift in Sources */,
 				C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */,
+				C4AEAD671A4F00FE00C9FB74 /* FuListView.swift in Sources */,
 				C40E09231A0496E7003FF411 /* PaiListView.swift in Sources */,
-				C4CC34121954ADCA0030EE0A /* TMAnalyzerMock.swift in Sources */,
 				C4CC343E19551E310030EE0A /* ChunkProtocol.swift in Sources */,
 				C40E09211A0496E7003FF411 /* ForcusView.swift in Sources */,
 				3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */,
+				C4AEAD5A1A37C0F600C9FB74 /* YakuListView.swift in Sources */,
 				A6DEAC491951F2D70075A0BB /* Tehai.swift in Sources */,
 				441CDF2B194BDF6200199893 /* AppDelegate.swift in Sources */,
 				C40E09261A0496E7003FF411 /* SutehaiSelectResultView.swift in Sources */,
@@ -1422,7 +1422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
@@ -1459,7 +1459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
 				SDKROOT = iphoneos;
@@ -1477,13 +1477,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MjOptimizer/MjOptimizer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1499,13 +1500,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MjOptimizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "66DEA7C2-B9E6-42F7-8643-ED38D57F7989";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MjOptimizer/MjOptimizer-Bridging-Header.h";
 			};
 			name = Release;

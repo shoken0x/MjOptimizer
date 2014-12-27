@@ -13,12 +13,28 @@ class ScoreView:UIView{
     let kyokuOKButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let kyokuCancelButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     var kyokuLabel = UILabel()
+    
+    //牌リストView
+    var paiListView : PaiListView
+    let PAI_LIST_VIEW_X :CGFloat = 0
+    let PAI_LIST_VIEW_Y :CGFloat = 40
+    
+    //得点View
+    var pointView : PointView
+    let POINT_VIEW_X :CGFloat = 0
+    let POINT_VIEW_Y :CGFloat = 100
+
+    
+    //局入力View
     let kyokuView : KyokuView
-    let score : Score
+
+    var score : Score
+    
     init(score:Score,paiList:[Pai]){
         self.score = score
+        self.paiListView = PaiListView(x:PAI_LIST_VIEW_X,y:PAI_LIST_VIEW_Y,paiList: paiList)
         self.kyokuView = KyokuView(kyoku:score.kyoku)
-
+        self.pointView = PointView(x:POINT_VIEW_X,y:POINT_VIEW_Y,score:score)
         super.init(frame: CGRectMake(0, 0, 568, 600))
         
         //局ラベル
@@ -27,59 +43,38 @@ class ScoreView:UIView{
         self.addSubview(kyokuLabel)
         
         //局状態変更ボタン
-        kyokuInputButton.frame = CGRectMake(400, 0, 200, 40)
+        kyokuInputButton.frame = CGRectMake(300, 0, 200, 40)
         kyokuInputButton.setTitle("状況変更", forState: UIControlState.Normal)
         kyokuInputButton.addTarget(self, action: "kyokuInputButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(kyokuInputButton)
         
         //手牌画像
-        self.addSubview(PaiListView(x:0,y:40,paiList: paiList))
-
+        self.addSubview(self.paiListView)
+        
         //得点ラベル
-        var scoreView = UILabel(frame:CGRectMake(40,80,300,40))
-        scoreView.text = score.point.toString()
-        self.addSubview(scoreView)
+        self.addSubview(self.pointView)
         
-        //役一覧
-        var nextX:CGFloat = 0
-        var nextY:CGFloat = 120
-        for yaku in score.yakuList{
-            let yakulabel = UILabel(frame:CGRectMake(nextX,nextY,160,40))
-            if score.agari.includeNaki(){
-                yakulabel.text = "\(yaku.kanji) (\(yaku.nakiHanNum)翻)"
-            }else{
-                yakulabel.text = "\(yaku.kanji) (\(yaku.hanNum)翻)"
-            }
-            self.addSubview( yakulabel)
-            nextY += 40
-        }
-        
-        //符計算
-        nextX = 400
-        nextY = 120
-        for mentsu in score.agari.mentsuList{
-            let fulabel = UILabel(frame:CGRectMake(nextX,nextY,40,40))
-            fulabel.text = String(mentsu.fuNum(score.kyoku)) + "符"
-            self.addSubview( fulabel)
-            let paiListView = PaiListView(x: nextX + 40,y:nextY,paiList:mentsu.displayPaiArray())
-            self.addSubview( paiListView)
-            nextY += 40
-        }
-
         //局OKボタン
         kyokuOKButton.frame = CGRectMake(0, 50 * 4, 200, 100)
         kyokuOKButton.setTitle("OK", forState: UIControlState.Normal)
         kyokuOKButton.addTarget(self, action: "kyokuOKButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
-
+        
         //局キャンセルボタン
         kyokuCancelButton.frame = CGRectMake(200, 50 * 4, 200, 100)
         kyokuCancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         kyokuCancelButton.addTarget(self, action: "kyokuCancelButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addYakuLabelList(){
+        //TODO
+    }
+    func addFuLabelList(){
+        
     }
     
     //「局の状態を変更」ボタンを押したとき
@@ -102,7 +97,18 @@ class ScoreView:UIView{
         kyokuLabel.text = score.kyoku.toPrettyString()
         
         //TODO再計算
-        
+        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.recalc(score)
+        switch scoreCalcResult{
+        case let .SUCCESS(score):
+            //得点計算に成功
+            self.score = score
+            //得点更新
+            self.pointView.update(score)
+        case let .ERROR(msg):
+            //得点計算に失敗
+            Log.info(msg)
+        }
+
     }
     //Cancelボタン
     func kyokuCancelButtonDidPush(){

@@ -12,8 +12,8 @@ import CoreMedia
 
 
 
-class Controller:ControllerProtocol{
-    let tmAnalyzer : TMAnalyzerProtocol
+class Controller{
+    let tmAnalyzer : TMAnalyzer
     var lastAnalyzeResult : AnalyzeResultProtocol?
     init (){
         self.tmAnalyzer = TMAnalyzer()
@@ -21,7 +21,7 @@ class Controller:ControllerProtocol{
     }
     
     //得点計算
-    func scoreCalc(image : CMSampleBuffer, targetFrame : CGRect, kyoku: Kyoku) -> ScoreCalcResult{
+    func scoreCalc(image : UIImage, targetFrame : CGRect, kyoku: Kyoku) -> ScoreCalcResult{
         let analyzeResult : AnalyzeResultProtocol = self.tmAnalyzer.analyze(
             image,
             targetFrame : targetFrame,

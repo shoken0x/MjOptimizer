@@ -388,8 +388,8 @@ public class YCFinishType : YakuChecker{
         case .HAITEI: return Yaku(name:"haitei",kanji: "海底摸月", hanNum:1,nakiHanNum:1)
         case .RINSHAN: return Yaku(name:"rinshan",kanji: "嶺上開花", hanNum:1,nakiHanNum:1)
         case .CHANKAN: return Yaku(name:"chankan",kanji: "槍槓", hanNum:1,nakiHanNum:1)
-        case .TENHO: return Yaku(name:"chiho",kanji: "地和")
-        case .CHIHO:return Yaku(name:"tenho",kanji: "天和")
+        case .CHIHO: return Yaku(name:"chiho",kanji: "地和")
+        case .TENHO:return Yaku(name:"tenho",kanji: "天和")
         default : return nil
         }
     }
