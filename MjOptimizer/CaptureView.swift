@@ -21,9 +21,9 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     var captureDevice: AVCaptureDevice!
 
     //UI部品
-    let filterView = UIView(frame: CGRectMake(20, 0, 400, 320))
-    let focusView = FocusView()
-    let logView = LogView()
+    let redFilterView : UIView
+    let focusView : FocusView
+    let statusLabel : UILabel
     
     //キャプチャ画像内のトリミング対象範囲
     //キャプチャ画像は640x480になるため、その中の座標を示す
@@ -37,6 +37,11 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     var topView: TopView? = nil
     
     init(x:CGFloat,y:CGFloat){
+        self.redFilterView = UIView(frame: CGRectMake(0, 0, CAPTURE_AREA_WIDTH, CAPTURE_AREA_HEIGHT))
+        self.redFilterView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.1)
+        self.statusLabel = UILabel(frame: CGRectMake(100, 60, 300, 30))
+        self.focusView = FocusView()
+      
         super.init(frame: CGRectMake(x, y, CAPTURE_AREA_WIDTH, CAPTURE_AREA_HEIGHT))
     }
     func setTopView(topView:TopView){
@@ -63,7 +68,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
         session.commitConfiguration()
         session.startRunning()
         
-        //setPreview
+        //カメラプレビュー
         let previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as AVCaptureVideoPreviewLayer
         previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeLeft
         previewLayer.frame = self.bounds
@@ -76,26 +81,16 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
         var redRect:UIView = UIView(frame: CGRectMake(targetRect.minX * rateX , targetRect.minY * rateY, targetRect.width * rateX, targetRect.height * rateY))
         redRect.layer.borderWidth = 2.0
         redRect.layer.borderColor = UIColor.redColor().CGColor
-        
         self.addSubview(redRect)
         
         
         //statusLabel
-        //self.statusLabel.center = CGPointMake(420, 300)
-        //self.statusLabel.textAlignment = NSTextAlignment.Center
-        //self.statusLabel.textColor = UIColor.redColor()
-        //self.statusLabel.text = "I'm waiting for..."
-        //self.addSubview(statusLabel)
+        self.statusLabel.center = CGPointMake(420, 300)
+        self.statusLabel.textAlignment = NSTextAlignment.Center
+        self.statusLabel.textColor = UIColor.redColor()
+        self.statusLabel.text = "I'm waiting for..."
+        self.addSubview(statusLabel)
         
-        //TODO filterview
-        //self.filterView.backgroundColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 0.1)
-        
-        //TODO logview
-        //self.addSubview(self.logView)
-        
-        //TODO focusView
-        //self.addSubview(self.focusView)
-
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -103,6 +98,9 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     }
     
     func startCapture(){
+        self.statusLabel.text = "Scanning..."
+        self.addSubview(self.focusView)
+        self.addSubview(self.redFilterView)
         self.isStartScan = true
     }
     
@@ -111,10 +109,10 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         NSThread.sleepForTimeInterval(0.5)
         let now: NSDate = NSDate()
-        Log.info("update from captureOutput()")
         dispatch_async( dispatch_get_main_queue() ) {//メインスレッドの処理
             if(!self.isStartScan) {
                 //スタートボタンが押されて開始していない場合
+                Log.info("スタートボタン押し待ち")
                 return
             }
             //キャプチャした画像からUIImageを作成
@@ -138,6 +136,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
 
             Log.info("スキャンストップ")
             self.session.stopRunning()
+            self.isStartScan = false
             
             //top画面に解析結果を貸す
             self.topView!.showResult(analyzeResult.getPaiList(), capturedImage:uiimage)
