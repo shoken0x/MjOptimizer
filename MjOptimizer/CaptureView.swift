@@ -11,6 +11,10 @@ import AVFoundation
 import CoreMedia
 
 class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
+    //キャプチャエリアの表示上の大きさ。実際の画像の解像度は640x480
+    let CAPTURE_AREA_WIDTH : CGFloat = 400
+    let CAPTURE_AREA_HEIGHT : CGFloat = 300
+    
     //デバイス周り
     let videoDataOutput = AVCaptureVideoDataOutput()
     let session = AVCaptureSession()
@@ -21,8 +25,9 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     let focusView = FocusView()
     let logView = LogView()
     
-    //切り取り対象
-    let targetRect = CGRectMake(24, 130, 520, 50)
+    //キャプチャ画像内のトリミング対象範囲
+    //キャプチャ画像は640x480になるため、その中の座標を示す
+    let targetRect = CGRectMake(0, 150, 640, 120)
     
     //フラグ
     var isFinishAnalyze = false
@@ -31,8 +36,8 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     //親画面
     var topView: TopView? = nil
     
-    override init(){
-        super.init(frame: CGRectMake(20, 0, 400, 320))
+    init(x:CGFloat,y:CGFloat){
+        super.init(frame: CGRectMake(x, y, CAPTURE_AREA_WIDTH, CAPTURE_AREA_HEIGHT))
     }
     func setTopView(topView:TopView){
         self.topView = topView
@@ -44,10 +49,11 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
         var error: NSErrorPointer = nil
         let deviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(captureDevice, error: error) as AVCaptureInput
         var queue: dispatch_queue_t = dispatch_queue_create("com.mjoptimizer.myQueue", nil)
-        videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : kCVPixelFormatType_32BGRA]
+        
+        videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : kCVPixelFormatType_32BGRA]//32bit RGBAで画像を取得
         videoDataOutput.alwaysDiscardsLateVideoFrames = true
         videoDataOutput.setSampleBufferDelegate(self, queue: queue)
-        session.sessionPreset = AVCaptureSessionPreset640x480
+        session.sessionPreset = AVCaptureSessionPreset640x480//キャプチャする画像の解像度は640x480
         session.addInput(deviceInput as AVCaptureInput)
         session.addOutput(videoDataOutput)
         session.beginConfiguration()
@@ -63,12 +69,16 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
         previewLayer.frame = self.bounds
         self.layer.addSublayer(previewLayer)
 
-        //OverlayView
-        var overlayImageView: UIImageView = UIImageView(image: UIImage(named:"RedRectangle"))
-        overlayImageView.frame = targetRect
-        self.addSubview(overlayImageView)
+        //赤枠
+        //キャプチャする画像の解像度と、キャプチャエリアのサイズの比率を計算
+        let rateX = CAPTURE_AREA_WIDTH / 640
+        let rateY = CAPTURE_AREA_HEIGHT / 480
+        var redRect:UIView = UIView(frame: CGRectMake(targetRect.minX * rateX , targetRect.minY * rateY, targetRect.width * rateX, targetRect.height * rateY))
+        redRect.layer.borderWidth = 2.0
+        redRect.layer.borderColor = UIColor.redColor().CGColor
         
-
+        self.addSubview(redRect)
+        
         
         //statusLabel
         //self.statusLabel.center = CGPointMake(420, 300)
@@ -113,7 +123,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
             uiimage = self.trimUIImage(uiimage)
             //画像解析
             let tmAnalyzer : TMAnalyzer = TMAnalyzer()
-            let analyzeResult : AnalyzeResult = tmAnalyzer.analyze(uiimage ,targetFrame : self.targetRect, lastAnalyzerResult : nil )
+            let analyzeResult : AnalyzeResult = tmAnalyzer.analyze(uiimage,lastAnalyzerResult : nil )
             
             if !analyzeResult.isSuccess(){
                 Log.info("画像解析に失敗しました")
@@ -133,7 +143,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
             self.topView!.showResult(analyzeResult.getPaiList(), capturedImage:uiimage)
         }
     }
-    
+        
     //カメラの画像からUIImageを作る
     private func uiimageFromCMSampleBuffer(image:CMSampleBuffer) -> UIImage{
         // イメージバッファの取得
@@ -171,8 +181,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     //トリミング
     private func trimUIImage(inputUIImage:UIImage)->UIImage{
         //Trim image
-        //CGRect trimArea = CGRectMake(4, 150, 640, 120);
-        let trimArea : CGRect = CGRectMake(0, 150, 640, 120);
+        let trimArea : CGRect = targetRect;
         let srcImageRef : CGImageRef = inputUIImage.CGImage
         let trimmedImageRef : CGImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea)
         return UIImage(CGImage: trimmedImageRef)!

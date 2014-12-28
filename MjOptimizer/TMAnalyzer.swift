@@ -27,7 +27,8 @@ class TMAnalyzer{
         }
     }
     
-    func analyze(uiimage : UIImage, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResult?) -> AnalyzeResult {
+    // @uiimage トリミングされた画像
+    func analyze(uiimage : UIImage, lastAnalyzerResult : AnalyzeResult?) -> AnalyzeResult {
         
         debugPrintln("analyze called")
         let results = self.analyze(uiimage)

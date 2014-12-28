@@ -12,7 +12,7 @@ import CoreMedia
 
 class TopView:UIView{
     var captureDevice: AVCaptureDevice!
-    var captureView : CaptureView = CaptureView()
+    var captureView : CaptureView = CaptureView(x: 40,y: 0)
     let startButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
 
     //局状態の変数
@@ -55,13 +55,15 @@ class TopView:UIView{
         }
     }
     
-    //スタートボタンを押したときの挙動
+    //スタートボタンを押したとき
     func startButtonDidPush() {
         self.captureView.startCapture()
     }
     
     //画像解析が終わったときにコールバックされる
     func showResult(paiList:[Pai],capturedImage:UIImage){
+        //キャプチャ画面を消す
+        self.captureView.removeFromSuperview()
         //得点計算
         let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(paiList, kyoku: self.kyoku)
         switch scoreCalcResult{
@@ -74,7 +76,7 @@ class TopView:UIView{
     }
     
     
-    //カメラが見つかろうかどうか
+    //カメラが見つかったら真を返す
     private func findCamera() -> Bool {
         let devices: NSArray = AVCaptureDevice.devices()
         
