@@ -17,12 +17,12 @@ class ScoreView:UIView{
     //牌リストView
     var paiListView : PaiListView
     let PAI_LIST_VIEW_X :CGFloat = 0
-    let PAI_LIST_VIEW_Y :CGFloat = 40
+    let PAI_LIST_VIEW_Y :CGFloat = 80
     
     //得点View
     var pointView : PointView
     let POINT_VIEW_X :CGFloat = 0
-    let POINT_VIEW_Y :CGFloat = 100
+    let POINT_VIEW_Y :CGFloat = 180
 
     
     //局入力View
@@ -31,24 +31,25 @@ class ScoreView:UIView{
     var score : Score
     
     init(score:Score,paiList:[Pai],capturedImage:UIImage){
+        let screenRect : CGRect = UIScreen.mainScreen().bounds
         self.score = score
         self.paiListView = PaiListView(x:PAI_LIST_VIEW_X,y:PAI_LIST_VIEW_Y,paiList: paiList)
         self.kyokuView = KyokuView(kyoku:score.kyoku)
         self.pointView = PointView(x:POINT_VIEW_X,y:POINT_VIEW_Y,score:score)
-        super.init(frame: CGRectMake(0, 0, 568, 600))
+        super.init(frame: screenRect)
         
         //キャプチャした画像
         let capturedImage = UIImageView(image:capturedImage)
-        capturedImage.frame = CGRectMake(0, 0, 568, 60)
+        capturedImage.frame = CGRectMake(0, 40, screenRect.width, screenRect.height * capturedImage.bounds.width / screenRect.width)
         self.addSubview(capturedImage)
         
         //局ラベル
-        kyokuLabel = UILabel(frame:CGRectMake(0,0,560,40))
+        kyokuLabel = UILabel(frame:CGRectMake(0,80,screenRect.width,40))
         kyokuLabel.text = score.kyoku.toPrettyString()
         self.addSubview(kyokuLabel)
         
         //局状態変更ボタン
-        kyokuInputButton.frame = CGRectMake(300, 0, 200, 40)
+        kyokuInputButton.frame = CGRectMake(300, 80, 200, 40)
         kyokuInputButton.setTitle("状況変更", forState: UIControlState.Normal)
         kyokuInputButton.addTarget(self, action: "kyokuInputButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         self.addSubview(kyokuInputButton)
@@ -75,12 +76,6 @@ class ScoreView:UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addYakuLabelList(){
-        //TODO
-    }
-    func addFuLabelList(){
-        
-    }
     
     //「局の状態を変更」ボタンを押したとき
     func kyokuInputButtonDidPush(){

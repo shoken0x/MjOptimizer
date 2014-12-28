@@ -41,14 +41,13 @@ class TopView:UIView{
             let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
             switch scoreCalcResult{
             case let .SUCCESS(score):
-                Log.info("hoge")
-                //TODO
-//                self.addSubview(
-//                    ScoreView(
-//                        score:score,
-//                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!
-//                    )
-//                )
+                self.addSubview(
+                    ScoreView(
+                        score:score,
+                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!,
+                        capturedImage:UIImage(named:"dummyphoto")!
+                    )
+                )
             case let .ERROR(msg):
                 Log.error(msg)
             }
