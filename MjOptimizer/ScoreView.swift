@@ -13,7 +13,7 @@ class ScoreView:UIView{
     let kyokuOKButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     let kyokuCancelButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
     var kyokuLabel = UILabel()
-    
+
     //牌リストView
     var paiListView : PaiListView
     let PAI_LIST_VIEW_X :CGFloat = 0
@@ -30,12 +30,17 @@ class ScoreView:UIView{
 
     var score : Score
     
-    init(score:Score,paiList:[Pai]){
+    init(score:Score,paiList:[Pai],capturedImage:UIImage){
         self.score = score
         self.paiListView = PaiListView(x:PAI_LIST_VIEW_X,y:PAI_LIST_VIEW_Y,paiList: paiList)
         self.kyokuView = KyokuView(kyoku:score.kyoku)
         self.pointView = PointView(x:POINT_VIEW_X,y:POINT_VIEW_Y,score:score)
         super.init(frame: CGRectMake(0, 0, 568, 600))
+        
+        //キャプチャした画像
+        let capturedImage = UIImageView(image:capturedImage)
+        capturedImage.frame = CGRectMake(0, 0, 568, 60)
+        self.addSubview(capturedImage)
         
         //局ラベル
         kyokuLabel = UILabel(frame:CGRectMake(0,0,560,40))

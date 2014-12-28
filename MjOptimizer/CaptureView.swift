@@ -108,10 +108,12 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
                 return
             }
             //キャプチャした画像からUIImageを作成
-            let uiimage : UIImage = self.uiimageFromCMSampleBuffer(sampleBuffer)
+            var uiimage : UIImage = self.uiimageFromCMSampleBuffer(sampleBuffer)
+            //トリミング
+            uiimage = self.trimUIImage(uiimage)
             //画像解析
             let tmAnalyzer : TMAnalyzer = TMAnalyzer()
-            let analyzeResult : AnalyzeResultProtocol = tmAnalyzer.analyze(uiimage ,targetFrame : self.targetRect, lastAnalyzerResult : nil )
+            let analyzeResult : AnalyzeResult = tmAnalyzer.analyze(uiimage ,targetFrame : self.targetRect, lastAnalyzerResult : nil )
             
             if !analyzeResult.isSuccess(){
                 Log.info("画像解析に失敗しました")
@@ -128,7 +130,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
             self.session.stopRunning()
             
             //top画面に解析結果を貸す
-            self.topView!.showResult(analyzeResult.getPaiList())
+            self.topView!.showResult(analyzeResult.getPaiList(), capturedImage:uiimage)
         }
     }
     
@@ -166,4 +168,13 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
         return uiimage;
     }
 
+    //トリミング
+    private func trimUIImage(inputUIImage:UIImage)->UIImage{
+        //Trim image
+        //CGRect trimArea = CGRectMake(4, 150, 640, 120);
+        let trimArea : CGRect = CGRectMake(0, 150, 640, 120);
+        let srcImageRef : CGImageRef = inputUIImage.CGImage
+        let trimmedImageRef : CGImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea)
+        return UIImage(CGImage: trimmedImageRef)!
+    }
 }

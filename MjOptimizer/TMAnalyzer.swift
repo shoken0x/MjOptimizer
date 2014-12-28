@@ -27,18 +27,9 @@ class TMAnalyzer{
         }
     }
     
-    func analyze(image : UIImage, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResultProtocol?) -> AnalyzeResultProtocol {
+    func analyze(uiimage : UIImage, targetFrame : CGRect, lastAnalyzerResult : AnalyzeResult?) -> AnalyzeResult {
         
         debugPrintln("analyze called")
-        
-        //Trim image
-        //CGRect trimArea = CGRectMake(4, 150, 640, 120);
-        let trimArea : CGRect = CGRectMake(0, 150, 640, 120);
-        let srcImageRef : CGImageRef = image.CGImage
-        let trimmedImageRef : CGImageRef = CGImageCreateWithImageInRect(srcImageRef, trimArea)
-        let uiimage : UIImage = UIImage(CGImage: trimmedImageRef)!
-        
-        debugPrintln(uiimage)
         let results = self.analyze(uiimage)
         debugPrintln("analyze finished")
         debugPrintln(results)
@@ -125,10 +116,9 @@ class TMAnalyzer{
     }
 }
 
-class AnalyzeResult: AnalyzeResultProtocol {
+class AnalyzeResult {
     let resultList: [TMResult]
     let paiList: [Pai]
-    
     init(resultList: [TMResult]) {
         self.resultList = resultList
         self.paiList = resultList.map{ $0.pai }
@@ -151,6 +141,6 @@ class AnalyzeResult: AnalyzeResultProtocol {
 
     //解析に成功したかどうか
     func isSuccess() -> Bool {
-        return self.getAnalyzeSuccessNum() >= 13
+        return self.getAnalyzeSuccessNum() >= 14
     }
 }

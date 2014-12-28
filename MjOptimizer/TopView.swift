@@ -41,31 +41,17 @@ class TopView:UIView{
             let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
             switch scoreCalcResult{
             case let .SUCCESS(score):
-                self.addSubview(
-                    ScoreView(
-                        score:score,
-                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!
-                    )
-                )
+                Log.info("hoge")
+                //TODO
+//                self.addSubview(
+//                    ScoreView(
+//                        score:score,
+//                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!
+//                    )
+//                )
             case let .ERROR(msg):
                 Log.error(msg)
             }
-        }
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func showResult(paiList:[Pai]){
-        //得点計算
-        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(paiList, kyoku: self.kyoku)
-        switch scoreCalcResult{
-        case let .SUCCESS(score):
-            self.addSubview(ScoreView(score:score,paiList:paiList))
-        case let .ERROR(msg):
-            //得点計算に失敗
-            Log.info(msg)
         }
     }
     
@@ -73,6 +59,20 @@ class TopView:UIView{
     func startButtonDidPush() {
         self.captureView.startCapture()
     }
+    
+    //画像解析が終わったときにコールバックされる
+    func showResult(paiList:[Pai],capturedImage:UIImage){
+        //得点計算
+        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(paiList, kyoku: self.kyoku)
+        switch scoreCalcResult{
+        case let .SUCCESS(score):
+            self.addSubview(ScoreView(score:score,paiList:paiList,capturedImage:capturedImage))
+        case let .ERROR(msg):
+            //得点計算に失敗
+            Log.info(msg)
+        }
+    }
+    
     
     //カメラが見つかろうかどうか
     private func findCamera() -> Bool {
@@ -96,4 +96,9 @@ class TopView:UIView{
             return false
         }
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
