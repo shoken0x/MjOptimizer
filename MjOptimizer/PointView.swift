@@ -19,7 +19,7 @@ class PointView:UIView{
     
     //符一覧View
     var fuListView :FuListView
-    let FU_LIST_VIEW_X :CGFloat = 150
+    let FU_LIST_VIEW_X :CGFloat = 200
     let FU_LIST_VIEW_Y :CGFloat = 40
     
     var score : Score

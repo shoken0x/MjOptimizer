@@ -11,13 +11,17 @@ import Foundation
 public class Point{
     public var fuNum:Int
     public var hanNum:Int
-    public var child:Int //子の支払い
-    public var parent:Int //親の支払い
+    public var isTsumo:Bool
+    public var isParent:Bool
+    public var child:Int //ツモのときの子の支払い
+    public var parent:Int //ツモのときの親の支払い
     public var total:Int //収入総額
     public var manganScale:Float //満貫の倍率
-    public init(fuNum:Int,hanNum:Int,child:Int,parent:Int,total:Int,manganScale:Float){
+    public init(fuNum:Int,hanNum:Int,isTsumo:Bool,isParent:Bool,child:Int,parent:Int,total:Int,manganScale:Float){
         self.fuNum = fuNum
         self.hanNum = hanNum
+        self.isTsumo = isTsumo
+        self.isParent = isParent
         self.child = child
         self.parent = parent
         self.total = total
@@ -36,12 +40,13 @@ public class Point{
         case 16.0: str = "[四倍役満]"
         default : str = ""
         }
-        if parent == 0 && child == 0{
-            return str + String(total) + "点"
-        }else if parent == 0 {
-            return str + String(child) + "オール 合計" + String(total) + "点"
+        str += "\(total)点 "
+        if !isTsumo{
+            return str + "(ロン)"
+        }else if (isTsumo && isParent) {
+            return str + "(ツモ \(child)点オール)"
         }else{
-            return str + String(child) + "/" + String(parent) + " 合計" + String(total) + "点"
+            return str + "(ツモ 子\(child)点/親\(parent)点)"
         }
     }
 }

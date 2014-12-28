@@ -38,13 +38,13 @@ class TopView:UIView{
         }else{
             //カメラがないのでテスト画面を出す
             Log.info("カメラがないからテスト画面を出す")
-            let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l", kyoku: Kyoku())
+            let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("p1tp2tp3tp4tp5tp6tp7tp8tp9tj4tj4tj4ts9ts9t", kyoku: Kyoku())
             switch scoreCalcResult{
             case let .SUCCESS(score):
                 self.addSubview(
                     ScoreView(
                         score:score,
-                        paiList:Pai.parseList("m1tm1tj5tj5tm1tj6lj6tj6tj7tj7lj7tp9tp9tp9l")!,
+                        paiList:Pai.parseList("p1tp2tp3tp4tp5tp6tp7tp8tp9tj4tj4tj4ts9ts9t")!,
                         capturedImage:UIImage(named:"dummyphoto")!
                     )
                 )

@@ -21,12 +21,12 @@ class YakuListView:UIView{
             var hanstr:String
             if (includeNaki){
                 if (yaku.nakiHanNum != yaku.hanNum){
-                    hanstr = "\(yaku.nakiHanNum)翻(食下り)"
+                    hanstr = "(\(yaku.nakiHanNum)翻 食下り)"
                 }else{
-                    hanstr = "\(yaku.nakiHanNum)翻"
+                    hanstr = "(\(yaku.nakiHanNum)翻)"
                 }
             }else{
-                hanstr = "\(yaku.hanNum)翻"
+                hanstr = "(\(yaku.hanNum)翻)"
             }
             yakulabel.text = yaku.kanji + ":" + hanstr 
             self.addSubview( yakulabel)

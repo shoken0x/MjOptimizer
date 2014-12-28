@@ -11,7 +11,7 @@ import Foundation
 class FuListView:UIView{
     
     let WIDTH : CGFloat = 160
-    let HEIGHT_UNIT : CGFloat = 20
+    let HEIGHT_UNIT : CGFloat = 30
     init(x:CGFloat,y:CGFloat,mentsuList:[Mentsu],kyoku:Kyoku){
         super.init(frame : CGRectMake(x, y, WIDTH, HEIGHT_UNIT * CGFloat(mentsuList.count)))
         var nextX:CGFloat = 0

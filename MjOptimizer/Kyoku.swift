@@ -26,7 +26,7 @@ public class Kyoku{
         return "isReach:\(isReach) isIppatsu:\(isIppatsu) doraNum:\(doraNum) honbaNum:\(honbaNum) bakaze:\(bakaze.rawValue) jikaze:\(jikaze.rawValue) finishType:\(finishType.rawValue)"
     }
     public func toPrettyString() -> String{
-        var str = "\(bakaze.toKanji())場 \(honbaNum)本場 \(jikaze.toKanji())家 ドラ\(doraNum)枚"
+        var str = "\(bakaze.toKanji())場 \(honbaNum)本場 \(jikaze.toKanji())家 ドラ\(doraNum)枚 "
         str += isReach ? "リーチ有り " : "リーチ無し "
         str += isIppatsu ? "一発有り " : "一発無し "
         str += finishType == FinishType.NORMAL ? "" : finishType.toKanji()

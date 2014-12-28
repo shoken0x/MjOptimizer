@@ -27,7 +27,7 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
     
     //キャプチャ画像内のトリミング対象範囲
     //キャプチャ画像は640x480になるため、その中の座標を示す
-    let targetRect = CGRectMake(0, 150, 640, 120)
+    let targetRect = CGRectMake(0, 190, 640, 80)
     
     //フラグ
     var isFinishAnalyze = false

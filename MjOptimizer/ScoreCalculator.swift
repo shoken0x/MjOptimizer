@@ -158,9 +158,9 @@ public class ScoreCalculator{
     public class func calcPoint(fuNum:Int,hanNum:Int,kyoku:Kyoku)->Point{
         var isParent = kyoku.isParent()
         var isTsumo = kyoku.isTsumo
-        var c:Int = 0
-        var p:Int = 0
-        var t:Int = 0
+        var c:Int = 0 //ツモのとき子供が払う点数
+        var p:Int = 0 //ツモのとき親が払う点数
+        var t:Int = 0 //合計点
         var m:Float = 0
         var base:Int = 0
         if hanNum >= 5 {
@@ -207,9 +207,9 @@ public class ScoreCalculator{
             }
         }
         c += kyoku.honbaNum * 100
-        c += kyoku.honbaNum * 100
+        p += kyoku.honbaNum * 100
         t += kyoku.honbaNum * 300
-        return Point(fuNum:fuNum,hanNum:hanNum,child:c,parent:p,total:t,manganScale:m)
+        return Point(fuNum:fuNum,hanNum:hanNum,isTsumo:isTsumo,isParent:isParent,child:c,parent:p,total:t,manganScale:m)
     }
     
     //1の位切り上げ

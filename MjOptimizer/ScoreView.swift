@@ -16,13 +16,13 @@ class ScoreView:UIView{
 
     //牌リストView
     var paiListView : PaiListView
-    let PAI_LIST_VIEW_X :CGFloat = 0
+    let PAI_LIST_VIEW_X :CGFloat = 40
     let PAI_LIST_VIEW_Y :CGFloat = 80
     
     //得点View
     var pointView : PointView
-    let POINT_VIEW_X :CGFloat = 0
-    let POINT_VIEW_Y :CGFloat = 180
+    let POINT_VIEW_X :CGFloat = 40
+    let POINT_VIEW_Y :CGFloat = 120
 
     
     //局入力View
@@ -31,28 +31,24 @@ class ScoreView:UIView{
     var score : Score
     
     init(score:Score,paiList:[Pai],capturedImage:UIImage){
-        let screenRect : CGRect = UIScreen.mainScreen().bounds
+        //画面サイズを取得。横向きなのでwidthとheightを交換
+        let screenW : CGFloat = UIScreen.mainScreen().bounds.width
+        let screenH : CGFloat = UIScreen.mainScreen().bounds.height
         self.score = score
         self.paiListView = PaiListView(x:PAI_LIST_VIEW_X,y:PAI_LIST_VIEW_Y,paiList: paiList)
         self.kyokuView = KyokuView(kyoku:score.kyoku)
         self.pointView = PointView(x:POINT_VIEW_X,y:POINT_VIEW_Y,score:score)
-        super.init(frame: screenRect)
+        super.init(frame: CGRectMake(0,0,screenW,screenH))
         
         //キャプチャした画像
         let capturedImage = UIImageView(image:capturedImage)
-        capturedImage.frame = CGRectMake(0, 40, screenRect.width, screenRect.height * capturedImage.bounds.width / screenRect.width)
+        capturedImage.frame = CGRectMake(40, 40, 300,40)
         self.addSubview(capturedImage)
         
         //局ラベル
-        kyokuLabel = UILabel(frame:CGRectMake(0,80,screenRect.width,40))
+        kyokuLabel = UILabel(frame:CGRectMake(0,0,360,40))
         kyokuLabel.text = score.kyoku.toPrettyString()
         self.addSubview(kyokuLabel)
-        
-        //局状態変更ボタン
-        kyokuInputButton.frame = CGRectMake(300, 80, 200, 40)
-        kyokuInputButton.setTitle("状況変更", forState: UIControlState.Normal)
-        kyokuInputButton.addTarget(self, action: "kyokuInputButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(kyokuInputButton)
         
         //手牌画像
         self.addSubview(self.paiListView)
@@ -70,6 +66,12 @@ class ScoreView:UIView{
         kyokuCancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         kyokuCancelButton.addTarget(self, action: "kyokuCancelButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
         
+        //局状態変更ボタン
+        kyokuInputButton.frame = CGRectMake(360, 0, 100, 40)
+        kyokuInputButton.setTitle("状況変更", forState: UIControlState.Normal)
+        kyokuInputButton.addTarget(self, action: "kyokuInputButtonDidPush", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(kyokuInputButton)
+
     }
     
     required init(coder aDecoder: NSCoder) {
