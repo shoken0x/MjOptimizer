@@ -18,7 +18,19 @@ class TMAnalyzer{
             "m1t", "m2t", "m3t", "m4t", "m5t", "m6t", "m7t", "m8t", "m9t",
             "p1t", "p2t", "p3t", "p4t", "p5t", "p6t", "p7t", "p8t", "p9t",
             "s1t", "s2t", "s3t", "s4t", "s5t", "s6t", "s7t", "s8t", "s9t",
-            "j1t", "j2t", "j3t", "j4t", "j5t", "j6t", "j7t"
+            "j1t", "j2t", "j3t", "j4t", "j5t", "j6t", "j7t",
+            "m1l", "m2r", "m3l", "m4l", "m5l", "m6l", "m7l", "m8l", "m9l",
+            "p1l", "p2l", "p3l", "p4l", "p5l", "p6l", "p7l", "p8l", "p9l",
+            "s1l", "s2l", "s3l", "s4l", "s5l", "s6l", "s7l", "s8l", "s9l",
+            "j1l", "j2l", "j3l", "j4l", "j5l", "j6l", "j7l",
+            "m1r", "m2r", "m3r", "m4r", "m5r", "m6r", "m7r", "m8r", "m9r",
+            "p6r", "p7r",
+            "s1r", "s3r", "s7r",
+            "j1r", "j2r", "j3r", "j4r", "j6r", "j7r",
+            "m1b", "m2b", "m3b", "m4b", "m5b", "m6b", "m7b", "m8b", "m9b",
+            "p6b", "p7b",
+            "s1b", "s3b", "s7b",
+            "j1b", "j2b", "j3b", "j4b", "j6b", "j7b"
         ]
 //        let keys = ["j1t", "s6t"]
         
