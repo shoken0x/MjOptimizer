@@ -10,7 +10,6 @@
 		342182021954C89900E3436B /* CvView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342182011954C89900E3436B /* CvView.swift */; };
 		342182051954C8B900E3436B /* MatcherResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 342182041954C8B900E3436B /* MatcherResult.m */; };
 		342182081954C8D900E3436B /* TemplateMatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 342182071954C8D900E3436B /* TemplateMatcher.mm */; };
-		34636E691954CB34004F41F6 /* TMARes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34636E681954CB34004F41F6 /* TMARes.swift */; };
 		34636E6B1954CD6D004F41F6 /* TMAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34636E6A1954CD6D004F41F6 /* TMAnalyzer.swift */; };
 		34636E6D1954CFBB004F41F6 /* TMResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34636E6C1954CFBB004F41F6 /* TMResult.swift */; };
 		3497FBC8194F6086005C58A8 /* String+SliceWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497FBC7194F6086005C58A8 /* String+SliceWith.swift */; };
@@ -411,7 +410,6 @@
 		342182041954C8B900E3436B /* MatcherResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatcherResult.m; sourceTree = "<group>"; };
 		342182061954C8D900E3436B /* TemplateMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateMatcher.h; sourceTree = "<group>"; };
 		342182071954C8D900E3436B /* TemplateMatcher.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TemplateMatcher.mm; sourceTree = "<group>"; };
-		34636E681954CB34004F41F6 /* TMARes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMARes.swift; sourceTree = "<group>"; };
 		34636E6A1954CD6D004F41F6 /* TMAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMAnalyzer.swift; sourceTree = "<group>"; };
 		34636E6C1954CFBB004F41F6 /* TMResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMResult.swift; sourceTree = "<group>"; };
 		3497FBC7194F6086005C58A8 /* String+SliceWith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SliceWith.swift"; sourceTree = "<group>"; };
@@ -866,7 +864,6 @@
 		C42B286D198083CD009FE514 /* templateMatching */ = {
 			isa = PBXGroup;
 			children = (
-				34636E681954CB34004F41F6 /* TMARes.swift */,
 				342182071954C8D900E3436B /* TemplateMatcher.mm */,
 				342182061954C8D900E3436B /* TemplateMatcher.h */,
 				342182031954C8B900E3436B /* MatcherResult.h */,
@@ -1332,7 +1329,6 @@
 				C4F82BD01A4F90C100BE9F83 /* TopView.swift in Sources */,
 				C4E706AC1A4F81C200EBA2AF /* CaptureView.swift in Sources */,
 				C44C50681A046E1D00976E2E /* Sequence.swift in Sources */,
-				34636E691954CB34004F41F6 /* TMARes.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,
 				C42DBD2519AAB22A00FE2DCB /* KyokuView.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
