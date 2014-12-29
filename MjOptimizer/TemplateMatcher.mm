@@ -47,6 +47,10 @@ NSMutableDictionary *templates;
     
     cv::Mat tplMat;
     UIImageToMat(tpl, tplMat);
+    
+    //gray scaleでマッチさせるときは以下をコメントアウト
+    //cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
+    //cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
 
     NSMutableArray *results = [NSMutableArray array];
     cv::Mat resultMat;
@@ -216,6 +220,7 @@ static cv::Mat loadMatFromFile(NSString *fileBaseName, NSString *type) {
 
 
 -(NSMutableArray *)matchTarget:(UIImage *)target withTemplate:(NSString *)key {
+    NSLog(key);
     UIImage *tpl = (UIImage *)[templates objectForKey:key];
     NSMutableArray *hoge = [self match:target template:tpl];
     return hoge;
