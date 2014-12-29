@@ -49,8 +49,8 @@ NSMutableDictionary *templates;
     UIImageToMat(tpl, tplMat);
     
     //gray scaleでマッチさせるときは以下をコメントアウト
-    //cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
-    //cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
+    cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
+    cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
 
     NSMutableArray *results = [NSMutableArray array];
     cv::Mat resultMat;
