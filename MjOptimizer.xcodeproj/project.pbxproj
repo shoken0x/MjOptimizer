@@ -143,6 +143,7 @@
 		C4349E581A5197D90031D0D7 /* s9.l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4349DE91A5197D90031D0D7 /* s9.l.jpg */; };
 		C4349E591A5197D90031D0D7 /* s9.t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4349DEA1A5197D90031D0D7 /* s9.t.jpg */; };
 		C4349E681A5242ED0031D0D7 /* AnalyzeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */; };
+		C4349E6A1A52485C0031D0D7 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4349E691A52485C0031D0D7 /* DebugView.swift */; };
 		C439EB6E1998FC4200116820 /* ScoreCalculatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EB6D1998FC4200116820 /* ScoreCalculatorSpec.swift */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
@@ -550,6 +551,7 @@
 		C4349DE91A5197D90031D0D7 /* s9.l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s9.l.jpg; sourceTree = "<group>"; };
 		C4349DEA1A5197D90031D0D7 /* s9.t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s9.t.jpg; sourceTree = "<group>"; };
 		C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResult.swift; sourceTree = "<group>"; };
+		C4349E691A52485C0031D0D7 /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		C439EB6D1998FC4200116820 /* ScoreCalculatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorSpec.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 				C4F82BCC1A4F874B00BE9F83 /* ScoreView */,
 				C4F82BCB1A4F872F00BE9F83 /* CaptureView */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
+				C4349E691A52485C0031D0D7 /* DebugView.swift */,
 			);
 			name = uiViews;
 			sourceTree = "<group>";
@@ -1376,6 +1379,7 @@
 				C44C50611A046E1D00976E2E /* Dictionary.swift in Sources */,
 				C44C50641A046E1D00976E2E /* Float.swift in Sources */,
 				C4F9B031194DAAC0003FFEEC /* SutehaiCandidate.swift in Sources */,
+				C4349E6A1A52485C0031D0D7 /* DebugView.swift in Sources */,
 				C4DEE66D19808AA800CB5681 /* MentsuResolver.swift in Sources */,
 				C43CD985199BE22300CE1613 /* YakuChecker.swift in Sources */,
 			);

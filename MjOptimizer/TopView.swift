@@ -62,17 +62,24 @@ class TopView:UIView{
     //画像解析が終わったときにコールバックされる
     func showResult(analyzeResult:AnalyzeResult){
         Log.info("画像解析結果：\(analyzeResult.toString())")
-        
         //キャプチャ画面を消す
         self.captureView.removeFromSuperview()
-        //得点計算
-        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(analyzeResult.paiList, kyoku: self.kyoku)
-        switch scoreCalcResult{
-        case let .SUCCESS(score):
-            self.addSubview(ScoreView(score:score,paiList:analyzeResult.paiList,capturedImage:analyzeResult.debugImage))
-        case let .ERROR(msg):
-            //得点計算に失敗
-            Log.info(msg)
+        if(analyzeResult.resultList.count >= 14){
+            //画像解析成功
+            //得点計算
+            let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(analyzeResult.paiList, kyoku: self.kyoku)
+            switch scoreCalcResult{
+            case let .SUCCESS(score):
+                self.addSubview(ScoreView(score:score,paiList:analyzeResult.paiList,capturedImage:analyzeResult.debugImage))
+            case let .ERROR(msg):
+                //得点計算に失敗
+                Log.info(msg)
+                //画像解析失敗。画像解析デバッグビューを出す
+                self.addSubview(DebugView(analyzeResult: analyzeResult, msg:msg))
+            }
+        }else{
+            //画像解析失敗。画像解析デバッグビューを出す
+            self.addSubview(DebugView(analyzeResult: analyzeResult, msg:"検出できた牌が14枚未満"))
         }
     }
     
