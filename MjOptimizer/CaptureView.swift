@@ -121,25 +121,14 @@ class CaptureView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate{
             uiimage = self.trimUIImage(uiimage)
             //画像解析
             let tmAnalyzer : TMAnalyzer = TMAnalyzer()
-            let analyzeResult : AnalyzeResult = tmAnalyzer.analyze(uiimage,lastAnalyzerResult : nil )
-            
-            if !analyzeResult.isSuccess(){
-                Log.info("画像解析に失敗しました")
-                return
-            }
-            Log.info("画像解析に成功しました")
-            Log.info("画像解析結果：" + join(",",analyzeResult.getPaiList().map({$0.toString() })))
-            
-            //TODO
-            //self.focusView.removeFromSuperview()
-            //self.filterView.removeFromSuperview()
-
+            let analyzeResult : AnalyzeResult = tmAnalyzer.analyze(uiimage)
+            Log.info("画像解析完了")
             Log.info("スキャンストップ")
             self.session.stopRunning()
             self.isStartScan = false
             
             //top画面に解析結果を貸す
-            self.topView!.showResult(analyzeResult.getPaiList(), capturedImage:uiimage)
+            self.topView!.showResult(analyzeResult)
         }
     }
         

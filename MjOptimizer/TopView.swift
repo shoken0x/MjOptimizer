@@ -60,14 +60,16 @@ class TopView:UIView{
     }
     
     //画像解析が終わったときにコールバックされる
-    func showResult(paiList:[Pai],capturedImage:UIImage){
+    func showResult(analyzeResult:AnalyzeResult){
+        Log.info("画像解析結果：\(analyzeResult.toString())")
+        
         //キャプチャ画面を消す
         self.captureView.removeFromSuperview()
         //得点計算
-        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(paiList, kyoku: self.kyoku)
+        let scoreCalcResult :ScoreCalcResult = ScoreCalculator.calc(analyzeResult.paiList, kyoku: self.kyoku)
         switch scoreCalcResult{
         case let .SUCCESS(score):
-            self.addSubview(ScoreView(score:score,paiList:paiList,capturedImage:capturedImage))
+            self.addSubview(ScoreView(score:score,paiList:analyzeResult.paiList,capturedImage:analyzeResult.debugImage))
         case let .ERROR(msg):
             //得点計算に失敗
             Log.info(msg)

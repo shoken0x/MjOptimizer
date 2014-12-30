@@ -39,15 +39,27 @@ class TMAnalyzer{
     }
     
     // @uiimage トリミングされた画像
-    func analyze(uiimage : UIImage, lastAnalyzerResult : AnalyzeResult?) -> AnalyzeResult {
+    func analyze(target : UIImage) -> AnalyzeResult {
         
         Log.info("analyze called")
-        let results = self.analyze(uiimage)
+
+        var tmResults: [TMResult] = []
+        for pai in self.paiTypes {
+            Log.info("scan pai:\(pai.toString())")
+            let matches: Array<AnyObject> = self.matcher.matchTarget(target, withTemplate: pai.toString())
+            for match: AnyObject in matches {
+                if let m = match as? MatcherResult {
+                    tmResults.append(TMResult(x: Int(m.x), y: Int(m.y), width: Int(m.width), height: Int(m.height), value: m.value, pai: pai))
+                }
+            }
+        }
+        tmResults = sortWithPlace(filter(select(tmResults)))
+        
         Log.info("analyze finished")
-        debugPrintln(results)
+        debugPrintln(tmResults)
         var i = 0
-        var cvView = CvView(frame: CGRectMake(0, 0, uiimage.size.width, uiimage.size.height), background: uiimage)
-        for result: TMResult in results {
+        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: target)
+        for result: TMResult in tmResults {
             Log.info("result.pai = \(result.pai.toString())")
             Log.info("result.place = \(result.place)")
             i += 1
@@ -56,22 +68,9 @@ class TMAnalyzer{
         Log.info("total analyze = \(i)")
         var debugView = cvView.imageFromView()
         
-        return AnalyzeResult(resultList: results)
+        return AnalyzeResult(resultList: tmResults,targetImage: target,debugImage: debugView)
     }
-        
-    func analyze(target: UIImage) -> [TMResult] {
-        var results: [TMResult] = []
-        for pai in self.paiTypes {
-            Log.info("scan pai:\(pai.toString())")
-            let matches: Array<AnyObject> = self.matcher.matchTarget(target, withTemplate: pai.toString())
-            for match: AnyObject in matches {
-                if let m = match as? MatcherResult {
-                    results.append(TMResult(x: Int(m.x), y: Int(m.y), width: Int(m.width), height: Int(m.height), value: m.value, pai: pai))
-                }
-            }
-        }
-        return sortWithPlace(filter(select(results)))
-    }
+      
     
     func select(pais: [TMResult]) -> [TMResult] {
         var selected = [TMResult]()
@@ -126,34 +125,5 @@ class TMAnalyzer{
             }
         }
         return nearestPai
-    }
-}
-
-class AnalyzeResult {
-    let resultList: [TMResult]
-    let paiList: [Pai]
-    init(resultList: [TMResult]) {
-        self.resultList = resultList
-        self.paiList = resultList.map{ $0.pai }
-    }
-    
-    //牌のリスト。0番目は手牌の一番左
-    func getPaiList() -> [Pai] {
-        return paiList
-    }
-    
-    //牌の位置(paiPositionIndex)を指定すると、その牌がある場所を長方形で返す
-    func getPaiPositionRect(paiPositionIndex: Int) -> CGRect {
-        return resultList[paiPositionIndex].place
-    }
-    
-    //解析に成功した牌の数
-    func getAnalyzeSuccessNum() -> Int {
-        return resultList.count
-    }
-
-    //解析に成功したかどうか
-    func isSuccess() -> Bool {
-        return self.getAnalyzeSuccessNum() >= 14
     }
 }

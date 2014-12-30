@@ -142,6 +142,7 @@
 		C4349E571A5197D90031D0D7 /* s8.t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4349DE81A5197D90031D0D7 /* s8.t.jpg */; };
 		C4349E581A5197D90031D0D7 /* s9.l.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4349DE91A5197D90031D0D7 /* s9.l.jpg */; };
 		C4349E591A5197D90031D0D7 /* s9.t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4349DEA1A5197D90031D0D7 /* s9.t.jpg */; };
+		C4349E681A5242ED0031D0D7 /* AnalyzeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */; };
 		C439EB6E1998FC4200116820 /* ScoreCalculatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EB6D1998FC4200116820 /* ScoreCalculatorSpec.swift */; };
 		C43B6F9B194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */; };
 		C43B6F9C194DF23D00FBFDD6 /* SutehaiSelectResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */; };
@@ -548,6 +549,7 @@
 		C4349DE81A5197D90031D0D7 /* s8.t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s8.t.jpg; sourceTree = "<group>"; };
 		C4349DE91A5197D90031D0D7 /* s9.l.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s9.l.jpg; sourceTree = "<group>"; };
 		C4349DEA1A5197D90031D0D7 /* s9.t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s9.t.jpg; sourceTree = "<group>"; };
+		C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyzeResult.swift; sourceTree = "<group>"; };
 		C439EB6D1998FC4200116820 /* ScoreCalculatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCalculatorSpec.swift; sourceTree = "<group>"; };
 		C43B6F96194DF23D00FBFDD6 /* SutehaiSelectorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorProtocol.swift; sourceTree = "<group>"; };
 		C43B6F97194DF23D00FBFDD6 /* SutehaiSelectResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResult.swift; sourceTree = "<group>"; };
@@ -871,6 +873,7 @@
 				342182011954C89900E3436B /* CvView.swift */,
 				34636E6C1954CFBB004F41F6 /* TMResult.swift */,
 				34636E6A1954CD6D004F41F6 /* TMAnalyzer.swift */,
+				C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */,
 				3421816A1954C86400E3436B /* CvImages */,
 			);
 			name = templateMatching;
@@ -1320,6 +1323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C44C50661A046E1D00976E2E /* NSArray.swift in Sources */,
+				C4349E681A5242ED0031D0D7 /* AnalyzeResult.swift in Sources */,
 				C42D7570196180C600183C24 /* Mentsu.swift in Sources */,
 				C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */,
 				C4AEAD691A4F0D3300C9FB74 /* PointView.swift in Sources */,
