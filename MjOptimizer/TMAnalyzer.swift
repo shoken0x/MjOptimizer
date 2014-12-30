@@ -32,7 +32,6 @@ class TMAnalyzer{
             "s1b", "s3b", "s7b",
             "j1b", "j2b", "j3b", "j4b", "j6b", "j7b"
         ]
-//        let keys = ["j1t", "s6t"]
         
         for key in keys {
             paiTypes.append(Pai.parse(key)!)
@@ -42,19 +41,19 @@ class TMAnalyzer{
     // @uiimage トリミングされた画像
     func analyze(uiimage : UIImage, lastAnalyzerResult : AnalyzeResult?) -> AnalyzeResult {
         
-        debugPrintln("analyze called")
+        Log.info("analyze called")
         let results = self.analyze(uiimage)
-        debugPrintln("analyze finished")
+        Log.info("analyze finished")
         debugPrintln(results)
         var i = 0
         var cvView = CvView(frame: CGRectMake(0, 0, uiimage.size.width, uiimage.size.height), background: uiimage)
         for result: TMResult in results {
-            debugPrintln("result.pai = \(result.pai.toString())")
-            debugPrintln("result.place = \(result.place)")
+            Log.info("result.pai = \(result.pai.toString())")
+            Log.info("result.place = \(result.place)")
             i += 1
             cvView.addRect(result.place)
         }
-        debugPrintln("total analyze = \(i)")
+        Log.info("total analyze = \(i)")
         var debugView = cvView.imageFromView()
         
         return AnalyzeResult(resultList: results)
@@ -63,6 +62,7 @@ class TMAnalyzer{
     func analyze(target: UIImage) -> [TMResult] {
         var results: [TMResult] = []
         for pai in self.paiTypes {
+            Log.info("scan pai:\(pai.toString())")
             let matches: Array<AnyObject> = self.matcher.matchTarget(target, withTemplate: pai.toString())
             for match: AnyObject in matches {
                 if let m = match as? MatcherResult {

@@ -220,7 +220,6 @@ static cv::Mat loadMatFromFile(NSString *fileBaseName, NSString *type) {
 
 
 -(NSMutableArray *)matchTarget:(UIImage *)target withTemplate:(NSString *)key {
-    NSLog(key);
     UIImage *tpl = (UIImage *)[templates objectForKey:key];
     NSMutableArray *hoge = [self match:target template:tpl];
     return hoge;
