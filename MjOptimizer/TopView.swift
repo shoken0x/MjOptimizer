@@ -38,19 +38,28 @@ class TopView:UIView{
         }else{
             //カメラがないのでテスト画面を出す
             Log.info("カメラがないからテスト画面を出す")
-            let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calcFromStr("p1tp2tp3tp4tp5tp6tp7tp8tp9tj4tj4tj4ts9ts9t", kyoku: Kyoku())
-            switch scoreCalcResult{
-            case let .SUCCESS(score):
-                self.addSubview(
-                    ScoreView(
-                        score:score,
-                        paiList:Pai.parseList("p1tp2tp3tp4tp5tp6tp7tp8tp9tj4tj4tj4ts9ts9t")!,
-                        capturedImage:UIImage(named:"dummyphoto")!
-                    )
-                )
-            case let .ERROR(msg):
-                Log.error(msg)
-            }
+            
+            //ダミー画像で画像解析
+            let uiimage = UIImage(named:"dummyphoto")!
+            let tmAnalyzer = TMAnalyzer()
+            let analyzeResult = tmAnalyzer.analyze(uiimage)
+            showResult(analyzeResult)
+                        
+            //直接牌リストを指定する場合は以下をコメントアウト
+//            let paiList = Pai.parseList("p1tp2tp3tp4tp5tp6tp7tp8tp9tj4tj4tj4ts9ts9t")!
+//            let scoreCalcResult :ScoreCalcResult =  ScoreCalculator.calc(paiList, kyoku: Kyoku())
+//            switch scoreCalcResult{
+//            case let .SUCCESS(score):
+//                self.addSubview(
+//                    ScoreView(
+//                        score:score,
+//                        paiList:paiList,
+//                        capturedImage:uiimage
+//                    )
+//                )
+//            case let .ERROR(msg):
+//                Log.error(msg)
+//            }
         }
     }
     
