@@ -11,7 +11,6 @@
 #import <CoreMedia/CoreMedia.h>
 
 @interface TemplateMatcher : NSObject
-//+(UIImage *)DetectEdgeWithImage:(UIImage *)image;
--(NSMutableArray *)matchTarget:(UIImage *)target withTemplate:(NSString *)key;
--(UIImage *)changeDepth:(UIImage *)target;
+-(NSMutableArray *)match:(UIImage *)target template:(UIImage *)tpl matchType:(int) matchType;
+-(UIImage *)changeDepth:(UIImage *)target matchType:(int) matchType;
 @end

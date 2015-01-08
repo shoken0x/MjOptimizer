@@ -20,7 +20,6 @@ class TopView:UIView{
 
     override init(){
         super.init(frame:CGRectMake(0, 0, 480, 320))
-        
         //captureView
         self.captureView.setTopView(self)
         self.addSubview(self.captureView)
@@ -40,7 +39,7 @@ class TopView:UIView{
             Log.info("カメラがないからテスト画面を出す")
             
             //ダミー画像で画像解析
-            let uiimage = UIImage(named:"dummyphoto2")!
+            let uiimage = UIImage(named:"dummyphoto6")!
             let tmAnalyzer = TMAnalyzer()
             let analyzeResult = tmAnalyzer.analyze(uiimage)
             showResult(analyzeResult)
