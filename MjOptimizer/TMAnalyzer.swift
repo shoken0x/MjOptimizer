@@ -42,7 +42,7 @@ class TMAnalyzer{
     func analyze(target : UIImage) -> AnalyzeResult {
         
         Log.info("analyze called")
-
+        
         var tmResults: [TMResult] = []
         for pai in self.paiTypes {
             Log.info("scan pai:\(pai.toString())")
@@ -53,32 +53,73 @@ class TMAnalyzer{
                 }
             }
         }
-        tmResults = sortWithPlace(filter(select(tmResults)))
-        
-        Log.info("analyze finished")
-        debugPrintln(tmResults)
-        var i = 0
-        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: target)
+
+        //結果のデバッグ表示
+        Log.info("template matching finished")
         for result: TMResult in tmResults {
             Log.info("result.pai = \(result.pai.toString())")
             Log.info("result.place = \(result.place)")
-            i += 1
+        }
+
+        //重なっているマッチ結果をフィルタしてソートする
+        tmResults = sortWithPlace(filter(filterNotIntersection(tmResults)))
+        
+        Log.info("intersection fileter finished")
+        
+        //結果のデバッグ表示
+        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: self.matcher.changeDepth(target))
+        for result: TMResult in tmResults {
+            Log.info("result.pai = \(result.pai.toString())")
+            Log.info("result.place = \(result.place)")
             cvView.addRect(result.place)
         }
-        Log.info("total analyze = \(i)")
+        Log.info("total analyze = \(tmResults.count)")
         var debugView = cvView.imageFromView()
         
-        return AnalyzeResult(resultList: tmResults,targetImage: target,debugImage: debugView)
+        return AnalyzeResult(resultList: tmResults,targetImage: self.matcher.changeDepth(target),debugImage: debugView)
     }
-      
     
+    func filterNotIntersection(pais:[TMResult]) -> [TMResult]{
+        var selectedPais : [TMResult] = []
+        var workPais:[TMResult] = pais
+        var tmpPais:[TMResult] = []
+        sort(&workPais) { p1, p2 in return p1.value > p2.value }
+     
+        
+        while(workPais.count > 1){
+            Log.info(String(workPais.count))
+            //先頭をとる
+            var topValuePai = workPais.shift()
+            //先頭を採用
+            selectedPais.append(topValuePai)
+            //後続は重なりが少ない物のみ採用
+            for pai: TMResult in workPais{
+                if CGRectIntersectsRect(topValuePai.place, pai.place) {
+                    //重なってる
+                    let intersection: CGRect = CGRectIntersection(topValuePai.place, pai.place)
+                    if intersection.width < 3 {
+                    //横方向に3ピクセル以内の重なりなら許容
+                        tmpPais.append(pai)
+                    }
+                }else{
+                    //全く重なってない
+                    tmpPais.append(pai)
+                }
+            }
+            workPais = tmpPais.copy()
+            tmpPais = []
+        }
+        return selectedPais
+    }
+    
+    //おぎアルゴリズム(つかってない)
     func select(pais: [TMResult]) -> [TMResult] {
         var selected = [TMResult]()
         var sorted_pai = pais
         sort(&sorted_pai) { p1, p2 in return p1.value > p2.value }
         for pai: TMResult in sorted_pai {
-            if let nearestPai = self.nearest(pai, paiList: selected) {
-                if CGRectIntersectsRect(nearestPai.place, pai.place) {
+            if let nearestPai = self.nearest(pai, paiList: selected) { //物理的に近い牌を探す
+                if CGRectIntersectsRect(nearestPai.place, pai.place) { //一番近い牌が重なっている
                     let intersection: CGRect = CGRectIntersection(nearestPai.place, pai.place)
                     let ratio: CGFloat = (intersection.width * intersection.height) / (pai.place.width * pai.place.height)
                     if ratio > 0.15 {
@@ -100,12 +141,9 @@ class TMAnalyzer{
     }
 
     func filter(pais: [TMResult]) -> [TMResult] {
-        if pais.count >= 14 {
-            var filtered_pais = pais
-            sort(&filtered_pais){ p1, p2 in return p1.value > p2.value }
-            return filtered_pais[0..14]
-        }
-        return pais
+        var filtered_pais = pais
+        sort(&filtered_pais){ p1, p2 in return p1.value > p2.value }
+        return filtered_pais[0..19]
     }
     
     func sortWithPlace(pais: [TMResult]) -> [TMResult] {

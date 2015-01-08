@@ -20,38 +20,65 @@
 
 NSMutableDictionary *templates;
 
-+(UIImage *)DetectEdgeWithImage:(UIImage *)image {
-    cv::Mat mat;
-    UIImageToMat(image, mat);
+//+(UIImage *)DetectEdgeWithImage:(UIImage *)image {
+//    cv::Mat mat;
+//    UIImageToMat(image, mat);
+//    
+//    cv::Mat gray;
+//    cv::cvtColor(mat, gray, CV_BGR2GRAY);
+//    
+//    cv::Mat edge;
+//    cv::Canny(gray, edge, 200, 180);
+//    
+//    cv::Mat hoge = loadMatFromFile(@"j1.r", @"jpg");
+//    
+//    TemplateMatcher *matcher = [[TemplateMatcher alloc] init];
+//    [matcher matchTarget:image withTemplate:@"s6t"];
+//    
+//    UIImage *edgeImg = MatToUIImage(hoge);
+//    //UIImage *edgeImg = MatToUIImage(edge);
+//    
+//    return edgeImg;
+//}
+
+-(UIImage *)changeDepth:(UIImage *)target{
     
-    cv::Mat gray;
-    cv::cvtColor(mat, gray, CV_BGR2GRAY);
-    
-    cv::Mat edge;
-    cv::Canny(gray, edge, 200, 180);
-    
-    cv::Mat hoge = loadMatFromFile(@"j1.r", @"jpg");
-    
-    TemplateMatcher *matcher = [[TemplateMatcher alloc] init];
-    [matcher matchTarget:image withTemplate:@"s6t"];
-    
-    UIImage *edgeImg = MatToUIImage(hoge);
-    //UIImage *edgeImg = MatToUIImage(edge);
-    
-    return edgeImg;
+    int type = 1; //0:カラーでマッチング、1:グレーでマッチング、2:二値でマッチング
+    cv::Mat targetMat;
+    UIImageToMat(target, targetMat);
+    if(type >= 1){
+        //gray scaleでマッチさせるときは以下をイン
+        cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
+        if(type >= 2){
+            //二値でマッチングさせる
+            cv::adaptiveThreshold(targetMat, targetMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
+        }
+    }
+    return MatToUIImage(targetMat);
 }
 
 -(NSMutableArray *)match:(UIImage *)target template:(UIImage *)tpl {
+    int type = 1; //0:カラーでマッチング、1:グレーでマッチング、2:二値でマッチング
+    double valThre = 0.6;
+    
     cv::Mat targetMat;
     UIImageToMat(target, targetMat);
     
     cv::Mat tplMat;
     UIImageToMat(tpl, tplMat);
     
-    //gray scaleでマッチさせるときは以下をコメントアウト
-    cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
-    cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
-
+    if(type >= 1){
+        //gray scaleでマッチさせるときは以下をイン
+        valThre = 0.6;
+        cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
+        cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
+        if(type >= 2){
+            //二値でマッチングさせる
+            valThre = 0.4;
+            cv::adaptiveThreshold(targetMat, targetMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
+            cv::adaptiveThreshold(tplMat, tplMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
+        }
+    }
     NSMutableArray *results = [NSMutableArray array];
     cv::Mat resultMat;
     double maxVal = 1.0;
@@ -63,7 +90,7 @@ NSMutableDictionary *templates;
         cv::Point maxPt;
         cv::minMaxLoc(resultMat, NULL, &maxVal, NULL, &maxPt);
 
-        if (maxVal > 0.6) {
+        if (maxVal > valThre) {
             MatcherResult *res = [[MatcherResult alloc]init];
             res.x = maxPt.x;
             res.y = maxPt.y;
@@ -77,7 +104,7 @@ NSMutableDictionary *templates;
                           cv::Scalar(255,255,255));
             
         }
-    } while (maxVal > 0.6 && prevVal - maxVal > 0);
+    } while (maxVal > valThre && prevVal - maxVal > 0);
     
     return results;
 }
