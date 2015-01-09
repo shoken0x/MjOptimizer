@@ -30,6 +30,8 @@
 		C40E09251A0496E7003FF411 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E08D91A0496E7003FF411 /* ScoreView.swift */; };
 		C40E09261A0496E7003FF411 /* SutehaiSelectResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */; };
 		C41E6C531A5E3B8200D01017 /* UIImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6C521A5E3B8200D01017 /* UIImageUtil.swift */; };
+		C41E6C601A5E9C9400D01017 /* TemplateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6C5F1A5E9C9400D01017 /* TemplateImage.swift */; };
+		C41E6CA31A5F4A6C00D01017 /* ImageSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */; };
 		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
 		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
 		C42DBD2519AAB22A00FE2DCB /* KyokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */; };
@@ -329,6 +331,8 @@
 		C40E08D91A0496E7003FF411 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResultView.swift; sourceTree = "<group>"; };
 		C41E6C521A5E3B8200D01017 /* UIImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageUtil.swift; sourceTree = "<group>"; };
+		C41E6C5F1A5E9C9400D01017 /* TemplateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateImage.swift; sourceTree = "<group>"; };
+		C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSplitter.swift; sourceTree = "<group>"; };
 		C42D756F196180C600183C24 /* Mentsu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentsu.swift; sourceTree = "<group>"; };
 		C42D7571196180D100183C24 /* MentsuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuSpec.swift; sourceTree = "<group>"; };
 		C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KyokuView.swift; sourceTree = "<group>"; };
@@ -405,13 +409,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3421816A1954C86400E3436B /* CvImages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CvImages;
-			sourceTree = "<group>";
-		};
 		441CDF1C194BDF6200199893 = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +442,7 @@
 				C4E90DA91989283A00948322 /* Kyoku.swift */,
 				C4506DBA1A06070D00667AD0 /* FinishType.swift */,
 				C4506DC41A06071B00667AD0 /* Kaze.swift */,
+				C41E6C991A5F4A2100D01017 /* imageSplitter */,
 				C42B287719808465009FE514 /* optimizer */,
 				C42B286D198083CD009FE514 /* templateMatching */,
 				C42D75611961802B00183C24 /* scoreCalculator */,
@@ -538,6 +536,14 @@
 			name = uiViews;
 			sourceTree = "<group>";
 		};
+		C41E6C991A5F4A2100D01017 /* imageSplitter */ = {
+			isa = PBXGroup;
+			children = (
+				C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */,
+			);
+			name = imageSplitter;
+			sourceTree = "<group>";
+		};
 		C42B286D198083CD009FE514 /* templateMatching */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,7 +556,7 @@
 				34636E6C1954CFBB004F41F6 /* TMResult.swift */,
 				C4349E671A5242ED0031D0D7 /* AnalyzeResult.swift */,
 				C41E6C521A5E3B8200D01017 /* UIImageUtil.swift */,
-				3421816A1954C86400E3436B /* CvImages */,
+				C41E6C5F1A5E9C9400D01017 /* TemplateImage.swift */,
 			);
 			name = templateMatching;
 			sourceTree = "<group>";
@@ -900,6 +906,7 @@
 				C4F82BD01A4F90C100BE9F83 /* TopView.swift in Sources */,
 				C4E706AC1A4F81C200EBA2AF /* CaptureView.swift in Sources */,
 				C44C50681A046E1D00976E2E /* Sequence.swift in Sources */,
+				C41E6CA31A5F4A6C00D01017 /* ImageSplitter.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,
 				C42DBD2519AAB22A00FE2DCB /* KyokuView.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
@@ -908,6 +915,7 @@
 				44270B21194F361A00CE7E7A /* Collection+EachWithIndex.swift in Sources */,
 				C4CA4FEF197135FA0089E2B2 /* PaiNumList.swift in Sources */,
 				342182081954C8D900E3436B /* TemplateMatcher.mm in Sources */,
+				C41E6C601A5E9C9400D01017 /* TemplateImage.swift in Sources */,
 				342182051954C8B900E3436B /* MatcherResult.m in Sources */,
 				C40E09251A0496E7003FF411 /* ScoreView.swift in Sources */,
 				C44C50631A046E1D00976E2E /* ExSwift.swift in Sources */,

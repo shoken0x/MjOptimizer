@@ -24,27 +24,25 @@
     return self;
 }
 
--(NSMutableArray *)match:(UIImage *)target template:(UIImage *)tpl matchType:(int)matchType{
-    double valThre = 0.6;
-    
+-(NSMutableArray *)match:(UIImage *)target template:(UIImage *)tpl matchType:(int)matchType matchThre:(double)matchThre{
     cv::Mat targetMat;
     UIImageToMat(target, targetMat);
     
     cv::Mat tplMat;
     UIImageToMat(tpl, tplMat);
     
+    //画像の変換
     if(matchType >= 1){
-        //gray scaleでマッチさせる
-        valThre = 0.6;
+        //gray scaleにする
         cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
         cv::cvtColor(tplMat,tplMat,CV_RGB2GRAY);
         if(matchType >= 2){
-            //二値でマッチングさせる
-            valThre = 0.2;
+            //二値にする
             cv::adaptiveThreshold(targetMat, targetMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
             cv::adaptiveThreshold(tplMat, tplMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
         }
     }
+    
     NSMutableArray *results = [NSMutableArray array];
     cv::Mat resultMat;
     double maxVal = 1.0;
@@ -56,7 +54,7 @@
         cv::Point maxPt;
         cv::minMaxLoc(resultMat, NULL, &maxVal, NULL, &maxPt);
 
-        if (maxVal > valThre) {
+        if (maxVal > matchThre) {
             MatcherResult *res = [[MatcherResult alloc]init];
             res.x = maxPt.x;
             res.y = maxPt.y;
@@ -70,7 +68,7 @@
                           cv::Scalar(255,255,255));
             
         }
-    } while (maxVal > valThre && prevVal - maxVal > 0);
+    } while (maxVal > matchThre && prevVal - maxVal > 0);
     
     return results;
 }

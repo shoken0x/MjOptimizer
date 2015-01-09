@@ -11,12 +11,11 @@ import UIKit
 class TMResult {
     var value: Double
     var place: CGRect
-    var pai: Pai
-
-    init(x: Int, y: Int, width: Int, height: Int, value: Double, pai: Pai) {
+    var templateImage: TemplateImage
+    init(x: Int, y: Int, width: Int, height: Int, value: Double, templateImage: TemplateImage) {
         self.place = CGRectMake(CGFloat(x), CGFloat(y), CGFloat(width), CGFloat(height))
         self.value = value
-        self.pai = pai
+        self.templateImage = templateImage
     }
     
     func distance(other: TMResult) -> Double {

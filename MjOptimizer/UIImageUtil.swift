@@ -33,7 +33,7 @@ class UIImageUtil{
             CGContextTranslateCTM(context, img.size.width, 0)
             CGContextScaleCTM(context, CGFloat(1), CGFloat(-1))
             CGContextRotateCTM(context, CGFloat(M_PI * -1))
-        case 70:
+        case 270:
             UIGraphicsBeginImageContext(CGSizeMake(img.size.height, img.size.width));
             context = UIGraphicsGetCurrentContext();
             CGContextScaleCTM(context, CGFloat(1), CGFloat(-1))

@@ -39,7 +39,7 @@ class TopView:UIView{
             Log.info("カメラがないからテスト画面を出す")
             
             //ダミー画像で画像解析
-            let uiimage = UIImage(named:"dummyphoto6")!
+            let uiimage = UIImage(named:"dummyphoto3")!
             let tmAnalyzer = TMAnalyzer()
             let analyzeResult = tmAnalyzer.analyze(uiimage)
             showResult(analyzeResult)

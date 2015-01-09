@@ -15,7 +15,7 @@ class AnalyzeResult {
     let debugImage: UIImage
     init(resultList: [TMResult],targetImage: UIImage,debugImage: UIImage) {
         self.resultList = resultList
-        self.paiList = resultList.map{ $0.pai }
+        self.paiList = resultList.map{ $0.templateImage.pai }
         self.targetImage = targetImage
         self.debugImage = debugImage
     }
@@ -27,6 +27,11 @@ class AnalyzeResult {
 
     //文字列で表示
     func toString() -> String{
-        return "画像解析結果 牌:\(resultList.count)枚 paiList:" + join(",",paiList.map({$0.toString() }))
+        let str = join(", ",resultList.map({
+            $0.templateImage.pai.toString() +
+            ($0.templateImage.no == 1 ? "" : "_\($0.templateImage.no)")  +
+            "(0.\(Int($0.value * 100)))"
+        }))
+        return "画像解析結果 牌:\(resultList.count)枚 牌(スコア): \(str)"
     }
 }

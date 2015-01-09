@@ -4,34 +4,29 @@ import CoreMedia
 
 class TMAnalyzer{
     
+    //テンプレートマッチする時の画像のタイプ
     enum MatchType: Int32{
-        case COLOR = 0
-        case GRAY = 1
-        case BINARY = 2
+        case COLOR  = 0 //カラー
+        case GRAY   = 1 //グレイスケール
+        case BINARY = 2 //二値
     }
     
-    class TemplateImage{
-        let pai:Pai
-        let trimed:Bool
-        let uiimage:UIImage
-        init(_ paiStr: String,_ trimed:Bool){
-            self.pai = Pai.parse(paiStr)!
-            self.trimed = trimed
-            var str = "tpl-" + self.pai.toShortStr() + ( trimed ? "-trimed" : "" ) + ".jpg"
-            let tmp = UIImage(named:str)!
-            //TODO direction
-            switch self.pai.direction{
-            case .TOP:     self.uiimage = tmp
-            case .RIGHT:   self.uiimage = UIImageUtil.rotate(tmp,angle:90)
-            case .BOTTOM:  self.uiimage = UIImageUtil.rotate(tmp,angle:180)
-            case .LEFT:    self.uiimage = UIImageUtil.rotate(tmp,angle:270)
-            }
-        }
-    }
+    //解析パラメータ
     
+    //マッチ結果の横方向の領域の重なりを許容するピクセル数
+    let INTERSECTION_THRE : CGFloat = 0;
+    
+    //マッチしたときにこのより大きいvalueを持つマッチのみ採用する
+    let MATCH_THRE : Double = 0.4;
+    
+    //テンプレートマッチする時の画像のタイプ
+    //let MATCH_TYPE : MatchType = MatchType.BINARY //2値
+    let MATCH_TYPE : MatchType = MatchType.GRAY //グレイスケール
+    //let MATCH_TYPE : MatchType = MatchType.COLOR //カラー
+
+    //変数
     var templateMatcher: TemplateMatcher
     var paiTypes: [Pai]
-    let matchType:MatchType = MatchType.GRAY
     
     init() {
         self.templateMatcher = TemplateMatcher()
@@ -40,8 +35,8 @@ class TMAnalyzer{
     
     // @uiimage トリミングされた画像
     func analyze(target : UIImage) -> AnalyzeResult {
-        let templateImages : [TemplateImage] = [
-            TemplateImage("m1l", true),
+        var templateImages : [TemplateImage] = [
+            TemplateImage("m1t", true),
             TemplateImage("m2t", true),
             TemplateImage("m3t", true),
             TemplateImage("m4t", true),
@@ -51,6 +46,7 @@ class TMAnalyzer{
             TemplateImage("m8t", true),
             TemplateImage("m9t", true),
             TemplateImage("s1t", false),
+            TemplateImage("s1t", false, 2),
             TemplateImage("s2t", false),
             TemplateImage("s3t", false),
             TemplateImage("s4t", false),
@@ -76,40 +72,41 @@ class TMAnalyzer{
             TemplateImage("j6t", true),
             TemplateImage("j7t", false),
 
-            TemplateImage("m1r", true),
-            TemplateImage("m2r", true),
-            TemplateImage("m3r", true),
-            TemplateImage("m4r", true),
-            TemplateImage("m5r", true),
-            TemplateImage("m6r", true),
-            TemplateImage("m7r", true),
-            TemplateImage("m8r", true),
-            TemplateImage("m9r", true),
-            TemplateImage("s1r", false),
-            TemplateImage("s2r", false),
-            TemplateImage("s3r", false),
-            TemplateImage("s4r", false),
-            TemplateImage("s5r", false),
-            TemplateImage("s6r", false),
-            TemplateImage("s7r", true),
-            TemplateImage("s8r", false),
-            TemplateImage("s9r", false),
-            TemplateImage("p1r", false),
-            TemplateImage("p2r", false),
-            TemplateImage("p3r", false),
-            TemplateImage("p4r", false),
-            TemplateImage("p5r", false),
-            TemplateImage("p6r", false),
-            TemplateImage("p7r", true),
-            TemplateImage("p8r", false),
-            TemplateImage("p9r", true),
-            TemplateImage("j1r", true),
-            TemplateImage("j2r", true),
-            TemplateImage("j3r", false),
-            TemplateImage("j4r", true),
-            TemplateImage("j5r", false),
-            TemplateImage("j6r", true),
-            TemplateImage("j7r", false),
+            TemplateImage("m1l", true),
+            TemplateImage("m2l", true),
+            TemplateImage("m3l", true),
+            TemplateImage("m4l", true),
+            TemplateImage("m5l", true),
+            TemplateImage("m6l", true),
+            TemplateImage("m7l", true),
+            TemplateImage("m8l", true),
+            TemplateImage("m9l", true),
+            TemplateImage("s1l", false),
+            TemplateImage("s1l", false, 2),
+            TemplateImage("s2l", false),
+            TemplateImage("s3l", false),
+            TemplateImage("s4l", false),
+            TemplateImage("s5l", false),
+            TemplateImage("s6l", false),
+            TemplateImage("s7l", true),
+            TemplateImage("s8l", false),
+            TemplateImage("s9l", false),
+            TemplateImage("p1l", false),
+            TemplateImage("p2l", false),
+            TemplateImage("p3l", false),
+            TemplateImage("p4l", false),
+            TemplateImage("p5l", false),
+            TemplateImage("p6l", false),
+            TemplateImage("p7l", true),
+            TemplateImage("p8l", false),
+            TemplateImage("p9l", true),
+            TemplateImage("j1l", true),
+            TemplateImage("j2l", true),
+            TemplateImage("j3l", false),
+            TemplateImage("j4l", true),
+            TemplateImage("j5l", false),
+            TemplateImage("j6l", true),
+            TemplateImage("j7l", false),
 
             TemplateImage("m1b", true),
             TemplateImage("m2b", true),
@@ -121,6 +118,7 @@ class TMAnalyzer{
             TemplateImage("m8b", true),
             TemplateImage("m9b", true),
             TemplateImage("s1b", false),
+            TemplateImage("s1b", false, 2),
             TemplateImage("s3b", false),
             TemplateImage("s7b", true),
             TemplateImage("p6b", false),
@@ -132,26 +130,27 @@ class TMAnalyzer{
             TemplateImage("j6b", true),
             TemplateImage("j7b", false),
             
-            TemplateImage("m1l", true),
-            TemplateImage("m2l", true),
-            TemplateImage("m3l", true),
-            TemplateImage("m4l", true),
-            TemplateImage("m5l", true),
-            TemplateImage("m6l", true),
-            TemplateImage("m7l", true),
-            TemplateImage("m8l", true),
-            TemplateImage("m9l", true),
-            TemplateImage("s1l", false),
-            TemplateImage("s3l", false),
-            TemplateImage("s7l", true),
-            TemplateImage("p3l", false),
-            TemplateImage("p7l", true),
-            TemplateImage("j1l", true),
-            TemplateImage("j2l", true),
-            TemplateImage("j3l", false),
-            TemplateImage("j4l", true),
-            TemplateImage("j6l", true),
-            TemplateImage("j7l", false)
+            TemplateImage("m1r", true),
+            TemplateImage("m2r", true),
+            TemplateImage("m3r", true),
+            TemplateImage("m4r", true),
+            TemplateImage("m5r", true),
+            TemplateImage("m6r", true),
+            TemplateImage("m7r", true),
+            TemplateImage("m8r", true),
+            TemplateImage("m9r", true),
+            TemplateImage("s1r", false),
+            TemplateImage("s1r", false, 2),
+            TemplateImage("s3r", false),
+            TemplateImage("s7r", true),
+            TemplateImage("p3r", false),
+            TemplateImage("p7r", true),
+            TemplateImage("j1r", true),
+            TemplateImage("j2r", true),
+            TemplateImage("j3r", false),
+            TemplateImage("j4r", true),
+            TemplateImage("j6r", true),
+            TemplateImage("j7r", false)
 
         ]
         
@@ -163,39 +162,32 @@ class TMAnalyzer{
             let matches: Array<AnyObject> = self.templateMatcher.match(
                 target,
                 template: templateImage.uiimage,
-                matchType:matchType.rawValue)
+                matchType:MATCH_TYPE.rawValue,
+                matchThre:MATCH_THRE
+            )
             
-//            let matches: Array<AnyObject> = self.templateMatcher.matchTarget(target, withTemplate: pai.toString(),matchType:matchType.rawValue)
             for match: AnyObject in matches {
                 if let m = match as? MatcherResult {
-                    tmResults.append(TMResult(x: Int(m.x), y: Int(m.y), width: Int(m.width), height: Int(m.height), value: m.value, pai: templateImage.pai))
+                    tmResults.append(TMResult(x: Int(m.x), y: Int(m.y), width: Int(m.width), height: Int(m.height), value: m.value, templateImage: templateImage))
                 }
             }
         }
 
-        //結果のデバッグ表示
         Log.info("template matching finished")
-        for result: TMResult in tmResults {
-            Log.info("result.pai = \(result.pai.toString())")
-            Log.info("result.place = \(result.place)")
-        }
 
         //重なっているマッチ結果をフィルタしてソートする
-        tmResults = sortWithPlace(filterUpperValue(filterNotIntersection(tmResults)))
+        tmResults = sortWithPlace(filterUpperValue(filterNotIntersection(tmResults), max:19))
         
         Log.info("intersection fileter finished")
         
         //結果のデバッグ表示
-        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: self.templateMatcher.changeDepth(target,matchType:matchType.rawValue))
+        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: self.templateMatcher.changeDepth(target,matchType:MATCH_TYPE.rawValue))
         for result: TMResult in tmResults {
-            Log.info("result.pai = \(result.pai.toString())")
-            Log.info("result.place = \(result.place)")
-            cvView.addRect(result.place)
+            cvView.addRect(result)
         }
-        Log.info("total analyze = \(tmResults.count)")
         var debugView = cvView.imageFromView()
         
-        return AnalyzeResult(resultList: tmResults,targetImage: self.templateMatcher.changeDepth(target,matchType:matchType.rawValue),debugImage: debugView)
+        return AnalyzeResult(resultList: tmResults,targetImage: self.templateMatcher.changeDepth(target,matchType:MATCH_TYPE.rawValue),debugImage: debugView)
     }
     
     func filterNotIntersection(pais:[TMResult]) -> [TMResult]{
@@ -210,10 +202,11 @@ class TMAnalyzer{
             selectedPais.append(topValuePai)
             //後続は重なりが少ない物のみ採用
             for pai: TMResult in workPais{
+                
                 if CGRectIntersectsRect(topValuePai.place, pai.place) {
                     //重なってる
                     let intersection: CGRect = CGRectIntersection(topValuePai.place, pai.place)
-                    if intersection.width < 3 {
+                    if intersection.width < self.INTERSECTION_THRE {
                     //横方向に3ピクセル以内の重なりなら許容
                         tmpPais.append(pai)
                     }
@@ -256,10 +249,11 @@ class TMAnalyzer{
         return selected
     }
 
-    func filterUpperValue(pais: [TMResult]) -> [TMResult] {
+    //valueが上位maxだけ残す
+    func filterUpperValue(pais: [TMResult], max:Int) -> [TMResult] {
         var filtered_pais = pais
         sort(&filtered_pais){ p1, p2 in return p1.value > p2.value }
-        return filtered_pais[0..19]
+        return filtered_pais[0..max]
     }
     
     func sortWithPlace(pais: [TMResult]) -> [TMResult] {

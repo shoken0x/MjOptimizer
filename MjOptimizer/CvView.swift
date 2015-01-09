@@ -11,10 +11,10 @@ import QuartzCore
 
 class CvView: UIView {
     
-    var rectList: [CGRect]
+    var tmResultList: [TMResult]
 
     init(frame: CGRect, background: UIImage) {
-        rectList = [CGRect]()
+        tmResultList = [TMResult]()
         super.init(frame: frame)
         self.backgroundColor = UIColor(patternImage:background)
     }
@@ -23,8 +23,8 @@ class CvView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addRect(rect: CGRect) {
-        rectList.append(rect)
+    func addRect(result:TMResult) {
+        tmResultList.append(result)
     }
     
     func imageFromView() -> UIImage {
@@ -43,8 +43,8 @@ class CvView: UIView {
     {
         var context = UIGraphicsGetCurrentContext()
         CGContextSetRGBStrokeColor(context, 0, 1.0, 0.2, 1.0)
-        for r in rectList {
-            CGContextAddRect(context, r)
+        for tmResult : TMResult in tmResultList {
+            CGContextAddRect(context, tmResult.place)
         }
         CGContextStrokePath(context)
     }
