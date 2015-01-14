@@ -26,10 +26,12 @@ class TMAnalyzer{
 
     //変数
     var templateMatcher: TemplateMatcher
+    var cvUtil : CvUtil
     var paiTypes: [Pai]
     
     init() {
         self.templateMatcher = TemplateMatcher()
+        self.cvUtil = CvUtil()
         self.paiTypes = [Pai]()
     }
     
@@ -181,13 +183,13 @@ class TMAnalyzer{
         Log.info("intersection fileter finished")
         
         //結果のデバッグ表示
-        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: self.templateMatcher.changeDepth(target,matchType:MATCH_TYPE.rawValue))
+        var cvView = CvView(frame: CGRectMake(0, 0, target.size.width, target.size.height), background: cvUtil.changeDepth(target,matchType:MATCH_TYPE.rawValue))
         for result: TMResult in tmResults {
             cvView.addRect(result)
         }
         var debugView = cvView.imageFromView()
         
-        return AnalyzeResult(resultList: tmResults,targetImage: self.templateMatcher.changeDepth(target,matchType:MATCH_TYPE.rawValue),debugImage: debugView)
+        return AnalyzeResult(resultList: tmResults,targetImage: cvUtil.changeDepth(target,matchType:MATCH_TYPE.rawValue),debugImage: debugView)
     }
     
     func filterNotIntersection(pais:[TMResult]) -> [TMResult]{

@@ -72,18 +72,4 @@
     
     return results;
 }
-
--(UIImage *)changeDepth:(UIImage *)target matchType:(int)matchType{
-    cv::Mat targetMat;
-    UIImageToMat(target, targetMat);
-    if(matchType >= 1){
-        //gray scaleでマッチさせる
-        cv::cvtColor(targetMat,targetMat,CV_RGB2GRAY);
-        if(matchType >= 2){
-            //二値でマッチングさせる
-            cv::adaptiveThreshold(targetMat, targetMat, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 5, 5);
-        }
-    }
-    return MatToUIImage(targetMat);
-}
 @end

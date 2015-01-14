@@ -31,7 +31,7 @@
 		C40E09261A0496E7003FF411 /* SutehaiSelectResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */; };
 		C41E6C531A5E3B8200D01017 /* UIImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6C521A5E3B8200D01017 /* UIImageUtil.swift */; };
 		C41E6C601A5E9C9400D01017 /* TemplateImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6C5F1A5E9C9400D01017 /* TemplateImage.swift */; };
-		C41E6CA31A5F4A6C00D01017 /* ImageSplitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */; };
+		C41E6CA61A62204A00D01017 /* CvUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = C41E6CA51A62204A00D01017 /* CvUtil.mm */; };
 		C42D7570196180C600183C24 /* Mentsu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D756F196180C600183C24 /* Mentsu.swift */; };
 		C42D7572196180D100183C24 /* MentsuSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D7571196180D100183C24 /* MentsuSpec.swift */; };
 		C42DBD2519AAB22A00FE2DCB /* KyokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */; };
@@ -60,6 +60,7 @@
 		C4506DC51A06071B00667AD0 /* Kaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4506DC41A06071B00667AD0 /* Kaze.swift */; };
 		C46217D31989FB65002982B2 /* Array+Conbination.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46217D21989FB65002982B2 /* Array+Conbination.swift */; };
 		C4621A7219555FED00F43A2F /* SutehaiSelectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */; };
+		C464B6B51A66D31100DC6F2B /* DetectRect.c in Sources */ = {isa = PBXBuildFile; fileRef = C464B6B31A66D31100DC6F2B /* DetectRect.c */; };
 		C47F80801998B5760008A706 /* ScoreCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F807F1998B5760008A706 /* ScoreCalculator.swift */; };
 		C482E1EC19815B4C0051A9B9 /* MentsuResolverSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */; };
 		C4914A2019893BD100BD663E /* AgariSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4914A1F19893BD100BD663E /* AgariSpec.swift */; };
@@ -332,7 +333,8 @@
 		C40E08DA1A0496E7003FF411 /* SutehaiSelectResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectResultView.swift; sourceTree = "<group>"; };
 		C41E6C521A5E3B8200D01017 /* UIImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageUtil.swift; sourceTree = "<group>"; };
 		C41E6C5F1A5E9C9400D01017 /* TemplateImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateImage.swift; sourceTree = "<group>"; };
-		C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSplitter.swift; sourceTree = "<group>"; };
+		C41E6CA41A621FE800D01017 /* CvUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CvUtil.h; sourceTree = "<group>"; };
+		C41E6CA51A62204A00D01017 /* CvUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CvUtil.mm; sourceTree = "<group>"; };
 		C42D756F196180C600183C24 /* Mentsu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mentsu.swift; sourceTree = "<group>"; };
 		C42D7571196180D100183C24 /* MentsuSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuSpec.swift; sourceTree = "<group>"; };
 		C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KyokuView.swift; sourceTree = "<group>"; };
@@ -361,6 +363,8 @@
 		C4506DC41A06071B00667AD0 /* Kaze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kaze.swift; sourceTree = "<group>"; };
 		C46217D21989FB65002982B2 /* Array+Conbination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Conbination.swift"; sourceTree = "<group>"; };
 		C4621A7119555FED00F43A2F /* SutehaiSelectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SutehaiSelectorSpec.swift; sourceTree = "<group>"; };
+		C464B6B31A66D31100DC6F2B /* DetectRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DetectRect.c; sourceTree = "<group>"; };
+		C464B6B41A66D31100DC6F2B /* DetectRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetectRect.h; sourceTree = "<group>"; };
 		C47F807F1998B5760008A706 /* ScoreCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreCalculator.swift; sourceTree = "<group>"; };
 		C482E1EB19815B4C0051A9B9 /* MentsuResolverSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentsuResolverSpec.swift; sourceTree = "<group>"; };
 		C4914A1F19893BD100BD663E /* AgariSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgariSpec.swift; sourceTree = "<group>"; };
@@ -437,12 +441,13 @@
 				441CDF2A194BDF6200199893 /* AppDelegate.swift */,
 				441CDF2C194BDF6200199893 /* ViewController.swift */,
 				441CDF2E194BDF6200199893 /* Main.storyboard */,
+				C4F82BCF1A4F90C100BE9F83 /* TopView.swift */,
 				C40E09311A049C94003FF411 /* uiViews */,
 				C4F9B028194DA6DC003FFEEC /* Pai.swift */,
 				C4E90DA91989283A00948322 /* Kyoku.swift */,
 				C4506DBA1A06070D00667AD0 /* FinishType.swift */,
 				C4506DC41A06071B00667AD0 /* Kaze.swift */,
-				C41E6C991A5F4A2100D01017 /* imageSplitter */,
+				C41E6C991A5F4A2100D01017 /* imageProcess */,
 				C42B287719808465009FE514 /* optimizer */,
 				C42B286D198083CD009FE514 /* templateMatching */,
 				C42D75611961802B00183C24 /* scoreCalculator */,
@@ -527,7 +532,6 @@
 		C40E09311A049C94003FF411 /* uiViews */ = {
 			isa = PBXGroup;
 			children = (
-				C4F82BCF1A4F90C100BE9F83 /* TopView.swift */,
 				C4F82BCC1A4F874B00BE9F83 /* ScoreView */,
 				C4F82BCB1A4F872F00BE9F83 /* CaptureView */,
 				C42DBD2419AAB22A00FE2DCB /* KyokuView.swift */,
@@ -536,12 +540,15 @@
 			name = uiViews;
 			sourceTree = "<group>";
 		};
-		C41E6C991A5F4A2100D01017 /* imageSplitter */ = {
+		C41E6C991A5F4A2100D01017 /* imageProcess */ = {
 			isa = PBXGroup;
 			children = (
-				C41E6CA21A5F4A6C00D01017 /* ImageSplitter.swift */,
+				C41E6CA41A621FE800D01017 /* CvUtil.h */,
+				C41E6CA51A62204A00D01017 /* CvUtil.mm */,
+				C464B6B31A66D31100DC6F2B /* DetectRect.c */,
+				C464B6B41A66D31100DC6F2B /* DetectRect.h */,
 			);
-			name = imageSplitter;
+			name = imageProcess;
 			sourceTree = "<group>";
 		};
 		C42B286D198083CD009FE514 /* templateMatching */ = {
@@ -898,6 +905,7 @@
 				C41E6C531A5E3B8200D01017 /* UIImageUtil.swift in Sources */,
 				C4349E681A5242ED0031D0D7 /* AnalyzeResult.swift in Sources */,
 				C42D7570196180C600183C24 /* Mentsu.swift in Sources */,
+				C464B6B51A66D31100DC6F2B /* DetectRect.c in Sources */,
 				C4AC26561986A2D8007533C6 /* Yaku.swift in Sources */,
 				C4AEAD691A4F0D3300C9FB74 /* PointView.swift in Sources */,
 				C44C50651A046E1D00976E2E /* Int.swift in Sources */,
@@ -906,7 +914,6 @@
 				C4F82BD01A4F90C100BE9F83 /* TopView.swift in Sources */,
 				C4E706AC1A4F81C200EBA2AF /* CaptureView.swift in Sources */,
 				C44C50681A046E1D00976E2E /* Sequence.swift in Sources */,
-				C41E6CA31A5F4A6C00D01017 /* ImageSplitter.swift in Sources */,
 				C4DC4452196319E8009AEA97 /* Array+Slice.swift in Sources */,
 				C42DBD2519AAB22A00FE2DCB /* KyokuView.swift in Sources */,
 				A6DEAC471951DF4C0075A0BB /* SutehaiSelector.swift in Sources */,
@@ -919,6 +926,7 @@
 				342182051954C8B900E3436B /* MatcherResult.m in Sources */,
 				C40E09251A0496E7003FF411 /* ScoreView.swift in Sources */,
 				C44C50631A046E1D00976E2E /* ExSwift.swift in Sources */,
+				C41E6CA61A62204A00D01017 /* CvUtil.mm in Sources */,
 				34636E6B1954CD6D004F41F6 /* TMAnalyzer.swift in Sources */,
 				C44C50601A046E1D00976E2E /* Array.swift in Sources */,
 				C4506DC51A06071B00667AD0 /* Kaze.swift in Sources */,

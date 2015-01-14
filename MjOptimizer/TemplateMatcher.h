@@ -12,5 +12,4 @@
 
 @interface TemplateMatcher : NSObject
 -(NSMutableArray *)match:(UIImage *)target template:(UIImage *)tpl matchType:(int)matchType matchThre:(double)matchThre;
--(UIImage *)changeDepth:(UIImage *)target matchType:(int) matchType;
 @end

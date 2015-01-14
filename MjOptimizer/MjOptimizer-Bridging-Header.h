@@ -4,3 +4,5 @@
 
 #import "TemplateMatcher.h"
 #import "MatcherResult.h"
+#import "CvUtil.h"
+#import "DetectRect.h"
